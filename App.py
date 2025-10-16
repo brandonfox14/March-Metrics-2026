@@ -9,58 +9,41 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- SIDEBAR BRANDING ---
-logo = Image.open("Assets/Logos/FullLogo.png")
+# --- SIDEBAR / HEADER ---
+logo = Image.open("assets/logos/FullLogo.png")
 st.sidebar.image(logo, use_container_width=True)
 st.sidebar.title("March Metrics")
 
 st.sidebar.write("""
-**A data-driven basketball analytics suite**  
-powered by advanced **data science**, **machine learning**,  
+**A data-driven basketball analytics suite**
+built with advanced **data science**, **machine learning**,  
 and statistical modeling — giving you the ultimate edge  
-in understanding every aspect of the game.
+in understanding every angle of the game.
 """)
 
 st.sidebar.markdown("---")
+st.sidebar.success("Use the sidebar to navigate between pages.")
 
-# --- SIDEBAR NAVIGATION ---
-st.sidebar.header("Navigation")
-page = st.sidebar.radio(
-    "Select a page:",
-    [
-        "Main",
-        "Team Breakdown",
-        "Team Comparison",
-        "Clutch",
-        "Schedule Predictor",
-        "Today's Games",
-        "Players Breakdown",
-        "Betting"
-    ]
-)
+# --- MAIN LANDING VIEW ---
+st.title("🏀 March Metrics Dashboard")
+st.write("""
+Welcome to **March Metrics**, an advanced basketball intelligence platform.  
+Here you can:
+- Explore team breakdowns and efficiency trends  
+- Compare programs with advanced data metrics  
+- Analyze clutch performance and predictive models  
+- Run schedule outcome predictions and betting edges  
+- Track real-time player and game updates
+""")
 
-# --- PAGE ROUTER ---
-if page == "Main":
-    from Pages.Main import main
-    main()
-elif page == "Team Breakdown":
-    from Pages.TeamBreakdown import team_breakdown
-    team_breakdown()
-elif page == "Team Comparison":
-    from Pages.TeamComparison import team_comparison
-    team_comparison()
-elif page == "Clutch":
-    from Pages.Clutch import clutch
-    clutch()
-elif page == "Schedule Predictor":
-    from Pages.SchedulePredictor import schedule_predictor
-    schedule_predictor()
-elif page == "Today's Games":
-    from Pages.TodaysGames import todays_games
-    todays_games()
-elif page == "Players Breakdown":
-    from Pages.PlayersBreakdown import players_breakdown
-    players_breakdown()
-elif page == "Betting":
-    from Pages.Betting import betting
-    betting()
+st.markdown("---")
+st.subheader("How it works")
+
+st.write("""
+Each page in the sidebar gives you analytical access to different datasets and models.  
+All data pipelines are powered by `pandas`, `scikit-learn`, and `xgboost`, integrating:
+- Machine learning models for prediction  
+- Regression-based value scoring  
+- Context-adjusted performance metrics  
+- Automated feature engineering and visualization
+""")
