@@ -14,7 +14,7 @@ st.set_page_config(
 # -------------------------------------------------------------
 # SIDEBAR CONFIGURATION
 # -------------------------------------------------------------
-# Load logo
+# Load company logo
 try:
     logo = Image.open("Assets/Logos/FullLogo.png")
     st.sidebar.image(logo, use_container_width=True)
@@ -25,33 +25,24 @@ st.sidebar.title("March Metrics 2026")
 
 st.sidebar.markdown(
     """
-**March Metrics** combines **machine learning**, **data science**,  
-and **basketball intelligence** for unmatched analytical insight.  
-
-Navigate the app to explore predictive models, team analytics,  
-and betting optimization strategies.
+**March Metrics** is a college basketball analytics platform built to  
+combine **machine learning**, **data science**, and **basketball intelligence**  
+for competitive insight and decision support.
+    
+Navigate the pages below to explore advanced models, predictive analytics,  
+and data-driven insights across teams, players, and betting markets.
 """
 )
 
 st.sidebar.divider()
-st.sidebar.subheader("📂 Pages")
-
-# -------------------------------------------------------------
-# MANUAL PAGE LINKS
-# -------------------------------------------------------------
-# Use relative paths to link to your Streamlit pages
-st.sidebar.page_link("App.py", label="🏠 Home / Overview")
-st.sidebar.page_link("Pages/1 Main.py", label="📈 Main Dashboard")
-st.sidebar.page_link("Pages/2 Team Breakdown.py", label="🏀 Team Breakdown")
-st.sidebar.page_link("Pages/3 Team Comparison.py", label="⚖️ Team Comparison")
-st.sidebar.page_link("Pages/4 Clutch.py", label="⏱️ Clutch Analysis")
-st.sidebar.page_link("Pages/5 Schedule_Predictor.py", label="🗓️ Schedule Predictor")
-st.sidebar.page_link("Pages/6 Todays Games.py", label="📅 Today's Games")
-st.sidebar.page_link("Pages/7 Players Breakdown.py", label="👥 Player Breakdown")
-st.sidebar.page_link("Pages/8 Betting.py", label="💰 Betting Insights")
-
+st.sidebar.success("Use the sidebar below to access each section of the app.")
 st.sidebar.divider()
-st.sidebar.info("Select a page above to explore March Metrics analytics.")
+
+st.sidebar.markdown("""
+### Navigation
+Streamlit automatically displays the available pages under:
+> **“Pages” folder → sidebar list**
+""")
 
 # -------------------------------------------------------------
 # MAIN PAGE CONTENT
@@ -60,18 +51,18 @@ st.title("🏀 March Metrics: Data-Driven Basketball Analytics")
 
 st.write(
     """
-Welcome to **March Metrics**, a cutting-edge platform for analyzing and 
+Welcome to **March Metrics**, a data science–driven platform for analyzing and 
 predicting college basketball performance.
 
 This application integrates:
-- **Statistical modeling** and **regression analysis**
-- **Machine learning** for predictive outcomes
-- **Context-adjusted metrics** such as SOS, SM+, and Coach Value
-- **Game-level and player-level analytics**
-- **Betting edge detection** using historical and model-based probabilities
+- **Statistical modeling** and regression analysis  
+- **Machine learning** for predictive outcomes  
+- **Context-adjusted efficiency metrics** (e.g., SOS, SM+, Coach Value)  
+- **Game-level and player-level breakdowns**  
+- **Betting edge analysis** leveraging historical performance
 
-Our mission: to deliver **the most complete basketball analytics suite** 
-for decision-makers, coaches, and predictive strategists.
+The goal: provide an **unmatched analytical view** of how teams and players perform, 
+both in-season and under tournament conditions.
 """
 )
 
@@ -83,40 +74,42 @@ cols = st.columns(3)
 with cols[0]:
     st.markdown("""
     #### 📊 Team Analytics  
-    Deep-dive into advanced team metrics — adjusted for schedule,  
-    opponent strength, and location.
+    Explore team-level performance using advanced statistical metrics,  
+    contextualized by opponent strength and location effects.
     """)
 
 with cols[1]:
     st.markdown("""
     #### 🔍 Predictive Modeling  
-    Apply regression and machine learning models to forecast matchups,  
-    rankings, and tournament outcomes.
+    Apply regression and ML-based models to forecast outcomes and simulate  
+    tournament matchups or future schedules.
     """)
 
 with cols[2]:
     st.markdown("""
-    #### 💰 Betting Optimization  
-    Evaluate betting edges and risk-adjusted unit strategies  
-    powered by probability modeling.
+    #### 💰 Betting Analysis  
+    Evaluate line value, expected outcomes, and potential betting edges  
+    powered by context-driven model probabilities.
     """)
 
 st.markdown("---")
 
 st.subheader("📘 Data Overview")
 st.write("""
-Data is sourced from the **26_March_Madness_Databook**, including:
-- Team, player, and coach performance data  
-- Strength of schedule and context indexing  
-- Clutch and efficiency metrics  
-- Predictive modeling datasets
+The data powering this app is sourced from the **26_March_Madness_Databook**,  
+which includes:
+- Team, player, and coach performance datasets  
+- Strength of schedule indexing and historical value tables  
+- Clutch-time and situational metrics  
+- Predictive models for statistical strength and win probability
 
-All located in `Data/26_March_Madness_Databook/`.
+All files are located under `Data/26_March_Madness_Databook/`.
 """)
 
 st.markdown("---")
 
 st.info(
-    "This portfolio-safe version includes mock data and structures — full proprietary models are excluded for confidentiality."
+    "This version is a **portfolio-safe example**. Full datasets and proprietary modeling details are excluded for confidentiality."
 )
 
+st.caption("Developed with ❤️ using Streamlit, pandas, and scikit-learn.")
