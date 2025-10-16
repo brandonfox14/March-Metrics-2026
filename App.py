@@ -1,6 +1,6 @@
+# App.py
 import streamlit as st
 from PIL import Image
-import os
 
 # -------------------------------------------------------------
 # GLOBAL PAGE CONFIG
@@ -43,18 +43,15 @@ st.sidebar.divider()
 # -------------------------------------------------------------
 st.sidebar.markdown("### Navigation")
 
-# Create a manual link to the 1_Main.py page
-# (Streamlit pages can be opened via URL query string ?page=<page_name>)
-main_page_path = os.path.join("Pages", "1_Main.py")
-
-st.sidebar.page_link(main_page_path, label="🏠 Main Page")
-st.sidebar.page_link("Pages/2_Team_Breakdown.py", label="📊 Team Breakdown")
-st.sidebar.page_link("Pages/3_Team_Comparison.py", label="⚖️ Team Comparison")
-st.sidebar.page_link("Pages/4_Clutch.py", label="🔥 Clutch")
-st.sidebar.page_link("Pages/5_Schedule_Predictor.py", label="📅 Schedule Predictor")
-st.sidebar.page_link("Pages/6_Todays_Games.py", label="🎯 Today's Games")
-st.sidebar.page_link("Pages/7_Players_Breakdown.py", label="👤 Players Breakdown")
-st.sidebar.page_link("Pages/8_Betting.py", label="💰 Betting")
+# ✅ Use only filenames (no "Pages/" prefix)
+st.sidebar.page_link("1_Main.py", label="Main Page")
+st.sidebar.page_link("2_Team_Breakdown.py", label="Team Breakdown")
+st.sidebar.page_link("3_Team_Comparison.py", label="Team Comparison")
+st.sidebar.page_link("4_Clutch.py", label="Clutch Performance")
+st.sidebar.page_link("5_Schedule_Predictor.py", label="Schedule Predictor")
+st.sidebar.page_link("6_Todays_Games.py", label="Today's Games")
+st.sidebar.page_link("7_Players_Breakdown.py", label="Players Breakdown")
+st.sidebar.page_link("8_Betting.py", label="Betting Model Insights")
 
 # -------------------------------------------------------------
 # MAIN PAGE CONTENT
@@ -79,34 +76,34 @@ both in-season and under tournament conditions.
 )
 
 st.markdown("---")
-st.subheader("🏆 Core Capabilities")
+st.subheader("Core Capabilities")
 
 cols = st.columns(3)
 
 with cols[0]:
     st.markdown("""
-    #### 📊 Team Analytics  
+    #### Team Analytics  
     Explore team-level performance using advanced statistical metrics,  
     contextualized by opponent strength and location effects.
     """)
 
 with cols[1]:
     st.markdown("""
-    #### 🔍 Predictive Modeling  
+    #### Predictive Modeling  
     Apply regression and ML-based models to forecast outcomes and simulate  
     tournament matchups or future schedules.
     """)
 
 with cols[2]:
     st.markdown("""
-    #### 💰 Betting Analysis  
+    #### Betting Analysis  
     Evaluate line value, expected outcomes, and potential betting edges  
     powered by context-driven model probabilities.
     """)
 
 st.markdown("---")
 
-st.subheader("📘 Data Overview")
+st.subheader("Data Overview")
 st.write("""
 The data powering this app is sourced from the **26_March_Madness_Databook**,  
 which includes:
