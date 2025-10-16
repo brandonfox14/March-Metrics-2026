@@ -1,6 +1,6 @@
-# App.py
 import streamlit as st
 from PIL import Image
+import os
 
 # -------------------------------------------------------------
 # GLOBAL PAGE CONFIG
@@ -39,16 +39,22 @@ st.sidebar.success("Use the sidebar below to access each section of the app.")
 st.sidebar.divider()
 
 # -------------------------------------------------------------
-# MANUAL PAGE LINK
+# MANUAL NAVIGATION LINKS
 # -------------------------------------------------------------
-# This ensures the "Main Dashboard" page appears on the sidebar
-st.sidebar.page_link("Pages/1 Main.py", label="Main Dashboard")
+st.sidebar.markdown("### Navigation")
 
-st.sidebar.markdown("""
-### Navigation
-Streamlit automatically displays the available pages under:
-> **“Pages” folder → sidebar list**
-""")
+# Create a manual link to the 1_Main.py page
+# (Streamlit pages can be opened via URL query string ?page=<page_name>)
+main_page_path = os.path.join("Pages", "1_Main.py")
+
+st.sidebar.page_link(main_page_path, label="🏠 Main Page")
+st.sidebar.page_link("Pages/2_Team_Breakdown.py", label="📊 Team Breakdown")
+st.sidebar.page_link("Pages/3_Team_Comparison.py", label="⚖️ Team Comparison")
+st.sidebar.page_link("Pages/4_Clutch.py", label="🔥 Clutch")
+st.sidebar.page_link("Pages/5_Schedule_Predictor.py", label="📅 Schedule Predictor")
+st.sidebar.page_link("Pages/6_Todays_Games.py", label="🎯 Today's Games")
+st.sidebar.page_link("Pages/7_Players_Breakdown.py", label="👤 Players Breakdown")
+st.sidebar.page_link("Pages/8_Betting.py", label="💰 Betting")
 
 # -------------------------------------------------------------
 # MAIN PAGE CONTENT
