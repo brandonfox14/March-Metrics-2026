@@ -1,122 +1,156 @@
 import streamlit as st
 import pandas as pd
 
-# --- PAGE CONFIG ---
+# -------------------------------------------------------------
+# PAGE CONFIG
+# -------------------------------------------------------------
 st.set_page_config(page_title="March Metrics", layout="wide")
 
-# --- LOAD DATA ---
+# -------------------------------------------------------------
+# LOAD DATA
+# -------------------------------------------------------------
 @st.cache_data
 def load_data():
-    df = pd.read_csv("Data/26_March_Madness_Databook/All_Stats-THE_TABLE.csv", encoding="latin1")
+    df = pd.read_csv(
+        "Data/26_March_Madness_Databook/All_Stats-THE_TABLE.csv",
+        encoding="latin1"
+    )
     df.columns = df.columns.str.strip()
     return df
 
 df = load_data()
 
-# --- HEADER WITH LOGO + TITLE ---
+# -------------------------------------------------------------
+# PAGE HEADER
+# -------------------------------------------------------------
 col1, col2 = st.columns([3, 1])
-
 with col1:
-    st.title("🏀 March Metrics")
-
+    st.title("March Metrics")
 with col2:
     st.image("Assets/Logos/FullLogo.png", use_container_width=True)
 
 st.markdown("---")
 
-# --- TOP 10 TEAMS BY STATISTICAL STRENGTH ---
-st.subheader("🔥 Top 10 Teams by Statistical Strength")
+st.write(
+    """
+**March Metrics** is a data-driven college basketball analytics platform.  
+It integrates **statistical modeling**, **machine learning**, and **contextual metrics**
+to measure team and player performance beyond traditional box scores.
 
-# Ensure STAT_STREN is numeric
-df["STAT_STREN"] = pd.to_numeric(df["STAT_STREN"], errors="coerce")
+This page provides a snapshot of team strength across Division I programs,  
+based on quantitative indicators of efficiency, opponent difficulty, and coaching value.  
+All models are built using historical datasets and context-adjusted variables 
+to support predictive decision-making during the regular season and postseason.
+"""
+)
 
-# Sort and filter columns
+# -------------------------------------------------------------
+# TOP 10 TEAMS BY STATISTICAL STRENGTH
+# -------------------------------------------------------------
+st.markdown("---")
+st.subheader("Top 10 Teams by Statistical Strength")
+
+# Standardize and clean columns
+rename_map = {
+    "STAT_STREN": "Statistical Strength",
+    "Coach Name": "Coach Name",
+    "Conference": "Conference",
+    "Teams": "Teams",
+    "Wins": "Wins",
+    "Losses": "Losses"
+}
+df = df.rename(columns={k: v for k, v in rename_map.items() if k in df.columns})
+
+df["Statistical Strength"] = pd.to_numeric(df["Statistical Strength"], errors="coerce")
+
 top10 = (
-    df[["Teams", "Coach Name", "Conference", "Wins", "Losses", "STAT_STREN"]]
-    .sort_values(by="STAT_STREN", ascending=True)  # lower = better
+    df[["Teams", "Coach Name", "Conference", "Wins", "Losses", "Statistical Strength"]]
+    .sort_values(by="Statistical Strength", ascending=True)
     .head(10)
     .reset_index(drop=True)
 )
-top10.index = top10.index + 1  # rank 1-10
+top10.index = top10.index + 1
 
-# Show styled dataframe
 st.dataframe(
     top10.style.format({
-        "STAT_STREN": "{:.3f}",
+        "Statistical Strength": "{:.3f}",
         "Wins": "{:.0f}",
         "Losses": "{:.0f}"
-    }).background_gradient(subset=["STAT_STREN"], cmap="Greens_r"),
-    use_container_width=True
+    }).background_gradient(subset=["Statistical Strength"], cmap="Greens_r"),
+    use_container_width=True,
 )
 
-# --- SITE NAVIGATION LINKS ---
+# -------------------------------------------------------------
+# SECTION PREVIEWS
+# -------------------------------------------------------------
 st.markdown("---")
-st.subheader("📍 Quick Navigation")
+st.subheader("Explore Other Sections")
 
-nav_cols = st.columns(4)
+st.write(
+    """
+Each module in March Metrics focuses on a different layer of basketball intelligence,  
+ranging from team analytics to player modeling and betting projections.
+"""
+)
 
-with nav_cols[0]:
+preview_cols = st.columns(4)
+
+with preview_cols[0]:
     st.markdown(
         """
-        <a href="/Team_Breakdown" target="_self" style="text-decoration:none;">
-            <div style="padding:15px; border-radius:12px; background-color:#E8F8F5;
-                        box-shadow:0px 4px 8px rgba(0,0,0,0.1); text-align:center; color:black;">
-                <h4>Team Breakdown</h4>
-                <p>Dive into team analytics.</p>
-            </div>
-        </a>
+        <div style="padding:15px; border-radius:12px; background-color:#E8F8F5;
+                    box-shadow:0px 4px 8px rgba(0,0,0,0.1); text-align:left; color:black;">
+            <h4>Team Breakdown</h4>
+            <p>Advanced efficiency metrics, contextualized by opponent and location.</p>
+        </div>
         """,
         unsafe_allow_html=True,
     )
 
-with nav_cols[1]:
+with preview_cols[1]:
     st.markdown(
         """
-        <a href="/Team_Comparison" target="_self" style="text-decoration:none;">
-            <div style="padding:15px; border-radius:12px; background-color:#FEF9E7;
-                        box-shadow:0px 4px 8px rgba(0,0,0,0.1); text-align:center; color:black;">
-                <h4>Team Comparison</h4>
-                <p>Compare multiple teams head-to-head.</p>
-            </div>
-        </a>
+        <div style="padding:15px; border-radius:12px; background-color:#FEF9E7;
+                    box-shadow:0px 4px 8px rgba(0,0,0,0.1); text-align:left; color:black;">
+            <h4>Team Comparison</h4>
+            <p>Side-by-side evaluation of multiple teams using predictive indicators.</p>
+        </div>
         """,
         unsafe_allow_html=True,
     )
 
-with nav_cols[2]:
+with preview_cols[2]:
     st.markdown(
         """
-        <a href="/Clutch" target="_self" style="text-decoration:none;">
-            <div style="padding:15px; border-radius:12px; background-color:#FDEDEC;
-                        box-shadow:0px 4px 8px rgba(0,0,0,0.1); text-align:center; color:black;">
-                <h4>Clutch Metrics</h4>
-                <p>Late-game impact and win probability.</p>
-            </div>
-        </a>
+        <div style="padding:15px; border-radius:12px; background-color:#FDEDEC;
+                    box-shadow:0px 4px 8px rgba(0,0,0,0.1); text-align:left; color:black;">
+            <h4>Clutch Performance</h4>
+            <p>Quantifies performance under late-game pressure using situational models.</p>
+        </div>
         """,
         unsafe_allow_html=True,
     )
 
-with nav_cols[3]:
+with preview_cols[3]:
     st.markdown(
         """
-        <a href="/Schedule_Predictor" target="_self" style="text-decoration:none;">
-            <div style="padding:15px; border-radius:12px; background-color:#EBF5FB;
-                        box-shadow:0px 4px 8px rgba(0,0,0,0.1); text-align:center; color:black;">
-                <h4>Schedule Predictor</h4>
-                <p>Forecast game outcomes and scenarios.</p>
-            </div>
-        </a>
+        <div style="padding:15px; border-radius:12px; background-color:#EBF5FB;
+                    box-shadow:0px 4px 8px rgba(0,0,0,0.1); text-align:left; color:black;">
+            <h4>Schedule Predictor</h4>
+            <p>Forecasts future game outcomes and strength-of-schedule adjustments.</p>
+        </div>
         """,
         unsafe_allow_html=True,
     )
 
 st.markdown("---")
 
-# --- CONFIDENTIALITY NOTE ---
+# -------------------------------------------------------------
+# CONFIDENTIALITY NOTICE
+# -------------------------------------------------------------
 st.info(
     """
-    **Note:** This demo displays limited data to preserve business confidentiality.  
-    Full model outputs and betting strategies are private to March Metrics.
+    *Note:* This version of March Metrics displays a limited subset of the data.  
+    Full model parameters and proprietary betting integrations are private.
     """
 )
