@@ -23,18 +23,30 @@ df = load_data()
 # -------------------------------------------------------------
 # PAGE HEADER
 # -------------------------------------------------------------
-col1, col2 = st.columns([3, 1])
-with col1:
-    st.title("March Metrics")
-with col2:
-    st.image("Assets/Logos/FullLogo.png", use_container_width=True)
+# Centered title styling
+st.markdown(
+    """
+    <h1 style='text-align: center; color: black;'>
+        March Metrics
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
+    <div style='text-align: center; font-size: 16px; color: gray; margin-top: -10px;'>
+        A data-driven college basketball analytics platform
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 st.markdown("---")
 
 st.write(
     """
-**March Metrics** is a data-driven college basketball analytics platform.  
-It integrates **statistical modeling**, **machine learning**, and **contextual metrics**
+**March Metrics** integrates **statistical modeling**, **machine learning**, and **contextual metrics**
 to measure team and player performance beyond traditional box scores.
 
 This page provides a snapshot of team strength across Division I programs,  
@@ -142,5 +154,3 @@ with preview_cols[3]:
         """,
         unsafe_allow_html=True,
     )
-
-
