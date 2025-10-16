@@ -39,16 +39,19 @@ st.sidebar.success("Use the sidebar below to access each section of the app.")
 st.sidebar.divider()
 
 # -------------------------------------------------------------
-# MANUAL PAGE LINK
+# MANUAL NAVIGATION LINKS
 # -------------------------------------------------------------
-# This ensures the "Main Dashboard" page appears on the sidebar
-st.sidebar.page_link("Pages/1 Main.py", label="Main Dashboard")
+st.sidebar.markdown("### Navigation")
 
-st.sidebar.markdown("""
-### Navigation
-Streamlit automatically displays the available pages under:
-> **“Pages” folder → sidebar list**
-""")
+# ✅ Use only filenames (no "Pages/" prefix)
+st.sidebar.page_link("1_Main.py", label="Main Page")
+st.sidebar.page_link("2_Team_Breakdown.py", label="Team Breakdown")
+st.sidebar.page_link("3_Team_Comparison.py", label="Team Comparison")
+st.sidebar.page_link("4_Clutch.py", label="Clutch Performance")
+st.sidebar.page_link("5_Schedule_Predictor.py", label="Schedule Predictor")
+st.sidebar.page_link("6_Todays_Games.py", label="Today's Games")
+st.sidebar.page_link("7_Players_Breakdown.py", label="Players Breakdown")
+st.sidebar.page_link("8_Betting.py", label="Betting Model Insights")
 
 # -------------------------------------------------------------
 # MAIN PAGE CONTENT
@@ -73,34 +76,34 @@ both in-season and under tournament conditions.
 )
 
 st.markdown("---")
-st.subheader("🏆 Core Capabilities")
+st.subheader("Core Capabilities")
 
 cols = st.columns(3)
 
 with cols[0]:
     st.markdown("""
-    #### 📊 Team Analytics  
+    #### Team Analytics  
     Explore team-level performance using advanced statistical metrics,  
     contextualized by opponent strength and location effects.
     """)
 
 with cols[1]:
     st.markdown("""
-    #### 🔍 Predictive Modeling  
+    #### Predictive Modeling  
     Apply regression and ML-based models to forecast outcomes and simulate  
     tournament matchups or future schedules.
     """)
 
 with cols[2]:
     st.markdown("""
-    #### 💰 Betting Analysis  
+    #### Betting Analysis  
     Evaluate line value, expected outcomes, and potential betting edges  
     powered by context-driven model probabilities.
     """)
 
 st.markdown("---")
 
-st.subheader("📘 Data Overview")
+st.subheader("Data Overview")
 st.write("""
 The data powering this app is sourced from the **26_March_Madness_Databook**,  
 which includes:
