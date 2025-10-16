@@ -143,14 +143,4 @@ with preview_cols[3]:
         unsafe_allow_html=True,
     )
 
-st.markdown("---")
 
-# -------------------------------------------------------------
-# CONFIDENTIALITY NOTICE
-# -------------------------------------------------------------
-st.info(
-    """
-    *Note:* This version of March Metrics displays a limited subset of the data.  
-    Full model parameters and proprietary betting integrations are private.
-    """
-)
