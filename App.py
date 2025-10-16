@@ -38,6 +38,12 @@ st.sidebar.divider()
 st.sidebar.success("Use the sidebar below to access each section of the app.")
 st.sidebar.divider()
 
+# -------------------------------------------------------------
+# MANUAL PAGE LINK
+# -------------------------------------------------------------
+# This ensures the "Main Dashboard" page appears on the sidebar
+st.sidebar.page_link("Pages/1 Main.py", label="Main Dashboard")
+
 st.sidebar.markdown("""
 ### Navigation
 Streamlit automatically displays the available pages under:
@@ -111,5 +117,3 @@ st.markdown("---")
 st.info(
     "This version is a **portfolio-safe example**. Full datasets and proprietary modeling details are excluded for confidentiality."
 )
-
-st.caption("Developed with ❤️ using Streamlit, pandas, and scikit-learn.")
