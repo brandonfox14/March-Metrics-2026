@@ -1,10 +1,10 @@
 import streamlit as st
 from PIL import Image
 
-# --- PAGE CONFIG ---
+# --- GLOBAL SETTINGS ---
 st.set_page_config(
     page_title="March Metrics",
-    page_icon="🏀",
+    page_icon=None,
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -12,36 +12,55 @@ st.set_page_config(
 # --- SIDEBAR BRANDING ---
 logo = Image.open("Assets/Logos/FullLogo.png")
 st.sidebar.image(logo, use_container_width=True)
-st.sidebar.markdown("### 🏀 March Metrics Dashboard")
-st.sidebar.markdown("---")
+st.sidebar.title("March Metrics")
 
-# --- SIDEBAR INFO ---
-st.sidebar.markdown("#### Navigation")
-st.sidebar.markdown("""
-Use the sidebar to switch between pages.
-Streamlit automatically detects pages from the `/Pages` folder.
+st.sidebar.write("""
+**A data-driven basketball analytics suite**  
+powered by advanced **data science**, **machine learning**,  
+and statistical modeling — giving you the ultimate edge  
+in understanding every aspect of the game.
 """)
 
 st.sidebar.markdown("---")
-st.sidebar.caption("© 2025 March Metrics | Internal Analytics Tool")
 
-# --- MAIN PAGE DISPLAY ---
-st.title("Welcome to March Metrics")
-st.markdown("""
-### Overview
-This is the main entry point for your NCAA basketball analytics suite.  
-Use the sidebar or page navigation tabs below to explore team metrics, player breakdowns, predictive analytics, and betting strategy tools.
-""")
+# --- SIDEBAR NAVIGATION ---
+st.sidebar.header("Navigation")
+page = st.sidebar.radio(
+    "Select a page:",
+    [
+        "Main",
+        "Team Breakdown",
+        "Team Comparison",
+        "Clutch",
+        "Schedule Predictor",
+        "Today's Games",
+        "Players Breakdown",
+        "Betting"
+    ]
+)
 
-st.markdown("---")
-
-# --- OPTIONAL QUICK LINKS ---
-cols = st.columns(4)
-with cols[0]:
-    st.page_link("Pages/1 Main.py", label="Main Dashboard", icon="🏠")
-with cols[1]:
-    st.page_link("Pages/2 Team Breakdown.py", label="Team Breakdown", icon="📊")
-with cols[2]:
-    st.page_link("Pages/6 Todays Games.py", label="Today's Games", icon="📅")
-with cols[3]:
-    st.page_link("Pages/8 Betting.py", label="Betting (Private)", icon="💰")
+# --- PAGE ROUTER ---
+if page == "Main":
+    from Pages.Main import main
+    main()
+elif page == "Team Breakdown":
+    from Pages.TeamBreakdown import team_breakdown
+    team_breakdown()
+elif page == "Team Comparison":
+    from Pages.TeamComparison import team_comparison
+    team_comparison()
+elif page == "Clutch":
+    from Pages.Clutch import clutch
+    clutch()
+elif page == "Schedule Predictor":
+    from Pages.SchedulePredictor import schedule_predictor
+    schedule_predictor()
+elif page == "Today's Games":
+    from Pages.TodaysGames import todays_games
+    todays_games()
+elif page == "Players Breakdown":
+    from Pages.PlayersBreakdown import players_breakdown
+    players_breakdown()
+elif page == "Betting":
+    from Pages.Betting import betting
+    betting()
