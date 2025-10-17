@@ -50,12 +50,23 @@ if team_schedule.empty:
 # -------------------------------
 # 🧩 BUILD SIMPLE ML MODEL
 # -------------------------------
-# We'll train two models:
-# 1. LogisticRegression → predict win (binary)
-# 2. LinearRegression → predict team points
+
+# Candidate feature columns (we'll use the ones that actually exist)
+candidate_cols = [
+    "SM", "Off_eff", "Def_efficiency hybrid", "FG_PERC", "FT_PERC", "3PTM",
+    "AST", "DReb", "OReb", "Turnovers", "Steals"
+]
+
+# Determine which of these columns are actually in your daily data
+X_cols = [c for c in candidate_cols if c in daily_df.columns]
+
+if len(X_cols) < 2:
+    st.error(f"Not enough matching columns in Daily Predictor data. Found only: {X_cols}")
+    st.stop()
+
+st.info(f"✅ Using these columns for training: {X_cols}")
 
 # Prepare training data
-X_cols = ["SM", "Off_eff", "Def_efficiency hybrid", "FG_PERC", "FT_PERC", "3PTM"]  # example features
 y_win = (daily_df["Points"] > daily_df["Opp Points"]).astype(int)
 X = daily_df[X_cols].fillna(0)
 
@@ -70,6 +81,7 @@ win_model.fit(X_train, y_train)
 
 score_model = LinearRegression()
 score_model.fit(X_scaled, daily_df["Points"])
+
 
 # -------------------------------
 # 🔮 PREDICTIONS
