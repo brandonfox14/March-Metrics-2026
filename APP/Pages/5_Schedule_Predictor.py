@@ -1,131 +1,139 @@
 import streamlit as st
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression, LinearRegression
-from sklearn.preprocessing import StandardScaler
 import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 
-# -------------------------------
-# 🔧 FILE PATHS
-# -------------------------------
-SCHEDULE_PATH = "Data/26_March_Madness_Databook/2026 Schedule Simple-Table 1.csv"
-DAILY_PATH = "Data/26_March_Madness_Databook/Daily_predictor_data-Table 1.csv"
-ALL_STATS_PATH = "Data/26_March_Madness_Databook/All_Stats-THE_TABLE.csv"
+# -------------------------------------------------------------
+# PAGE CONFIG
+# -------------------------------------------------------------
+st.set_page_config(page_title="Schedule Predictor", layout="wide")
+st.title("📅 Schedule Predictor")
 
-# -------------------------------
-# 🧠 LOAD DATA
-# -------------------------------
+# -------------------------------------------------------------
+# LOAD DATA
+# -------------------------------------------------------------
 @st.cache_data
 def load_data():
-    schedule_df = pd.read_csv(SCHEDULE_PATH)
-    daily_df = pd.read_csv(DAILY_PATH)
-    all_stats_df = pd.read_csv(ALL_STATS_PATH)
-    return schedule_df, daily_df, all_stats_df
+    all_stats = pd.read_csv("Data/26_March_Madness_Databook/All_Stats-THE_TABLE.csv", encoding="latin1")
+    daily_df = pd.read_csv("Data/26_March_Madness_Databook/Daily_predictor_data-Table 1.csv", encoding="latin1")
+    schedule_df = pd.read_csv("Data/26_March_Madness_Databook/2026 Schedule Simple-Table 1.csv", encoding="latin1")
+    return all_stats, daily_df, schedule_df
 
-schedule_df, daily_df, all_stats_df = load_data()
+all_stats, daily_df, schedule_df = load_data()
 
-# -------------------------------
-# 🏀 TEAM SELECTION
-# -------------------------------
-# 👇 Change this to set a new default team
-INITIAL_TEAM = "Wisconsin"
+# -------------------------------------------------------------
+# CLEAN & PREP DATA
+# -------------------------------------------------------------
+# Convert all date formats to datetime and sort properly
+for col in ["Date", "date", "Game_Date"]:
+    if col in schedule_df.columns:
+        schedule_df["Date"] = pd.to_datetime(schedule_df[col], errors="coerce")
+        break
+else:
+    schedule_df["Date"] = pd.to_datetime(schedule_df.iloc[:, 0], errors="coerce")
 
-team_list = sorted(all_stats_df["Teams"].unique())
-default_index = team_list.index(INITIAL_TEAM) if INITIAL_TEAM in team_list else 0
+schedule_df = schedule_df.sort_values("Date").reset_index(drop=True)
 
-st.title("📅 Schedule Predictor")
-selected_team = st.selectbox("Select Team", team_list, index=default_index)
+# -------------------------------------------------------------
+# TEAM SELECTION (Initial = Wisconsin)
+# -------------------------------------------------------------
+DEFAULT_TEAM = "Wisconsin"  # 👈 Change this line to adjust the initial team
 
-st.write(f"### Selected Team: {selected_team}")
+team_list = sorted(all_stats["Team"].dropna().unique())
+selected_team = st.selectbox("Select a Team", options=team_list, index=team_list.index(DEFAULT_TEAM))
 
-# -------------------------------
-# 📊 FILTER FUTURE SCHEDULE
-# -------------------------------
-team_schedule = schedule_df[schedule_df["Team"] == selected_team].copy()
+# -------------------------------------------------------------
+# PREP MACHINE LEARNING
+# -------------------------------------------------------------
+# Identify target and features
+numeric_cols = daily_df.select_dtypes(include=[np.number]).columns.tolist()
 
-if team_schedule.empty:
-    st.warning(f"No future schedule found for {selected_team}.")
+# Handle missing values
+daily_df = daily_df.fillna(0)
+
+# Predict whether team wins (binary)
+if "Points" in daily_df.columns and "Opp Points" in daily_df.columns:
+    daily_df["Win"] = (daily_df["Points"] > daily_df["Opp Points"]).astype(int)
+else:
+    st.error("Daily predictor data missing 'Points' or 'Opp Points' columns.")
     st.stop()
 
-# -------------------------------
-# 🧩 BUILD SIMPLE ML MODEL
-# -------------------------------
+# Feature matrix
+X = daily_df[numeric_cols]
+y = daily_df["Win"]
 
-# Candidate feature columns (we'll use the ones that actually exist)
-candidate_cols = [
-    "SM", "Off_eff", "Def_efficiency hybrid", "FG_PERC", "FT_PERC", "3PTM",
-    "AST", "DReb", "OReb", "Turnovers", "Steals"
-]
-
-# Determine which of these columns are actually in your daily data
-X_cols = [c for c in candidate_cols if c in daily_df.columns]
-
-if len(X_cols) < 2:
-    st.error(f"Not enough matching columns in Daily Predictor data. Found only: {X_cols}")
-    st.stop()
-
-st.info(f"✅ Using these columns for training: {X_cols}")
-
-# Prepare training data
-y_win = (daily_df["Points"] > daily_df["Opp Points"]).astype(int)
-X = daily_df[X_cols].fillna(0)
-
-# Scale features
+# Scale numeric features
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
-# Train models
-X_train, X_test, y_train, y_test = train_test_split(X_scaled, y_win, test_size=0.2, random_state=42)
-win_model = LogisticRegression(max_iter=500)
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+
+# Random Forest Classifier for Win Probability
+win_model = RandomForestClassifier(n_estimators=300, random_state=42)
 win_model.fit(X_train, y_train)
 
-score_model = LinearRegression()
-score_model.fit(X_scaled, daily_df["Points"])
+# Random Forest Regressors for projected scores
+score_model_for = RandomForestRegressor(n_estimators=300, random_state=42)
+score_model_against = RandomForestRegressor(n_estimators=300, random_state=42)
+score_model_for.fit(X_scaled, daily_df["Points"])
+score_model_against.fit(X_scaled, daily_df["Opp Points"])
 
+# -------------------------------------------------------------
+# GENERATE PREDICTIONS FOR UPCOMING GAMES
+# -------------------------------------------------------------
+# Filter schedule for selected team
+mask = (schedule_df["Team"] == selected_team) | (schedule_df["Opponent"] == selected_team)
+team_schedule = schedule_df.loc[mask].copy().sort_values("Date")
 
-# -------------------------------
-# 🔮 PREDICTIONS
-# -------------------------------
-results = []
+if team_schedule.empty:
+    st.warning(f"No scheduled games found for {selected_team}.")
+    st.stop()
 
-for _, row in team_schedule.iterrows():
-    opponent = row["Opponent"]
+# Pull last known averages for this team
+if selected_team in all_stats["Team"].values:
+    team_stats = all_stats[all_stats["Team"] == selected_team].select_dtypes(include=[np.number]).mean().fillna(0)
+else:
+    team_stats = pd.Series(np.zeros(len(numeric_cols)), index=numeric_cols)
+
+# Build prediction DataFrame
+predictions = []
+for _, row in team_schedule.head(3).iterrows():
+    opponent = row["Opponent"] if row["Team"] == selected_team else row["Team"]
     game_date = row["Date"]
-    location = row["Location"]
+    home_away = "Home" if row["Team"] == selected_team else "Away"
 
-    # Get team + opponent stats
-    team_stats = all_stats_df[all_stats_df["Teams"] == selected_team]
-    opp_stats = all_stats_df[all_stats_df["Teams"] == opponent]
+    # Build input vector (extend or trim to match model input)
+    x_input = pd.DataFrame([team_stats], columns=numeric_cols).fillna(0)
+    x_scaled = scaler.transform(x_input)
 
-    if team_stats.empty or opp_stats.empty:
-        continue  # Skip if missing stats
+    win_prob = win_model.predict_proba(x_scaled)[0][1]
+    proj_for = score_model_for.predict(x_scaled)[0]
+    proj_against = score_model_against.predict(x_scaled)[0]
 
-    # Create combined input (team minus opponent)
-    diff = (team_stats[X_cols].values - opp_stats[X_cols].values)
-    diff_scaled = scaler.transform(diff)
-
-    # Predict win probability and score
-    win_prob = win_model.predict_proba(diff_scaled)[0][1]
-    team_score = score_model.predict(diff_scaled)[0]
-    opp_score = team_score - np.random.uniform(3, 8) if win_prob > 0.5 else team_score + np.random.uniform(3, 8)
-
-    results.append({
-        "Date": game_date,
+    predictions.append({
+        "Date": game_date.strftime("%Y-%m-%d"),
         "Opponent": opponent,
-        "Location": location,
-        "Win_Confidence": f"{win_prob*100:.1f}%",
-        "Predicted_Score": f"{selected_team} {team_score:.0f} - {opponent} {opp_score:.0f}"
+        "Location": home_away,
+        "Win Confidence": f"{win_prob*100:.1f}%",
+        "Projected Score": f"{selected_team} {proj_for:.0f} - {opponent} {proj_against:.0f}"
     })
 
-# -------------------------------
-# 🏁 DISPLAY RESULTS
-# -------------------------------
-if results:
-    results_df = pd.DataFrame(results)
-    st.subheader(f"Predicted Upcoming Games for {selected_team}")
-    st.dataframe(results_df, use_container_width=True)
-else:
-    st.info("No predictions available (missing data for some opponents).")
+pred_df = pd.DataFrame(predictions)
 
-st.markdown("---")
-st.caption("📊 This model uses basic statistical differentials. Future iterations can incorporate advanced ML and real betting market features.")
+# -------------------------------------------------------------
+# DISPLAY RESULTS
+# -------------------------------------------------------------
+st.markdown(f"### 🏀 Upcoming Games for {selected_team}")
+st.dataframe(pred_df, use_container_width=True)
+
+st.markdown(
+    """
+    **Notes:**
+    - *Win Confidence* = Probability of winning based on full historical metrics  
+    - *Projected Score* = Expected final score using Random Forest regressors  
+    - *Change the default team* by editing `DEFAULT_TEAM` near the top of this file.
+    """
+)
