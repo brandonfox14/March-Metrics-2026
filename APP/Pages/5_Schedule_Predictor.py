@@ -130,24 +130,32 @@ if daily_team_col is None or daily_opp_col is None:
 if daily_team_col is None or daily_opp_col is None:
     st.warning("Could not find explicit Team/Opponent columns inside daily predictor data; model will still try to use numeric columns for training but per-game merges may be limited.")
 
-# -------------------------
-# DATE PARSING & SORTING (chronological)
-# -------------------------
-# try common date column names in schedule
+# -------------------------------
+# 🗓️ SAFE DATE PARSING & SORTING
+# -------------------------------
 date_candidates = ["Date", "date", "Game_Date", "Game Date"]
-date_col = find_col(schedule_df, date_candidates)
+date_col = next((c for c in schedule_df.columns if c in date_candidates), None)
+
 if date_col:
-    schedule_df["__Date_parsed"] = pd.to_datetime(schedule_df[date_col], errors="coerce', dayfirst=False")
+    schedule_df["__Date_parsed"] = pd.to_datetime(
+        schedule_df[date_col].astype(str).str.strip(),
+        errors="coerce",
+        infer_datetime_format=True
+    )
 else:
-    # fallback: try to parse a column named 'Date' by position or drop-in
-    schedule_df["__Date_parsed"] = pd.to_datetime(schedule_df.iloc[:, 0], errors="coerce", dayfirst=False)
+    # fallback: try to use first column if no match
+    schedule_df["__Date_parsed"] = pd.to_datetime(
+        schedule_df.iloc[:, 0].astype(str).str.strip(),
+        errors="coerce",
+        infer_datetime_format=True
+    )
 
-# If parse failed for most rows, try dayfirst fallback
-if schedule_df["__Date_parsed"].isna().mean() > 0.25:
-    schedule_df["__Date_parsed"] = pd.to_datetime(schedule_df[date_col], errors="coerce", dayfirst=True)
+# Drop invalid or missing dates safely
+schedule_df = schedule_df.dropna(subset=["__Date_parsed"])
 
-# final date col
+# Sort chronologically (YYYY-MM-DD order)
 schedule_df = schedule_df.sort_values("__Date_parsed").reset_index(drop=True)
+
 
 # -------------------------
 # PREP All-Stats features
