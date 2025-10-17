@@ -156,7 +156,6 @@ schedule_df = schedule_df.dropna(subset=["__Date_parsed"])
 # Sort chronologically (YYYY-MM-DD order)
 schedule_df = schedule_df.sort_values("__Date_parsed").reset_index(drop=True)
 
-
 # -------------------------
 # PREP All-Stats features
 # -------------------------
@@ -236,8 +235,12 @@ for idx, r in daily_df.iterrows():
     # target: margin or win
     # detect Points/Opp Points in daily_df
     if "Points" in daily_df.columns and "Opp Points" in daily_df.columns:
-        margin = float(r["Points"]) - float(r["Opp Points"])
-        win = 1 if margin > 0 else 0
+        try:
+            margin = float(r["Points"]) - float(r["Opp Points"])
+            win = 1 if margin > 0 else 0
+        except Exception:
+            margin = np.nan
+            win = np.nan
     else:
         # fallback: try 'Points' / 'OppPoints' variants
         margin = np.nan
@@ -330,6 +333,31 @@ if selected_schedule.empty:
 N = st.number_input("How many upcoming games to show", min_value=1, max_value=12, value=3, step=1)
 
 # -------------------------
+# LOCATION (HAN) detection: find proper column in schedule
+# -------------------------
+han_col = find_col(schedule_df, ["HAN", "Han", "Home/Away", "Location", "Loc", "HOME/ AWAY", "HOME/AWAY", "HOME AWAY"])
+
+def interpret_han(val):
+    """Map a HAN-like value into 'Home'/'Away'/'Neutral' or None if unclear."""
+    if pd.isna(val):
+        return None
+    v = str(val).strip().upper()
+    if "HOME" in v and "AWAY" not in v:
+        return "Home"
+    if "AWAY" in v and "HOME" not in v:
+        return "Away"
+    if "NEUTRAL" in v or "N" == v or "NEU" in v:
+        return "Neutral"
+    # some files use 'H'/'A'/'N'
+    if v in ("H", "HOME"):
+        return "Home"
+    if v in ("A", "AWAY"):
+        return "Away"
+    if v in ("N", "NEUTRAL"):
+        return "Neutral"
+    return None
+
+# -------------------------
 # PREDICT FOR EACH UPCOMING GAME
 # -------------------------
 pred_rows = []
@@ -337,20 +365,31 @@ for _, game in selected_schedule.head(N).iterrows():
     # Determine which side is selected_team, opponent, and location
     row_team = str(game[schedule_team_col]).strip()
     row_opp = str(game[schedule_opp_col]).strip()
+
+    # First: attempt to use HAN/Location column if available
+    location = None
+    if han_col and han_col in game.index:
+        location = interpret_han(game[han_col])
+
+    # If HAN not informative, fallback to earlier logic
+    if location is None:
+        if row_team == selected_team:
+            location = "Home"
+        elif row_opp == selected_team:
+            location = "Away"
+        else:
+            location = "Neutral/Unknown"
+
     # determine opponent name relative to selection
     if row_team == selected_team:
         team_name = row_team
         opp_name = row_opp
-        location = "Home"
     elif row_opp == selected_team:
         team_name = row_opp
         opp_name = row_team
-        location = "Away"
     else:
-        # fallback (rare)
         team_name = row_team
         opp_name = row_opp
-        location = "Neutral/Unknown"
 
     # ensure both are in lookups
     if team_name not in team_numeric_lookup or opp_name not in team_numeric_lookup:
@@ -366,7 +405,6 @@ for _, game in selected_schedule.head(N).iterrows():
     opp_num = team_numeric_lookup[opp_name]
     feat_vec = np.concatenate([team_num, opp_num, team_num - opp_num])
 
-    # If daily numeric columns exist and the schedule contains columns we can map into them, we could append; for now keep consistent with training dims
     # Build categorical vector (team coach, opp coach, team conf, opp conf)
     cat_vals = []
     for c in cat_team_cols:
