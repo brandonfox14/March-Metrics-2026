@@ -18,7 +18,6 @@ import os
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.preprocessing import OrdinalEncoder
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
 from datetime import datetime
 
 # -------------------------
@@ -74,7 +73,7 @@ if all_stats is None:
 st.info("Data files loaded.")
 
 # -------------------------
-# HELPERS: find team/opponent column names variants
+# HELPERS: find team/opponent/other column name variants
 # -------------------------
 def find_col(df, candidates):
     for c in candidates:
@@ -82,29 +81,42 @@ def find_col(df, candidates):
             return c
     return None
 
-team_col_candidates = ["Team", "Teams", "team", "TEAM"]
-opp_col_candidates = ["Opponent", "Opp", "opponent", "OPPONENT"]
+# candidate names
+team_candidates = ["Team", "Teams", "team", "HOME_TEAM", "Home", "Home Team"]
+opp_candidates = ["Opponent", "Opp", "OPPONENT", "Away", "Away Team"]
+date_candidates = ["Date", "date", "Game_Date", "Game Date"]
+han_candidates = ["HAN", "Han", "Home/Away", "Location", "Loc", "HomeAway", "HOME/ AWAY", "HOME/AWAY"]
+nonconf_candidates = ["Non Conference Game", "NonConference", "Non Conf", "NonConf", "Non Conference", "Non-Conference"]
+coach_candidates = ["Coach Name", "Coach", "Coach_Name", "coach"]
+conf_candidates = ["Conference", "Conf", "conference"]
 
-schedule_team_col = find_col(schedule_df, ["Team", "Teams", "team", "Home", "Away", "Home Team", "Away Team"])
-schedule_opp_col = find_col(schedule_df, ["Opponent", "Opp", "Opponent Team", "Away", "Home", "Opponent Team"])
+# detect columns
+schedule_team_col = find_col(schedule_df, team_candidates)
+schedule_opp_col = find_col(schedule_df, opp_candidates)
+date_col = find_col(schedule_df, date_candidates)
+han_col = find_col(schedule_df, han_candidates)
+nonconf_col = find_col(schedule_df, nonconf_candidates)
 
-daily_team_col = find_col(daily_df, ["Team", "team", "Teams"])
-daily_opp_col = find_col(daily_df, ["Opponent", "Opp", "opponent"])
+daily_team_col = find_col(daily_df, team_candidates)
+daily_opp_col = find_col(daily_df, opp_candidates)
+daily_han_col = find_col(daily_df, han_candidates)
+daily_nonconf_col = find_col(daily_df, nonconf_candidates)
 
-# All_stats team column name
 all_stats_team_col = find_col(all_stats, ["Teams", "Team", "team"])
+all_stats_coach_col = find_col(all_stats, coach_candidates)
+all_stats_conf_col = find_col(all_stats, conf_candidates)
 
+# if team columns not found in schedule or all_stats, attempt heuristics
 if all_stats_team_col is None:
     st.error("Could not find a teams column in All_Stats-THE_TABLE.csv (expected 'Teams' or 'Team').")
     st.stop()
 
-# Schedule team/opp fallback detection: explicit columns likely "Team" and "Opponent"
 if schedule_team_col is None or schedule_opp_col is None:
-    # Try to infer by checking for columns whose values match known team names
+    # try to infer which two text columns contain team names
     text_cols = [c for c in schedule_df.columns if schedule_df[c].dtype == object]
     found = []
     for c in text_cols:
-        sample = schedule_df[c].dropna().astype(str).head(30).tolist()
+        sample = schedule_df[c].dropna().astype(str).head(40).tolist()
         matches = sum(1 for v in sample if v in all_stats[all_stats_team_col].values)
         if matches >= 1:
             found.append(c)
@@ -112,15 +124,15 @@ if schedule_team_col is None or schedule_opp_col is None:
         schedule_team_col, schedule_opp_col = found[0], found[1]
 
 if schedule_team_col is None or schedule_opp_col is None:
-    st.error("Could not autodetect home/team and opponent columns in schedule file.")
+    st.error("Could not autodetect home/team and opponent columns in schedule file. Please ensure one column lists the team and another the opponent.")
     st.stop()
 
-# Daily team/opponent fallback: attempt to infer similarly
+# attempt similar for daily_df but warn rather than stop
 if daily_team_col is None or daily_opp_col is None:
     text_cols = [c for c in daily_df.columns if daily_df[c].dtype == object]
     found = []
     for c in text_cols:
-        sample = daily_df[c].dropna().astype(str).head(30).tolist()
+        sample = daily_df[c].dropna().astype(str).head(40).tolist()
         matches = sum(1 for v in sample if v in all_stats[all_stats_team_col].values)
         if matches >= 1:
             found.append(c)
@@ -128,112 +140,161 @@ if daily_team_col is None or daily_opp_col is None:
         daily_team_col, daily_opp_col = found[0], found[1]
 
 if daily_team_col is None or daily_opp_col is None:
-    st.warning("Could not find explicit Team/Opponent columns inside daily predictor data; model will still try to use numeric columns for training but per-game merges may be limited.")
+    st.warning("Could not find Team/Opponent columns inside daily predictor data; training will still use numeric stats but some per-game merges might be skipped.")
 
 # -------------------------------
-# 🗓️ SAFE DATE PARSING & SORTING
+# 🗓️ SAFE DATE PARSING & SORTING (YYYY-MM-DD chronological)
 # -------------------------------
-date_candidates = ["Date", "date", "Game_Date", "Game Date"]
-date_col = next((c for c in schedule_df.columns if c in date_candidates), None)
-
 if date_col:
     schedule_df["__Date_parsed"] = pd.to_datetime(
         schedule_df[date_col].astype(str).str.strip(),
         errors="coerce",
-        infer_datetime_format=True
+        infer_datetime_format=True,
+        dayfirst=False
     )
 else:
-    # fallback: try to use first column if no match
+    # fallback: try first column
     schedule_df["__Date_parsed"] = pd.to_datetime(
         schedule_df.iloc[:, 0].astype(str).str.strip(),
         errors="coerce",
-        infer_datetime_format=True
+        infer_datetime_format=True,
+        dayfirst=False
     )
 
-# Drop invalid or missing dates safely
-schedule_df = schedule_df.dropna(subset=["__Date_parsed"])
+# If too many NA dates, try dayfirst fallback on the named column
+if schedule_df["__Date_parsed"].isna().mean() > 0.25 and date_col:
+    schedule_df["__Date_parsed"] = pd.to_datetime(
+        schedule_df[date_col].astype(str).str.strip(),
+        errors="coerce",
+        infer_datetime_format=True,
+        dayfirst=True
+    )
 
-# Sort chronologically (YYYY-MM-DD order)
+schedule_df = schedule_df.dropna(subset=["__Date_parsed"])
 schedule_df = schedule_df.sort_values("__Date_parsed").reset_index(drop=True)
 
 # -------------------------
-# PREP All-Stats features
+# PREP All-Stats features (use all numeric columns)
 # -------------------------
-# numeric team-level stats (use all numeric columns)
 numeric_team_cols = all_stats.select_dtypes(include=[np.number]).columns.tolist()
 if len(numeric_team_cols) == 0:
     st.error("No numeric columns detected in All_Stats-THE_TABLE.csv; cannot build numeric features.")
     st.stop()
 
-# Categorical fields we want to include (if present)
 cat_team_cols = []
-for c in ["Coach Name", "Coach", "Coach_Name", "coach", "Conference", "Conf", "conference"]:
-    if c in all_stats.columns:
-        cat_team_cols.append(c)
+if all_stats_coach_col:
+    cat_team_cols.append(all_stats_coach_col)
+if all_stats_conf_col:
+    cat_team_cols.append(all_stats_conf_col)
 
 # Build lookup dicts for numeric and categorical team info
 team_numeric_lookup = {}
 team_cat_lookup = {}
 for _, r in all_stats.iterrows():
     tname = r[all_stats_team_col]
-    team_numeric_lookup[str(tname).strip()] = r[numeric_team_cols].astype(float).fillna(0.0).values
-    team_cat_lookup[str(tname).strip()] = {c: (r[c] if c in all_stats.columns else np.nan) for c in cat_team_cols}
+    if pd.isna(tname):
+        continue
+    key = str(tname).strip()
+    # numeric vector
+    try:
+        numeric_vec = r[numeric_team_cols].astype(float).fillna(0.0).values
+    except Exception:
+        # fallback: convert elementwise to numeric safely
+        numeric_vec = pd.to_numeric(r[numeric_team_cols], errors="coerce").fillna(0.0).values
+    team_numeric_lookup[key] = numeric_vec
+    # categorical map
+    team_cat_lookup[key] = {}
+    for c in cat_team_cols:
+        team_cat_lookup[key][c] = r[c] if c in all_stats.columns else np.nan
 
 st.write(f"Using {len(numeric_team_cols)} numeric team-level stats from All_Stats.")
 
 # -------------------------
 # BUILD TRAINING SET FROM daily_df
-# - For each historical row in daily_df, attempt to attach team & opp numeric stats
-# - Features = [team_numeric, opp_numeric (or team-opp diff)] + categorical encodings
 # -------------------------
-# Use numeric columns from daily_df as additional features (if any)
 daily_numeric_cols = daily_df.select_dtypes(include=[np.number]).columns.tolist()
-st.write(f"Daily training data numeric columns: {len(daily_numeric_cols)}")
 
-# Find team/opponent columns in daily_df (if found above)
+# Helper to interpret HAN-like values into Home/Away/Neutral
+def interpret_han_val(v):
+    if pd.isna(v):
+        return None
+    s = str(v).strip().upper()
+    if s in ("H", "HOME"):
+        return "Home"
+    if s in ("A", "AWAY"):
+        return "Away"
+    if "NEUTRAL" in s or s == "N":
+        return "Neutral"
+    if "HOME" in s and "AWAY" not in s:
+        return "Home"
+    if "AWAY" in s and "HOME" not in s:
+        return "Away"
+    return None
+
 train_rows = []
 skip_count = 0
 for idx, r in daily_df.iterrows():
-    # try to get team/opponent names from daily row
-    team_name = None
-    opp_name = None
-    if daily_team_col and daily_team_col in daily_df.columns:
-        team_name = str(r[daily_team_col]).strip()
-    if daily_opp_col and daily_opp_col in daily_df.columns:
-        opp_name = str(r[daily_opp_col]).strip()
+    # get team/opp names (if available)
+    if daily_team_col in daily_df.columns:
+        tname = str(r[daily_team_col]).strip()
+    else:
+        tname = None
+    if daily_opp_col in daily_df.columns:
+        oname = str(r[daily_opp_col]).strip()
+    else:
+        oname = None
 
-    # if not found, try schedule-style columns present in daily_df
-    if team_name is None or opp_name is None:
-        # skip if we cannot map teams
+    if not tname or not oname:
         skip_count += 1
         continue
 
-    # require both teams exist in all_stats lookups
-    if team_name not in team_numeric_lookup or opp_name not in team_numeric_lookup:
+    # both must exist in all_stats lookup
+    if tname not in team_numeric_lookup or oname not in team_numeric_lookup:
         skip_count += 1
         continue
 
-    # build numeric feature vector: team_numeric, opp_numeric, plus elementwise diff (team - opp)
-    team_num = team_numeric_lookup[team_name]
-    opp_num = team_numeric_lookup[opp_name]
-    # vector: [team_num, opp_num, team_num - opp_num]
-    feat = np.concatenate([team_num, opp_num, team_num - opp_num])
+    # numeric features: team, opp, diff
+    tnum = team_numeric_lookup[tname]
+    onum = team_numeric_lookup[oname]
+    feat = np.concatenate([tnum, onum, tnum - onum])
 
-    # include daily numeric features if present (to capture game-level signals)
+    # include daily numeric features
     if len(daily_numeric_cols) > 0:
-        daily_feats = r[daily_numeric_cols].astype(float).fillna(0.0).values
-        feat = np.concatenate([feat, daily_feats])
+        try:
+            daily_feats = r[daily_numeric_cols].astype(float).fillna(0.0).values
+            feat = np.concatenate([feat, daily_feats])
+        except Exception:
+            # if conversion fails, append zeros for those columns
+            feat = np.concatenate([feat, np.zeros(len(daily_numeric_cols))])
 
-    # categorical features: coach/conf for team and opponent (if available)
+    # home flag (if daily has HAN column)
+    home_flag = 0
+    if daily_han_col and daily_han_col in daily_df.columns:
+        han_val = interpret_han_val(r[daily_han_col])
+        if han_val == "Home":
+            home_flag = 1
+    # non-conf flag (if daily has a column or infer from conferences)
+    nonconf_flag = 0
+    if daily_nonconf_col and daily_nonconf_col in daily_df.columns:
+        v = r[daily_nonconf_col]
+        if not pd.isna(v) and (str(v).strip() in ("1", "True", "TRUE", "YES", "Yes", "Y")):
+            nonconf_flag = 1
+    else:
+        # infer by comparing conferences from all_stats if available
+        tconf = team_cat_lookup.get(tname, {}).get(all_stats_conf_col) if all_stats_conf_col else None
+        oconf = team_cat_lookup.get(oname, {}).get(all_stats_conf_col) if all_stats_conf_col else None
+        if tconf is not None and oconf is not None and str(tconf).strip() != str(oconf).strip():
+            nonconf_flag = 1
+
+    feat = np.concatenate([feat, np.array([home_flag, nonconf_flag])])
+
+    # categorical coach/conf values (team coach, opp coach, team conf, opp conf)
     cat_vals = []
     for c in cat_team_cols:
-        tcat = team_cat_lookup.get(team_name, {}).get(c, np.nan)
-        ocat = team_cat_lookup.get(opp_name, {}).get(c, np.nan)
-        cat_vals.append(str(tcat))
-        cat_vals.append(str(ocat))
+        cat_vals.append(str(team_cat_lookup.get(tname, {}).get(c, "")))
+        cat_vals.append(str(team_cat_lookup.get(oname, {}).get(c, "")))
 
-    # target: margin or win
-    # detect Points/Opp Points in daily_df
+    # target margin and win
     if "Points" in daily_df.columns and "Opp Points" in daily_df.columns:
         try:
             margin = float(r["Points"]) - float(r["Opp Points"])
@@ -242,7 +303,6 @@ for idx, r in daily_df.iterrows():
             margin = np.nan
             win = np.nan
     else:
-        # fallback: try 'Points' / 'OppPoints' variants
         margin = np.nan
         win = np.nan
 
@@ -256,72 +316,70 @@ for idx, r in daily_df.iterrows():
 if len(train_rows) < 30:
     st.warning(f"Only {len(train_rows)} historical rows built for training (skipped {skip_count}). Training may be weak with limited matched rows.")
 
-# Build X and y for models
-X_num = np.vstack([r["feat"] for r in train_rows]) if len(train_rows) > 0 else np.zeros((0, 1))
+# Build numeric matrix and targets
+if len(train_rows) == 0:
+    st.error("No valid training rows constructed — check team name consistency between daily predictor and all_stats.")
+    st.stop()
+
+X_num = np.vstack([r["feat"] for r in train_rows])
 y_margin = np.array([r["margin"] for r in train_rows])
 y_win = np.array([r["win"] for r in train_rows])
 
-# Categorical handling: ordinal encode the cat columns (team coach, team conf, opp coach, opp conf)
-cat_matrix = None
-if len(cat_team_cols) > 0 and len(train_rows) > 0:
-    cat_list = [r["cats"] for r in train_rows]  # list of lists
+# Categorical encoding for coach/conf
+if len(cat_team_cols) > 0:
+    cat_list = [r["cats"] for r in train_rows]
     cat_matrix = np.array(cat_list)
-    # Ordinal encode (trees are fine with ordinal encoding)
     enc = OrdinalEncoder(handle_unknown="use_encoded_value", unknown_value=-1)
     try:
         cat_encoded = enc.fit_transform(cat_matrix)
     except Exception:
-        # If encoding fails (e.g., empty or invalid), fallback to zeros
         cat_encoded = np.zeros((len(train_rows), cat_matrix.shape[1]))
 else:
     cat_encoded = np.zeros((len(train_rows), 0))
 
-# Final training matrix
-if X_num.shape[0] == 0:
-    st.error("No training rows could be constructed from daily predictor data merged with All_Stats. Check team name consistency.")
-    st.stop()
+# Combine numeric + cat
+if cat_encoded.shape[1] > 0:
+    X_full = np.hstack([X_num, cat_encoded])
+else:
+    X_full = X_num
 
-X_train_full = np.hstack([X_num, cat_encoded]) if cat_encoded.shape[1] > 0 else X_num
+# Replace NaN/inf with zeros
+X_full = np.nan_to_num(X_full, nan=0.0, posinf=0.0, neginf=0.0)
 
-# Replace any nan/inf with zeros
-X_train_full = np.nan_to_num(X_train_full, nan=0.0, posinf=0.0, neginf=0.0)
+# Filter out rows where targets are NaN
+valid_mask = ~np.isnan(y_margin) & ~np.isnan(y_win)
+X_full = X_full[valid_mask]
+y_margin = y_margin[valid_mask]
+y_win = y_win[valid_mask]
 
-# y arrays cleanup: drop rows with nan targets
-valid_idx = ~np.isnan(y_margin) & ~np.isnan(y_win)
-X_train_full = X_train_full[valid_idx]
-y_margin = y_margin[valid_idx]
-y_win = y_win[valid_idx]
+if X_full.shape[0] < 10:
+    st.warning(f"After cleaning there are only {X_full.shape[0]} usable training rows. Consider adding more historical rows or ensuring team matching.")
 
 # -------------------------
 # MODEL TRAINING
 # -------------------------
-st.write(f"Training models on {X_train_full.shape[0]} examples and {X_train_full.shape[1]} features...")
+st.write(f"Training models on {X_full.shape[0]} examples with {X_full.shape[1]} features...")
 
-# Classification: Win probability
-if len(np.unique(y_win)) < 2:
-    st.warning("Win label has only one class in training; classification will be unreliable.")
 clf = RandomForestClassifier(n_estimators=300, random_state=42)
-clf.fit(X_train_full, y_win)
+clf.fit(X_full, y_win)
 
-# Regression: margin
 reg = RandomForestRegressor(n_estimators=300, random_state=42)
-reg.fit(X_train_full, y_margin)
+reg.fit(X_full, y_margin)
 
-# Residual std for margin -> used for simple CI
-pred_margin_train = reg.predict(X_train_full)
-resid_sd = np.std(y_margin - pred_margin_train)
-st.write(f"Trained. Margin residual sd ≈ {resid_sd:.2f}")
+# residual std for simple CIs
+pred_train_margin = reg.predict(X_full)
+resid_sd = float(np.std(y_margin - pred_train_margin)) if X_full.shape[0] > 0 else 10.0
+st.write(f"Trained models. Margin residual sd ≈ {resid_sd:.2f}")
 
 # -------------------------
 # SCHEDULE & TEAM DROPDOWN
 # -------------------------
-# Team list comes from all_stats team column
 team_values = sorted(all_stats[all_stats_team_col].dropna().unique().astype(str).tolist())
 default_index = team_values.index(INITIAL_TEAM) if INITIAL_TEAM in team_values else 0
 selected_team = st.selectbox("Select a team (default controlled by top-of-file INITIAL_TEAM)", team_values, index=default_index)
 st.write(f"Default INITIAL_TEAM variable is: '{INITIAL_TEAM}' (edit file to change)")
 
-# Filter upcoming games for selected team (either column matches)
+# Filter upcoming games for selected team
 mask = (schedule_df[schedule_team_col].astype(str).str.strip() == selected_team) | (schedule_df[schedule_opp_col].astype(str).str.strip() == selected_team)
 selected_schedule = schedule_df.loc[mask].copy().sort_values("__Date_parsed").reset_index(drop=True)
 
@@ -329,137 +387,126 @@ if selected_schedule.empty:
     st.info(f"No scheduled games found for {selected_team}.")
     st.stop()
 
-# Limit to next N games (you asked next 3)
+# How many upcoming games to show
 N = st.number_input("How many upcoming games to show", min_value=1, max_value=12, value=3, step=1)
 
 # -------------------------
-# LOCATION (HAN) detection: find proper column in schedule
-# -------------------------
-han_col = find_col(schedule_df, ["HAN", "Han", "Home/Away", "Location", "Loc", "HOME/ AWAY", "HOME/AWAY", "HOME AWAY"])
-
-def interpret_han(val):
-    """Map a HAN-like value into 'Home'/'Away'/'Neutral' or None if unclear."""
-    if pd.isna(val):
-        return None
-    v = str(val).strip().upper()
-    if "HOME" in v and "AWAY" not in v:
-        return "Home"
-    if "AWAY" in v and "HOME" not in v:
-        return "Away"
-    if "NEUTRAL" in v or "N" == v or "NEU" in v:
-        return "Neutral"
-    # some files use 'H'/'A'/'N'
-    if v in ("H", "HOME"):
-        return "Home"
-    if v in ("A", "AWAY"):
-        return "Away"
-    if v in ("N", "NEUTRAL"):
-        return "Neutral"
-    return None
-
-# -------------------------
-# PREDICT FOR EACH UPCOMING GAME
+# PREDICT FOR EACH UPCOMING GAME (honoring HAN and non-conf)
 # -------------------------
 pred_rows = []
+
 for _, game in selected_schedule.head(N).iterrows():
-    # Determine which side is selected_team, opponent, and location
     row_team = str(game[schedule_team_col]).strip()
     row_opp = str(game[schedule_opp_col]).strip()
 
-    # First: attempt to use HAN/Location column if available
+    # HAN / location detection (prefer explicit column)
     location = None
+    han_val = None
     if han_col and han_col in game.index:
-        location = interpret_han(game[han_col])
+        han_val = interpret_han_val(game[han_col])
+        location = han_val
 
-    # If HAN not informative, fallback to earlier logic
+    # If HAN not present or unclear, determine by which column equals selected_team
     if location is None:
         if row_team == selected_team:
             location = "Home"
         elif row_opp == selected_team:
             location = "Away"
         else:
-            location = "Neutral/Unknown"
+            location = "Neutral"
 
-    # determine opponent name relative to selection
+    # Determine which name is opponent relative to selection
     if row_team == selected_team:
-        team_name = row_team
         opp_name = row_opp
     elif row_opp == selected_team:
-        team_name = row_opp
         opp_name = row_team
     else:
-        team_name = row_team
+        # fallback
         opp_name = row_opp
 
-    # ensure both are in lookups
-    if team_name not in team_numeric_lookup or opp_name not in team_numeric_lookup:
-        # try trimmed matching
-        if team_name not in team_numeric_lookup:
-            st.write(f"Warning: {team_name} not found in team stats; skipping row.")
-            continue
-        if opp_name not in team_numeric_lookup:
-            st.write(f"Warning: {opp_name} not found in team stats; skipping row.")
-            continue
+    # ensure both exist in lookup
+    if selected_team not in team_numeric_lookup or opp_name not in team_numeric_lookup:
+        st.write(f"Warning: stats for {selected_team} or {opp_name} missing; skipping.")
+        continue
 
-    team_num = team_numeric_lookup[team_name]
+    # build numeric features: team, opp, diff
+    team_num = team_numeric_lookup[selected_team]
     opp_num = team_numeric_lookup[opp_name]
-    feat_vec = np.concatenate([team_num, opp_num, team_num - opp_num])
+    feat = np.concatenate([team_num, opp_num, team_num - opp_num])
 
-    # Build categorical vector (team coach, opp coach, team conf, opp conf)
+    # home flag
+    home_flag = 1 if location == "Home" else 0
+    # nonconf flag: check schedule's nonconf column or infer from conferences
+    nonconf_flag = 0
+    if nonconf_col and nonconf_col in schedule_df.columns:
+        v = game.get(nonconf_col)
+        try:
+            if not pd.isna(v) and str(v).strip().upper() in ("1", "TRUE", "YES", "Y"):
+                nonconf_flag = 1
+        except Exception:
+            nonconf_flag = 0
+    else:
+        # infer by conferences if available
+        if all_stats_conf_col:
+            tconf = team_cat_lookup.get(selected_team, {}).get(all_stats_conf_col)
+            oconf = team_cat_lookup.get(opp_name, {}).get(all_stats_conf_col)
+            if tconf is not None and oconf is not None and str(tconf).strip() != str(oconf).strip():
+                nonconf_flag = 1
+
+    feat = np.concatenate([feat, np.array([home_flag, nonconf_flag])])
+
+    # categorical vector for this matchup
     cat_vals = []
     for c in cat_team_cols:
-        tcat = team_cat_lookup.get(team_name, {}).get(c, "")
-        ocat = team_cat_lookup.get(opp_name, {}).get(c, "")
-        cat_vals.append(str(tcat))
-        cat_vals.append(str(ocat))
+        cat_vals.append(str(team_cat_lookup.get(selected_team, {}).get(c, "")))
+        cat_vals.append(str(team_cat_lookup.get(opp_name, {}).get(c, "")))
+
     if len(cat_vals) > 0:
         try:
             cat_enc = enc.transform([cat_vals])
         except Exception:
-            # unknown categories -> encode as -1
+            # unknown/novel categories -> encode as -1
             cat_enc = np.array([[-1] * len(cat_vals)])
-        X_future = np.hstack([feat_vec, cat_enc.ravel()])
+        X_future = np.hstack([feat, cat_enc.ravel()])
     else:
-        X_future = feat_vec
+        X_future = feat
 
     X_future = np.nan_to_num(X_future, nan=0.0, posinf=0.0, neginf=0.0).reshape(1, -1)
 
-    # If future feature dimension mismatches training, align by truncation/zero-padding
-    if X_future.shape[1] != X_train_full.shape[1]:
-        # truncate or pad
-        min_cols = min(X_future.shape[1], X_train_full.shape[1])
-        X_tmp = np.zeros((1, X_train_full.shape[1]))
+    # Align dims with training (truncate / pad)
+    if X_future.shape[1] != X_full.shape[1]:
+        min_cols = min(X_future.shape[1], X_full.shape[1])
+        X_tmp = np.zeros((1, X_full.shape[1]))
         X_tmp[0, :min_cols] = X_future[0, :min_cols]
         X_future = X_tmp
 
-    # Predict win probability and margin
-    win_prob = clf.predict_proba(X_future)[0][1] if hasattr(clf, "predict_proba") else clf.predict(X_future)[0]
-    pred_margin = reg.predict(X_future)[0]
+    # predictions
+    win_prob = clf.predict_proba(X_future)[0][1] if hasattr(clf, "predict_proba") else float(clf.predict(X_future)[0])
+    pred_margin = float(reg.predict(X_future)[0])
 
-    # Using predicted margin and a baseline total to split into team/opp scores:
-    # We estimate average total from training data if possible
+    # baseline avg total from training (use daily Points + Opp Points if available)
     avg_total = 140.0
     if "Points" in daily_df.columns and "Opp Points" in daily_df.columns:
-        avg_total = float((daily_df["Points"].fillna(0) + daily_df["Opp Points"].fillna(0)).mean())
+        avg_total = float((pd.to_numeric(daily_df["Points"], errors="coerce").fillna(0) + pd.to_numeric(daily_df["Opp Points"], errors="coerce").fillna(0)).mean())
 
+    # Convert margin to team/opp scores (team is selected_team)
     pred_team_score = (avg_total + pred_margin) / 2.0
     pred_opp_score = (avg_total - pred_margin) / 2.0
 
-    # 95% CI for margin
+    # 95% CI for margin -> convert to score CI
     z = 1.96
     margin_lo = pred_margin - z * resid_sd
     margin_hi = pred_margin + z * resid_sd
 
-    # convert to score CIs
     team_lo = (avg_total + margin_lo) / 2.0
     team_hi = (avg_total + margin_hi) / 2.0
     opp_lo = (avg_total - margin_hi) / 2.0
     opp_hi = (avg_total - margin_lo) / 2.0
 
     pred_rows.append({
-        "Date": game["__Date_parsed"].strftime("%Y-%m-%d") if not pd.isna(game["__Date_parsed"]) else str(game.get("Date", "")),
+        "Date": game["__Date_parsed"].strftime("%Y-%m-%d") if not pd.isna(game["__Date_parsed"]) else str(game.get(date_col, "")),
         "Opponent": opp_name,
-        "Location": location,
+        "HAN (Location)": location,
         "Win_Prob": f"{win_prob*100:.1f}%",
         "Projected": f"{selected_team} {pred_team_score:.0f} - {opp_name} {pred_opp_score:.0f}",
         "Team_Score_CI": f"[{team_lo:.0f}, {team_hi:.0f}]",
@@ -486,9 +533,10 @@ else:
 st.markdown("---")
 st.write(
     "Notes:\n"
-    "- This page trains models using ALL numeric team-level stats from All_Stats-THE_TABLE.csv (element-wise team, opponent, and diff are used).\n"
-    "- Coach and Conference categories (if present) are ordinal-encoded and included.\n"
-    "- Dates are parsed and sorted chronologically using true datetimes (YYYY-MM-DD ordering).\n"
-    "- To change the default team on load edit the INITIAL_TEAM constant at top of file.\n"
-    "- This is a strong baseline: you can swap RandomForest -> XGBoost/LightGBM and add cross-validation / hyperparameter tuning for improved accuracy."
+    "- This page trains models using ALL numeric team-level stats from All_Stats-THE_TABLE.csv (element-wise team, opponent, and diff are used), plus home/non-conference flags and categorical coach/conference encodings.\n"
+    "- HAN column (home/away/neutral) is used to set the Home flag; if HAN not present we derive location from which schedule column equals the selected team.\n"
+    "- If schedule/daily non-conference flags aren't present we infer non-conference by comparing team conferences.\n"
+    "- Predicted final scores are derived from predicted margin + an average total baseline from daily historical games.\n"
+    "- To change the default team on load edit the INITIAL_TEAM constant at top of this file.\n"
+    "- For better predictive power consider: cross-validation, hyperparameter tuning, XGBoost/LightGBM, feature selection, and expanding daily historical rows."
 )
