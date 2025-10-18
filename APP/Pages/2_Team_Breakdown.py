@@ -1,207 +1,196 @@
-# -*- coding: utf-8 -*-
-# Home / Landing - EEG + NHIS Explorer
-
-import os
+import re
 import streamlit as st
+import pandas as pd
+import plotly.graph_objects as go
 
-st.set_page_config(
-    page_title="EEG + NHIS Explorer",
-    page_icon="🧭",
-    layout="wide",
-)
+# -----------------------
+# Load Data
+# -----------------------
+@st.cache_data
+def load_data():
+    return pd.read_csv("Data/26_March_Madness_Databook/All_Stats-THE_TABLE.csv", encoding="latin1")
 
-# ---------------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------------
-def page_exists(path: str) -> bool:
-    """Best-effort check for a page file under ./pages or root."""
-    candidates = [path, os.path.join("pages", path), os.path.join(".", path)]
-    return any(os.path.exists(p) for p in candidates)
+df = load_data()
 
-def link_or_hint(label: str, page_path: str, icon: str = "→"):
-    """Use st.page_link if available, else hint to use sidebar."""
-    pl = getattr(st, "page_link", None)
-    if pl and page_exists(page_path):
-        pl(page=page_path, label=f"{icon} {label}")
-    else:
-        st.caption(f"{icon} Open via the **sidebar**: {label}")
+# -----------------------
+# Helper Functions
+# -----------------------
+def format_value(key_or_label, val):
+    if pd.isna(val):
+        return "N/A"
+    try:
+        v = float(val)
+    except Exception:
+        return str(val)
+    if ("PERC" in str(key_or_label).upper()) or ("%" in str(key_or_label)):
+        return f"{v:.1%}" if v <= 1 else f"{v:.1f}%"
+    if float(v).is_integer():
+        return str(int(v))
+    return f"{v:.1f}"
 
-# ---------------------------------------------------------------------
-# Header
-# ---------------------------------------------------------------------
-st.title("🧭 EEG + NHIS Explorer")
-st.markdown(
-    "Explore how **laboratory EEG** findings relate to **population-level sleep** patterns from the "
-    "**National Health Interview Survey (NHIS)**. Built for learning, not diagnosis."
-)
-st.info(
-    "This app is **educational** and **descriptive**. Data are de-identified. "
-    "Comparisons are conceptual - datasets are not linked at the person level."
-)
+def format_rank(val):
+    if pd.isna(val):
+        return "N/A"
+    try:
+        return int(float(val))
+    except Exception:
+        return val
 
-# ---------------------------------------------------------------------
-# Datasets quick facts
-# ---------------------------------------------------------------------
-c1, c2 = st.columns(2)
-with c1:
-    st.markdown("### Lab dataset (OpenNeuro EEG)")
-    st.markdown(
-        "- Within-subject: **Normal Sleep (NS)** vs **Sleep Deprived (SD)**  \n"
-        "- Resting EEG (eyes open/closed), **mood** (PANAS), **attention** (*PVT – Psychomotor Vigilance Test*), sleep questionnaires"
-    )
-with c2:
-    st.markdown("### Survey dataset (NHIS)")
-    st.markdown(
-        "- U.S. household survey (2024)  \n"
-        "- **Sleep hours**, restfulness, trouble sleeping, sleep-aid use  \n"
-        "- **Demographics**: age, sex, education, race/ethnicity"
-    )
+# Rank mapping
+rank_overrides = {
+    "Points": "Points_RANK",
+    "FG_PERC": "FG_PERC_Rank",
+    "FGM/G": "FGM/G_Rank",
+    "FG3_PERC": "FG3_PERC_Rank",
+    "FT_PERC": "FT_PERC_Rank",
+    "Off_eff": "Off_eff_rank",
+    "Offensive efficiency hybrid": "Off_eff_hybrid_rank",
+    "Def_efficiency hybrid": "Def_eff_hybrid_rank",
+    "OReb": "OReb Rank",
+    "Rebound Rate": "Rebound Rate Rank",
+    "AST": "AST Rank",
+    "TO": "TO Rank",
+    "STL": "STL Rank",
+    "PF": "PF_Rank",
+    "OPP_PPG": "OPP_PPG_RANK",
+    "OPP_FG_PERC": "OPP_FG_PERC_Rank",
+    "OPP_FG3_PERC": "OPP_FG3_PERC_Rank",
+    "Coach Value": "Coach Value Rank",
+    "Culture (coach record at school)": "Culture_rank",
+    "Historical Value": "Historical Value Rank"
+}
 
-st.divider()
+def get_rank_col(key):
+    return rank_overrides.get(key)
 
-# ---------------------------------------------------------------------
-# Feature tiles
-# ---------------------------------------------------------------------
-st.markdown("## What you can do here")
-tiles = st.columns(2)
+def robust_normalize(df_section):
+    out = pd.DataFrame(index=df_section.index, columns=df_section.columns, dtype=float)
+    for c in df_section.columns:
+        col = pd.to_numeric(df_section[c], errors="coerce")
+        if col.dropna().empty:
+            out[c] = 0.5
+            continue
+        mn, mx = col.min(), col.max()
+        out[c] = 0.5 if mx == mn else (col - mn) / (mx - mn)
+    return out
 
-with tiles[0]:
-    st.markdown("#### 🧠 EEG Viewer")
-    st.caption("Pick a participant, condition, and task. See EEG signals and a brain map with channel meanings.")
-    link_or_hint("EEG Viewer", "1_🧠 EEG Viewer.py", icon="🧠")
+# -----------------------
+# Team Selection
+# -----------------------
+teams_sorted = sorted(df["Teams"].dropna().unique())
+selected_team = st.selectbox("Select a Team", teams_sorted)
+team_data = df[df["Teams"] == selected_team].iloc[0]
+team_conf = team_data.get("Conference", None)
 
-    st.markdown("#### 📈 EEG Dashboard")
-    st.caption("Interactive mood (PANAS), attention (*PVT – Psychomotor Vigilance Test*), and band-power views with plain-language explainers.")
-    link_or_hint("EEG Dashboard", "2_📈 EEG Dashboard.py", icon="📈")
+# -----------------------
+# Chart Builder
+# -----------------------
+def build_section_chart(section_cols, section_title):
+    st.header(f"{selected_team} {section_title}")
 
-    st.markdown("#### ⚡ Reaction Time (PVT) Demo")
-    st.caption("Try a simple reaction-time demo based on the Psychomotor Vigilance Test to feel how sleep loss can slow responses.")
-    link_or_hint("Reaction Test", "reaction_test.py", icon="⚡")
+    missing = [k for k in section_cols.keys() if k not in df.columns]
+    if missing:
+        st.warning(f"Missing columns for '{section_title}': {missing}")
+        return
 
-with tiles[1]:
-    st.markdown("#### 🗺️ NHIS Dashboard")
-    st.caption("Explore U.S. sleep patterns by demographics: hours, restfulness, trouble sleeping.")
-    link_or_hint("NHIS Dashboard", "nhis_dashboard.py", icon="🗺️")
+    for key, label in section_cols.items():
+        col1, col2, col3 = st.columns([3, 2, 3])
+        with col1:
+            st.markdown(f"**{label}**")
+        with col2:
+            st.write(format_value(key, team_data.get(key, float('nan'))))
+        with col3:
+            rank_col = get_rank_col(key)
+            rank_val = team_data.get(rank_col, pd.NA) if rank_col else "N/A"
+            st.write(format_rank(rank_val))
 
-    st.markdown("#### 🔗 Lab ↔ Survey Comparison")
-    st.caption("Side-by-side views - e.g., alpha/theta vs self-reported sleep; mood/attention vs survey sleep.")
-    link_or_hint("Lab vs Survey", "comparison_lab_vs_nhis.py", icon="🔗")
+    # Normalization and comparison
+    stat_keys = [k for k in section_cols.keys() if k in df.columns]
+    section_df = df[stat_keys].apply(pd.to_numeric, errors="coerce")
+    normalized = robust_normalize(section_df)
 
-st.divider()
+    team_norm = normalized.loc[df["Teams"] == selected_team].iloc[0].tolist()
+    league_norm = normalized.mean(skipna=True).tolist()
+    conf_norm = normalized[df["Conference"] == team_conf].mean(skipna=True).tolist() if team_conf else None
 
-# ---------------------------------------------------------------------
-# How we compare lab and survey data
-# ---------------------------------------------------------------------
-st.markdown("## How we compare lab and survey data")
-with st.expander("Short rationale", expanded=False):
-    st.markdown(
-        "- **Different lenses**: EEG shows moment-to-moment brain activity and performance; "
-        "NHIS shows how people **report** sleep and well-being across the U.S.  \n"
-        "- **Complementary**: Lab results help explain mechanisms; survey patterns show **who** is most affected.  \n"
-        "- **Examples**:  \n"
-        "  • Eyes-closed **alpha** often rises; **theta** can rise when alertness drops - compare to NHIS **sleep hours** and **restfulness**.  \n"
-        "  • **PANAS** (mood) and **PVT – Psychomotor Vigilance Test** (attention) under SD - compare to NHIS **trouble sleeping** and **daytime impacts**."
-    )
-st.caption("All findings are exploratory. We avoid causal claims and note key assumptions on each page.")
+    # Chart
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=list(section_cols.values()), y=team_norm,
+                             mode="lines+markers", name=selected_team))
+    if conf_norm is not None:
+        fig.add_trace(go.Scatter(x=list(section_cols.values()), y=conf_norm,
+                                 mode="lines+markers", name=f"{team_conf} Avg", line=dict(dash="dash")))
+    fig.add_trace(go.Scatter(x=list(section_cols.values()), y=league_norm,
+                             mode="lines+markers", name="League Avg", line=dict(dash="dot")))
 
-st.divider()
+    fig.update_layout(title=f"{section_title} Comparison (Normalized)",
+                      yaxis=dict(showticklabels=False, range=[0, 1]),
+                      xaxis=dict(tickangle=45),
+                      plot_bgcolor="white",
+                      margin=dict(t=60, b=120))
+    st.plotly_chart(fig, use_container_width=True)
 
-# ---------------------------------------------------------------------
-# Data sources and reproducibility
-# ---------------------------------------------------------------------
-st.markdown("## Data sources and reproducibility")
-st.markdown(
-    "- **OpenNeuro EEG dataset**: Resting-state EEG for sleep deprivation "
-    "(71 participants; eyes open/closed; mood and vigilance measures).  \n"
-    "  - Dataset page: https://openneuro.org/datasets/ds004902/versions/1.0.8  \n"
-    "  - Project repo: https://github.com/OpenNeuroDatasets/ds004902  \n"
-    "- **NHIS**: 2024 public-use microdata, questionnaires, and documentation:  \n"
-    "  - CDC NHIS hub: https://www.cdc.gov/nchs/nhis/index.html  \n"
-    "  - 2024 documentation: https://www.cdc.gov/nchs/nhis/documentation/2024-nhis.html  \n"
-    "- **Reproducibility**: processing steps are noted in each module; code paths and assumptions "
-    "are documented in app text. The app is descriptive, not diagnostic."
-)
+# -----------------------
+# Sections
+# -----------------------
 
-st.divider()
+scoring_cols = {
+    "Points": "Points Per Game",
+    "PTS_OFF_TURN": "Points Off Turnovers",
+    "FST_BREAK": "Fast Break Points",
+    "PTS_PAINT": "Points in Paint",
+    "Extra Scoring Chances": "Extra Scoring Chances",
+    "% of Points from 3": "% of Points from 3",
+    "% of shots taken from 3": "% of Shots Taken from 3",
+    "CLUTCH_FGPERC": "Clutch FG%",
+    "CLUTCH_3FGPERC": "Clutch 3PT%",
+    "CLUTCH_FTPERC": "Clutch FT%",
+}
 
-# ---------------------------------------------------------------------
-# Evidence behind the app (clickable, peer-reviewed) + relevance
-# ---------------------------------------------------------------------
-st.markdown("## 📚 Evidence behind the app")
-with st.expander("Tap to see key studies that inform our choices", expanded=False):
+offense_cols = {
+    "FG_PERC": "Field Goal %",
+    "FG3_PERC": "3 Point %",
+    "FT_PERC": "Free Throw %",
+    "Off_eff": "Offensive Efficiency",
+    "Offensive efficiency hybrid": "Off. Efficiency Hybrid",
+    "OReb": "Offensive Rebounds",
+    "AST": "Assists",
+    "TO": "Turnovers",
+}
 
-    st.markdown("**EEG patterns**")
-    st.markdown(
-        "- Barry et al., 2007, *Clinical Neurophysiology*: eyes-closed vs eyes-open spectral differences  \n"
-        "  https://www.sciencedirect.com/science/article/abs/pii/S1388245707004002  \n"
-        "  *Relevance:* supports alpha increases with eyes closed used in EEG visuals.\n"
-        "- Cajochen et al., 1995, *Sleep*: theta/alpha power rises across sustained wakefulness  \n"
-        "  https://pubmed.ncbi.nlm.nih.gov/8746397/  \n"
-        "  *Relevance:* informs NS vs SD comparisons for theta.\n"
-        "- Berger, 1929 (historical): first human EEG and alpha suppression with eye opening  \n"
-        "  Overview: https://pmc.ncbi.nlm.nih.gov/articles/PMC3740477/  \n"
-        "  *Relevance:* context for alpha as a key EEG feature."
-    )
+defense_cols = {
+    "OPP_PPG": "Opponent Points per Game",
+    "OPP_FG_PERC": "Opponent FG%",
+    "OPP_FG3_PERC": "Opponent 3PT%",
+    "Def_efficiency hybrid": "Defensive Efficiency Hybrid",
+    "OPP_OReb": "Opponent Offensive Rebounds",
+    "OPP_TO": "Opponent Turnovers",
+}
 
-    st.markdown("**Attention (PVT)**")
-    st.markdown(
-        "- Dinges & Powell, 1985, *Behavior Research Methods, Instruments, & Computers*: classic portable PVT  \n"
-        "  https://link.springer.com/article/10.3758/BF03200977  \n"
-        "  *Relevance:* underpins our PVT metrics and reaction-time demo.\n"
-        "- Lim & Dinges, 2010, *Psychological Bulletin*: review/meta-analysis of neurobehavioral effects  \n"
-        "  https://pmc.ncbi.nlm.nih.gov/articles/PMC3290659/  \n"
-        "  *Relevance:* explains slower reaction times and lapses after sleep loss.\n"
-        "- Basner & Dinges, 2011, *Sleep*: maximizing PVT sensitivity to sleep loss  \n"
-        "  https://pubmed.ncbi.nlm.nih.gov/21532951/  \n"
-        "  *Relevance:* supports selection of concise PVT summaries.\n"
-        "- Basner, Mollicone & Dinges, 2011, *Acta Astronautica*: 3‑minute PVT‑B validity (free full text)  \n"
-        "  https://pubmed.ncbi.nlm.nih.gov/22025811/  \n"
-        "  *Relevance:* justifies brief PVT variants."
-    )
+extra_cols = {
+    "STL": "Steals",
+    "PF": "Personal Fouls",
+    "Rebound Rate": "Rebound Rate",
+    "Foul Differential": "Foul Differential",
+    "SOS_MED": "Median Strength of Schedule",
+    "SOS_STDEV": "SOS Variability",
+}
 
-    st.markdown("**Mood (PANAS)**")
-    st.markdown(
-        "- Watson, Clark & Tellegen, 1988, *Journal of Personality and Social Psychology*: PANAS development  \n"
-        "  https://pubmed.ncbi.nlm.nih.gov/3397865/  \n"
-        "  *Relevance:* validates Positive and Negative Affect scales used in the dashboard.\n"
-        "- Pilcher & Huffcutt, 1996, *Sleep*: meta-analysis of sleep deprivation effects on performance and mood  \n"
-        "  https://pubmed.ncbi.nlm.nih.gov/8776790/  \n"
-        "  *Relevance:* supports interpreting PANAS differences between NS and SD."
-    )
+coaching_cols = {
+    "Coach Value": "Coach Value",
+    "Culture (coach record at school)": "Culture",
+    "Historical Value": "Historical Value"
+}
 
-    st.markdown("**Sleep questionnaires and self-report**")
-    st.markdown(
-        "- Buysse et al., 1989, *Psychiatry Research*: Pittsburgh Sleep Quality Index (PSQI) validation  \n"
-        "  https://pubmed.ncbi.nlm.nih.gov/2748771/  \n"
-        "  *Relevance:* connects NHIS-style items to validated sleep-quality constructs.\n"
-        "- Lauderdale et al., 2008, *Epidemiology*: self-reported vs actigraph-measured sleep duration  \n"
-        "  https://journals.lww.com/epidem/Fulltext/2008/11000/Self_Reported_and_Measured_Sleep_Duration__How.15.aspx  \n"
-        "  *Relevance:* clarifies why survey sleep can differ from objective measures."
-    )
+# -----------------------
+# Build Layout
+# -----------------------
+st.info("ℹ️ The **right column** shows each team's ranking compared to all other teams.")
 
-st.divider()
+build_section_chart(scoring_cols, "Scoring Statistics")
+build_section_chart(offense_cols, "Offensive Statistics")
+build_section_chart(defense_cols, "Defensive Statistics")
+build_section_chart(extra_cols, "Extra Statistics")
 
-# ---------------------------------------------------------------------
-# Design, accessibility, and transparency
-# ---------------------------------------------------------------------
-st.markdown("## Design, accessibility, and transparency")
-colA, colB, colC = st.columns(3)
-with colA:
-    st.markdown("**Plain language**  \nTooltips, definitions, and 'How to read' sections accompany charts.")
-with colB:
-    st.markdown("**Color-blind friendly**  \nConsistent palette across EEG and NHIS modules.")
-with colC:
-    st.markdown("**Explainability**  \nEach module states why the visualization fits the question.")
-
-st.caption(
-    "Questions or suggestions? See each page's notes for assumptions, missingness, and data caveats."
-)
-
-# ---------------------------------------------------------------------
-# Footer
-# ---------------------------------------------------------------------
-st.divider()
-st.caption(
-    "EEG: OpenNeuro sleep-deprivation dataset • NHIS: 2024 public microdata • "
-    "This app is non-diagnostic and for learning purposes only."
-)
+if any(c in df.columns for c in coaching_cols.keys()):
+    build_section_chart(coaching_cols, "Coaching & Culture Statistics")
