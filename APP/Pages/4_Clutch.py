@@ -9,30 +9,33 @@ import plotly.graph_objects as go
 @st.cache_data
 def load_data():
     df = pd.read_csv("Data/26_March_Madness_Databook/All_Stats-THE_TABLE.csv", encoding="latin1")
-    df["Year"] = pd.to_datetime(df["Year"], errors="coerce").dt.year
+    # Replace NaNs with 0s to start the season
+    df = df.fillna(0)
     return df
 
 df = load_data()
 
 # -----------------------
-# Team Selection (use last year’s data for comparison)
+# Team Selection
 # -----------------------
 teams_sorted = sorted(df["Teams"].dropna().unique().tolist())
-default_team = df["Teams"].iloc[0] if len(teams_sorted) == 0 else teams_sorted[0]
-team_name = st.selectbox("Select Team", teams_sorted, index=teams_sorted.index(default_team))
-
-# Filter for last season’s data (max year - 1)
-max_year = int(df["Year"].max())
-team_data = df[(df["Teams"] == team_name) & (df["Year"] == max_year - 1)]
-
-if team_data.empty:
-    st.warning(f"No data available for {team_name} from last season.")
+if not teams_sorted:
+    st.error("No teams found in the dataset.")
     st.stop()
 
-team_data = team_data.iloc[0]
+default_team = teams_sorted[0]
+team_name = st.selectbox("Select Team", teams_sorted, index=teams_sorted.index(default_team))
+
+team_data = df[df["Teams"] == team_name]
+
+if team_data.empty:
+    st.warning(f"No data available for {team_name}.")
+    st.stop()
+
+team_data = team_data.iloc[0]  # use the single team’s row
 
 # -----------------------
-# Stat Categories (adjust names if necessary)
+# Stat Categories
 # -----------------------
 scoring_stats = [
     ("PTS", "Points Per Game"),
@@ -68,50 +71,55 @@ extra_stats = [
 ]
 
 # -----------------------
-# Helper function to build summary tables
+# Helper function
 # -----------------------
 def build_summary_table(stat_list, title):
     summary_rows = []
     for stat, label in stat_list:
-        summary_rows.append({
-            "Stat": label,
-            "Value": team_data.get(stat, np.nan)
-        })
+        value = team_data.get(stat, np.nan)
+        if isinstance(value, (int, float)) and np.isnan(value):
+            value = 0
+        summary_rows.append({"Stat": label, "Value": value})
     df_out = pd.DataFrame(summary_rows)
     st.subheader(title)
     st.dataframe(df_out, use_container_width=True)
     return df_out
 
 # -----------------------
-# Display each section
+# Display Team Breakdown
 # -----------------------
-st.title(f"{team_name} – Team Breakdown ({max_year - 1} Season)")
+st.title(f"{team_name} – Team Breakdown")
 
 st.markdown("### Scoring Overview")
-scoring_df = build_summary_table(scoring_stats, "Scoring Statistics")
+build_summary_table(scoring_stats, "Scoring Statistics")
 
 st.markdown("### Offensive Overview")
-offense_df = build_summary_table(offense_stats, "Offensive Statistics")
+build_summary_table(offense_stats, "Offensive Statistics")
 
 st.markdown("### Defensive Overview")
-defense_df = build_summary_table(defense_stats, "Defensive Statistics")
+build_summary_table(defense_stats, "Defensive Statistics")
 
 st.markdown("### Extras / Context")
-extra_df = build_summary_table(extra_stats, "Additional Info")
+build_summary_table(extra_stats, "Additional Info")
 
 # -----------------------
-# Visualization – Scoring Breakdown
+# Visualization – Scoring Comparison vs Conference & League
 # -----------------------
 try:
     st.subheader("Scoring Comparison vs Conference & League")
 
-    conf_avg = df[df["CONF"] == team_data["CONF"]].mean(numeric_only=True)
+    conf_name = team_data.get("CONF", None)
+    if conf_name:
+        conf_avg = df[df["CONF"] == conf_name].mean(numeric_only=True)
+    else:
+        conf_avg = pd.Series(0, index=df.select_dtypes(include=np.number).columns)
+
     league_avg = df.mean(numeric_only=True)
 
     metrics = ["PTS", "OPP_PTS", "SCORING_MARGIN"]
-    team_values = [team_data[m] for m in metrics]
-    conf_values = [conf_avg[m] for m in metrics]
-    league_values = [league_avg[m] for m in metrics]
+    team_values = [team_data.get(m, 0) for m in metrics]
+    conf_values = [conf_avg.get(m, 0) for m in metrics]
+    league_values = [league_avg.get(m, 0) for m in metrics]
 
     fig = go.Figure()
     fig.add_trace(go.Bar(x=metrics, y=team_values, name=team_name, marker_color="red"))
