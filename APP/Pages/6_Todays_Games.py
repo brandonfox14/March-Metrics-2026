@@ -265,5 +265,5 @@ for idx, row in pred_df.iterrows():
 # CSV download
 # -------------------------
 out_csv = pred_df[["Date","Team","Opponent","Pred_Points","Pred_Opp_Points"]].copy()
-out_csv["Date"] = out_csv["Date"].dt.strftime("%Y-%m-%d")
+out_csv["Date"] = out_csv["Date"].dt.strftime("%m-%d-%Y")
 st.download_button("Download predictions CSV", out_csv.to_csv(index=False), "todays_games_predictions.csv", "text/csv")
