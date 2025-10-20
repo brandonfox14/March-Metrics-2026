@@ -251,8 +251,17 @@ fig.add_trace(go.Scatterpolar(
     name=team_b
 ))
 
+# ✅ Safe handling for early-season NAs
 all_rank_cols = [c for c in rank_overrides.values() if c in df.columns]
-max_rank_observed = int(np.nanmax(df[all_rank_cols].apply(pd.to_numeric, errors="coerce").max(skipna=True))) if all_rank_cols else 365
+if all_rank_cols:
+    rank_data = df[all_rank_cols].apply(pd.to_numeric, errors="coerce")
+    if rank_data.notna().any().any():
+        max_rank_observed = int(np.nanmax(rank_data.max(skipna=True)))
+    else:
+        max_rank_observed = 365
+else:
+    max_rank_observed = 365
+
 max_rank = max(365, max_rank_observed)
 
 fig.update_layout(
