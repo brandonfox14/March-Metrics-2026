@@ -329,6 +329,7 @@ Y_train = np.column_stack([
     y_opp.loc[target_mask].values
 ])
 
+# Train model
 st.write(f"Training on {X_train.shape[0]} rows and {X_train.shape[1]} features…")
 
 rf = RandomForestRegressor(
@@ -336,10 +337,11 @@ rf = RandomForestRegressor(
     random_state=42,
     n_jobs=-1,
     min_samples_leaf=1,
-    max_features="auto"
+    max_features="sqrt"  # fixed: "auto" deprecated → use "sqrt" or None
 )
 rf.fit(X_train, Y_train)
 st.write("Model trained.")
+
 
 # Keep an ordered list of the final training numeric feature names (including engineered flags)
 feature_names_numeric = list(X_num.columns)
