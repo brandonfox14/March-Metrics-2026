@@ -265,8 +265,13 @@ for idx, r in schedule_df.iterrows():
     t = str(r[team_col]).strip() if pd.notna(r[team_col]) else ""
     o = str(r[opp_col]).strip() if pd.notna(r[opp_col]) else ""
     date = r["__Date_parsed"]
-    # create unordered matchup key so Marquette vs Albany and Albany vs Marquette are same
-    matchup_key = tuple(sorted([t.lower(), o.lower()])) + (pd.to_datetime(date).date() if not pd.isna(date) else None)
+
+    # Ensure valid matchup key (tuples must be tuples of same types)
+    if pd.isna(date):
+        matchup_key = tuple(sorted([t.lower(), o.lower()])) + ("no_date",)
+    else:
+        matchup_key = tuple(sorted([t.lower(), o.lower()])) + (pd.to_datetime(date).date(),)
+
     if matchup_key in seen_match_keys:
         continue
     seen_match_keys.add(matchup_key)
