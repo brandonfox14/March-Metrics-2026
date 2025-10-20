@@ -1,44 +1,46 @@
 # APP/Pages/6_Todays_Games.py
 """
-Today's Games
+Today's Games — Single Multi-Output Model (improved featurization)
 
 What this page does
 -------------------
-- Loads today's schedule rows from: Data/26_March_Madness_Databook/2026 Schedule Transfer-Table 1.csv
-- Loads historical game rows from: Data/26_March_Madness_Databook/Daily_predictor_data-Table 1.csv
-- Trains a **single multi-output** RandomForestRegressor to predict [Points, Opp Points] using:
-    • ALL numeric columns in the daily predictor (except the target columns "Points" and "Opp Points")
-    • PLUS categorical encodings for: Team, Opponent, Coach Name, Opponent Coach, Conference, Opponent Conference
-    • PLUS simple binary flags: HAN(Home/Away/Neutral) → Home flag, Non Conference Game flag (if present)
+- Loads the schedule from:
+    Data/26_March_Madness_Databook/2026 Schedule Transfer-Table 1.csv
+- Loads historical games from:
+    Data/26_March_Madness_Databook/Daily_predictor_data-Table 1.csv
+- Trains ONE multi-output RandomForestRegressor to predict [Points, Opp Points].
 
-- Builds prediction feature vectors for each **unique** scheduled matchup (dedup mirrored pairs)
-    • Uses the SAME feature names used at training time
-    • Where a feature is not present on a schedule row, fills with 0 (ranks treated as 51)
-    • Categorical values are encoded with the same fitted OrdinalEncoder (unknowns encoded -1)
+Model features
+--------------
+- ALL numeric columns from the daily file EXCEPT the two targets.
+  • Numeric rank-like columns (name looks like "*rank*") → NA filled with **51**.
+  • Other numerics → NA filled with **0**.
+- Binary flags engineered and appended to numeric features (and therefore part of the same feature space):
+  • __flag_home              — 1 if HAN indicates "Home", else 0
+  • __flag_nonconf           — 1 if non-conference game, else 0
+  • __flag_team_power_conf   — 1 if team conf in {SEC, BIG TEN, BIG 12, ACC}
+  • __flag_opp_power_conf    — 1 if opp conf in {SEC, BIG TEN, BIG 12, ACC}
+- Categorical encodings (OrdinalEncoder; unknowns → -1):
+  • Team, Opponent, Coach Name, Opponent Coach, Conference, Opponent Conference
 
-- Sorts the list of matchups by priority:
-    1) Top 25 Opponent (True first)
-    2) March Madness Opponent (True first)
-    3) Opponent power-conference (SEC, Big Ten, Big 12, ACC)
-    4) Date (ascending)
+Prediction pipeline
+-------------------
+- Builds schedule feature vectors that EXACTLY align to the training feature list.
+- For columns missing on the schedule:
+  • If the feature name looks like a rank → uses 51
+  • Else uses 0
+- Special-cases the engineered flags by computing them from the schedule row if those
+  names (e.g. "__flag_home") appear in the training feature list.
+- Deduplicates mirrored rows (Albany vs Marquette vs Marquette vs Albany on same date).
+- Sort priority: Top-25 first → March Madness opponent → Power-conf opponent → Date.
+- Each matchup renders with an expander containing metadata and SEPARATE "Top 50" lists
+  for each team (categories with rank ≤ 50 from that row / mirrored row).
 
-- Displays each matchup with an expander that shows:
-    • Team / Opponent tables: Conference, Coach, Wins, Losses (when available)
-    • Separate “Top 50” tables for each team:
-        – Any columns in that team’s schedule-row that look like rank columns (ends with “RANK”, “_Rank”, “ Rank”, case-insensitive)
-          and have value 1–50 are included
-    • If the mirrored schedule row exists in the file (it usually does), opponent top-50 is pulled from that mirrored row
-
-Key details & assumptions
--------------------------
-- Dates in the schedule are **MM/DD/YYYY**. We parse with `format="%m/%d/%Y"` (no dayfirst).
-- We treat missing numeric rank-like fields as **51** (so they won’t appear in the Top-50 tables).
-- We treat other missing numeric features as **0** for modeling.
-- NAs in categorical columns are treated as a string "NA".
-- This page **re-trains** the model each run using the daily predictor file.
-- No confidence intervals, just predicted points for and against.
-- No external “All Stats” file is used here.
-
+Notes
+-----
+- Date parsing uses fixed US format "%m/%d/%Y".
+- This page re-trains the model on every run so it adapts as Daily file grows.
+- No confidence intervals are shown; just predicted scores.
 """
 
 import os
@@ -65,6 +67,8 @@ PAGE_TITLE = "Today's Games — Predicted Scores"
 st.set_page_config(page_title=PAGE_TITLE, layout="wide")
 st.title(PAGE_TITLE)
 
+POWER_CONFS = {"SEC", "BIG TEN", "B1G", "BIG 12", "BIG12", "ACC"}
+
 
 # =============================================================================
 # UTILS
@@ -79,39 +83,29 @@ def find_col(df: pd.DataFrame, candidates: List[str]) -> Optional[str]:
             return c
     return None
 
-def force_list(x) -> list:
-    if x is None:
-        return []
-    if isinstance(x, list):
-        return x
-    return [x]
-
 def interpret_han(v: Any) -> Optional[str]:
     """Map HAN-like strings to {'Home','Away','Neutral'} or None if unclear."""
     if pd.isna(v):
         return None
     s = str(v).strip().upper()
-    # clean some dashes or weirdness
-    s = s.replace("-", "").replace("_", "").replace(" ", "")
-    if s in ("H", "HOME"):
+    s_compact = s.replace("-", "").replace("_", "").replace(" ", "")
+    if s_compact in ("H", "HOME"):
         return "Home"
-    if s in ("A", "AWAY"):
+    if s_compact in ("A", "AWAY"):
         return "Away"
-    if s in ("N", "NEUTRAL"):
+    if s_compact in ("N", "NEUTRAL"):
         return "Neutral"
-    # broader tests
-    raw = str(v).strip().upper()
-    if "NEUTRAL" in raw:
+    if "NEUTRAL" in s:
         return "Neutral"
-    if "HOME" in raw and "AWAY" not in raw:
+    if "HOME" in s and "AWAY" not in s:
         return "Home"
-    if "AWAY" in raw and "HOME" not in raw:
+    if "AWAY" in s and "HOME" not in s:
         return "Away"
     return None
 
 def is_rank_column(col_name: str) -> bool:
     """Heuristic: determine if a column name looks like a 'rank' column."""
-    if col_name is None:
+    if not col_name:
         return False
     u = col_name.upper().strip()
     return (
@@ -141,21 +135,25 @@ def to_int(x: Any, default: int = 0) -> int:
         return default
 
 def boolish(x: Any) -> bool:
-    """Interpret typical 'true' indicators in csvs."""
     if pd.isna(x):
         return False
     s = str(x).strip().upper()
     if s in ("1", "TRUE", "YES", "Y"):
         return True
     try:
-        # allow numeric > 0
         return float(s) > 0
     except Exception:
         return False
 
+def power_conf_flag(conf_val: Any) -> float:
+    if pd.isna(conf_val):
+        return 0.0
+    c = str(conf_val).strip().upper()
+    return 1.0 if c in POWER_CONFS else 0.0
+
 
 # =============================================================================
-# LOAD DATA — with robust cleaning and NA handling
+# LOAD DATA (safe)
 # =============================================================================
 
 @st.cache_data
@@ -176,7 +174,6 @@ daily_df_raw    = load_csv(DAILY_PATH)
 if schedule_df_raw is None:
     st.error(f"Schedule file not found at: {SCHEDULE_PATH}")
     st.stop()
-
 if daily_df_raw is None:
     st.error(f"Daily predictor file not found at: {DAILY_PATH}")
     st.stop()
@@ -185,35 +182,22 @@ st.info("CSV files loaded.")
 
 
 # =============================================================================
-# CLEAN / PREP: schedule_df
+# PREP SCHEDULE
 # =============================================================================
 
 schedule_df = schedule_df_raw.copy()
 
-# Date parsing: schedule is MM/DD/YYYY guaranteed by user
-date_col = find_col(schedule_df, ["Date", "date", "Game_Date", "Game Date"])
-if date_col is None:
-    # if not present, assume first column might be date (edge case)
-    date_col = schedule_df.columns[0]
-
-# Use exact format to avoid 03/11 vs 11/03 confusion
+# Date parsing: fixed US format MM/DD/YYYY
+DATE_COL = find_col(schedule_df, ["Date", "date", "Game_Date", "Game Date"]) or schedule_df.columns[0]
 schedule_df["__Date_parsed"] = pd.to_datetime(
-    schedule_df[date_col].astype(str).str.strip(),
+    schedule_df[DATE_COL].astype(str).str.strip(),
     format="%m/%d/%Y",
     errors="coerce"
 )
-
-# Drop rows without valid dates
 schedule_df = schedule_df.dropna(subset=["__Date_parsed"]).reset_index(drop=True)
 
-# Ensure we have the canonical team/opponent columns
-TEAM_COL = find_col(schedule_df, ["Team", "Teams", "team", "Home", "Home Team"])
-OPP_COL  = find_col(schedule_df, ["Opponent", "Opp", "opponent", "Away", "Away Team"])
-if TEAM_COL is None or OPP_COL is None:
-    st.error("Could not find 'Team' and 'Opponent' columns in the schedule file.")
-    st.stop()
-
-# Optional columns for HAN, NonConf, Top25, MM, conferences and coaches, wins/losses
+TEAM_COL      = find_col(schedule_df, ["Team", "Teams", "team", "Home", "Home Team"])
+OPP_COL       = find_col(schedule_df, ["Opponent", "Opp", "opponent", "Away", "Away Team"])
 HAN_COL       = find_col(schedule_df, ["HAN", "Han", "Home/Away", "Location Type", "HomeAway"])
 NONCONF_COL   = find_col(schedule_df, ["Non Conference Game", "NonConference", "Non Conf", "NonConf", "Non-Conference"])
 TOP25_COL     = find_col(schedule_df, ["Top 25 Opponent", "Top25", "Top 25", "TOP25"])
@@ -225,60 +209,48 @@ OPP_COACH_COL = find_col(schedule_df, ["Opponent Coach", "Opp Coach"])
 WINS_COL      = find_col(schedule_df, ["Wins", "wins"])
 LOSSES_COL    = find_col(schedule_df, ["Losses", "losses"])
 
-# Build a fast lookup of mirrored rows for Top-50 extraction / opponent meta
-# Key is (team_lower, opp_lower, date.date())
-def make_key(team: str, opp: str, date_val: pd.Timestamp) -> Tuple[str, str, Optional[datetime.date]]:
-    tl = (team or "").strip().lower()
-    ol = (opp or "").strip().lower()
-    d  = date_val.date() if isinstance(date_val, pd.Timestamp) and not pd.isna(date_val) else None
-    # Use ordered triple to avoid sorting errors; still unique for pair+date
-    return (tl, ol, d)
+if TEAM_COL is None or OPP_COL is None:
+    st.error("Could not find Team and Opponent columns in the schedule file.")
+    st.stop()
 
-schedule_idx = {}
-for i, r in schedule_df.iterrows():
-    k = make_key(str(r[TEAM_COL]), str(r[OPP_COL]), r["__Date_parsed"])
-    schedule_idx[k] = i  # last seen wins; OK
-
-# Rank-like columns in the schedule file (used for Top-50)
-rank_columns = [c for c in schedule_df.columns if is_rank_column(c)]
-
-# Replace NAs:
-# - For numeric rank-like columns: 51 (so they won't show in top-50)
-# - For other numeric: 0
-# - For everything else: keep NA for now or fill with "NA" for categoricals later
+# Fill numeric columns: ranks → 51, others → 0
 for c in schedule_df.columns:
     if pd.api.types.is_numeric_dtype(schedule_df[c]):
-        if is_rank_column(c):
-            schedule_df[c] = schedule_df[c].fillna(51)
-        else:
-            schedule_df[c] = schedule_df[c].fillna(0.0)
+        schedule_df[c] = schedule_df[c].fillna(51 if is_rank_column(c) else 0.0)
+
+# Map rows for mirrored lookup (opp as team on same date)
+def sched_key(team: str, opp: str, d: pd.Timestamp) -> Tuple[str, str, Optional[datetime.date]]:
+    tl = (team or "").strip().lower()
+    ol = (opp or "").strip().lower()
+    dt = d.date() if isinstance(d, pd.Timestamp) and pd.notna(d) else None
+    return (tl, ol, dt)
+
+schedule_row_index = {}
+for i, r in schedule_df.iterrows():
+    schedule_row_index[sched_key(str(r[TEAM_COL]), str(r[OPP_COL]), r["__Date_parsed"])] = i
+
+# Gather all schedule rank columns (used later for top-50 lists)
+sched_rank_cols = [c for c in schedule_df.columns if is_rank_column(c)]
 
 
 # =============================================================================
-# CLEAN / PREP: daily_df (TRAINING)
+# PREP DAILY (TRAINING)
 # =============================================================================
 
 daily_df = daily_df_raw.copy()
 
-# Targets: "Points", "Opp Points" (names may vary slightly)
 POINTS_COL     = find_col(daily_df, ["Points", "points", "PTS", "Team Points"])
 OPP_POINTS_COL = find_col(daily_df, ["Opp Points", "OppPoints", "Opp_Points", "OPP PTS", "OPP_PTS"])
-
 if POINTS_COL is None or OPP_POINTS_COL is None:
-    st.error("Daily predictor file must include 'Points' and 'Opp Points' columns.")
+    st.error("Daily predictor must include 'Points' and 'Opp Points' columns.")
     st.stop()
 
-# Fill numeric ranks → 51, other numeric → 0
+# Fill numerics similarly to schedule
 for c in daily_df.columns:
     if pd.api.types.is_numeric_dtype(daily_df[c]):
-        if is_rank_column(c):
-            daily_df[c] = daily_df[c].fillna(51)
-        else:
-            daily_df[c] = daily_df[c].fillna(0.0)
+        daily_df[c] = daily_df[c].fillna(51 if is_rank_column(c) else 0.0)
 
-# We will train on:
-#  - all numeric columns EXCEPT the two targets
-#  - categorical encodings for: Team, Opponent, Coach Name, Opponent Coach, Conference, Opponent Conference
+# Categorical columns to encode
 CAT_COLS = [
     find_col(daily_df, ["Team", "Teams", "team"]),
     find_col(daily_df, ["Opponent", "Opp", "opponent"]),
@@ -287,43 +259,55 @@ CAT_COLS = [
     find_col(daily_df, ["Conference", "Conf", "conference"]),
     find_col(daily_df, ["Opponent Conference", "Opp Conference"]),
 ]
-# Filter out None
 CAT_COLS = [c for c in CAT_COLS if c is not None]
 
-# Create flags if present
-DAILY_HAN_COL     = find_col(daily_df, ["HAN", "Han", "Home/Away", "Location Type", "HomeAway"])
-DAILY_NONCONF_COL = find_col(daily_df, ["Non Conference Game", "NonConference", "Non Conf", "NonConf", "Non-Conference"])
-
-# Prepare training features (numeric base)
-numeric_cols_all = daily_df.select_dtypes(include=[np.number]).columns.tolist()
-# Remove the target columns from numeric features if present
-numeric_feature_cols = [c for c in numeric_cols_all if c not in (POINTS_COL, OPP_POINTS_COL)]
-
-# Prepare y (2 targets)
+# Targets and mask
 y_points = pd.to_numeric(daily_df[POINTS_COL], errors="coerce")
 y_opp    = pd.to_numeric(daily_df[OPP_POINTS_COL], errors="coerce")
 target_mask = (~y_points.isna()) & (~y_opp.isna())
 
 if target_mask.sum() == 0:
-    st.error("No historical rows in daily predictor have both 'Points' and 'Opp Points'.")
+    st.error("No rows in the daily file have both Points and Opp Points.")
     st.stop()
 
-# Prepare X numeric matrix
+# Base numeric features (all daily numerics except the two targets)
+all_daily_num_cols = daily_df.select_dtypes(include=[np.number]).columns.tolist()
+numeric_feature_cols = [c for c in all_daily_num_cols if c not in (POINTS_COL, OPP_POINTS_COL)]
+
+# Build X_num matrix
 X_num = daily_df.loc[target_mask, numeric_feature_cols].apply(pd.to_numeric, errors="coerce").fillna(0.0)
 
-# Binary extra flags (if present)
-extra_flags = []
-if DAILY_HAN_COL is not None:
-    han_flag_series = daily_df.loc[target_mask, DAILY_HAN_COL].apply(lambda v: 1.0 if interpret_han(v) == "Home" else 0.0)
-    extra_flags.append(("__flag_home", han_flag_series))
-if DAILY_NONCONF_COL is not None:
-    nonconf_flag_series = daily_df.loc[target_mask, DAILY_NONCONF_COL].apply(lambda v: 1.0 if boolish(v) else 0.0)
-    extra_flags.append(("__flag_nonconf", nonconf_flag_series))
+# Engineered binary flags (these will become columns in X_num with fixed names)
+DAILY_HAN_COL     = find_col(daily_df, ["HAN", "Han", "Home/Away", "Location Type", "HomeAway"])
+DAILY_NONCONF_COL = find_col(daily_df, ["Non Conference Game", "NonConference", "Non Conf", "NonConf", "Non-Conference"])
+DAILY_CONF_COL    = find_col(daily_df, ["Conference", "Conf", "conference"])
+DAILY_OPP_CONF_COL= find_col(daily_df, ["Opponent Conference", "Opp Conference"])
 
-for name, series in extra_flags:
-    X_num[name] = series.astype(float).fillna(0.0)
+if "__flag_home" not in X_num.columns:
+    if DAILY_HAN_COL:
+        X_num["__flag_home"] = daily_df.loc[target_mask, DAILY_HAN_COL].apply(lambda v: 1.0 if interpret_han(v) == "Home" else 0.0).astype(float)
+    else:
+        X_num["__flag_home"] = 0.0
 
-# Ordinal-encode categorical columns (handle_unknown set to -1)
+if "__flag_nonconf" not in X_num.columns:
+    if DAILY_NONCONF_COL:
+        X_num["__flag_nonconf"] = daily_df.loc[target_mask, DAILY_NONCONF_COL].apply(lambda v: 1.0 if boolish(v) else 0.0).astype(float)
+    else:
+        X_num["__flag_nonconf"] = 0.0
+
+if "__flag_team_power_conf" not in X_num.columns:
+    if DAILY_CONF_COL:
+        X_num["__flag_team_power_conf"] = daily_df.loc[target_mask, DAILY_CONF_COL].apply(power_conf_flag).astype(float)
+    else:
+        X_num["__flag_team_power_conf"] = 0.0
+
+if "__flag_opp_power_conf" not in X_num.columns:
+    if DAILY_OPP_CONF_COL:
+        X_num["__flag_opp_power_conf"] = daily_df.loc[target_mask, DAILY_OPP_CONF_COL].apply(power_conf_flag).astype(float)
+    else:
+        X_num["__flag_opp_power_conf"] = 0.0
+
+# Ordinal-encode categorized columns (stable across train/predict)
 enc = None
 X_cat = None
 if CAT_COLS:
@@ -334,162 +318,159 @@ if CAT_COLS:
     except Exception:
         X_cat = None
 
-# Combine numeric + categorical into final X_train
+# Combine numeric + categorical
 if X_cat is not None:
     X_train = np.hstack([X_num.values, X_cat])
 else:
     X_train = X_num.values
 
-# Final Y (multi-output)
 Y_train = np.column_stack([
     y_points.loc[target_mask].values,
     y_opp.loc[target_mask].values
 ])
 
-# Train model
-st.write(f"Training multi-output RandomForestRegressor on {X_train.shape[0]} rows, {X_train.shape[1]} features…")
+st.write(f"Training on {X_train.shape[0]} rows and {X_train.shape[1]} features…")
+
 rf = RandomForestRegressor(
-    n_estimators=300,
+    n_estimators=400,
     random_state=42,
-    n_jobs=-1
+    n_jobs=-1,
+    min_samples_leaf=1,
+    max_features="auto"
 )
 rf.fit(X_train, Y_train)
 st.write("Model trained.")
 
+# Keep an ordered list of the final training numeric feature names (including engineered flags)
+feature_names_numeric = list(X_num.columns)
+cat_cols_for_inference = list(CAT_COLS)  # in order
+
 
 # =============================================================================
-# FEATURE PIPELINE FOR PREDICTION (SCHEDULE ROW → feature vector)
+# BUILD PREDICTION VECTORS (SCHEDULE ROW → X_vec aligned to training)
 # =============================================================================
 
-# Keep an ordered list of feature names for alignment at prediction time
-feature_names_numeric = list(X_num.columns)  # numeric + extra flags from daily (names preserved)
-cat_cols_for_inference = list(CAT_COLS)      # the exact cat col list used at training
+def schedule_numeric_vector(row: pd.Series) -> np.ndarray:
+    """
+    Build numeric features for a schedule row that align EXACTLY to the training
+    numeric features (feature_names_numeric). If a feature is missing on the
+    schedule row:
+      - If name looks like a rank → 51
+      - Else → 0
+    Special-case engineered flags: __flag_home / __flag_nonconf / team/opp power flags.
+    """
+    vals: List[float] = []
 
-def schedule_row_to_numeric_features(row: pd.Series) -> np.ndarray:
-    """
-    Create the numeric portion of the feature vector for a schedule row.
-    We try to read **exactly** the training numeric_feature_cols (by name).
-    If a numeric_feature_col is missing on the schedule row, we supply 0 (or 51 for rank-like).
-    """
-    vals = []
-    for col in feature_names_numeric:
-        if col in row.index:
-            v = row.get(col)
-            # If the column appears rank-like, treat NA as 51 (though we already filled schedule NAs)
-            default_val = 51.0 if is_rank_column(col) else 0.0
-            vals.append(to_num(v, default=default_val))
+    # Precompute schedule HAN/nonconf and conf flags
+    row_han = interpret_han(row.get(HAN_COL)) if HAN_COL and HAN_COL in row.index else None
+    row_nonconf = boolish(row.get(NONCONF_COL)) if NONCONF_COL and NONCONF_COL in row.index else False
+    row_team_conf = row.get(CONF_COL) if CONF_COL and CONF_COL in row.index else None
+    row_opp_conf  = row.get(OPP_CONF_COL) if OPP_CONF_COL and OPP_CONF_COL in row.index else None
+
+    for fname in feature_names_numeric:
+        if fname == "__flag_home":
+            vals.append(1.0 if row_han == "Home" else 0.0)
+            continue
+        if fname == "__flag_nonconf":
+            vals.append(1.0 if row_nonconf else 0.0)
+            continue
+        if fname == "__flag_team_power_conf":
+            vals.append(power_conf_flag(row_team_conf))
+            continue
+        if fname == "__flag_opp_power_conf":
+            vals.append(power_conf_flag(row_opp_conf))
+            continue
+
+        if fname in row.index:
+            raw = row.get(fname)
+            default_val = 51.0 if is_rank_column(fname) else 0.0
+            vals.append(to_num(raw, default=default_val))
         else:
-            # The schedule doesn’t have this exact numeric feature — give 0 (or 51 for ranks)
-            default_val = 51.0 if is_rank_column(col) else 0.0
+            default_val = 51.0 if is_rank_column(fname) else 0.0
             vals.append(default_val)
+
     return np.asarray(vals, dtype=float)
 
-def schedule_row_to_categorical_features(row: pd.Series) -> Optional[np.ndarray]:
-    """
-    Transform schedule row categorical columns using the fitted OrdinalEncoder.
-    Uses the **same** CAT_COLS as training. Unknown values map to -1 automatically.
-    """
+def schedule_categorical_vector(row: pd.Series) -> Optional[np.ndarray]:
     if enc is None or not cat_cols_for_inference:
         return None
-    row_vals = []
-    for col in cat_cols_for_inference:
-        if col in row.index:
-            row_vals.append(str(row.get(col)) if pd.notna(row.get(col)) else "NA")
+    vals = []
+    for c in cat_cols_for_inference:
+        if c in row.index:
+            vals.append(str(row.get(c)) if pd.notna(row.get(c)) else "NA")
         else:
-            # try symmetric names for opponent fields if needed (rare)
-            if "Opponent" in col and (alt := col.replace("Opponent ", "")) in row.index:
-                row_vals.append(str(row.get(alt)) if pd.notna(row.get(alt)) else "NA")
+            # try a few symmetric alternates (rare)
+            if "Opponent" in c:
+                alt = c.replace("Opponent ", "")
+                if alt in row.index:
+                    vals.append(str(row.get(alt)) if pd.notna(row.get(alt)) else "NA")
+                else:
+                    vals.append("NA")
             else:
-                row_vals.append("NA")
+                vals.append("NA")
     try:
-        enc_vec = enc.transform([row_vals])  # shape (1, k)
-        return enc_vec[0, :]
+        return enc.transform([vals])[0, :]
     except Exception:
-        return np.array([-1] * len(cat_cols_for_inference), dtype=float)
+        return np.array([-1] * len(vals), dtype=float)
 
-def build_feature_vec_for_matchup(row: pd.Series) -> np.ndarray:
-    """
-    Construct the full feature vector for a schedule row using:
-      - numeric features (aligned to training numeric feature list)
-      - categorical encodings aligned to CAT_COLS
-    """
-    num_part = schedule_row_to_numeric_features(row)
-    cat_part = schedule_row_to_categorical_features(row)
+def build_schedule_X(row: pd.Series) -> np.ndarray:
+    num_part = schedule_numeric_vector(row)
+    cat_part = schedule_categorical_vector(row)
     if cat_part is None:
         return num_part
     return np.hstack([num_part, cat_part]).astype(float)
 
 
 # =============================================================================
-# DEDUP MATCHUPS (avoid listing mirrored rows twice)
+# DEDUP & PRIORITY
 # =============================================================================
 
-def priority_for_row(row: pd.Series) -> Tuple[int, int, int, pd.Timestamp]:
-    """
-    Sorting priority: Top 25 → March Madness → Power conf → Date
-    Lower is earlier in the list.
-    """
-    # Top-25 flag
-    is_top25 = False
-    if TOP25_COL and TOP25_COL in row.index:
-        is_top25 = boolish(row.get(TOP25_COL))
-
-    # MM flag
-    is_mm = False
-    if MM_COL and MM_COL in row.index:
-        is_mm = boolish(row.get(MM_COL))
-
-    # Opponent conference priority
-    pow_conf_set = {"SEC", "BIG TEN", "B1G", "BIG 12", "BIG12", "ACC"}
-    opp_conf_val = ""
-    if OPP_CONF_COL and OPP_CONF_COL in row.index:
-        opp_conf_val = str(row.get(OPP_CONF_COL) or "").strip().upper()
-    conf_pri = 9
-    if opp_conf_val in pow_conf_set:
-        conf_pri = 1
-    # tie-breaker by date
+def row_priority(row: pd.Series) -> Tuple[int, int, int, pd.Timestamp]:
+    # Top-25 first
+    is_top25 = boolish(row.get(TOP25_COL)) if TOP25_COL and TOP25_COL in row.index else False
+    # March Madness opponent second
+    is_mm    = boolish(row.get(MM_COL)) if MM_COL and MM_COL in row.index else False
+    # Power-conf opponent third
+    opp_conf_flag = power_conf_flag(row.get(OPP_CONF_COL)) if OPP_CONF_COL and OPP_CONF_COL in row.index else 0.0
+    conf_pri = 1 if opp_conf_flag == 1.0 else 9
     return (0 if is_top25 else 1, 0 if is_mm else 1, conf_pri, row["__Date_parsed"])
 
-# Build unique list of matchups
-seen = set()
+seen_pairs = set()
 unique_rows = []
 for i, r in schedule_df.iterrows():
-    team = str(r[TEAM_COL]) if pd.notna(r[TEAM_COL]) else ""
-    opp  = str(r[OPP_COL]) if pd.notna(r[OPP_COL]) else ""
-    d    = r["__Date_parsed"]
-    # Dedup mirrored pairs (unordered)
-    unordered_pair = (min(team.lower(), opp.lower()), max(team.lower(), opp.lower()), d.date() if not pd.isna(d) else None)
-    if unordered_pair in seen:
+    t = str(r[TEAM_COL]).strip()
+    o = str(r[OPP_COL]).strip()
+    d = r["__Date_parsed"]
+    # unordered pair for dedup
+    key = (min(t.lower(), o.lower()), max(t.lower(), o.lower()), d.date() if not pd.isna(d) else None)
+    if key in seen_pairs:
         continue
-    seen.add(unordered_pair)
-    unique_rows.append((priority_for_row(r), i))
+    seen_pairs.add(key)
+    unique_rows.append((row_priority(r), i))
 
-# Sort by priority
 unique_rows.sort(key=lambda x: x[0])
 sorted_indices = [idx for _, idx in unique_rows]
 
-if len(sorted_indices) == 0:
+if not sorted_indices:
     st.info("No scheduled games found.")
     st.stop()
 
 
 # =============================================================================
-# PREDICTION LOOP
+# PREDICT
 # =============================================================================
 
-pred_records = []
+pred_rows = []
 for idx in sorted_indices:
-    row = schedule_df.iloc[idx]
+    r = schedule_df.iloc[idx]
 
-    # Build feature vector aligned to the training features
-    X_vec = build_feature_vec_for_matchup(row).reshape(1, -1)
+    X_vec = build_schedule_X(r).reshape(1, -1)
 
-    # Ensure input width matches training width
+    # Align width if needed (pad/truncate)
     if X_vec.shape[1] != X_train.shape[1]:
-        # Align by truncating or zero-padding on the right
         aligned = np.zeros((1, X_train.shape[1]), dtype=float)
-        min_cols = min(X_vec.shape[1], X_train.shape[1])
-        aligned[0, :min_cols] = X_vec[0, :min_cols]
+        use = min(X_vec.shape[1], X_train.shape[1])
+        aligned[0, :use] = X_vec[0, :use]
         X_vec = aligned
 
     # Predict [Points, Opp Points]
@@ -498,116 +479,106 @@ for idx in sorted_indices:
     except Exception:
         y_pred = np.array([0.0, 0.0])
 
-    team_name = str(row[TEAM_COL]).strip()
-    opp_name  = str(row[OPP_COL]).strip()
+    team_name = str(r[TEAM_COL]).strip()
+    opp_name  = str(r[OPP_COL]).strip()
 
-    # Metadata for left/right team tables
-    def safe_get(row_: pd.Series, colname: Optional[str]) -> Any:
-        if colname and colname in row_.index:
-            return row_.get(colname)
-        return ""
+    # Find mirror for proper opponent meta and top-50 extraction
+    mirror_key = (opp_name.lower(), team_name.lower(), r["__Date_parsed"].date() if not pd.isna(r["__Date_parsed"]) else None)
+    mirror_row = schedule_df.iloc[schedule_row_index[mirror_key]] if mirror_key in schedule_row_index else None
 
-    # Attempt to fetch the mirrored row (opponent as "home" team in file) for opponent meta and top-50
-    mirror_key = make_key(opp_name, team_name, row["__Date_parsed"])
-    mirror_row = schedule_df.iloc[schedule_idx[mirror_key]] if mirror_key in schedule_idx else None
+    # Meta dicts
+    def g(row_: pd.Series, c: Optional[str]) -> Any:
+        return row_.get(c) if (row_ is not None and c and c in row_.index) else ""
 
-    # Team meta
     team_meta = {
-        "Coach": safe_get(row, COACH_COL),
-        "Conference": safe_get(row, CONF_COL),
-        "Wins": safe_get(row, WINS_COL),
-        "Losses": safe_get(row, LOSSES_COL),
+        "Conference": g(r, CONF_COL),
+        "Coach": g(r, COACH_COL),
+        "Wins": g(r, WINS_COL),
+        "Losses": g(r, LOSSES_COL)
     }
-    # Opponent meta (prefer mirror row if available)
     if mirror_row is not None:
         opp_meta = {
-            "Coach": safe_get(mirror_row, COACH_COL) if COACH_COL else safe_get(row, OPP_COACH_COL),
-            "Conference": safe_get(mirror_row, CONF_COL) if CONF_COL else safe_get(row, OPP_CONF_COL),
-            "Wins": safe_get(mirror_row, WINS_COL),
-            "Losses": safe_get(mirror_row, LOSSES_COL),
+            "Conference": g(mirror_row, CONF_COL) if CONF_COL else g(r, OPP_CONF_COL),
+            "Coach": g(mirror_row, COACH_COL) if COACH_COL else g(r, OPP_COACH_COL),
+            "Wins": g(mirror_row, WINS_COL),
+            "Losses": g(mirror_row, LOSSES_COL)
         }
         row_for_opp_ranks = mirror_row
     else:
         opp_meta = {
-            "Coach": safe_get(row, OPP_COACH_COL),
-            "Conference": safe_get(row, OPP_CONF_COL),
+            "Conference": g(r, OPP_CONF_COL),
+            "Coach": g(r, OPP_COACH_COL),
             "Wins": "",
-            "Losses": "",
+            "Losses": ""
         }
-        row_for_opp_ranks = row  # fallback
+        row_for_opp_ranks = r
 
-    # Top-50 list extraction
-    def extract_top50_from_row(r_: pd.Series) -> List[Tuple[str, int]]:
+    # Top-50 extractors — SEPARATE for each team
+    def extract_top50(r_: pd.Series) -> List[Tuple[str, int]]:
         out = []
-        for c in rank_columns:
+        for c in sched_rank_cols:
             try:
-                val = to_int(r_.get(c), default=9999)
-                if 1 <= val <= 50:
-                    out.append((c, val))
+                v = to_int(r_.get(c), default=9999)
+                if 1 <= v <= 50:
+                    out.append((c, v))
             except Exception:
                 continue
-        # Sort by rank ascending
         out.sort(key=lambda z: z[1])
         return out
 
-    team_top50 = extract_top50_from_row(row)
-    opp_top50  = extract_top50_from_row(row_for_opp_ranks)
+    team_top50 = extract_top50(r)
+    opp_top50  = extract_top50(row_for_opp_ranks)
 
-    pred_records.append({
-        "Date": row["__Date_parsed"],
+    pred_rows.append({
+        "Date": r["__Date_parsed"],
         "Team": team_name,
         "Opponent": opp_name,
         "Pred_Team_Points": int(round(max(0.0, y_pred[0]))),
         "Pred_Opp_Points": int(round(max(0.0, y_pred[1]))),
-        "Priority": priority_for_row(row),
         "Team_Meta": team_meta,
         "Opp_Meta": opp_meta,
         "Team_Top50": team_top50,
-        "Opp_Top50": opp_top50
+        "Opp_Top50": opp_top50,
+        "Priority": row_priority(r)
     })
 
 
 # =============================================================================
-# FILTERS / CONTROLS
+# FILTERS
 # =============================================================================
 
 st.markdown("---")
 st.subheader("Filters")
 
-# Show only Top-25 games
 show_top25_only = st.checkbox("Show only Top-25 opponent games", value=False)
 
-# Optional opponent-conference filter list
-opponent_conf_series = schedule_df[OPP_CONF_COL] if OPP_CONF_COL else pd.Series([], dtype=object)
-opponent_conf_opts = sorted(list({str(x) for x in opponent_conf_series.dropna().unique().tolist()}))
-conf_multiselect = st.multiselect("Filter by opponent conference", opponent_conf_opts, default=[])
+opp_conf_opts = []
+if OPP_CONF_COL:
+    opp_conf_opts = sorted(list({str(x) for x in schedule_df[OPP_CONF_COL].dropna().unique().tolist()}))
+conf_selected = st.multiselect("Filter by opponent conference", opp_conf_opts, default=[])
 
-# Apply filters
-def pass_filters(rec: Dict[str, Any]) -> bool:
-    # Find a schedule row to read Top25/Conference flags for filter evaluation
-    k = make_key(rec["Team"], rec["Opponent"], rec["Date"])
-    base_row = schedule_df.iloc[schedule_idx[k]] if k in schedule_idx else None
+def passes_filters(rec: Dict[str, Any]) -> bool:
+    # Locate base row to inspect filter fields
+    key = (rec["Team"].lower(), rec["Opponent"].lower(), rec["Date"].date() if not pd.isna(rec["Date"]) else None)
+    base_row = schedule_df.iloc[schedule_row_index[key]] if key in schedule_row_index else None
     if base_row is None:
-        return True  # if we can't locate row, don't filter it out
-
-    # Top-25 filter
+        return True
     if show_top25_only and TOP25_COL and TOP25_COL in base_row.index:
         if not boolish(base_row.get(TOP25_COL)):
             return False
-
-    # Conference multiselect
-    if conf_multiselect and OPP_CONF_COL and OPP_CONF_COL in base_row.index:
-        oc = str(base_row.get(OPP_CONF_COL) or "").strip()
-        if oc not in conf_multiselect:
+    if conf_selected and OPP_CONF_COL and OPP_CONF_COL in base_row.index:
+        oc = str(base_row.get(OPP_CONF_COL) or "")
+        if oc not in conf_selected:
             return False
-
     return True
 
-pred_records_filtered = [r for r in pred_records if pass_filters(r)]
-
-if not pred_records_filtered:
+pred_rows = [r for r in pred_rows if passes_filters(r)]
+if not pred_rows:
     st.info("No games match the selected filters.")
     st.stop()
+
+# Sort by priority key already computed
+pred_rows.sort(key=lambda z: z["Priority"])
 
 
 # =============================================================================
@@ -617,27 +588,21 @@ if not pred_records_filtered:
 st.markdown("---")
 st.subheader("Predicted Games (sorted by priority)")
 
-for rec in pred_records_filtered:
+for rec in pred_rows:
     date_str = rec["Date"].strftime("%m/%d/%Y") if not pd.isna(rec["Date"]) else "TBD"
-    game_header = f"{rec['Team']} vs {rec['Opponent']} — {date_str} — Pred: {rec['Pred_Team_Points']} - {rec['Pred_Opp_Points']}"
+    header = f"{rec['Team']} vs {rec['Opponent']} — {date_str} — Pred: {rec['Pred_Team_Points']} - {rec['Pred_Opp_Points']}"
+    with st.expander(header, expanded=False):
 
-    with st.expander(game_header, expanded=False):
-
-        # -------------------------
-        # Meta tables (Team / Opponent)
-        # -------------------------
+        # Team / Opponent meta
         st.markdown("#### Teams")
-
-        left, right = st.columns(2)
-
-        with left:
+        c1, c2 = st.columns(2)
+        with c1:
             st.write(f"**{rec['Team']}**")
             st.write(f"Conference: {rec['Team_Meta'].get('Conference', '')}")
             st.write(f"Coach: {rec['Team_Meta'].get('Coach', '')}")
             st.write(f"Wins: {rec['Team_Meta'].get('Wins', '')}")
             st.write(f"Losses: {rec['Team_Meta'].get('Losses', '')}")
-
-        with right:
+        with c2:
             st.write(f"**{rec['Opponent']}**")
             st.write(f"Conference: {rec['Opp_Meta'].get('Conference', '')}")
             st.write(f"Coach: {rec['Opp_Meta'].get('Coach', '')}")
@@ -645,54 +610,40 @@ for rec in pred_records_filtered:
             st.write(f"Losses: {rec['Opp_Meta'].get('Losses', '')}")
 
         st.markdown("---")
-
-        # -------------------------
-        # Top 50 lists (split per team)
-        # -------------------------
         st.markdown("#### Top 50 in the Nation — Category and Rank")
 
-        c1, c2 = st.columns(2)
-
-        def _df_top50(lst: List[Tuple[str, int]]) -> pd.DataFrame:
+        def df_top50(lst: List[Tuple[str, int]]) -> pd.DataFrame:
             if not lst:
                 return pd.DataFrame([{"Category": "None in Top 50", "Rank": ""}])
             return pd.DataFrame([{"Category": k, "Rank": v} for k, v in lst])
 
-        with c1:
+        tcol, ocol = st.columns(2)
+        with tcol:
             st.write(f"**{rec['Team']}**")
-            st.dataframe(_df_top50(rec["Team_Top50"]), use_container_width=True)
-
-        with c2:
+            st.dataframe(df_top50(rec["Team_Top50"]), use_container_width=True)
+        with ocol:
             st.write(f"**{rec['Opponent']}**")
-            st.dataframe(_df_top50(rec["Opp_Top50"]), use_container_width=True)
+            st.dataframe(df_top50(rec["Opp_Top50"]), use_container_width=True)
 
         st.markdown("---")
         st.write("Notes:")
-        st.write("- Predictions are produced by a single multi-output RandomForestRegressor trained on your Daily predictor file.")
-        st.write("- Date parsing is MM/DD/YYYY.")
-        st.write("- Rank-based columns are treated as 51 when missing so they don’t appear in the Top-50 lists.")
-        st.write("- Categorical features (team, opponent, coach names, conferences) are encoded to ensure matchup-specific variation.")
+        st.write("- Predictions use a single multi-output RandomForest with numeric stats, rank fields, categorical encodings (team/opponent/coach/conferences), and engineered flags.")
+        st.write("- Missing rank values are treated as 51; other missing numerics are 0.")
+        st.write("- HAN is used to set a home flag. Non-conference and power-conference flags are included for both sides.")
+        st.write("- Results should vary per matchup even with limited early-season data thanks to categorical encodings and rank fields.")
 
-# -----------------------------------------------------------------------------
-# CSV Download
-# -----------------------------------------------------------------------------
+# Download CSV
 st.markdown("---")
-out_df = pd.DataFrame([{
+out = pd.DataFrame([{
     "Date": r["Date"].strftime("%Y-%m-%d") if not pd.isna(r["Date"]) else "",
     "Team": r["Team"],
     "Opponent": r["Opponent"],
     "Pred_Team_Points": r["Pred_Team_Points"],
     "Pred_Opp_Points": r["Pred_Opp_Points"]
-} for r in pred_records_filtered])
-
-csv_bytes = out_df.to_csv(index=False).encode("utf-8")
+} for r in pred_rows])
 st.download_button(
     "Download predictions CSV",
-    data=csv_bytes,
+    data=out.to_csv(index=False).encode("utf-8"),
     file_name="todays_games_predictions.csv",
     mime="text/csv"
 )
-
-# =============================================================================
-# END OF FILE
-# =============================================================================
