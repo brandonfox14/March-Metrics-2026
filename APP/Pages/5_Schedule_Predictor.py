@@ -526,17 +526,3 @@ else:
     st.dataframe(out_df, use_container_width=True)
     csv = out_df.to_csv(index=False)
     st.download_button("Download predictions CSV", csv, f"{selected_team}_schedule_predictions.csv", "text/csv")
-
-# -------------------------
-# NOTES
-# -------------------------
-st.markdown("---")
-st.write(
-    "Notes:\n"
-    "- This page trains models using ALL numeric team-level stats from All_Stats-THE_TABLE.csv (element-wise team, opponent, and diff are used), plus home/non-conference flags and categorical coach/conference encodings.\n"
-    "- HAN column (home/away/neutral) is used to set the Home flag; if HAN not present we derive location from which schedule column equals the selected team.\n"
-    "- If schedule/daily non-conference flags aren't present we infer non-conference by comparing team conferences.\n"
-    "- Predicted final scores are derived from predicted margin + an average total baseline from daily historical games.\n"
-    "- To change the default team on load edit the INITIAL_TEAM constant at top of this file.\n"
-    "- For better predictive power consider: cross-validation, hyperparameter tuning, XGBoost/LightGBM, feature selection, and expanding daily historical rows."
-)
