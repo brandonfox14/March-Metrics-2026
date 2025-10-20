@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 # -----------------------
 @st.cache_data
 def load_data():
-    df = pd.read_csv("Data/All_stats.csv", encoding="latin1")
+    df = pd.read_csv("Data/26_March_Madness_Databook/All_Stats-THE_TABLE.csv", encoding="latin1")
     df["Year"] = pd.to_datetime(df["Year"], errors="coerce").dt.year
     return df
 
