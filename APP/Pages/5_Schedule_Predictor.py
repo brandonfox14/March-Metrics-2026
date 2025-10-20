@@ -379,8 +379,8 @@ default_index = team_values.index(INITIAL_TEAM) if INITIAL_TEAM in team_values e
 selected_team = st.selectbox("Select a team (default controlled by top-of-file INITIAL_TEAM)", team_values, index=default_index)
 st.write(f"Default INITIAL_TEAM variable is: '{INITIAL_TEAM}' (edit file to change)")
 
-# Filter upcoming games for selected team
-mask = (schedule_df[schedule_team_col].astype(str).str.strip() == selected_team) | (schedule_df[schedule_opp_col].astype(str).str.strip() == selected_team)
+# Filter schedule so we only use rows where the team column equals the selected team
+mask = schedule_df[schedule_team_col].astype(str).str.strip() == selected_team
 selected_schedule = schedule_df.loc[mask].copy().sort_values("__Date_parsed").reset_index(drop=True)
 
 if selected_schedule.empty:
