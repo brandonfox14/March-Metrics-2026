@@ -180,19 +180,34 @@ for conf_name, tab in zip(unique_confs, tabs):
         df = pd.DataFrame(results).sort_values("Projected Wins", ascending=False)
 
         # ------------------------------------------
-        # VISUALS
+        # VISUALS (Bar Chart with Labels)
         # ------------------------------------------
         st.write("### Projected Win Totals")
-        fig = px.line(
+        
+        fig = px.bar(
             df,
             x="Team",
             y="Projected Wins",
+            text="Projected Wins",
             title=f"{conf_name} Projected Win Totals",
-            markers=True,
-            hover_data=["Δ Wins", "Current Wins", "Projected Wins"]
+            color="Δ Wins",
+            color_continuous_scale="Bluered",
+            hover_data=["Current Wins", "Projected Losses", "Δ Wins"]
         )
+        
+        # Center labels inside bars and format nicely
+        fig.update_traces(
+            texttemplate="%{text:.1f}",
+            textposition="outside"
+        )
+        fig.update_layout(
+            yaxis_title="Projected Wins",
+            xaxis_title="Team",
+            showlegend=False,
+            uniformtext_minsize=8,
+            uniformtext_mode="hide",
+            margin=dict(t=60, b=60, l=40, r=40)
+        )
+        
         st.plotly_chart(fig, use_container_width=True)
-
-        st.write("### Projected Standings")
-        st.dataframe(df, use_container_width=True)
 
