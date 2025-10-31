@@ -1,4 +1,4 @@
-# APP/Pages/7_Betting.py
+# APP/Pages/9_Betting.py
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -40,12 +40,7 @@ def find_col(df, candidates):
     return None
 
 def parse_mdy(series_like):
-    # Force MM/DD/YYYY (your files are in this format)
-    return pd.to_datetime(
-        series_like.astype(str).str.strip(),
-        errors="coerce",
-        format="%m/%d/%Y"
-    )
+    return pd.to_datetime(series_like.astype(str).str.strip(), errors="coerce", format="%m/%d/%Y")
 
 def interpret_han(v):
     if pd.isna(v): return None
@@ -56,106 +51,74 @@ def interpret_han(v):
     return None
 
 def american_to_prob(odds):
-    """
-    Convert American odds to implied probability.
-    """
-    try:
-        o = float(odds)
-    except Exception:
-        return np.nan
-    if o > 0:
-        return 100.0 / (o + 100.0)
-    elif o < 0:
-        return -o / (-o + 100.0)
+    try: o = float(odds)
+    except: return np.nan
+    if o > 0:  return 100.0/(o+100.0)
+    if o < 0:  return -o/(-o+100.0)
     return np.nan
 
 def american_to_decimal(odds):
-    """
-    Convert American odds to decimal odds (>1.0).
-    """
-    try:
-        o = float(odds)
-    except Exception:
-        return np.nan
-    if o > 0:
-        return 1.0 + (o / 100.0)
-    elif o < 0:
-        return 1.0 + (100.0 / -o)
+    try: o = float(odds)
+    except: return np.nan
+    if o > 0:  return 1.0 + (o/100.0)
+    if o < 0:  return 1.0 + (100.0/(-o))
     return np.nan
 
-def kelly_fraction(edge_prob, dec_odds, cap=0.05):
-    """
-    Kelly fraction based on model probability and decimal odds.
-    Returns fraction of bankroll to stake (capped).
-    If inputs are invalid or edge <= 0, returns 0.
-    """
-    if not np.isfinite(edge_prob) or not np.isfinite(dec_odds):
+def kelly_fraction(p, dec_odds, cap=0.05):
+    if not np.isfinite(p) or not np.isfinite(dec_odds) or dec_odds <= 1.0:
         return 0.0
-    p = max(0.0, min(1.0, edge_prob))
+    p = max(0.0, min(1.0, float(p)))
     b = dec_odds - 1.0
-    if b <= 0:
-        return 0.0
-    f = (p * (b + 1) - 1) / b  # classic Kelly
-    if f <= 0:
-        return 0.0
-    return float(min(cap, f))
+    f = (p*(b+1) - 1)/b
+    return float(max(0.0, min(cap, f)))
 
 def safe_num(x, default=0.0):
     try:
         v = float(x)
-        if np.isnan(v): return default
-        return v
-    except Exception:
+        return v if np.isfinite(v) else default
+    except:
         return default
 
 def clean_rank_value(x):
-    # treat NA/"N/A"/blank as 51+ (out of top-50 scope)
     try:
         v = float(x)
-        if np.isnan(v): return 51.0
-        return v
-    except Exception:
+        return v if np.isfinite(v) else 51.0
+    except:
         return 51.0
 
-def extract_team_top50(row):
-    """
-    From a schedule row with many *_Rank columns, return a list of (Category, Rank)
-    for columns where the numeric rank <= 50.
-    """
+def extract_top50(row):
     out = []
     for c in row.index:
         cu = c.upper()
-        if "RANK" in cu or cu.endswith(" RANK") or cu.endswith("_RANK"):
-            rank_val = clean_rank_value(row.get(c))
-            if rank_val <= 50:
-                out.append((c, int(rank_val)))
-    # sort best to worst
-    return sorted(out, key=lambda x: x[1])
+        if ("RANK" in cu) or cu.endswith(" RANK") or cu.endswith("_RANK"):
+            rv = clean_rank_value(row.get(c))
+            if rv <= 50:
+                out.append((c, int(rv)))
+    return sorted(out, key=lambda kv: kv[1])
 
 # ------------------------------------------
 # LOAD DATA
 # ------------------------------------------
 schedule_df = load_csv(SCHEDULE_FILE)
 daily_df = load_csv(DAILY_FILE)
-
 if schedule_df is None or daily_df is None:
     st.stop()
 
 # ------------------------------------------
 # COLUMN DETECTION (Schedule/Daily)
 # ------------------------------------------
-team_col = find_col(schedule_df, ["Team", "Teams"])
-opp_col  = find_col(schedule_df, ["Opponent", "Opp", "opponent"])
+team_col = find_col(schedule_df, ["Team","Teams"])
+opp_col  = find_col(schedule_df, ["Opponent","Opp","opponent"])
 date_col = find_col(schedule_df, ["Date"])
 han_col  = find_col(schedule_df, ["HAN","Home/Away","HomeAway","Loc","Location"])
-conf_col = find_col(schedule_df, ["Conference"])
-opp_conf_col = find_col(schedule_df, ["Opponent Conference", "Opp Conference"])
+conf_col = find_col(schedule_df, ["Conference","Conf"])
+opp_conf_col = find_col(schedule_df, ["Opponent Conference","Opp Conference","Opp Conf"])
 coach_col = find_col(schedule_df, ["Coach Name","Coach","Coach_Name"])
 opp_coach_col = find_col(schedule_df, ["Opponent Coach","Opp Coach"])
 
 line_col = find_col(schedule_df, ["Line"])
-ml_col = find_col(schedule_df, ["ML","Moneyline","Money Line"])
-ou_col = find_col(schedule_df, ["Over/Under Line","OverUnder","Over Under Line","O/U"])
+ml_col   = find_col(schedule_df, ["ML","Moneyline","Money Line"])
+ou_col   = find_col(schedule_df, ["Over/Under Line","OverUnder","Over Under Line","O/U"])
 
 top25_col = find_col(schedule_df, ["Top 25 Opponent","Top25","Top 25"])
 mm_col    = find_col(schedule_df, ["March Madness Opponent","March Madness"])
@@ -164,138 +127,143 @@ if team_col is None or opp_col is None or date_col is None:
     st.error("Schedule must include Team, Opponent, and Date.")
     st.stop()
 
-# Parse dates strictly as MM/DD/YYYY per your requirement
+# Parse dates strictly as MM/DD/YYYY
 schedule_df["__Date"] = parse_mdy(schedule_df[date_col])
 schedule_df = schedule_df.dropna(subset=["__Date"]).copy()
 
-# De-duplicate mirrored matchups on same date (keep the HOME row if available)
-seen = set()
-keep_rows = []
+# De-duplicate mirrored matchups on same date — prefer the row with HAN=Home if duplication
+keep = []
+seen = {}
 for idx, r in schedule_df.iterrows():
     t = str(r[team_col]).strip()
     o = str(r[opp_col]).strip()
     d = r["__Date"].date()
     key = tuple(sorted([t.lower(), o.lower()])) + (d,)
-    if key in seen:
-        # Prefer the row whose HAN is Home if one of the dupes is Home; else first seen
-        prev_idx = keep_rows[-1] if keep_rows else None
-        # simple policy: keep the first seen; you can enhance to check HAN==Home
-        continue
-    seen.add(key)
-    keep_rows.append(idx)
-schedule_df = schedule_df.loc[keep_rows].reset_index(drop=True)
+    han = interpret_han(r.get(han_col)) if han_col in r.index else None
+    if key not in seen:
+        seen[key] = (idx, han == "Home")
+    else:
+        prev_idx, prev_is_home = seen[key]
+        cur_is_home = (han == "Home")
+        # replace previous if current is Home and previous wasn't
+        if cur_is_home and not prev_is_home:
+            seen[key] = (idx, True)
+# finalize rows to keep
+keep = [pair[0] for pair in seen.values()]
+schedule_df = schedule_df.loc[keep].reset_index(drop=True)
 
 # ------------------------------------------
-# TRAINING SET FROM DAILY (Targets: Points & Opp Points, plus Win)
+# TRAINING SET FROM DAILY (Single multi-output model + win classifier)
 # ------------------------------------------
-# Identify team/opp columns in daily
 d_team_col = find_col(daily_df, ["Team","Teams","team"])
 d_opp_col  = find_col(daily_df, ["Opponent","Opp","opponent"])
 d_pts_col  = find_col(daily_df, ["Points"])
 d_opp_pts_col = find_col(daily_df, ["Opp Points","Opp_Points","OppPoints"])
-
 if d_team_col is None or d_opp_col is None or d_pts_col is None or d_opp_pts_col is None:
     st.error("Daily predictor must have Team, Opponent, Points, Opp Points.")
     st.stop()
 
-# Features: all numeric columns *except* Points/Opp Points
+# Features: ALL numeric daily cols except targets
 daily_numeric = daily_df.select_dtypes(include=[np.number]).copy()
-numeric_feature_cols = [c for c in daily_numeric.columns if c not in (d_pts_col, d_opp_pts_col)]
+numeric_feats = [c for c in daily_numeric.columns if c not in (d_pts_col, d_opp_pts_col)]
 
-# Categorical features to add (ordinal encode)
+# Categoricals: team/opponent/coach/conferences (if present)
 cat_cols = []
-for c in [d_team_col, d_opp_col, "Coach Name", "Coach", "Conference", "Opponent Conference", "Opp Conference", "Opponent Coach"]:
+for c in [d_team_col, d_opp_col, "Coach Name","Coach","Conference","Opponent Conference","Opp Conference","Opponent Coach"]:
     if c and c in daily_df.columns:
         cat_cols.append(c)
-cat_cols = list(dict.fromkeys(cat_cols))  # de-dup
+cat_cols = list(dict.fromkeys(cat_cols))
 
-# Build training matrices
-X_rows = []
-Y_points_rows = []
-Y_win = []
-
+X_num_rows, X_cat_rows, Y_points_rows, Y_win_rows = [], [], [], []
 for _, r in daily_df.iterrows():
-    t = r.get(d_team_col)
-    o = r.get(d_opp_col)
-    if pd.isna(t) or pd.isna(o):
-        continue
+    t = r.get(d_team_col); o = r.get(d_opp_col)
+    if pd.isna(t) or pd.isna(o): continue
+    pts = safe_num(r.get(d_pts_col), np.nan)
+    opp = safe_num(r.get(d_opp_pts_col), np.nan)
+    if not np.isfinite(pts) or not np.isfinite(opp): continue
 
-    # numeric block
-    nums = pd.to_numeric(r[numeric_feature_cols], errors="coerce").fillna(0.0).values
-
-    # categorical block
-    cat_vals = []
-    for c in cat_cols:
-        cat_vals.append(str(r.get(c)) if c in r.index else "")
-
-    # targets
-    pts = safe_num(r.get(d_pts_col), default=np.nan)
-    opp = safe_num(r.get(d_opp_pts_col), default=np.nan)
-    if np.isnan(pts) or np.isnan(opp):
-        continue
-    win = 1 if pts > opp else 0
-
-    X_rows.append((nums, cat_vals))
+    nums = pd.to_numeric(r[numeric_feats], errors="coerce").fillna(0.0).values
+    cats = [str(r.get(c)) if c in r.index else "" for c in cat_cols]
+    X_num_rows.append(nums)
+    X_cat_rows.append(cats)
     Y_points_rows.append([pts, opp])
-    Y_win.append(win)
+    Y_win_rows.append(1 if pts > opp else 0)
 
-if len(X_rows) == 0:
-    st.error("No valid rows in daily predictor for training.")
+if len(X_num_rows) == 0:
+    st.error("No valid rows in daily predictor after cleaning.")
     st.stop()
 
-# Fit encoder over all cat rows
-cat_matrix = np.array([row[1] for row in X_rows], dtype=object)
 enc = OrdinalEncoder(handle_unknown="use_encoded_value", unknown_value=-1)
-cat_encoded = enc.fit_transform(cat_matrix)
-
-X_num_mat = np.vstack([row[0] for row in X_rows])
-X_train = np.hstack([X_num_mat, cat_encoded])
+X_cat = enc.fit_transform(np.array(X_cat_rows, dtype=object))
+X_num = np.vstack(X_num_rows)
+X_train = np.hstack([X_num, X_cat])
 Y_points = np.array(Y_points_rows, dtype=float)
-Y_win = np.array(Y_win, dtype=int)
+Y_win = np.array(Y_win_rows, dtype=int)
 
-# Train models
+# Models
 rf_multi = MultiOutputRegressor(RandomForestRegressor(n_estimators=600, random_state=42))
 rf_multi.fit(X_train, Y_points)
 
 clf = RandomForestClassifier(n_estimators=500, random_state=42)
 clf.fit(X_train, Y_win)
 
-st.success(f"Models trained on {X_train.shape[0]} games with {X_train.shape[1]} features.")
+# Residual sigmas for Gaussian probability model
+train_pred = rf_multi.predict(X_train)
+train_margin = train_pred[:,0] - train_pred[:,1]
+true_margin  = Y_points[:,0] - Y_points[:,1]
+sigma_m = float(np.std(true_margin - train_margin)) if len(true_margin) > 3 else 10.0
+
+train_total = train_pred[:,0] + train_pred[:,1]
+true_total  = Y_points[:,0] + Y_points[:,1]
+sigma_t = float(np.std(true_total - train_total)) if len(true_total) > 3 else 16.0
+
+st.success(f"Models trained on {X_train.shape[0]} games | σ_margin≈{sigma_m:.2f}, σ_total≈{sigma_t:.2f}")
 
 # ------------------------------------------
-# BUILD FEATURES FOR SCHEDULE ROWS
+# USER CONTROLS
 # ------------------------------------------
-# Compose schedule feature columns with same numeric names (best effort)
-sched_numeric = schedule_df.select_dtypes(include=[np.number]).copy()
-sched_numeric = sched_numeric.fillna(0.0)
+st.markdown("### Bankroll & Strategy")
+cA, cB, cC = st.columns(3)
+with cA:
+    units_base = st.number_input("Units of betting", min_value=1.0, value=100.0, step=1.0)
+    bad_day_floor = st.number_input("Units floor (95% target)", min_value=0.0, value=65.5, step=0.5)
+with cB:
+    consistent_target = st.number_input("Units target (70% day)", min_value=0.0, value=140.0, step=1.0)
+    homerun = st.slider("Homerun hitter (parlay aggressiveness)", 1, 10, 7)
+with cC:
+    ladder_start = st.selectbox("Ladder Starter", ["No","Yes"], index=1)
+    ladder_cont  = st.selectbox("Ladder Continuation", ["No","Yes"], index=0)
+    ladder_amt   = st.number_input("Ladder Continuation Units (excluded from base)", min_value=0.0, value=0.0, step=1.0)
 
-common_numeric = [c for c in numeric_feature_cols if c in sched_numeric.columns]
-# For missing numeric features, we will append zeros in the right positions later.
+cD, cE = st.columns(2)
+with cD:
+    min_bets, max_bets = st.slider("Bets minimum / maximum", 4, 100, (10, 25))
+with cE:
+    kelly_cap = st.slider("Max stake per bet (Kelly cap, % of units)", 1, 10, 5) / 100.0
 
-def row_to_feature_vector(row):
-    # numeric slice in the order of numeric_feature_cols (pad zeros for missing)
-    num_vec = []
-    for c in numeric_feature_cols:
-        if c in row.index:
-            num_vec.append(safe_num(row[c], 0.0))
-        else:
-            # try some opponent mapping for common fields (best-effort)
-            num_vec.append(0.0)
-    num_vec = np.array(num_vec, dtype=float)
+effective_units = max(0.0, units_base - (ladder_amt if ladder_cont == "Yes" else 0.0))
+st.info(f"Effective units for slate (excludes ladder continuation): {effective_units:.2f}")
 
-    # categorical: build in the same order of cat_cols used for training, pulling from schedule
+# ------------------------------------------
+# FEATURE BUILDER FOR SCHEDULE ROWS (match training schema)
+# ------------------------------------------
+sched_numeric = schedule_df.select_dtypes(include=[np.number]).fillna(0.0)
+def row_to_features(row):
+    # numeric in the order of numeric_feats
+    num_vec = np.array([safe_num(row.get(c), 0.0) for c in numeric_feats], dtype=float)
+    # categorical in the order of cat_cols
     cat_vals = []
     for c in cat_cols:
         if c in row.index:
             cat_vals.append(str(row.get(c)))
-        elif c == d_team_col and team_col in row.index:
+        elif c == d_team_col:
             cat_vals.append(str(row.get(team_col)))
-        elif c == d_opp_col and opp_col in row.index:
+        elif c == d_opp_col:
             cat_vals.append(str(row.get(opp_col)))
-        elif "Opponent" in c and opp_col in row.index:
+        elif ("Opponent" in c) and (opp_col in row.index):
             cat_vals.append(str(row.get(opp_col)))
         else:
-            # try mapped alternatives
+            # Map common schedule variants
             if c in ("Coach Name","Coach","Coach_Name") and coach_col in row.index:
                 cat_vals.append(str(row.get(coach_col)))
             elif c in ("Opponent Coach","Opp Coach") and opp_coach_col in row.index:
@@ -308,7 +276,7 @@ def row_to_feature_vector(row):
                 cat_vals.append("")
     cat_arr = enc.transform([cat_vals])
     x = np.hstack([num_vec, cat_arr.ravel()])
-    # align to training width (pad/truncate)
+    # Align with training width
     if x.shape[0] != X_train.shape[1]:
         tmp = np.zeros((X_train.shape[1],), dtype=float)
         m = min(len(tmp), len(x))
@@ -317,150 +285,112 @@ def row_to_feature_vector(row):
     return x
 
 # ------------------------------------------
-# USER CONTROLS (Bankroll, Targets, Strategy)
+# PREDICT, PRICE, AND BUILD SLATE
 # ------------------------------------------
-st.markdown("### Bankroll & Strategy")
-colA, colB, colC = st.columns(3)
-with colA:
-    units_base = st.number_input("Units of betting", min_value=1.0, value=100.0, step=1.0)
-    bad_day_target = st.number_input("Units floor (bad day, 95% target)", min_value=0.0, value=65.5, step=0.5)
-with colB:
-    consistent_day_target = st.number_input("Units target (70% day)", min_value=0.0, value=140.0, step=1.0)
-    homerun = st.slider("Homerun hitter (parlay aggressiveness)", 1, 10, 7)
-with colC:
-    ladder_start = st.selectbox("Ladder Starter", ["No","Yes"], index=1)
-    ladder_cont = st.selectbox("Ladder Continuation", ["No","Yes"], index=0)
-    ladder_cont_amt = st.number_input("Ladder Continuation Units (excluded from base)", min_value=0.0, value=0.0, step=1.0)
+from math import erf, sqrt
+def Phi(z):  # standard normal CDF
+    return 0.5*(1.0 + erf(z/sqrt(2.0)))
 
-colD, colE = st.columns(2)
-with colD:
-    min_bets, max_bets = st.slider("Bets minimum / maximum", 4, 100, (10, 25))
-with colE:
-    kelly_cap = st.slider("Max stake per bet (Kelly cap, % of units)", 1, 10, 5) / 100.0
-
-effective_units = max(0.0, units_base - (ladder_cont_amt if ladder_cont == "Yes" else 0.0))
-st.info(f"Effective units for slate (excludes ladder continuation): {effective_units:.2f}")
-
-# ------------------------------------------
-# PREDICTIONS + PRICING
-# ------------------------------------------
 rows = []
-for idx, r in schedule_df.iterrows():
+for _, r in schedule_df.iterrows():
     t = str(r[team_col]).strip()
     o = str(r[opp_col]).strip()
     date_dt = r["__Date"]
 
-    x = row_to_feature_vector(r)
-    pred_pts, pred_opp = rf_multi.predict(x.reshape(1, -1))[0]
-    pred_pts = max(0.0, float(pred_pts))
-    pred_opp = max(0.0, float(pred_opp))
-    margin = pred_pts - pred_opp
-    total  = pred_pts + pred_opp
+    x = row_to_features(r)
+    pts_for, pts_against = rf_multi.predict(x.reshape(1,-1))[0]
+    pts_for = max(0.0, float(pts_for))
+    pts_against = max(0.0, float(pts_against))
+    margin = pts_for - pts_against
+    total  = pts_for + pts_against
 
-    # win prob from classifier
-    win_prob = float(clf.predict_proba(x.reshape(1, -1))[0][1])
+    # Win prob from classifier
+    win_prob = float(clf.predict_proba(x.reshape(1,-1))[0][1])
 
-    # market lines (team perspective)
-    line = safe_num(r.get(line_col), default=np.nan) if line_col else np.nan
-    moneyline = safe_num(r.get(ml_col), default=np.nan) if ml_col else np.nan
-    ou_line = safe_num(r.get(ou_col), default=np.nan) if ou_col else np.nan
+    # Market lines (from team perspective, e.g., BYU -7.5 means team is favored by 7.5)
+    line = safe_num(r.get(line_col), np.nan) if line_col else np.nan
+    ml   = safe_num(r.get(ml_col),   np.nan) if ml_col   else np.nan
+    ou   = safe_num(r.get(ou_col),   np.nan) if ou_col   else np.nan
 
-    # derive EVs
-    # Spread (team - line)
-    spread_edge = np.nan
+    # Spread probability via Gaussian residual
+    cover_prob = np.nan
     if np.isfinite(line):
-        # Approx cover prob using margin vs line via a simple logistic proxy based on training spread stdev
-        # If you want, replace with a direct cover classifier later.
-        # Use a soft proxy: P(cover) ~= sigmoid((margin - line)/sigma)
-        sigma = 8.5  # conservative game-to-game margin scale; tune if desired
-        cover_prob = 1.0 / (1.0 + np.exp(-(margin - line) / max(1e-6, sigma)))
-        # Assume -110 standard vig if true odds absent
-        dec_odds = 1.909  # -110
-        f = kelly_fraction(cover_prob, dec_odds, cap=kelly_cap)
-        spread_edge = cover_prob - (1.0 / dec_odds)
-    else:
-        cover_prob, f = np.nan, 0.0
-        dec_odds = np.nan
-
-    # Moneyline EV (use market odds if present, else synth from win_prob)
-    ml_dec = american_to_decimal(moneyline) if np.isfinite(moneyline) else np.nan
-    ml_implied = american_to_prob(moneyline) if np.isfinite(moneyline) else np.nan
-    ml_edge = np.nan
-    ml_kelly = 0.0
-    if np.isfinite(ml_dec):
-        ml_edge = win_prob - (1.0 / ml_dec)
-        ml_kelly = kelly_fraction(win_prob, ml_dec, cap=kelly_cap)
-
-    # Over/Under
-    ou_pick = ""
-    ou_edge = np.nan
-    ou_kelly = 0.0
-    if np.isfinite(ou_line):
-        # crude variance proxy for totals; tune later as data grows
-        tau = 12.0
-        prob_over = 1.0 / (1.0 + np.exp(-(total - ou_line) / max(1e-6, tau)))
-        # assume -110 for OU if price missing
-        ou_dec = 1.909
-        if total > ou_line:
-            ou_pick = "Over"
-            ou_edge = prob_over - (1.0 / ou_dec)
-            ou_kelly = kelly_fraction(prob_over, ou_dec, cap=kelly_cap)
+        z = (margin - line) / max(1e-6, sigma_m)
+        cover_prob = Phi(z)  # team - line >= 0 -> covers
+    # Moneyline price/implied
+    ml_dec = american_to_decimal(ml) if np.isfinite(ml) else np.nan
+    # Totals probability
+    ou_pick, ou_prob = None, np.nan
+    if np.isfinite(ou):
+        zt = (total - ou) / max(1e-6, sigma_t)
+        prob_over = Phi(zt)
+        if total >= ou:
+            ou_pick, ou_prob = "Over", prob_over
         else:
-            ou_pick = "Under"
-            prob_under = 1.0 - prob_over
-            ou_edge = prob_under - (1.0 / ou_dec)
-            ou_kelly = kelly_fraction(prob_under, ou_dec, cap=kelly_cap)
+            ou_pick, ou_prob = "Under", 1.0 - prob_over
 
-    # Priority buckets (Top25 > MM > P5)
+    # Edges & Kelly (spreads/totals assumed -110 if no price; ML uses market price)
+    spread_dec = 1.909 if np.isfinite(line) else np.nan
+    spread_edge = (cover_prob - 1.0/spread_dec) if np.isfinite(cover_prob) else np.nan
+    spread_kelly = kelly_fraction(cover_prob, spread_dec, cap=kelly_cap) if np.isfinite(cover_prob) else 0.0
+
+    ml_edge = (win_prob - 1.0/ml_dec) if np.isfinite(ml_dec) else np.nan
+    ml_kelly = kelly_fraction(win_prob, ml_dec, cap=kelly_cap) if np.isfinite(ml_dec) else 0.0
+
+    ou_dec = 1.909 if np.isfinite(ou_prob) else np.nan
+    ou_edge = (ou_prob - 1.0/ou_dec) if np.isfinite(ou_prob) else np.nan
+    ou_kelly = kelly_fraction(ou_prob, ou_dec, cap=kelly_cap) if np.isfinite(ou_prob) else 0.0
+
+    # Priority: Top25 -> MM -> P5
     is_top25 = False
     if top25_col and top25_col in schedule_df.columns:
         v = r.get(top25_col)
-        is_top25 = (str(v).strip() not in ("0","", "N","FALSE","NaN"))
-
+        is_top25 = (str(v).strip() not in ("0","","N","FALSE","NaN"))
     is_mm = False
     if mm_col and mm_col in schedule_df.columns:
         v = r.get(mm_col)
-        is_mm = (str(v).strip() not in ("0","", "N","FALSE","NaN"))
-
+        is_mm = (str(v).strip() not in ("0","","N","FALSE","NaN"))
     conf = r.get(opp_conf_col) if opp_conf_col in r.index else r.get(conf_col)
-    c = str(conf).strip().upper() if conf is not None else ""
-    is_p5 = c in ("SEC","BIG TEN","B1G","BIG 12","ACC")
+    cu = str(conf).strip().upper() if conf is not None else ""
+    is_p5 = cu in ("SEC","BIG TEN","B1G","BIG 12","ACC")
 
-    # choose “best” bet lane by max edge
-    edges = []
-    if np.isfinite(spread_edge):
-        edges.append(("Spread", spread_edge, cover_prob, dec_odds, f, line))
-    if np.isfinite(ml_edge):
-        edges.append(("Moneyline", ml_edge, win_prob, ml_dec, ml_kelly, moneyline))
-    if np.isfinite(ou_edge):
-        odds = 1.909
-        p = (1.0 / (1.0 + np.exp(-(total - ou_line)/12.0))) if ou_pick == "Over" else (1.0 - 1.0 / (1.0 + np.exp(-(total - ou_line)/12.0)))
-        edges.append((ou_pick or "OU", ou_edge, p, odds, ou_kelly, ou_line))
-
-    best_market = max(edges, key=lambda z: (z[1] if np.isfinite(z[1]) else -1e9), default=None)
+    # pick best lane by highest positive edge
+    choices = []
+    if np.isfinite(spread_edge): choices.append(("Spread", spread_edge, cover_prob, spread_dec, spread_kelly, line))
+    if np.isfinite(ml_edge):     choices.append(("Moneyline", ml_edge, win_prob, ml_dec, ml_kelly, ml))
+    if np.isfinite(ou_edge):     choices.append((ou_pick or "OU", ou_edge, ou_prob, ou_dec, ou_kelly, ou))
+    best = max(choices, key=lambda z: (z[1] if np.isfinite(z[1]) else -1e9), default=None)
 
     rows.append({
         "Date": date_dt,
         "Team": t,
         "Opponent": o,
-        "Pred_Points": round(pred_pts, 1),
-        "Pred_Opp_Points": round(pred_opp, 1),
-        "Pred_Margin": round(margin, 1),
-        "Pred_Total": round(total, 1),
-        "Win_Prob": round(win_prob, 3),
+        "Pred_Points": round(pts_for,1),
+        "Pred_Opp_Points": round(pts_against,1),
+        "Pred_Margin": round(margin,1),
+        "Pred_Total": round(total,1),
+        "Win_Prob": round(win_prob,3),
         "Line": line if np.isfinite(line) else None,
-        "Moneyline": int(moneyline) if np.isfinite(moneyline) else None,
-        "OU_Line": ou_line if np.isfinite(ou_line) else None,
+        "Moneyline": int(ml) if np.isfinite(ml) else None,
+        "OU_Line": ou if np.isfinite(ou) else None,
+        "Cover_Prob": cover_prob,
+        "OU_Pick": ou_pick,
+        "OU_Prob": ou_prob,
+        "Spread_Edge": spread_edge,
+        "ML_Edge": ml_edge,
+        "OU_Edge": ou_edge,
+        "Spread_Kelly": spread_kelly,
+        "ML_Kelly": ml_kelly,
+        "OU_Kelly": ou_kelly,
         "IsTop25": is_top25,
         "IsMM": is_mm,
         "IsP5": is_p5,
-        "BestMarket": best_market[0] if best_market else None,
-        "BestEdge": best_market[1] if best_market else np.nan,
-        "BestProb": best_market[2] if best_market else np.nan,
-        "BestDecOdds": best_market[3] if best_market else np.nan,
-        "BestKelly": best_market[4] if best_market else 0.0,
-        "BestLineVal": best_market[5] if best_market else None,
-        "RowObj": r  # keep original row for drilldown/top-50 extraction
+        "BestMarket": best[0] if best else None,
+        "BestEdge": best[1] if best else np.nan,
+        "BestProb": best[2] if best else np.nan,
+        "BestDecOdds": best[3] if best else np.nan,
+        "BestLineVal": best[5] if best else None,
+        "RowObj": r
     })
 
 pred_df = pd.DataFrame(rows)
@@ -469,259 +399,147 @@ if pred_df.empty:
     st.stop()
 
 # ------------------------------------------
-# SORTING BY PRIORITY + EDGE
+# SLATE SELECTION & SIZING
 # ------------------------------------------
-priority_key = pred_df.apply(
-    lambda r: (
-        0 if r["IsTop25"] else 1,
-        0 if r["IsMM"] else 1,
-        0 if r["IsP5"] else 1,
-        r["Date"]
-    ),
-    axis=1
-)
-pred_df = pred_df.assign(_prio=priority_key)
-pred_df = pred_df.sort_values(by=["_prio","BestEdge"], ascending=[True, False]).reset_index(drop=True)
+pred_df["_prio"] = pred_df.apply(lambda r: (
+    0 if r["IsTop25"] else 1,
+    0 if r["IsMM"] else 1,
+    0 if r["IsP5"] else 1,
+    r["Date"]
+), axis=1)
+
+slate = pred_df.dropna(subset=["BestEdge"]).copy()
+slate = slate[slate["BestEdge"] > 0].sort_values(["_prio","BestEdge"], ascending=[True, False]).reset_index(drop=True)
+
+N = min(max_bets, max(min_bets, len(slate)))
+slate = slate.head(N).copy()
+
+def stake_units(row):
+    f = float(row["BestKelly"])
+    if row["BestMarket"] == "Spread": f = row["Spread_Kelly"]
+    elif row["BestMarket"] == "Moneyline": f = row["ML_Kelly"]
+    else: f = row["OU_Kelly"]
+    if not np.isfinite(f) or f <= 0: return 0.0
+    return round(f * effective_units, 2)
+
+slate["Stake"] = slate.apply(stake_units, axis=1)
+if slate["Stake"].sum() == 0 and len(slate) > 0:
+    # flat 15% allocation across slate if Kelly couldn't size (e.g., missing prices)
+    target = 0.15 * effective_units
+    slate["Stake"] = round(target/len(slate), 2)
 
 # ------------------------------------------
-# LADDER PICKS
+# LADDER PICKS (best high-prob bet with price in [-150, +150])
 # ------------------------------------------
-def pick_ladder(df, exclude_key=None):
-    # pick safest high-prob bet within odds ~ -150..+150 if possible (OU or spread ok)
+def pick_ladder(df, exclude=None):
     candidates = []
     for _, r in df.iterrows():
         market = r["BestMarket"]
         if market is None: continue
-        # ladder shouldn't duplicate starter/continuation picks
         key = (r["Team"], r["Opponent"], r["Date"], market)
-        if exclude_key and key == exclude_key:
-            continue
-
+        if exclude and key == exclude: continue
         dec = r["BestDecOdds"]
-        if not np.isfinite(dec): 
-            # synth a dec odds for spread/OU if missing
-            dec = 1.909
-        # accept near-even odds
-        if 1.67 <= dec <= 2.5:  # -150 to +150 approx
-            candidates.append((r["BestProb"], -abs(dec-2.0), r))  # max prob, prefer closer to EVENS
-
-    if not candidates:
-        return None
+        if not np.isfinite(dec):  # no price → use -110 equivalent if spread/OU
+            if market in ("Spread","Over","Under","OU"):
+                dec = 1.909
+        if not np.isfinite(dec): continue
+        # map dec to American to test range; odd conversion: dec>=2 → positive
+        amer = (dec-1)*100 if dec>=2 else -100/(dec-1)
+        if -150 <= amer <= 150:
+            candidates.append((r["BestProb"], -abs(amer), r))
+    if not candidates: return None
     candidates.sort(key=lambda z: (z[0], z[1]), reverse=True)
-    return candidates[0][2]  # return row
+    return candidates[0][2]
 
-ladder_starter_pick = None
-ladder_cont_pick = None
-ex_key = None
-
-if ladder_start == "Yes":
-    ladder_starter_pick = pick_ladder(pred_df)
-    if ladder_starter_pick is not None:
-        ex_key = (ladder_starter_pick["Team"], ladder_starter_pick["Opponent"], ladder_starter_pick["Date"], ladder_starter_pick["BestMarket"])
-
-if ladder_cont == "Yes":
-    ladder_cont_pick = pick_ladder(pred_df, exclude_key=ex_key)
+ladder_starter = pick_ladder(pred_df) if ladder_start == "Yes" else None
+exclude_key = (ladder_starter["Team"], ladder_starter["Opponent"], ladder_starter["Date"], ladder_starter["BestMarket"]) if ladder_starter is not None else None
+ladder_cont_row = pick_ladder(pred_df, exclude=exclude_key) if ladder_cont == "Yes" else None
 
 # ------------------------------------------
-# BUILD SLATE (MIN/MAX + SIZING)
-# ------------------------------------------
-# Rank by BestEdge descending; pick between min_bets ~ max_bets under bankroll cap
-slate = pred_df.dropna(subset=["BestEdge"]).copy()
-slate = slate[slate["BestEdge"] > 0].copy()
-slate = slate.sort_values(["_prio","BestEdge"], ascending=[True, False]).reset_index(drop=True)
-
-# choose N within bounds
-N = min(max_bets, max(min_bets, len(slate)))
-slate = slate.head(N).copy()
-
-# stake sizing (capped Kelly on effective_units)
-def stake_for_row(r):
-    f = float(r["BestKelly"])
-    if not np.isfinite(f) or f <= 0:
-        return 0.0
-    return round(f * effective_units, 2)
-
-slate["Stake"] = slate.apply(stake_for_row, axis=1)
-# if all zero (no price), allocate flat small stakes evenly to meet a conservative spend (~15% of units)
-if slate["Stake"].sum() == 0 and len(slate) > 0:
-    target_spend = 0.15 * effective_units
-    per = round(target_spend / len(slate), 2)
-    slate["Stake"] = per
-
-# ------------------------------------------
-# PARLAY SUGGESTIONS (Homerun)
-# ------------------------------------------
-# Build a few parlay ideas from top-probability options
-parlay_source = pred_df.sort_values(["BestProb","BestEdge"], ascending=[False, False]).head(20).copy()
-parlay_count = {1:(2,3), 5:(3,4), 10:(4,5)}
-# interpolate legs by slider
-min_legs = int(np.interp(homerun, [1,10], [2,5]))
-max_legs = min_legs + 1
-
-def build_parlays(df, min_legs, max_legs, max_sets=3):
-    out = []
-    picks = df.head(10).to_dict("records")
-    # simple greedy combos
-    used = set()
-    for L in range(min_legs, max_legs+1):
-        if len(out) >= max_sets: break
-        legs, acc_prob, acc_dec = [], 1.0, 1.0
-        for p in picks:
-            key = (p["Team"], p["Opponent"], p["Date"], p["BestMarket"])
-            if key in used: continue
-            if not np.isfinite(p["BestProb"]): continue
-            dec = p["BestDecOdds"]
-            if not np.isfinite(dec): dec = 1.909
-            legs.append(p)
-            acc_prob *= p["BestProb"]
-            acc_dec *= dec
-            used.add(key)
-            if len(legs) >= L: break
-        if len(legs) == L and acc_prob > 0:
-            out.append((legs, acc_prob, acc_dec))
-    return out
-
-parlays = build_parlays(parlay_source, min_legs, max_legs, max_sets=3)
-
-# ------------------------------------------
-# DISPLAY
+# DISPLAY SLATE
 # ------------------------------------------
 st.markdown("### Suggested Slate")
-def fmt_odds(od):
-    if not np.isfinite(od): return "-110"
-    # convert decimal to American-ish for display if needed
-    if od >= 2.0:
-        return f"+{int(round((od-1)*100))}"
-    else:
-        return f"{int(round(-100/(od-1)))}"
+def fmt_dec(dec):
+    if not np.isfinite(dec): return ""
+    if dec >= 2: return f"+{int(round((dec-1)*100))}"
+    return f"{int(round(-100/(dec-1)))}"
 
 if slate.empty:
     st.info("No +EV bets identified with current markets.")
 else:
-    view_cols = ["Date","Team","Opponent","BestMarket","BestLineVal","Pred_Margin","Pred_Total","Win_Prob","BestProb","BestEdge","BestDecOdds","Stake"]
-    show = slate[view_cols].copy()
-    show = show.rename(columns={
-        "BestLineVal":"Market",
-        "BestDecOdds":"Price (dec)",
-        "BestProb":"Bet Prob"
-    })
-    show["Date"] = show["Date"].dt.strftime("%Y-%m-%d")
-    st.dataframe(show, use_container_width=True)
+    view = slate[["Date","Team","Opponent","BestMarket","BestLineVal","Pred_Margin","Pred_Total","Win_Prob","BestProb","BestEdge","BestDecOdds","Stake"]].copy()
+    view = view.rename(columns={"BestLineVal":"Market","BestDecOdds":"Price (dec)","BestProb":"Bet Prob"})
+    view["Date"] = view["Date"].dt.strftime("%Y-%m-%d")
+    st.dataframe(view, use_container_width=True)
 
-# Ladder cards
 st.markdown("---")
 st.markdown("### Ladders")
-lc1, lc2 = st.columns(2)
-with lc1:
+c1, c2 = st.columns(2)
+with c1:
     st.write("Ladder Starter" + (" (enabled)" if ladder_start=="Yes" else " (disabled)"))
-    if ladder_starter_pick is not None:
-        r = ladder_starter_pick
-        st.write(f"{r['Date'].strftime('%Y-%m-%d')}: {r['Team']} vs {r['Opponent']} — {r['BestMarket']} @ {fmt_odds(r['BestDecOdds'])} — p={r['BestProb']:.2f}")
+    if ladder_starter is not None:
+        r = ladder_starter
+        st.write(f"{r['Date'].strftime('%Y-%m-%d')}: {r['Team']} vs {r['Opponent']} — {r['BestMarket']} @ {fmt_dec(r['BestDecOdds'])} — p={r['BestProb']:.2f}")
+        st.write("Stake: choose your day-1 ladder unit (not from slate units).")
     else:
-        st.write("No suitable starter identified.")
-
-with lc2:
+        st.write("No suitable starter identified in [-150, +150].")
+with c2:
     st.write("Ladder Continuation" + (" (enabled)" if ladder_cont=="Yes" else " (disabled)"))
-    if ladder_cont_pick is not None:
-        r = ladder_cont_pick
-        st.write(f"{r['Date'].strftime('%Y-%m-%d')}: {r['Team']} vs {r['Opponent']} — {r['BestMarket']} @ {fmt_odds(r['BestDecOdds'])} — p={r['BestProb']:.2f}")
-        st.write(f"Continuation Stake: {ladder_cont_amt:.2f} units (excluded from slate units)")
+    if ladder_cont_row is not None:
+        r = ladder_cont_row
+        st.write(f"{r['Date'].strftime('%Y-%m-%d')}: {r['Team']} vs {r['Opponent']} — {r['BestMarket']} @ {fmt_dec(r['BestDecOdds'])} — p={r['BestProb']:.2f}")
+        st.write(f"Continuation Stake: {ladder_amt:.2f} units (excluded from slate units).")
     else:
-        st.write("No suitable continuation identified.")
-
-# Parlays
-st.markdown("---")
-st.markdown("### Parlay Ideas")
-if not parlays:
-    st.write("No parlay suggestions currently.")
-else:
-    for i, (legs, p_all, dec_all) in enumerate(parlays, 1):
-        st.write(f"Parlay {i}: {len(legs)} legs — price {dec_all:.2f} (~{fmt_odds(dec_all)}) — hit prob ~{p_all:.2f}")
-        for leg in legs:
-            st.write(f"• {leg['Team']} vs {leg['Opponent']} — {leg['BestMarket']} @ {fmt_odds(leg['BestDecOdds'])} (p={leg['BestProb']:.2f})")
+        st.write("No suitable continuation identified in [-150, +150].")
 
 # ------------------------------------------
-# DRILLDOWN EXPANDERS (Top-50 categories split per team)
+# DRILLDOWN (Team details + Top-50 ranks split)
 # ------------------------------------------
 st.markdown("---")
-st.markdown("### Drilldown (click a matchup for team details and Top-50 categories)")
+st.markdown("### Drilldown (click a matchup for details)")
 
-for _, r in pred_df.iterrows():
+for _, r in pred_df.sort_values(["_prio","BestEdge"], ascending=[True, False]).iterrows():
     label = f"{r['Date'].strftime('%b %d, %Y')} — {r['Team']} vs {r['Opponent']} — Pred: {int(round(r['Pred_Points']))}-{int(round(r['Pred_Opp_Points']))}"
     with st.expander(label, expanded=False):
-        rowobj = r["RowObj"]
-        # Meta
-        t_conf = rowobj.get(conf_col) if conf_col in rowobj.index else ""
-        o_conf = rowobj.get(opp_conf_col) if opp_conf_col in rowobj.index else ""
-        t_coach = rowobj.get(coach_col) if coach_col in rowobj.index else ""
-        o_coach = rowobj.get(opp_coach_col) if opp_coach_col in rowobj.index else ""
-        # Current record if present
-        t_wins = rowobj.get("Wins") if "Wins" in rowobj.index else ""
-        t_losses = rowobj.get("Losses") if "Losses" in rowobj.index else ""
-        o_wins = rowobj.get("Opp Wins") if "Opp Wins" in rowobj.index else ""
-        o_losses = rowobj.get("Opp Losses") if "Opp Losses" in rowobj.index else ""
-
-        c1, c2 = st.columns(2)
-        with c1:
+        row = r["RowObj"]
+        t_conf = row.get(conf_col) if conf_col in row.index else ""
+        o_conf = row.get(opp_conf_col) if opp_conf_col in row.index else ""
+        t_coach = row.get(coach_col) if coach_col in row.index else ""
+        o_coach = row.get(opp_coach_col) if opp_coach_col in row.index else ""
+        lw, rw = st.columns(2)
+        with lw:
             st.markdown(f"**{r['Team']}**")
             st.write(f"Coach: {t_coach}")
             st.write(f"Conference: {t_conf}")
-            if t_wins is not None and t_losses is not None:
-                st.write(f"Record: {t_wins}-{t_losses}")
-        with c2:
+            tf = extract_top50(row)
+            if tf:
+                st.dataframe(pd.DataFrame([{"Category": k, "Rank": v} for k,v in tf]), use_container_width=True)
+            else:
+                st.write("No listed top-50 ranks.")
+        with rw:
             st.markdown(f"**{r['Opponent']}**")
             st.write(f"Coach: {o_coach}")
             st.write(f"Conference: {o_conf}")
-            if o_wins is not None and o_losses is not None:
-                st.write(f"Record: {o_wins}-{o_losses}")
-
-        st.markdown("---")
-        st.write("Top-50 Rank Categories")
-        left, right = st.columns(2)
-
-        # Because the schedule row is from one perspective (Team vs Opponent),
-        # the row's *_Rank fields correspond to the left team perspective.
-        # We'll still extract split lists (they will usually be mostly left-leaning),
-        # but we keep the split presentation you asked for.
-        top50_team = extract_team_top50(rowobj)
-        with left:
-            st.write(f"**{r['Team']}**")
-            if not top50_team:
-                st.write("None in top 50")
+            # Opponent top-50 = look for OPP_* rank fields ≤ 50
+            opp_top = []
+            for c in row.index:
+                cu = c.upper()
+                if ("OPP_" in cu) and (("RANK" in cu) or cu.endswith(" RANK") or cu.endswith("_RANK")):
+                    rv = clean_rank_value(row.get(c))
+                    if rv <= 50:
+                        opp_top.append((c, int(rv)))
+            opp_top = sorted(opp_top, key=lambda kv: kv[1])
+            if opp_top:
+                st.dataframe(pd.DataFrame([{"Category": k, "Rank": v} for k,v in opp_top]), use_container_width=True)
             else:
-                st.dataframe(pd.DataFrame([{"Category": k, "Rank": v} for k, v in top50_team]),
-                             use_container_width=True)
-
-        # For opponent, try to map opponent-specific rank columns if present;
-        # if not, we’ll do the same extraction (often empty early season, which is fine).
-        # Heuristic: try to find any columns that start with 'OPP_' and end with 'RANK' etc.
-        opp_cols = {}
-        for c in rowobj.index:
-            cu = c.upper()
-            if ("OPP_" in cu) and ("RANK" in cu or cu.endswith(" RANK") or cu.endswith("_RANK")):
-                opp_cols[c] = rowobj.get(c)
-        top50_opp = []
-        for k, v in opp_cols.items():
-            rv = clean_rank_value(v)
-            if rv <= 50:
-                top50_opp.append((k, int(rv)))
-        top50_opp = sorted(top50_opp, key=lambda x: x[1])
-
-        with right:
-            st.write(f"**{r['Opponent']}**")
-            if not top50_opp:
-                st.write("None in top 50")
-            else:
-                st.dataframe(pd.DataFrame([{"Category": k, "Rank": v} for k, v in top50_opp]),
-                             use_container_width=True)
+                st.write("No listed top-50 ranks.")
 
 # ------------------------------------------
-# EXPORT SLATE
+# EXPORT
 # ------------------------------------------
 st.markdown("---")
-st.markdown("### Export")
+st.markdown("### Export Slate")
 export_cols = ["Date","Team","Opponent","BestMarket","BestLineVal","BestDecOdds","Bet Prob","BestEdge","Stake"]
-export_df = slate.rename(columns={"BestProb":"Bet Prob"})[export_cols].copy()
-export_df["Date"] = export_df["Date"].dt.strftime("%Y-%m-%d")
-csv = export_df.to_csv(index=False)
-st.download_button("Download Slate CSV", data=csv, file_name="betting_slate.csv", mime="text/csv")
+out = slate.rename(columns={"BestProb":"Bet Prob"})[export_cols].copy()
+out["Date"] = out["Date"].dt.strftime("%Y-%m-%d")
+st.download_button("Download Slate CSV", data=out.to_csv(index=False), file_name="betting_slate.csv", mime="text/csv")
