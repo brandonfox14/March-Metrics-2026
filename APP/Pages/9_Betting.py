@@ -176,7 +176,7 @@ if schedule_df is None or daily_df is None:
 team_col   = find_col(schedule_df, ["Team", "Teams"])
 opp_col    = find_col(schedule_df, ["Opponent", "Opp", "opponent"])
 date_col   = find_col(schedule_df, ["Date"])
-han_col    = find_col(schedule_df, ["HAN","Home/Away","HomeAway","Location","Loc"])
+han_col    = find_col(schedule_df, ["HAN","Home/Away","HomeAway","Loion","Loc"])
 conf_col   = find_col(schedule_df, ["Conference"])
 opp_conf_col = find_col(schedule_df, ["Opponent Conference","Opp Conference"])
 coach_col  = find_col(schedule_df, ["Coach Name","Coach","Coach_Name"])
@@ -267,7 +267,11 @@ Y_points = df_train[[d_pts, d_opp_pts]].apply(pd.to_numeric, errors="coerce").va
 
 # Preprocessor
 num_transformer = SimpleImputer(strategy="median")
-cat_transformer = OneHotEncoder(handle_unknown="ignore", sparse=False)
+# scikit-learn compatibility: 1.2+ uses sparse_output, older uses sparse
+try:
+    cat_transformer = OneHotEncoder(handle_unknown="ignore", sparse_output=False)
+except TypeError:
+    cat_transformer = OneHotEncoder(handle_unknown="ignore", sparse=False)
 
 preproc = ColumnTransformer(
     transformers=[
