@@ -1,7 +1,6 @@
 # APP/Pages/9_Betting.py
 # =========================================================
-# Betting Page — with category augmentation, edge-based staking,
-# and parlay section above drilldown
+# Betting Page — schedule scoring uses team/opponent profiles
 # =========================================================
 import streamlit as st
 import pandas as pd
@@ -76,7 +75,7 @@ def decimal_to_american(dec: float) -> str:
     return f"{int(round(-100.0 / (dec - 1.0)))}"
 
 def kelly_fraction(prob: float, dec_odds: float, cap: float = 1.0) -> float:
-    """Uncapped (or very high cap) Kelly. We'll normalize later across slate."""
+    """Uncapped Kelly (we'll normalize across slate to diversify)."""
     if not np.isfinite(prob) or not np.isfinite(dec_odds) or dec_odds <= 1.0:
         return 0.0
     p = max(0.0, min(1.0, prob))
@@ -118,7 +117,8 @@ def extract_top50_from_row(row: pd.Series) -> List[Tuple[str, int]]:
 def normal_cdf(x):
     return 0.5 * (1.0 + np.math.erf(x / np.sqrt(2.0)))
 
-def uniq_jitter(key: str, scale: float = 0.07) -> float:
+def uniq_jitter(key: str, scale: float = 0.11) -> float:
+    """Slight deterministic jitter so scores aren't identical."""
     h = abs(hash(key)) % 10_000
     return (h / 10_000.0 - 0.5) * 2.0 * scale  # [-scale, +scale]
 
@@ -205,7 +205,7 @@ if d_team is None or d_opp is None or d_pts is None or d_opp_pts is None:
     st.error("Daily predictor must include Team, Opponent, Points, Opp Points.")
     st.stop()
 
-# numeric columns
+# numeric columns (+ objects coercible to numeric)
 daily_numeric_cols = daily_df.select_dtypes(include=[np.number]).columns.tolist()
 obj_as_num = []
 for c in daily_df.columns:
@@ -222,7 +222,7 @@ for drop_c in [d_pts, d_opp_pts]:
     if drop_c in daily_numeric_cols:
         daily_numeric_cols.remove(drop_c)
 
-# categorical columns (string features)
+# categorical columns
 cat_candidates = [
     d_team, d_opp,
     "Coach Name","Coach","Coach_Name",
@@ -233,7 +233,7 @@ cat_candidates = [
 cat_cols = [c for c in cat_candidates if c and c in daily_df.columns]
 cat_cols = list(dict.fromkeys(cat_cols))
 
-# zero→NaN heuristic
+# zero→NaN heuristic and numeric coercion
 zero_missing_cols = zero_as_missing_mask(daily_df, daily_numeric_cols, frac_threshold=0.6)
 daily_df_num = impute_numeric_with_zero_missing(daily_df, daily_numeric_cols, zero_missing_cols)
 
@@ -243,16 +243,31 @@ df_train = daily_df_num.loc[mask_targets].copy()
 Y_points = df_train[[d_pts, d_opp_pts]].apply(pd.to_numeric, errors="coerce").values
 
 # =========================================================
-# CATEGORY AUGMENTATION: add schedule cats so OHE knows 2026 teams/confs
+# TEAM PROFILES (median per-team across all numeric features)
+# =========================================================
+team_profiles = daily_df_num.groupby(d_team)[daily_numeric_cols].median(numeric_only=True)
+global_medians = daily_df_num[daily_numeric_cols].median(numeric_only=True)
+
+def get_team_profile(team: str) -> pd.Series:
+    if team in team_profiles.index:
+        return team_profiles.loc[team]
+    return global_medians
+
+def opp_base_col(col: str) -> Optional[str]:
+    # Map OPP_* columns to the base column name (e.g., OPP_FGM -> FGM)
+    if col.upper().startswith("OPP_"):
+        return col[4:]
+    return None
+
+# =========================================================
+# CATEGORY AUGMENTATION FOR ENCODER
 # =========================================================
 def schedule_like_daily(schedule_df: pd.DataFrame) -> pd.DataFrame:
     rows = []
     for _, r in schedule_df.iterrows():
         row = {}
-        # numeric features: leave NaN
         for c in daily_numeric_cols:
             row[c] = np.nan
-        # map cats
         mapping = {
             d_team: team_col,
             d_opp: opp_col,
@@ -272,15 +287,12 @@ def schedule_like_daily(schedule_df: pd.DataFrame) -> pd.DataFrame:
         rows.append(row)
     return pd.DataFrame(rows, columns=list(dict.fromkeys(daily_numeric_cols + cat_cols)))
 
-# this frame just feeds the encoder so unseen teams/confs are “known”
 sched_aug_df = schedule_like_daily(schedule_df)
 
 # =========================================================
 # PREPROCESSOR
 # =========================================================
 num_transformer = SimpleImputer(strategy="median")
-
-# sklearn version compatibility
 try:
     cat_transformer = OneHotEncoder(handle_unknown="ignore", sparse_output=False)
 except TypeError:
@@ -295,41 +307,39 @@ preproc = ColumnTransformer(
     sparse_threshold=0.0
 )
 
-# fit on daily + schedule cats
+# Fit encoder on (train rows + schedule categories)
 preproc.fit(pd.concat([df_train[daily_numeric_cols + cat_cols], sched_aug_df], ignore_index=True))
 
-# transform real training rows
+# Transform real training rows
 X_train = preproc.transform(df_train[daily_numeric_cols + cat_cols])
 
-# win label (Points > Opp Points)
+# Win label
 y_win = (df_train[d_pts].astype(float) > df_train[d_opp_pts].astype(float)).astype(int).values
 
 # =========================================================
-# TRAIN MODELS
+# TRAIN MODELS — Points-only (derive SM/Total downstream)
 # =========================================================
 st.markdown("### Model Training")
-st.caption("Fitted on daily rows, but encoder was exposed to schedule categories so future teams don’t collapse to the same vector.")
+st.caption("Points & Opp Points are predicted; SM = Points - Opp Points; Total = Points + Opp Points.")
 
 rf_points = MultiOutputRegressor(RandomForestRegressor(
-    n_estimators=850, random_state=42, n_jobs=-1
+    n_estimators=900, random_state=42, n_jobs=-1
 ))
 rf_points.fit(X_train, Y_points)
 
 clf_win = RandomForestClassifier(
-    n_estimators=750, random_state=42, class_weight="balanced_subsample", n_jobs=-1
+    n_estimators=800, random_state=42, class_weight="balanced_subsample", n_jobs=-1
 )
 clf_win.fit(X_train, y_win)
 
-# residual spreads
+# Residual spreads for prob calibration
 train_pred_pts = rf_points.predict(X_train)
 train_margin   = train_pred_pts[:,0] - train_pred_pts[:,1]
 true_margin    = Y_points[:,0] - Y_points[:,1]
 train_total    = train_pred_pts.sum(axis=1)
 true_total     = Y_points.sum(axis=1)
-
 res_margin = (true_margin - train_margin)
 res_total  = (true_total  - train_total)
-
 sigma_margin = max(5.5, float(np.nanstd(res_margin, ddof=1)) * 0.9)
 sigma_total  = max(9.0, float(np.nanstd(res_total,  ddof=1)) * 0.9)
 
@@ -356,8 +366,6 @@ with col_m2:
 with col_m3:
     st.write(f"σ_total ≈ {sigma_total:.2f}")
 
-st.caption("Points and Opp Points are the only things we predict; SM and Total are derived, then compared to Line/OU.")
-
 # =========================================================
 # USER CONTROLS
 # =========================================================
@@ -379,19 +387,53 @@ colD, colE = st.columns(2)
 with colD:
     min_bets, max_bets = st.slider("Bets minimum / maximum", 4, 100, (10, 25))
 with colE:
-    # kept for UI, but we won't hard-cap stakes with it
-    kelly_cap_ui = st.slider("Legacy Kelly cap (% of units) — not enforced", 1, 25, 5) / 100.0
+    st.caption("No hard per-bet cap; stakes diversify by edge automatically.")
 
 effective_units = max(0.0, units_base - (ladder_cont_amt if ladder_cont == "Yes" else 0.0))
 st.info(f"Effective units for slate (excludes ladder continuation): {effective_units:.2f}")
 
 # =========================================================
-# SCHEDULE → FEATURE
+# SCHEDULE → FEATURE with TEAM/OPP PROFILES
 # =========================================================
-def schedule_row_to_feature(row: pd.Series) -> np.ndarray:
+def schedule_row_to_feature(row: pd.Series) -> pd.DataFrame:
+    """
+    Build a one-row dataframe with numeric features populated from:
+      - schedule value if present,
+      - else TEAM profile,
+      - else (for OPP_* columns) OPPONENT profile on base column,
+      - else global median.
+    Categoricals are copied from schedule mapping.
+    """
+    t = str(row[team_col]).strip()
+    o = str(row[opp_col]).strip()
+    team_prof = get_team_profile(t)
+    opp_prof  = get_team_profile(o)
+
     data = {}
+    # numerics
     for c in daily_numeric_cols:
-        data[c] = safe_num(row.get(c), np.nan)
+        # schedule-specified?
+        val = row.get(c) if c in row.index else np.nan
+        val = pd.to_numeric(val, errors="coerce")
+        if pd.notna(val):
+            data[c] = float(val)
+            continue
+        # OPP_ mapping
+        base = opp_base_col(c)
+        if base is not None:
+            # use opponent's value for the base column if available
+            if base in opp_prof.index and pd.notna(opp_prof[base]):
+                data[c] = float(opp_prof[base])
+            else:
+                data[c] = float(global_medians.get(c, np.nan))
+            continue
+        # team profile fallback
+        if c in team_prof.index and pd.notna(team_prof[c]):
+            data[c] = float(team_prof[c])
+        else:
+            data[c] = float(global_medians.get(c, np.nan))
+
+    # categoricals
     mapping = {
         d_team: team_col,
         d_opp: opp_col,
@@ -407,17 +449,10 @@ def schedule_row_to_feature(row: pd.Series) -> np.ndarray:
         if src and src in row.index:
             data[c] = str(row.get(src))
         else:
-            if c == d_team and team_col in row.index: data[c] = str(row.get(team_col))
-            elif c == d_opp and opp_col in row.index: data[c] = str(row.get(opp_col))
-            else: data[c] = ""
+            data[c] = ""
+
     one = pd.DataFrame([data], columns=list(dict.fromkeys(daily_numeric_cols + cat_cols)))
-    for c in zero_missing_cols:
-        if c in one.columns:
-            v = pd.to_numeric(one.loc[0, c], errors="coerce")
-            if v == 0:
-                one.loc[0, c] = np.nan
-    X = preproc.transform(one)
-    return X
+    return one
 
 # =========================================================
 # SCORE GAMES
@@ -427,7 +462,9 @@ for _, r in schedule_df.iterrows():
     t = str(r[team_col]).strip()
     o = str(r[opp_col]).strip()
 
-    X = schedule_row_to_feature(r)
+    one = schedule_row_to_feature(r)
+    X = preproc.transform(one)
+
     pts_pred = rf_points.predict(X)[0]
     pts, oppp = float(pts_pred[0]), float(pts_pred[1])
 
@@ -479,20 +516,18 @@ for _, r in schedule_df.iterrows():
             ou_pick, ou_prob, ou_edge_v = "Under", under_prob, under_edge
         ou_kelly = kelly_fraction(ou_prob, ou_dec, cap=1.0)
 
-    # priority
+    # priority flags
     is_top25 = False
     if top25_col and top25_col in schedule_df.columns:
         v = r.get(top25_col); is_top25 = (str(v).strip() not in ("0","","N","FALSE","NaN"))
-
     is_mm = False
     if mm_col and mm_col in schedule_df.columns:
         v = r.get(mm_col); is_mm = (str(v).strip() not in ("0","","N","FALSE","NaN"))
-
     conf = r.get(opp_conf_col) if opp_conf_col in r.index else r.get(conf_col)
     cc = str(conf).strip().upper() if conf is not None else ""
     is_p5 = cc in ("SEC","BIG TEN","B1G","BIG 12","ACC","PAC-12","PAC 12","BIG EAST")
 
-    # choose best
+    # choose best bet by edge
     edges = []
     if np.isfinite(spread_edge):
         edges.append(("Spread", spread_edge, cover_prob, spread_dec, spread_kelly, line))
@@ -535,7 +570,7 @@ if pred_df.empty:
     st.stop()
 
 # =========================================================
-# SLATE CONSTRUCTION (edge-based diversified staking)
+# SLATE CONSTRUCTION (diversified staking by edge)
 # =========================================================
 pred_df["_prio"] = pred_df.apply(
     lambda r: (0 if r["IsTop25"] else 1, 0 if r["IsMM"] else 1, 0 if r["IsP5"] else 1, r["Date"]),
@@ -550,14 +585,12 @@ slate = slate.sort_values(by=["_prio","BestEdge"], ascending=[True, False]).rese
 N = min(max_bets, max(min_bets, len(slate)))
 slate = slate.head(N).copy()
 
-# diversified: stake ∝ positive edge
 edges_pos = slate["BestEdge"].clip(lower=0.0001)
 total_edge = float(edges_pos.sum()) if len(edges_pos) > 0 else 1.0
-slate["Stake"] = edges_pos / total_edge * effective_units
-slate["Stake"] = slate["Stake"].round(2)
+slate["Stake"] = (edges_pos / total_edge * effective_units).round(2)
 
 # =========================================================
-# SUGGESTED SLATE TABLE
+# SUGGESTED SLATE TABLE (clean)
 # =========================================================
 st.markdown("---")
 st.markdown("### Suggested Slate (Model-Driven)")
@@ -660,7 +693,7 @@ with c2:
         st.write("No suitable continuation identified.")
 
 # =========================================================
-# PARLAY IDEAS (NOW ABOVE DRILLDOWN)
+# PARLAY IDEAS (above Drilldown) — two-row look per parlay
 # =========================================================
 st.markdown("---")
 st.markdown("### Parlay Ideas")
@@ -700,17 +733,12 @@ if not parlays:
 else:
     for i, (legs, p_all, dec_all) in enumerate(parlays, 1):
         with st.expander(f"Parlay {i} — {len(legs)} legs — price {dec_all:.2f} (~{decimal_to_american(dec_all)}) — hit prob ~{p_all:.2f}", expanded=False):
-            # top row: teams
             team_row = {f"Leg {j+1} Team 1": f"{leg['Team']}" for j, leg in enumerate(legs)}
             opp_row  = {f"Leg {j+1} Team 2": f"{leg['Opponent']}" for j, leg in enumerate(legs)}
             pts_row  = {f"Leg {j+1} Team 1 pts": f"{leg['Pred_Points']}" for j, leg in enumerate(legs)}
             opp_pts_row = {f"Leg {j+1} Team 2 pts": f"{leg['Pred_Opp_Points']}" for j, leg in enumerate(legs)}
-
-            # present in two rows look
             st.write(pd.DataFrame([team_row, opp_row]))
             st.write(pd.DataFrame([pts_row, opp_pts_row]))
-
-            # show leg details
             for leg in legs:
                 st.write(f"• {leg['Team']} vs {leg['Opponent']} — {leg['BestMarket']} @ {decimal_to_american(leg['BestDecOdds'])} (p={leg['BestProb']:.2f})")
 
@@ -719,7 +747,6 @@ else:
 # =========================================================
 st.markdown("---")
 st.markdown("### Drilldown (click a matchup for team details and Top-50 categories)")
-
 for _, r in pred_df.iterrows():
     label = (
         f"{r['Date'].strftime('%b %d, %Y')} — "
@@ -728,12 +755,10 @@ for _, r in pred_df.iterrows():
     )
     with st.expander(label, expanded=False):
         rowobj = r["RowObj"]
-
         t_conf = rowobj.get(conf_col) if conf_col in rowobj.index else ""
         o_conf = rowobj.get(opp_conf_col) if opp_conf_col in rowobj.index else ""
         t_coach = rowobj.get(coach_col) if coach_col in rowobj.index else ""
         o_coach = rowobj.get(opp_coach_col) if opp_coach_col in rowobj.index else ""
-
         t_wins = rowobj.get("Wins") if "Wins" in rowobj.index else None
         t_losses = rowobj.get("Losses") if "Losses" in rowobj.index else None
 
@@ -744,7 +769,6 @@ for _, r in pred_df.iterrows():
             st.write(f"Conference: {t_conf}")
             if t_wins is not None:
                 st.write(f"Record: {t_wins}-{t_losses if t_losses is not None else ''}")
-
         with cR:
             st.write(f"**{r['Opponent']}**")
             st.write(f"Coach: {o_coach}")
