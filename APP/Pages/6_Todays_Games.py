@@ -2,45 +2,10 @@
 """
 Today's Games — Single Multi-Output Model (improved featurization)
 
-What this page does
--------------------
-- Loads the schedule from:
-    Data/26_March_Madness_Databook/2026 Schedule Transfer-Table 1.csv
-- Loads historical games from:
-    Data/26_March_Madness_Databook/Daily_predictor_data-Table 1.csv
-- Trains ONE multi-output RandomForestRegressor to predict [Points, Opp Points].
-
-Model features
---------------
-- ALL numeric columns from the daily file EXCEPT the two targets.
-  • Numeric rank-like columns (name looks like "*rank*") → NA filled with **51**.
-  • Other numerics → NA filled with **0**.
-- Binary flags engineered and appended to numeric features (and therefore part of the same feature space):
-  • __flag_home              — 1 if HAN indicates "Home", else 0
-  • __flag_nonconf           — 1 if non-conference game, else 0
-  • __flag_team_power_conf   — 1 if team conf in {SEC, BIG TEN, BIG 12, ACC}
-  • __flag_opp_power_conf    — 1 if opp conf in {SEC, BIG TEN, BIG 12, ACC}
-- Categorical encodings (OrdinalEncoder; unknowns → -1):
-  • Team, Opponent, Coach Name, Opponent Coach, Conference, Opponent Conference
-
-Prediction pipeline
--------------------
-- Builds schedule feature vectors that EXACTLY align to the training feature list.
-- For columns missing on the schedule:
-  • If the feature name looks like a rank → uses 51
-  • Else uses 0
-- Special-cases the engineered flags by computing them from the schedule row if those
-  names (e.g. "__flag_home") appear in the training feature list.
-- Deduplicates mirrored rows (Albany vs Marquette vs Marquette vs Albany on same date).
-- Sort priority: Top-25 first → March Madness opponent → Power-conf opponent → Date.
-- Each matchup renders with an expander containing metadata and SEPARATE "Top 50" lists
-  for each team (categories with rank ≤ 50 from that row / mirrored row).
-
-Notes
------
-- Date parsing uses fixed US format "%m/%d/%Y".
-- This page re-trains the model on every run so it adapts as Daily file grows.
-- No confidence intervals are shown; just predicted scores.
+Changes vs prior:
+- Prevents ties (adds +1 to one side deterministically when rounded scores match).
+- Filters evaluate BOTH teams (base + mirror rows) for Top-25 and conference filters.
+- Initial ordering uses Game Time (if available), then Date; priority only used for tie-breaks.
 """
 
 import os
@@ -48,7 +13,7 @@ import re
 import numpy as np
 import pandas as pd
 import streamlit as st
-from datetime import datetime
+from datetime import datetime, time as dtime
 from typing import List, Tuple, Optional, Dict, Any
 
 from sklearn.preprocessing import OrdinalEncoder
@@ -84,36 +49,26 @@ def find_col(df: pd.DataFrame, candidates: List[str]) -> Optional[str]:
     return None
 
 def interpret_han(v: Any) -> Optional[str]:
-    """Map HAN-like strings to {'Home','Away','Neutral'} or None if unclear."""
     if pd.isna(v):
         return None
     s = str(v).strip().upper()
     s_compact = s.replace("-", "").replace("_", "").replace(" ", "")
-    if s_compact in ("H", "HOME"):
-        return "Home"
-    if s_compact in ("A", "AWAY"):
-        return "Away"
-    if s_compact in ("N", "NEUTRAL"):
-        return "Neutral"
-    if "NEUTRAL" in s:
-        return "Neutral"
-    if "HOME" in s and "AWAY" not in s:
-        return "Home"
-    if "AWAY" in s and "HOME" not in s:
-        return "Away"
+    if s_compact in ("H", "HOME"):  return "Home"
+    if s_compact in ("A", "AWAY"):  return "Away"
+    if s_compact in ("N", "NEUTRAL"): return "Neutral"
+    if "NEUTRAL" in s: return "Neutral"
+    if "HOME" in s and "AWAY" not in s: return "Home"
+    if "AWAY" in s and "HOME" not in s: return "Away"
     return None
 
 def is_rank_column(col_name: str) -> bool:
-    """Heuristic: determine if a column name looks like a 'rank' column."""
     if not col_name:
         return False
     u = col_name.upper().strip()
     return (
         "RANK" in u
-        or u.endswith("_RANK")
-        or u.endswith(" RANK")
-        or u.endswith("_RANKING")
-        or u.endswith(" RANKING")
+        or u.endswith("_RANK") or u.endswith(" RANK")
+        or u.endswith("_RANKING") or u.endswith(" RANKING")
     )
 
 def to_num(x: Any, default: float = 0.0) -> float:
@@ -151,6 +106,28 @@ def power_conf_flag(conf_val: Any) -> float:
     c = str(conf_val).strip().upper()
     return 1.0 if c in POWER_CONFS else 0.0
 
+def parse_game_time(val: Any) -> Optional[dtime]:
+    """Robust parser for time-only strings like '7:00 PM', '19:00', '7 PM'."""
+    if pd.isna(val):
+        return None
+    s = str(val).strip()
+    if not s:
+        return None
+    # try common formats quickly
+    for fmt in ("%I:%M %p", "%I %p", "%H:%M"):
+        try:
+            return datetime.strptime(s, fmt).time()
+        except Exception:
+            pass
+    # last resort: pandas parser
+    try:
+        dt = pd.to_datetime(s, errors="coerce")
+        if pd.isna(dt):
+            return None
+        return dt.time()
+    except Exception:
+        return None
+
 
 # =============================================================================
 # LOAD DATA (safe)
@@ -187,7 +164,6 @@ st.info("CSV files loaded.")
 
 schedule_df = schedule_df_raw.copy()
 
-# Date parsing: fixed US format MM/DD/YYYY
 DATE_COL = find_col(schedule_df, ["Date", "date", "Game_Date", "Game Date"]) or schedule_df.columns[0]
 schedule_df["__Date_parsed"] = pd.to_datetime(
     schedule_df[DATE_COL].astype(str).str.strip(),
@@ -208,12 +184,29 @@ COACH_COL     = find_col(schedule_df, ["Coach Name", "Coach", "Coach_Name"])
 OPP_COACH_COL = find_col(schedule_df, ["Opponent Coach", "Opp Coach"])
 WINS_COL      = find_col(schedule_df, ["Wins", "wins"])
 LOSSES_COL    = find_col(schedule_df, ["Losses", "losses"])
+TIME_COL      = find_col(schedule_df, ["Game Time", "Time", "Tip", "Tipoff", "GameTime", "Start Time", "Start"])
 
 if TEAM_COL is None or OPP_COL is None:
     st.error("Could not find Team and Opponent columns in the schedule file.")
     st.stop()
 
-# Fill numeric columns: ranks → 51, others → 0
+# Parse game time (optional) and build DateTime for ordering
+if TIME_COL:
+    schedule_df["__Time_parsed"] = schedule_df[TIME_COL].apply(parse_game_time)
+else:
+    schedule_df["__Time_parsed"] = None
+
+def combine_dt(r: pd.Series) -> datetime:
+    dt = r["__Date_parsed"]
+    tm = r["__Time_parsed"]
+    if isinstance(tm, dtime):
+        return datetime.combine(dt.date(), tm)
+    # fallback: midnight on game date
+    return datetime.combine(dt.date(), dtime(0, 0))
+
+schedule_df["__DT_parsed"] = schedule_df.apply(combine_dt, axis=1)
+
+# Fill numeric columns on schedule: ranks → 51, others → 0
 for c in schedule_df.columns:
     if pd.api.types.is_numeric_dtype(schedule_df[c]):
         schedule_df[c] = schedule_df[c].fillna(51 if is_rank_column(c) else 0.0)
@@ -229,7 +222,7 @@ schedule_row_index = {}
 for i, r in schedule_df.iterrows():
     schedule_row_index[sched_key(str(r[TEAM_COL]), str(r[OPP_COL]), r["__Date_parsed"])] = i
 
-# Gather all schedule rank columns (used later for top-50 lists)
+# Gather schedule rank columns (used later for top-50 lists)
 sched_rank_cols = [c for c in schedule_df.columns if is_rank_column(c)]
 
 
@@ -337,11 +330,10 @@ rf = RandomForestRegressor(
     random_state=42,
     n_jobs=-1,
     min_samples_leaf=1,
-    max_features="sqrt"  # fixed: "auto" deprecated → use "sqrt" or None
+    max_features="sqrt"
 )
 rf.fit(X_train, Y_train)
 st.write("Model trained.")
-
 
 # Keep an ordered list of the final training numeric feature names (including engineered flags)
 feature_names_numeric = list(X_num.columns)
@@ -353,17 +345,8 @@ cat_cols_for_inference = list(CAT_COLS)  # in order
 # =============================================================================
 
 def schedule_numeric_vector(row: pd.Series) -> np.ndarray:
-    """
-    Build numeric features for a schedule row that align EXACTLY to the training
-    numeric features (feature_names_numeric). If a feature is missing on the
-    schedule row:
-      - If name looks like a rank → 51
-      - Else → 0
-    Special-case engineered flags: __flag_home / __flag_nonconf / team/opp power flags.
-    """
     vals: List[float] = []
 
-    # Precompute schedule HAN/nonconf and conf flags
     row_han = interpret_han(row.get(HAN_COL)) if HAN_COL and HAN_COL in row.index else None
     row_nonconf = boolish(row.get(NONCONF_COL)) if NONCONF_COL and NONCONF_COL in row.index else False
     row_team_conf = row.get(CONF_COL) if CONF_COL and CONF_COL in row.index else None
@@ -371,26 +354,19 @@ def schedule_numeric_vector(row: pd.Series) -> np.ndarray:
 
     for fname in feature_names_numeric:
         if fname == "__flag_home":
-            vals.append(1.0 if row_han == "Home" else 0.0)
-            continue
+            vals.append(1.0 if row_han == "Home" else 0.0); continue
         if fname == "__flag_nonconf":
-            vals.append(1.0 if row_nonconf else 0.0)
-            continue
+            vals.append(1.0 if row_nonconf else 0.0); continue
         if fname == "__flag_team_power_conf":
-            vals.append(power_conf_flag(row_team_conf))
-            continue
+            vals.append(power_conf_flag(row_team_conf)); continue
         if fname == "__flag_opp_power_conf":
-            vals.append(power_conf_flag(row_opp_conf))
-            continue
+            vals.append(power_conf_flag(row_opp_conf)); continue
 
+        default_val = 51.0 if is_rank_column(fname) else 0.0
         if fname in row.index:
-            raw = row.get(fname)
-            default_val = 51.0 if is_rank_column(fname) else 0.0
-            vals.append(to_num(raw, default=default_val))
+            vals.append(to_num(row.get(fname), default=default_val))
         else:
-            default_val = 51.0 if is_rank_column(fname) else 0.0
             vals.append(default_val)
-
     return np.asarray(vals, dtype=float)
 
 def schedule_categorical_vector(row: pd.Series) -> Optional[np.ndarray]:
@@ -401,13 +377,9 @@ def schedule_categorical_vector(row: pd.Series) -> Optional[np.ndarray]:
         if c in row.index:
             vals.append(str(row.get(c)) if pd.notna(row.get(c)) else "NA")
         else:
-            # try a few symmetric alternates (rare)
             if "Opponent" in c:
                 alt = c.replace("Opponent ", "")
-                if alt in row.index:
-                    vals.append(str(row.get(alt)) if pd.notna(row.get(alt)) else "NA")
-                else:
-                    vals.append("NA")
+                vals.append(str(row.get(alt)) if alt in row.index and pd.notna(row.get(alt)) else "NA")
             else:
                 vals.append("NA")
     try:
@@ -424,15 +396,12 @@ def build_schedule_X(row: pd.Series) -> np.ndarray:
 
 
 # =============================================================================
-# DEDUP & PRIORITY
+# DEDUP & ORDERING
 # =============================================================================
 
 def row_priority(row: pd.Series) -> Tuple[int, int, int, pd.Timestamp]:
-    # Top-25 first
     is_top25 = boolish(row.get(TOP25_COL)) if TOP25_COL and TOP25_COL in row.index else False
-    # March Madness opponent second
     is_mm    = boolish(row.get(MM_COL)) if MM_COL and MM_COL in row.index else False
-    # Power-conf opponent third
     opp_conf_flag = power_conf_flag(row.get(OPP_CONF_COL)) if OPP_CONF_COL and OPP_CONF_COL in row.index else 0.0
     conf_pri = 1 if opp_conf_flag == 1.0 else 9
     return (0 if is_top25 else 1, 0 if is_mm else 1, conf_pri, row["__Date_parsed"])
@@ -443,14 +412,15 @@ for i, r in schedule_df.iterrows():
     t = str(r[TEAM_COL]).strip()
     o = str(r[OPP_COL]).strip()
     d = r["__Date_parsed"]
-    # unordered pair for dedup
     key = (min(t.lower(), o.lower()), max(t.lower(), o.lower()), d.date() if not pd.isna(d) else None)
     if key in seen_pairs:
         continue
     seen_pairs.add(key)
-    unique_rows.append((row_priority(r), i))
+    # primary sort: game datetime; secondary: priority
+    unique_rows.append(((r["__DT_parsed"], row_priority(r)), i))
 
-unique_rows.sort(key=lambda x: x[0])
+# ORDER: Game Time/Date first, then priority
+unique_rows.sort(key=lambda x: (x[0][0], x[0][1]))
 sorted_indices = [idx for _, idx in unique_rows]
 
 if not sorted_indices:
@@ -462,20 +432,26 @@ if not sorted_indices:
 # PREDICT
 # =============================================================================
 
+def prevent_tie(team_pts: int, opp_pts: int, team: str, opp: str, dt: datetime) -> Tuple[int, int]:
+    """If tied, bump exactly one side by +1 deterministically per matchup."""
+    if team_pts != opp_pts:
+        return team_pts, opp_pts
+    h = abs(hash(f"{team}|{opp}|{dt.date()}")) % 2
+    if h == 0:
+        return team_pts + 1, opp_pts
+    return team_pts, opp_pts + 1
+
 pred_rows = []
 for idx in sorted_indices:
     r = schedule_df.iloc[idx]
 
     X_vec = build_schedule_X(r).reshape(1, -1)
-
-    # Align width if needed (pad/truncate)
     if X_vec.shape[1] != X_train.shape[1]:
         aligned = np.zeros((1, X_train.shape[1]), dtype=float)
         use = min(X_vec.shape[1], X_train.shape[1])
         aligned[0, :use] = X_vec[0, :use]
         X_vec = aligned
 
-    # Predict [Points, Opp Points]
     try:
         y_pred = rf.predict(X_vec)[0]
     except Exception:
@@ -484,7 +460,7 @@ for idx in sorted_indices:
     team_name = str(r[TEAM_COL]).strip()
     opp_name  = str(r[OPP_COL]).strip()
 
-    # Find mirror for proper opponent meta and top-50 extraction
+    # mirror row for proper metadata + ranks
     mirror_key = (opp_name.lower(), team_name.lower(), r["__Date_parsed"].date() if not pd.isna(r["__Date_parsed"]) else None)
     mirror_row = schedule_df.iloc[schedule_row_index[mirror_key]] if mirror_key in schedule_row_index else None
 
@@ -528,19 +504,22 @@ for idx in sorted_indices:
         out.sort(key=lambda z: z[1])
         return out
 
-    team_top50 = extract_top50(r)
-    opp_top50  = extract_top50(row_for_opp_ranks)
+    team_pts = int(round(max(0.0, y_pred[0])))
+    opp_pts  = int(round(max(0.0, y_pred[1])))
+    team_pts, opp_pts = prevent_tie(team_pts, opp_pts, team_name, opp_name, r["__DT_parsed"])
 
     pred_rows.append({
         "Date": r["__Date_parsed"],
+        "DateTime": r["__DT_parsed"],
+        "GameTime": r[TIME_COL] if TIME_COL else "",
         "Team": team_name,
         "Opponent": opp_name,
-        "Pred_Team_Points": int(round(max(0.0, y_pred[0]))),
-        "Pred_Opp_Points": int(round(max(0.0, y_pred[1]))),
+        "Pred_Team_Points": team_pts,
+        "Pred_Opp_Points": opp_pts,
         "Team_Meta": team_meta,
         "Opp_Meta": opp_meta,
-        "Team_Top50": team_top50,
-        "Opp_Top50": opp_top50,
+        "Team_Top50": extract_top50(r),
+        "Opp_Top50": extract_top50(row_for_opp_ranks),
         "Priority": row_priority(r)
     })
 
@@ -554,24 +533,50 @@ st.subheader("Filters")
 
 show_top25_only = st.checkbox("Show only Top-25 opponent games", value=False)
 
-opp_conf_opts = []
-if OPP_CONF_COL:
-    opp_conf_opts = sorted(list({str(x) for x in schedule_df[OPP_CONF_COL].dropna().unique().tolist()}))
-conf_selected = st.multiselect("Filter by opponent conference", opp_conf_opts, default=[])
+# Build conference options from BOTH teams' possible columns
+conf_pool = set()
+if OPP_CONF_COL: conf_pool |= set(map(str, schedule_df[OPP_CONF_COL].dropna().unique().tolist()))
+if CONF_COL:     conf_pool |= set(map(str, schedule_df[CONF_COL].dropna().unique().tolist()))
+opp_conf_opts = sorted([c for c in conf_pool if c and c != "nan"])
+conf_selected = st.multiselect("Filter by conference (either team)", opp_conf_opts, default=[])
 
 def passes_filters(rec: Dict[str, Any]) -> bool:
-    # Locate base row to inspect filter fields
-    key = (rec["Team"].lower(), rec["Opponent"].lower(), rec["Date"].date() if not pd.isna(rec["Date"]) else None)
-    base_row = schedule_df.iloc[schedule_row_index[key]] if key in schedule_row_index else None
-    if base_row is None:
+    # locate both perspectives
+    key_base = (rec["Team"].lower(), rec["Opponent"].lower(), rec["Date"].date() if not pd.isna(rec["Date"]) else None)
+    base_row = schedule_df.iloc[schedule_row_index[key_base]] if key_base in schedule_row_index else None
+
+    key_mirr = (rec["Opponent"].lower(), rec["Team"].lower(), rec["Date"].date() if not pd.isna(rec["Date"]) else None)
+    mirror_row = schedule_df.iloc[schedule_row_index[key_mirr]] if key_mirr in schedule_row_index else None
+
+    if base_row is None and mirror_row is None:
         return True
-    if show_top25_only and TOP25_COL and TOP25_COL in base_row.index:
-        if not boolish(base_row.get(TOP25_COL)):
+
+    # Top-25: pass if EITHER perspective flags the opponent as Top-25
+    if show_top25_only and TOP25_COL:
+        top25_flags = []
+        if base_row is not None and TOP25_COL in base_row.index:
+            top25_flags.append(boolish(base_row.get(TOP25_COL)))
+        if mirror_row is not None and TOP25_COL in mirror_row.index:
+            top25_flags.append(boolish(mirror_row.get(TOP25_COL)))
+        if not any(top25_flags):
             return False
-    if conf_selected and OPP_CONF_COL and OPP_CONF_COL in base_row.index:
-        oc = str(base_row.get(OPP_CONF_COL) or "")
-        if oc not in conf_selected:
+
+    # Conference filter: pass if ANY of the involved team/opponent confs are selected
+    if conf_selected:
+        conf_vals = []
+        if base_row is not None:
+            if CONF_COL and CONF_COL in base_row.index:
+                conf_vals.append(str(base_row.get(CONF_COL) or ""))
+            if OPP_CONF_COL and OPP_CONF_COL in base_row.index:
+                conf_vals.append(str(base_row.get(OPP_CONF_COL) or ""))
+        if mirror_row is not None:
+            if CONF_COL and CONF_COL in mirror_row.index:
+                conf_vals.append(str(mirror_row.get(CONF_COL) or ""))
+            if OPP_CONF_COL and OPP_CONF_COL in mirror_row.index:
+                conf_vals.append(str(mirror_row.get(OPP_CONF_COL) or ""))
+        if not any(cv in conf_selected for cv in conf_vals):
             return False
+
     return True
 
 pred_rows = [r for r in pred_rows if passes_filters(r)]
@@ -579,8 +584,8 @@ if not pred_rows:
     st.info("No games match the selected filters.")
     st.stop()
 
-# Sort by priority key already computed
-pred_rows.sort(key=lambda z: z["Priority"])
+# ORDER for display: by Game DateTime (already computed)
+pred_rows.sort(key=lambda z: (z["DateTime"], z["Priority"]))
 
 
 # =============================================================================
@@ -588,11 +593,12 @@ pred_rows.sort(key=lambda z: z["Priority"])
 # =============================================================================
 
 st.markdown("---")
-st.subheader("Predicted Games (sorted by priority)")
+st.subheader("Predicted Games (ordered by Game Time)")
 
 for rec in pred_rows:
     date_str = rec["Date"].strftime("%m/%d/%Y") if not pd.isna(rec["Date"]) else "TBD"
-    header = f"{rec['Team']} vs {rec['Opponent']} — {date_str} — Pred: {rec['Pred_Team_Points']} - {rec['Pred_Opp_Points']}"
+    time_str = str(rec["GameTime"]) if rec["GameTime"] != "" else "TBD"
+    header = f"{rec['Team']} vs {rec['Opponent']} — {date_str} {time_str} — Pred: {rec['Pred_Team_Points']} - {rec['Pred_Opp_Points']}"
     with st.expander(header, expanded=False):
 
         # Team / Opponent meta
@@ -632,12 +638,13 @@ for rec in pred_rows:
         st.write("- Predictions use a single multi-output RandomForest with numeric stats, rank fields, categorical encodings (team/opponent/coach/conferences), and engineered flags.")
         st.write("- Missing rank values are treated as 51; other missing numerics are 0.")
         st.write("- HAN is used to set a home flag. Non-conference and power-conference flags are included for both sides.")
-        st.write("- Results should vary per matchup even with limited early-season data thanks to categorical encodings and rank fields.")
+        st.write("- Initial ordering uses Game Time when available; ties fall back to date and then priority.")
 
 # Download CSV
 st.markdown("---")
 out = pd.DataFrame([{
     "Date": r["Date"].strftime("%Y-%m-%d") if not pd.isna(r["Date"]) else "",
+    "Game Time": r["GameTime"],
     "Team": r["Team"],
     "Opponent": r["Opponent"],
     "Pred_Team_Points": r["Pred_Team_Points"],
