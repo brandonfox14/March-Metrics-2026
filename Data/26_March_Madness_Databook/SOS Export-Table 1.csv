@@ -27,7 +27,7 @@ Boise St.,,,0,0,0,0,0
 Boston College,,,0,0,0,0,0
 Boston University,,,0,0,0,0,0
 Bowling Green,,,0,0,0,0,0
-Bradley,,,0,0,0,0,0
+Bradley,,,-18.6671149014553,-18.6671149014553,-18.6671149014553,0,-18.6671149014553
 Brown,,,0,0,0,0,0
 Bryant,,,0,0,0,0,0
 Bucknell,,,0,0,0,0,0
@@ -187,11 +187,11 @@ Montana St.,,,0,0,0,–,0
 Morehead St.,,,0,0,0,–,0
 Morgan St.,,,0,0,0,–,0
 Mount St. Mary's,,,0,0,0,–,0
-Murray St.,,,0,0,0,–,0
+Murray St.,,,-1.2578536119,-1.2578536119,-1.2578536119,–,-1.2578536119
 N.C. State,,,0,0,0,–,0
 Navy,,,0,0,0,–,0
 Nebraska,,,0,0,0,–,0
-Nebraska Omaha,,,0,0,0,–,0
+Nebraska Omaha,,,-8.89740293698,-8.89740293698,-8.89740293698,–,-8.89740293698
 Nevada,,,0,0,0,–,0
 New Hampshire,,,0,0,0,–,0
 New Haven,,,0,0,0,–,0
@@ -241,7 +241,7 @@ Princeton,,,0,0,0,–,0
 Providence,,,0,0,0,–,0
 Purdue,,,0,0,0,–,0
 Purdue Fort Wayne,,,0,0,0,–,0
-Queens,,,0,0,0,–,0
+Queens,,,-2.189443138262,-2.189443138262,-2.189443138262,–,-2.189443138262
 Quinnipiac,,,0,0,0,–,0
 Radford,,,0,0,0,–,0
 Rhode Island,,,0,0,0,–,0
@@ -282,7 +282,7 @@ Southern Illinois,,,0,0,0,–,0
 Southern Indiana,,,0,0,0,–,0
 Southern Miss,,,0,0,0,–,0
 Southern Utah,,,0,0,0,–,0
-St. Bonaventure,,,0,0,0,–,0
+St. Bonaventure,,,25.7479060005953,25.7479060005953,25.7479060005953,–,25.7479060005953
 St. John's,,,0,0,0,–,0
 St. Thomas,,,0,0,0,–,0
 Stanford,,,0,0,0,–,0
@@ -356,7 +356,7 @@ Western Kentucky,,,0,0,0,–,0
 Western Michigan,,,0,0,0,–,0
 Wichita St.,,,0,0,0,–,0
 William & Mary,,,0,0,0,–,0
-Winthrop,,,0,0,0,–,0
+Winthrop,,,12.182009330514,12.182009330514,12.182009330514,–,12.182009330514
 Wisconsin,,,0,0,0,–,0
 Wofford,,,0,0,0,–,0
 Wright St.,,,0,0,0,–,0

@@ -1,30 +1,30 @@
 Players,Team,Location,Opponent,Opponent Conference,Power,Top 25,,STR,Min,FGM,FGA,3M,3A,FTM,FTA,OReb,DReb,AST,STL,TO,PF,PTS,OPP ACTIVE VALUE,OPP HISTORICAL VALUE,TEAM ACTIVE VALUE,TEAM HISTORICAL VALUE,Doubles,Double Doube,Triple Double,0-3+ FG,Perfect 2 FG min 3,Perfect 3 FG min 3,Points Leader,Def Reb Leader,Off Reb Leader,Steal Leader,Assist Leader,Foul Trouble,20+ minutes,20+ points,SM,Line,Clutch ,Overtime,Attendance,Player Points,
-Karon Boyd,East Tennessee St.,AWAY,Davidson,A10,0,0,Starter,1,30,3,8,2,3,1,4,3,7,1,0,1,5,9,0,21.293,0,10.223,1,0,0,0,0,0,0,1,1,0,0,1,1,0,-6,6.5,0,0,"2,490",0,TRUE
-Jaden Seymour,East Tennessee St.,AWAY,Davidson,A10,0,0,Starter,1,32,9,13,2,3,1,3,1,3,2,1,1,5,21,0,21.293,0,10.223,1,0,0,0,0,0,1,0,0,0,0,1,1,1,-6,6.5,0,0,"2,490",0,TRUE
-Davion Bradford,East Tennessee St.,AWAY,Davidson,A10,0,0,Starter,1,9,1,1,0,0,0,0,1,1,0,0,1,2,2,0,21.293,0,10.223,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-6,6.5,0,0,"2,490",0,TRUE
-Quimari Peterson,East Tennessee St.,AWAY,Davidson,A10,0,0,Starter,1,34,7,13,2,4,3,3,0,1,4,1,1,4,19,0,21.293,0,10.223,1,0,0,0,0,1,0,0,0,0,1,1,1,0,-6,6.5,0,0,"2,490",0,TRUE
-John Buggs III,East Tennessee St.,AWAY,Davidson,A10,0,0,Starter,1,35,5,14,4,11,0,2,0,0,1,0,2,3,14,0,21.293,0,10.223,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-6,6.5,0,0,"2,490",0,TRUE
-DJ Hughes,East Tennessee St.,AWAY,Davidson,A10,0,0,Bench,0,13,1,2,0,0,0,0,3,2,0,0,0,4,2,0,21.293,0,10.223,0,0,0,0,0,0,0,0,1,0,0,1,0,0,-6,6.5,0,0,"2,490",0,TRUE
-Allen Strothers,East Tennessee St.,AWAY,Davidson,A10,0,0,Bench,0,29,1,2,0,1,0,0,0,1,2,2,0,2,2,0,21.293,0,10.223,0,0,0,0,0,0,0,0,0,1,0,0,1,0,-6,6.5,0,0,"2,490",0,TRUE
-Maki Johnson,East Tennessee St.,AWAY,Davidson,A10,0,0,Bench,0,5,0,1,0,1,0,0,0,0,0,0,0,0,0,0,21.293,0,10.223,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-6,6.5,0,0,"2,490",0,FALSE
-Curt Lewis,East Tennessee St.,AWAY,Davidson,A10,0,0,Bench,0,10,0,2,0,0,1,2,0,0,0,2,0,2,1,0,21.293,0,10.223,0,0,0,0,0,0,0,0,0,1,0,0,0,0,-6,6.5,0,0,"2,490",0,FALSE
-Bobby Durkin,Davidson,HOME,East Tennessee St.,Southern,0,0,Starter,1,36,4,9,1,3,4,4,1,4,0,1,2,0,13,0,10.223,0,21.293,1,0,0,0,0,1,0,0,0,0,0,0,1,0,6,-6.5,0,0,"2,490",0,TRUE
-Sean Logan,Davidson,HOME,East Tennessee St.,Southern,0,0,Starter,1,9,0,0,0,0,0,0,1,1,0,0,1,4,0,0,10.223,0,21.293,0,0,0,0,0,0,0,0,0,0,0,1,0,0,6,-6.5,0,0,"2,490",0,FALSE
-Reed Bailey,Davidson,HOME,East Tennessee St.,Southern,0,0,Starter,1,34,5,11,0,0,8,13,1,7,2,0,6,1,18,0,10.223,0,21.293,1,0,0,0,0,0,0,1,0,0,0,0,1,0,6,-6.5,0,0,"2,490",0,TRUE
-Mike Loughnane,Davidson,HOME,East Tennessee St.,Southern,0,0,Starter,1,16,0,2,0,2,0,0,0,1,1,0,0,1,0,0,10.223,0,21.293,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-6.5,0,0,"2,490",0,TRUE
-Connor Kochera,Davidson,HOME,East Tennessee St.,Southern,0,0,Starter,1,32,5,9,0,1,3,4,2,1,3,0,1,0,13,0,10.223,0,21.293,1,0,0,0,0,0,0,0,0,0,0,0,1,0,6,-6.5,0,0,"2,490",0,TRUE
-Roberts Blums,Davidson,HOME,East Tennessee St.,Southern,0,0,Bench,0,24,3,4,1,2,2,2,0,2,0,0,2,4,9,0,10.223,0,21.293,0,0,0,0,0,0,0,0,0,0,0,1,1,0,6,-6.5,0,0,"2,490",0,TRUE
-Zach Laput,Davidson,HOME,East Tennessee St.,Southern,0,0,Bench,0,22,6,7,0,0,2,3,1,2,0,1,0,2,14,0,10.223,0,21.293,1,0,0,0,0,0,0,0,0,0,0,0,1,0,6,-6.5,0,0,"2,490",0,TRUE
-Hunter Adam,Davidson,HOME,East Tennessee St.,Southern,0,0,Bench,0,21,3,4,1,2,1,4,1,2,0,0,0,3,8,0,10.223,0,21.293,0,0,0,0,0,0,0,0,0,0,0,0,1,0,6,-6.5,0,0,"2,490",0,TRUE
-0,0,NEUTRAL,East Tennessee St.,Southern,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10.223,0,10.223,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-6.5,0,0,"2,490",0,FALSE
-0,0,NEUTRAL,East Tennessee St.,Southern,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10.223,0,10.223,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-6.5,0,0,"2,490",0,FALSE
-0,0,NEUTRAL,East Tennessee St.,Southern,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10.223,0,10.223,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-6.5,0,0,"2,490",0,FALSE
-0,0,NEUTRAL,East Tennessee St.,Southern,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10.223,0,10.223,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-6.5,0,0,"2,490",0,FALSE
-0,0,NEUTRAL,East Tennessee St.,Southern,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10.223,0,10.223,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-6.5,0,0,"2,490",0,FALSE
-0,0,NEUTRAL,East Tennessee St.,Southern,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10.223,0,10.223,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-6.5,0,0,"2,490",0,FALSE
-0,0,NEUTRAL,East Tennessee St.,Southern,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10.223,0,10.223,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-6.5,0,0,"2,490",0,FALSE
-0,0,NEUTRAL,East Tennessee St.,Southern,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10.223,0,10.223,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-6.5,0,0,"2,490",0,FALSE
-0,0,NEUTRAL,East Tennessee St.,Southern,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10.223,0,10.223,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-6.5,0,0,"2,490",0,FALSE
-0,0,NEUTRAL,East Tennessee St.,Southern,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10.223,0,10.223,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-6.5,0,0,"2,490",0,FALSE
-0,0,NEUTRAL,East Tennessee St.,Southern,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10.223,0,10.223,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-6.5,0,0,"2,490",0,FALSE
-0,0,NEUTRAL,East Tennessee St.,Southern,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10.223,0,10.223,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-6.5,0,0,"2,490",0,FALSE
+Kamryn Thomas,Nebraska Omaha,NEUTRAL,Murray St.,Missouri Valley,0,0,Starter,1,26,4,12,1,3,1,2,0,4,1,1,2,2,10,0,17.846,0,27.277,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-8,5.5,0,0,1013,0,TRUE
+Christian Richardson,Nebraska Omaha,NEUTRAL,Murray St.,Missouri Valley,0,0,Starter,1,8,0,0,0,0,0,0,0,1,0,0,1,3,0,0,17.846,0,27.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-8,5.5,0,0,1013,0,TRUE
+Khamani Cooper,Nebraska Omaha,NEUTRAL,Murray St.,Missouri Valley,0,0,Starter,1,25,5,7,0,0,3,3,0,1,1,1,2,4,13,0,17.846,0,27.277,1,0,0,0,0,1,0,0,0,0,0,1,1,0,-8,5.5,0,0,1013,0,TRUE
+Lance Waddles,Nebraska Omaha,NEUTRAL,Murray St.,Missouri Valley,0,0,Starter,1,32,5,11,2,4,1,4,1,9,1,0,1,1,13,0,17.846,0,27.277,2,1,0,0,0,0,0,1,0,0,0,0,1,0,-8,5.5,0,0,1013,0,TRUE
+Tony Osburn,Nebraska Omaha,NEUTRAL,Murray St.,Missouri Valley,0,0,Starter,1,33,4,10,1,3,4,4,0,4,2,3,4,1,13,0,17.846,0,27.277,1,0,0,0,0,1,0,0,0,1,0,0,1,0,-8,5.5,0,0,1013,0,TRUE
+Brock Scholl,Nebraska Omaha,NEUTRAL,Murray St.,Missouri Valley,0,0,Bench,0,25,5,8,0,0,1,1,3,4,0,0,0,2,11,0,17.846,0,27.277,1,0,0,0,0,0,0,0,1,0,0,0,1,0,-8,5.5,0,0,1013,0,TRUE
+Valentino Simon,Nebraska Omaha,NEUTRAL,Murray St.,Missouri Valley,0,0,Bench,0,8,0,0,0,0,3,4,0,0,0,0,1,2,3,0,17.846,0,27.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-8,5.5,0,0,1013,0,FALSE
+Grant Stubblefield,Nebraska Omaha,NEUTRAL,Murray St.,Missouri Valley,0,0,Bench,0,20,1,1,0,0,0,0,0,1,1,0,2,1,2,0,17.846,0,27.277,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-8,5.5,0,0,1013,0,TRUE
+Ja’Sean Glover,Nebraska Omaha,NEUTRAL,Murray St.,Missouri Valley,0,0,Bench,0,19,6,14,0,2,0,0,3,1,0,3,4,3,12,0,17.846,0,27.277,1,0,0,0,0,0,0,0,1,1,0,0,0,0,-8,5.5,0,0,1013,0,FALSE
+Mason Miller,Murray St.,NEUTRAL,Nebraska Omaha,Summit,0,0,Starter,1,26,4,9,4,9,0,0,0,6,1,1,1,3,12,0,27.277,0,17.846,1,0,0,0,0,0,0,0,0,0,0,0,1,0,8,-5.5,0,0,1013,0,TRUE
+JJ Traynor,Murray St.,NEUTRAL,Nebraska Omaha,Summit,0,0,Starter,1,31,2,6,0,2,3,5,2,3,0,3,1,3,7,0,27.277,0,17.846,0,0,0,0,0,0,0,0,0,1,0,0,1,0,8,-5.5,0,0,1013,0,TRUE
+Dylan Anderson,Murray St.,NEUTRAL,Nebraska Omaha,Summit,0,0,Starter,1,19,3,3,0,0,2,2,2,3,1,0,2,3,8,0,27.277,0,17.846,0,0,0,0,1,0,0,0,0,0,0,0,0,0,8,-5.5,0,0,1013,0,TRUE
+KJ Tenner,Murray St.,NEUTRAL,Nebraska Omaha,Summit,0,0,Starter,1,6,0,3,0,1,0,0,0,1,0,0,0,1,0,0,27.277,0,17.846,0,0,0,1,0,0,0,0,0,0,0,0,0,0,8,-5.5,0,0,1013,0,FALSE
+Javon Jackson,Murray St.,NEUTRAL,Nebraska Omaha,Summit,0,0,Starter,1,27,6,13,2,6,10,10,0,1,1,2,2,3,24,0,27.277,0,17.846,1,0,0,0,0,1,1,0,0,0,0,0,1,1,8,-5.5,0,0,1013,0,TRUE
+Roman Domon,Murray St.,NEUTRAL,Nebraska Omaha,Summit,0,0,Bench,0,24,2,8,0,4,10,10,1,3,1,1,5,4,14,0,27.277,0,17.846,1,0,0,0,0,1,0,0,0,0,0,1,1,0,8,-5.5,0,0,1013,0,TRUE
+Brayden Shorter,Murray St.,NEUTRAL,Nebraska Omaha,Summit,0,0,Bench,0,20,2,6,2,6,0,0,0,3,0,0,0,0,6,0,27.277,0,17.846,0,0,0,0,0,0,0,0,0,0,0,0,1,0,8,-5.5,0,0,1013,0,TRUE
+Mathis Courbon,Murray St.,NEUTRAL,Nebraska Omaha,Summit,0,0,Bench,0,16,0,2,0,1,2,2,1,0,2,0,1,1,2,0,27.277,0,17.846,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,-5.5,0,0,1013,0,FALSE
+Layne Taylor,Murray St.,NEUTRAL,Nebraska Omaha,Summit,0,0,Bench,0,31,4,9,1,3,3,4,2,4,6,1,2,3,12,0,27.277,0,17.846,1,0,0,0,0,0,0,0,0,0,1,0,1,0,8,-5.5,0,0,1013,0,TRUE
+0,0,NEUTRAL,Nebraska Omaha,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27.277,0,27.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,-5.5,0,0,1013,0,FALSE
+0,0,NEUTRAL,Nebraska Omaha,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27.277,0,27.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,-5.5,0,0,1013,0,FALSE
+0,0,NEUTRAL,Nebraska Omaha,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27.277,0,27.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,-5.5,0,0,1013,0,FALSE
+0,0,NEUTRAL,Nebraska Omaha,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27.277,0,27.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,-5.5,0,0,1013,0,FALSE
+0,0,NEUTRAL,Nebraska Omaha,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27.277,0,27.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,-5.5,0,0,1013,0,FALSE
+0,0,NEUTRAL,Nebraska Omaha,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27.277,0,27.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,-5.5,0,0,1013,0,FALSE
+0,0,NEUTRAL,Nebraska Omaha,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27.277,0,27.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,-5.5,0,0,1013,0,FALSE
+0,0,NEUTRAL,Nebraska Omaha,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27.277,0,27.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,-5.5,0,0,1013,0,FALSE
+0,0,NEUTRAL,Nebraska Omaha,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27.277,0,27.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,-5.5,0,0,1013,0,FALSE
+0,0,NEUTRAL,Nebraska Omaha,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27.277,0,27.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,-5.5,0,0,1013,0,FALSE
+0,0,NEUTRAL,Nebraska Omaha,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27.277,0,27.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,-5.5,0,0,1013,0,FALSE
