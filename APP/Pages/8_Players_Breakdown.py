@@ -1,52 +1,27 @@
 # APP/Pages/8_Player.py
-# =============================================================================
-# Player Dashboard — Season Averages + Share-of-Team "Wheel"
-# =============================================================================
+# =========================================================
+# Player (8) — Team → Top 7 player averages & "share of team" wheel
+# =========================================================
 import os
 import numpy as np
 import pandas as pd
 import streamlit as st
-from typing import List, Optional, Dict, Any
-import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.graph_objects as go
+from typing import List, Optional, Tuple, Dict, Any
 
-st.set_page_config(page_title="Players", layout="wide")
-st.title("Players — Averages & Share of Team")
-
-# -----------------------------------------------------------------------------
+# ---------------------------------------------------------
 # CONFIG
-# -----------------------------------------------------------------------------
-BASE_DIR    = "Data/26_March_Madness_Databook"
-PLAYER_PATH = os.path.join(BASE_DIR, "Player Value-Table 1.csv")
+# ---------------------------------------------------------
+BASE_DIR = "Data/26_March_Madness_Databook"
+PLAYER_PATH = os.path.join(BASE_DIR, "Player Value-Table 1.csv")  # <-- you said this is the file
 
-# Which stats to consider for averages and the share wheel
-STAT_CANDIDATES: Dict[str, List[str]] = {
-    "MIN":   ["MIN", "Min", "Minutes"],
-    "PTS":   ["PTS", "Points", "Point"],
-    "FGM":   ["FGM", "FG Made"],
-    "FGA":   ["FGA", "FG Att"],
-    "3PM":   ["3PTM", "3PM", "FG3M", "3FGM", "3PT Made"],
-    "3PA":   ["3PTA", "3PA", "FG3A", "3FGA", "3PT Att"],
-    "FTM":   ["FTM", "FT Made"],
-    "FTA":   ["FTA", "FT Att"],
-    "OREB":  ["OReb", "OREB", "Off Reb", "Offensive Rebounds"],
-    "DREB":  ["DReb", "DREB", "Def Reb", "Defensive Rebounds"],
-    "REB":   ["Reb", "REB", "Rebounds"],
-    "AST":   ["AST", "Assists"],
-    "STL":   ["STL", "Steals"],
-    "TOV":   ["TO", "TOV", "Turnovers"],
-    "PF":    ["PF", "Fouls"],
-}
+st.set_page_config(page_title="Players — Top 7 & Team Share", layout="wide")
+st.title("Players — Top 7 & Team Share")
 
-# Columns that identify player/game/team context
-PLAYER_COL_CANDS = ["Player Name", "Player", "Athlete", "Name"]
-TEAM_COL_CANDS   = ["Team", "Teams"]
-OPP_COL_CANDS    = ["Opponent", "Opp", "Opp Team"]
-DATE_COL_CANDS   = ["Date", "Game Date"]
-TOP7_COL_CANDS   = ["Top 7", "Top7", "TOP_7", "Is Top 7", "Top Seven"]
-
-# -----------------------------------------------------------------------------
+# ---------------------------------------------------------
 # HELPERS
-# -----------------------------------------------------------------------------
+# ---------------------------------------------------------
 def load_csv(path: str) -> Optional[pd.DataFrame]:
     if not os.path.exists(path):
         st.error(f"Missing file: {path}")
@@ -56,256 +31,255 @@ def load_csv(path: str) -> Optional[pd.DataFrame]:
         df.columns = df.columns.str.strip()
         return df
     except Exception as e:
-        st.error(f"Error reading {path}: {e}")
+        st.error(f"Failed to read {path}: {e}")
         return None
 
-def find_col(df: pd.DataFrame, cands: List[str]) -> Optional[str]:
-    for c in cands:
+def find_col(df: pd.DataFrame, candidates: List[str]) -> Optional[str]:
+    for c in candidates:
         if c in df.columns:
             return c
-    # be forgiving on case
-    lower_map = {c.lower(): c for c in df.columns}
-    for c in cands:
-        if c.lower() in lower_map:
-            return lower_map[c.lower()]
     return None
 
-def find_first_match(df: pd.DataFrame, names: List[str]) -> Optional[str]:
-    # Return the first column name present from a list of aliases (case-insensitive)
-    col = find_col(df, names)
-    return col
-
-def to_num(s, default=np.nan):
-    try:
-        v = float(pd.to_numeric(s, errors="coerce"))
-        return v if np.isfinite(v) else default
-    except Exception:
-        return default
-
-def truthy(x) -> bool:
-    if pd.isna(x):
-        return False
+def truthy(x: Any) -> bool:
+    if pd.isna(x): return False
     s = str(x).strip().upper()
-    if s in ("1","TRUE","YES","Y","T"):
-        return True
+    if s in ("1", "TRUE", "YES", "Y"): return True
     try:
         return float(s) > 0
     except Exception:
         return False
 
-def safe_group_mean(series: pd.Series) -> float:
-    vals = pd.to_numeric(series, errors="coerce")
-    if vals.notna().any():
-        return float(vals.mean())
-    return np.nan
+def to_num(s: pd.Series, default: float = 0.0) -> pd.Series:
+    out = pd.to_numeric(s, errors="coerce")
+    return out.fillna(default)
 
-def build_game_id(row: pd.Series, team_col: str, opp_col: Optional[str], date_col: Optional[str]) -> str:
-    team = str(row.get(team_col, "")).strip().lower()
-    opp  = str(row.get(opp_col, "")).strip().lower() if opp_col else ""
-    dstr = str(row.get(date_col, "")).strip()
-    return f"{dstr}|{team}|{opp}"
+def pick_top7_for_team(df_team: pd.DataFrame, col_top7: Optional[str], player_col: str, minutes_col: Optional[str]) -> List[str]:
+    """
+    Returns a list of player names (len ≤ 7) for the team's 'Top 7'.
+    Priority:
+      1) Use 'Top 7' flag if present
+      2) Else choose 7 highest average minutes (if minutes column exists)
+      3) Else choose 7 most frequent starters (if 'Starter' column exists)
+      4) Else choose players with most games played
+    """
+    if df_team.empty:
+        return []
 
-# -----------------------------------------------------------------------------
+    # 1) Use explicit Top 7 column if present
+    if col_top7 and col_top7 in df_team.columns:
+        top7_names = df_team.groupby(player_col)[col_top7].apply(lambda s: s.map(truthy).mean()).sort_values(ascending=False)
+        # mean>0 means flagged as Top7 in at least some rows; keep top 7 of those >0
+        explicit = top7_names[top7_names > 0].index.tolist()
+        if explicit:
+            return explicit[:7]
+
+    # 2) Highest average minutes
+    if minutes_col and minutes_col in df_team.columns:
+        mins = df_team.groupby(player_col)[minutes_col].mean().sort_values(ascending=False)
+        return mins.index.tolist()[:7]
+
+    # 3) Most frequent "Starter" if column exists and is categorical-like
+    starter_col = find_col(df_team, ["Starter", "STARTER", "Bench/Starter", "BENCH/STARTER"])
+    if starter_col:
+        starter_rate = df_team.assign(__starter=df_team[starter_col].astype(str).str.strip().str.upper().eq("STARTER").astype(int))
+        starter_rate = starter_rate.groupby(player_col)["__starter"].mean().sort_values(ascending=False)
+        return starter_rate.index.tolist()[:7]
+
+    # 4) Most games played
+    counts = df_team.groupby(player_col).size().sort_values(ascending=False)
+    return counts.index.tolist()[:7]
+
+def agg_player_averages(df_team: pd.DataFrame, player_col: str, stat_cols: List[str]) -> pd.DataFrame:
+    """
+    Per-player per-team averages for provided stat_cols.
+    """
+    grp = df_team.groupby(player_col)[stat_cols].mean(numeric_only=True)
+    grp = grp.reset_index().rename(columns={player_col: "Player"})
+    return grp
+
+def build_team_totals_from_players(df_team_avg: pd.DataFrame, stat: str) -> float:
+    """
+    Team total for 'stat' derived by summing per-player averages.
+    (Works with season averages because team total = sum of player contributions.)
+    """
+    return float(df_team_avg[stat].sum())
+
+def pct(x, total):
+    if total <= 0: return 0.0
+    return float(x) / float(total)
+
+# ---------------------------------------------------------
 # LOAD
-# -----------------------------------------------------------------------------
-df = load_csv(PLAYER_PATH)
-if df is None:
+# ---------------------------------------------------------
+player_df = load_csv(PLAYER_PATH)
+if player_df is None:
     st.stop()
 
-# Identify key columns
-PLAYER_COL = find_col(df, PLAYER_COL_CANDS)
-TEAM_COL   = find_col(df, TEAM_COL_CANDS)
-OPP_COL    = find_col(df, OPP_COL_CANDS)
-DATE_COL   = find_col(df, DATE_COL_CANDS)
-TOP7_COL   = find_col(df, TOP7_COL_CANDS)
+# ---------------------------------------------------------
+# COLUMN MAPS / DETECTION
+# ---------------------------------------------------------
+TEAM_COL   = find_col(player_df, ["Teams", "Team", "TEAM", "School"])
+OPP_COL    = find_col(player_df, ["Opponent", "Opp", "OPP"])
+HAN_COL    = find_col(player_df, ["HAN", "Home/Away", "Location", "Loc", "HomeAway"])
+CONF_COL   = find_col(player_df, ["Conference", "Conf"])
+OPP_CONF_COL = find_col(player_df, ["Opponent Conference", "Opp Conference"])
+PLAYER_COL = find_col(player_df, ["Player Name", "Player", "PLAYER"])
+TOP7_COL   = find_col(player_df, ["Top 7", "Top7", "TOP7"])
+MIN_COL    = find_col(player_df, ["MIN", "Minutes", "Min"])
 
-if PLAYER_COL is None or TEAM_COL is None:
-    st.error("Could not locate Player and Team columns in Player Value CSV.")
+# Common per-player stat columns found in your sample
+CANDIDATE_STATS = [
+    "PTS", "Points", "FGM", "FGA", "3PTM", "3PTA", "FTM", "FTA",
+    "OReb", "DReb", "Rebounds", "AST", "Assists", "TO", "Turnovers",
+    "STL", "Steals", "PF", "Personal Fouls", "MIN"
+]
+# Normalize to the actual columns present
+STAT_COLS = [c for c in CANDIDATE_STATS if c in player_df.columns]
+
+# Also include any obvious “Rank” columns later if you want, but for the wheel we need raw count stats.
+
+missing = []
+for must in [TEAM_COL, PLAYER_COL]:
+    if must is None:
+        missing.append(must)
+if missing:
+    st.error("Player file must include at least 'Teams' (or Team) and 'Player Name' columns.")
     st.stop()
 
-# Parse a numeric copy for all stat candidates we actually find
-resolved_stat_cols: Dict[str, str] = {}
-for std_name, aliases in STAT_CANDIDATES.items():
-    col = find_first_match(df, aliases)
-    if col is not None:
-        resolved_stat_cols[std_name] = col
+# Ensure numeric for stat cols
+for c in STAT_COLS:
+    player_df[c] = pd.to_numeric(player_df[c], errors="coerce")
 
-if "REB" not in resolved_stat_cols:
-    # if no explicit REB, try OREB + DREB later for a computed rebound
-    pass
-
-# Build helper fields
-if DATE_COL is not None:
-    df["_date_parsed"] = pd.to_datetime(df[DATE_COL].astype(str), errors="coerce", format="%m/%d/%Y")
-else:
-    df["_date_parsed"] = pd.NaT
-
-df["_game_id"] = df.apply(lambda r: build_game_id(r, TEAM_COL, OPP_COL, DATE_COL), axis=1)
-df["_Top7"] = df[TOP7_COL].apply(truthy) if TOP7_COL else False
-
-# Coerce numeric copies for stats we care about
-for std_name, col in resolved_stat_cols.items():
-    df[f"__{std_name}"] = pd.to_numeric(df[col], errors="coerce")
-
-# Optional computed REB if missing
-if "REB" not in resolved_stat_cols and ("__OREB" in df.columns and "__DREB" in df.columns):
-    df["__REB"] = df["__OREB"].fillna(0) + df["__DREB"].fillna(0)
-    resolved_stat_cols["REB"] = "__REB"  # mark as synthetic
-else:
-    # remap to already prefixed numeric column
-    for k, c in list(resolved_stat_cols.items()):
-        if not c.startswith("__"):
-            resolved_stat_cols[k] = f"__{k}" if f"__{k}" in df.columns else c
-
-# -----------------------------------------------------------------------------
-# SIDEBAR — TEAM / PLAYER SELECTORS
-# -----------------------------------------------------------------------------
+# ---------------------------------------------------------
+# SIDEBAR — SELECTIONS
+# ---------------------------------------------------------
 st.sidebar.header("Filters")
+teams = sorted(player_df[TEAM_COL].dropna().astype(str).unique().tolist())
+team_selected = st.sidebar.selectbox("Select Team", teams)
 
-teams = sorted(df[TEAM_COL].dropna().astype(str).unique().tolist())
-team_pick = st.sidebar.selectbox("Team", teams, index=0)
+# pick default stat order preference
+default_stat = "Points" if "Points" in STAT_COLS else ("PTS" if "PTS" in STAT_COLS else STAT_COLS[0])
+stat_selected = st.sidebar.selectbox("Stat for wheel (share of team)", STAT_COLS, index=STAT_COLS.index(default_stat))
 
-top7_only = st.sidebar.checkbox("Show only Top-7 players", value=True)
+include_other = st.sidebar.checkbox("Include 'Other' (non-Top-7) slice in wheel", value=True)
 
-team_df = df[df[TEAM_COL].astype(str) == str(team_pick)]
-if top7_only and TOP7_COL:
-    team_df = team_df[team_df["_Top7"] == True]
+# ---------------------------------------------------------
+# TEAM SLICE
+# ---------------------------------------------------------
+team_mask = (player_df[TEAM_COL].astype(str) == str(team_selected))
+team_df = player_df.loc[team_mask].copy()
 
-players = sorted(team_df[PLAYER_COL].dropna().astype(str).unique().tolist())
-if not players:
-    st.info("No players found for this selection.")
+# Detect Top 7 list
+top7_players = pick_top7_for_team(team_df, TOP7_COL, PLAYER_COL, MIN_COL)
+if not top7_players:
+    st.warning("Could not determine Top 7. Showing the 7 most-used players by fallback logic.")
+top7_set = set(top7_players)
+
+# Compute per-player averages for this team
+if not STAT_COLS:
+    st.error("No numeric player stat columns found to average.")
     st.stop()
 
-player_pick = st.sidebar.selectbox("Player", players, index=0)
+team_player_avg = agg_player_averages(team_df, PLAYER_COL, STAT_COLS)
+team_player_avg["IsTop7"] = team_player_avg["Player"].isin(top7_set)
 
-# Wheel stat choices
-default_wheel = ["PTS", "FGM", "FGA", "3PM", "3PA", "FTM", "FTA", "REB", "AST", "STL", "TOV"]
-wheel_stats = st.sidebar.multiselect(
-    "Wheel stats (player share of team)",
-    options=[k for k in resolved_stat_cols.keys()],
-    default=[k for k in default_wheel if k in resolved_stat_cols]
-)
+# Split Top7 vs Others
+df_top7 = team_player_avg[team_player_avg["IsTop7"]].copy()
+df_other = team_player_avg[~team_player_avg["IsTop7"]].copy()
 
-# -----------------------------------------------------------------------------
-# SEASON AVERAGES — PLAYER
-# -----------------------------------------------------------------------------
-player_rows = df[(df[TEAM_COL].astype(str) == str(team_pick)) & (df[PLAYER_COL].astype(str) == str(player_pick))]
-
-if player_rows.empty:
-    st.info("No rows for this player/team.")
-    st.stop()
-
-# Per-game averages = simple mean across games
-player_avgs: Dict[str, float] = {}
-for k, colname in resolved_stat_cols.items():
-    col = colname if colname.startswith("__") else f"__{k}"
-    if col not in df.columns:
-        continue
-    player_avgs[k] = safe_group_mean(player_rows[col])
-
-# -----------------------------------------------------------------------------
-# SEASON AVERAGES — TEAM (reconstructed by summing per game, then averaging)
-# -----------------------------------------------------------------------------
-team_rows = df[df[TEAM_COL].astype(str) == str(team_pick)].copy()
-
-# Sum each game over all players, then average those game totals
-team_game_sums = (
-    team_rows
-    .groupby("_game_id")
-    .agg({ (col if col.startswith("__") else f"__{k}"): "sum"
-           for k, col in resolved_stat_cols.items()
-         })
-)
-
-team_avgs: Dict[str, float] = {}
-for k, colname in resolved_stat_cols.items():
-    col = colname if colname.startswith("__") else f"__{k}"
-    if col in team_game_sums.columns:
-        team_avgs[k] = float(team_game_sums[col].mean())
+# If explicit Top7 list had <7, fill up from best minutes/usage to reach 7
+if len(df_top7) < 7 and not df_other.empty:
+    need = 7 - len(df_top7)
+    # fallback: highest MIN (if exists), else highest of the selected stat
+    if MIN_COL and MIN_COL in team_df.columns:
+        extra_order = df_other.sort_values(by="MIN" if "MIN" in df_other.columns else stat_selected, ascending=False)
     else:
-        team_avgs[k] = np.nan
+        extra_order = df_other.sort_values(by=stat_selected, ascending=False)
+    take = extra_order.head(need).copy()
+    take["IsTop7"] = True
+    df_top7 = pd.concat([df_top7, take], ignore_index=True)
+    df_other = team_player_avg[~team_player_avg["Player"].isin(df_top7["Player"])].copy()
 
-# Guard against 0/NaN for share calc
-def pct_share(player_v: float, team_v: float) -> float:
-    if not np.isfinite(player_v) or not np.isfinite(team_v) or team_v <= 0:
-        return np.nan
-    return float(player_v / team_v * 100.0)
+# Build an "Other" aggregate row (averages sum) for the wheel
+other_row = None
+if include_other and not df_other.empty:
+    sums = df_other[STAT_COLS].sum(numeric_only=True)
+    other_row = pd.DataFrame([{"Player": "Other"} | sums.to_dict()])
 
-share_rows = []
-for k in resolved_stat_cols.keys():
-    pv = player_avgs.get(k, np.nan)
-    tv = team_avgs.get(k, np.nan)
-    share_rows.append((k, pv, tv, pct_share(pv, tv)))
+# ---------------------------------------------------------
+# TOP 7 — AVERAGES TABLE
+# ---------------------------------------------------------
+st.subheader(f"Top 7 — {team_selected}")
+cols_to_show = ["Player"] + STAT_COLS
+top7_table = df_top7.sort_values(by=stat_selected, ascending=False)[cols_to_show].reset_index(drop=True)
+st.dataframe(top7_table, use_container_width=True)
 
-summary_df = pd.DataFrame(share_rows, columns=["Stat", "Player Avg", "Team Avg", "% of Team"])
-summary_df_display = summary_df.copy()
-summary_df_display["Player Avg"] = summary_df_display["Player Avg"].round(2)
-summary_df_display["Team Avg"]   = summary_df_display["Team Avg"].round(2)
-summary_df_display["% of Team"]  = summary_df_display["% of Team"].round(1)
+# ---------------------------------------------------------
+# WHEEL (PIE) — PLAYER SHARE OF TEAM FOR SELECTED STAT
+# ---------------------------------------------------------
+st.markdown("---")
+st.subheader(f"Share of Team — {stat_selected}")
 
-# -----------------------------------------------------------------------------
-# LAYOUT
-# -----------------------------------------------------------------------------
-c1, c2 = st.columns([1,1])
+# Build wheel data = Top7 + optional Other
+wheel_df = df_top7[["Player", stat_selected]].copy()
+if other_row is not None:
+    wheel_df = pd.concat([wheel_df, other_row[["Player", stat_selected]]], ignore_index=True)
+
+# Use non-negative values only
+wheel_df[stat_selected] = wheel_df[stat_selected].clip(lower=0)
+team_total_for_stat = float(wheel_df[stat_selected].sum())
+
+if team_total_for_stat <= 0:
+    st.info(f"No positive values for {stat_selected} to render a wheel.")
+else:
+    wheel_df["Share"] = wheel_df[stat_selected] / team_total_for_stat
+    pie = px.pie(
+        wheel_df,
+        names="Player",
+        values="Share",
+        hole=0.35,
+    )
+    pie.update_traces(textposition="inside", texttemplate="%{label}<br>%{percent:.1%}")
+    pie.update_layout(margin=dict(l=10, r=10, t=10, b=10))
+    st.plotly_chart(pie, use_container_width=True)
+
+# ---------------------------------------------------------
+# TOP-7 vs TEAM — QUICK READ + BAR
+# ---------------------------------------------------------
+st.markdown("---")
+st.subheader("Top-7 vs Team — selected stat")
+
+top7_sum = float(df_top7[stat_selected].clip(lower=0).sum())
+team_sum = float(team_player_avg[stat_selected].clip(lower=0).sum())
+top7_pct = (top7_sum / team_sum * 100.0) if team_sum > 0 else 0.0
+
+c1, c2 = st.columns([1, 2])
 with c1:
-    st.subheader(f"{player_pick} — Season Averages (per game)")
-    st.dataframe(summary_df_display, use_container_width=True)
-
+    st.metric("Top-7 Contribution", f"{top7_pct:.1f}%")
 with c2:
-    st.subheader("Share of Team — Wheel")
-    if wheel_stats:
-        # Build pie parts
-        labels, values = [], []
-        for k in wheel_stats:
-            pv = player_avgs.get(k, np.nan)
-            tv = team_avgs.get(k, np.nan)
-            pct = pct_share(pv, tv)
-            if np.isfinite(pct) and pct > 0:
-                labels.append(k)
-                values.append(pct)
-        if values:
-            fig, ax = plt.subplots(figsize=(4.5, 4.5))
-            wedges, texts, autotexts = ax.pie(
-                values,
-                labels=[f"{lab} ({v:.1f}%)" for lab, v in zip(labels, values)],
-                autopct=None,
-                startangle=90,
-            )
-            ax.axis('equal')
-            st.pyplot(fig, clear_figure=True)
-        else:
-            st.info("No valid stats selected for wheel (team averages may be 0/NaN).")
+    bar = go.Figure()
+    bar.add_bar(name="Top 7", x=["Top-7 vs Team"], y=[top7_sum])
+    bar.add_bar(name="Other", x=["Top-7 vs Team"], y=[max(team_sum - top7_sum, 0.0)])
+    bar.update_layout(barmode="stack", showlegend=True, margin=dict(l=10, r=10, t=10, b=10))
+    st.plotly_chart(bar, use_container_width=True)
 
+# ---------------------------------------------------------
+# NON-TOP-7 TABLE (optional detail)
+# ---------------------------------------------------------
+with st.expander("Other (non-Top-7) — per-player averages", expanded=False):
+    if df_other.empty:
+        st.write("No additional players.")
+    else:
+        other_table = df_other.sort_values(by=stat_selected, ascending=False)[cols_to_show].reset_index(drop=True)
+        st.dataframe(other_table, use_container_width=True)
+
+# ---------------------------------------------------------
+# NOTES
+# ---------------------------------------------------------
 st.markdown("---")
-
-# Extra: quick context cards
-left, right = st.columns([1,1])
-with left:
-    top7_flag = bool(player_rows["_Top7"].any()) if TOP7_COL else False
-    st.markdown(f"**Team:** {team_pick}")
-    st.markdown(f"**Top-7:** {'Yes' if top7_flag else 'No'}")
-with right:
-    # Quick efficiency-style derived stats if available
-    extras = []
-    if all(x in player_avgs for x in ("FGM","FGA")) and player_avgs["FGA"] and np.isfinite(player_avgs["FGA"]):
-        extras.append(f"FG%: {100*player_avgs['FGM']/max(1e-9,player_avgs['FGA']):.1f}%")
-    if all(x in player_avgs for x in ("3PM","3PA")) and player_avgs["3PA"] and np.isfinite(player_avgs["3PA"]):
-        extras.append(f"3P%: {100*player_avgs['3PM']/max(1e-9,player_avgs['3PA']):.1f}%")
-    if all(x in player_avgs for x in ("FTM","FTA")) and player_avgs["FTA"] and np.isfinite(player_avgs["FTA"]):
-        extras.append(f"FT%: {100*player_avgs['FTM']/max(1e-9,player_avgs['FTA']):.1f}%")
-    if "MIN" in player_avgs and np.isfinite(player_avgs["MIN"]):
-        extras.append(f"MIN: {player_avgs['MIN']:.1f}")
-    st.markdown("**Quick Glance:** " + (", ".join(extras) if extras else "—"))
-
-# -----------------------------------------------------------------------------
-# DOWNLOADS
-# -----------------------------------------------------------------------------
-st.markdown("---")
-csv_name = f"{team_pick}_{player_pick}_averages_and_share.csv".replace(" ", "_")
-st.download_button(
-    "Download player averages & share CSV",
-    data=summary_df_display.to_csv(index=False).encode("utf-8"),
-    file_name=csv_name,
-    mime="text/csv"
+st.caption(
+    "Notes:\n"
+    "- Top 7 first uses the ‘Top 7’ column if present; otherwise falls back to highest average minutes, then starters, then games played.\n"
+    "- Averages are per-player over all rows for the selected team. The wheel shows each player’s share of the team’s summed averages for the chosen stat.\n"
+    "- The ‘Other’ slice aggregates all non-Top-7 players."
 )
-
