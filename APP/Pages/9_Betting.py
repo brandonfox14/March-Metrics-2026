@@ -104,16 +104,6 @@ def clean_rank_value(x) -> float:
     except Exception:
         return 51.0
 
-def extract_top50_from_row(row: pd.Series) -> List[Tuple[str, int]]:
-    out = []
-    for c in row.index:
-        cu = c.upper()
-        if "RANK" in cu or cu.endswith(" RANK") or cu.endswith("_RANK"):
-            rv = clean_rank_value(row.get(c))
-            if rv <= 50:
-                out.append((c, int(rv)))
-    return sorted(out, key=lambda z: z[1])
-
 def normal_cdf(x):
     return 0.5 * (1.0 + np.math.erf(x / np.sqrt(2.0)))
 
@@ -141,10 +131,22 @@ def impute_numeric_with_zero_missing(df: pd.DataFrame, numeric_cols: List[str], 
         out[c] = pd.to_numeric(out[c], errors="coerce")
     return out
 
+def extract_top50_any(row: pd.Series) -> List[Tuple[str, int]]:
+    out = []
+    for c in row.index:
+        cu = c.strip()
+        cu_upper = cu.upper()
+        if ("RANK" in cu_upper) or cu_upper.endswith("_RANK"):
+            rv = clean_rank_value(row.get(c))
+            if rv <= 50:
+                out.append((c, int(rv)))
+    return sorted(out, key=lambda z: z[1])
+
 # =========================================================
 # LOAD DATA
 # =========================================================
-schedule_df = load_csv(SCHEDULE_FILE)
+schedule_df_raw = load_csv(SCHEDULE_FILE)  # keep raw for drilldown lookup
+schedule_df = None if schedule_df_raw is None else schedule_df_raw.copy()
 daily_df    = load_csv(DAILY_FILE)
 if schedule_df is None or daily_df is None:
     st.stop()
@@ -175,7 +177,7 @@ if team_col is None or opp_col is None or date_col is None:
 schedule_df["__Date"] = parse_mdy(schedule_df[date_col])
 schedule_df = schedule_df.dropna(subset=["__Date"]).copy()
 
-# Deduplicate mirrored fixtures
+# Deduplicate mirrored fixtures for scoring (keep one), but retain raw for drilldown
 seen = set()
 keep_idx = []
 for idx, r in schedule_df.iterrows():
@@ -216,8 +218,6 @@ for c in daily_df.columns:
         except Exception:
             pass
 daily_numeric_cols = list(dict.fromkeys(daily_numeric_cols + obj_as_num))
-
-# drop targets
 for drop_c in [d_pts, d_opp_pts]:
     if drop_c in daily_numeric_cols:
         daily_numeric_cols.remove(drop_c)
@@ -254,7 +254,6 @@ def get_team_profile(team: str) -> pd.Series:
     return global_medians
 
 def opp_base_col(col: str) -> Optional[str]:
-    # Map OPP_* columns to the base column name (e.g., OPP_FGM -> FGM)
     if col.upper().startswith("OPP_"):
         return col[4:]
     return None
@@ -262,12 +261,10 @@ def opp_base_col(col: str) -> Optional[str]:
 # =========================================================
 # CATEGORY AUGMENTATION FOR ENCODER
 # =========================================================
-def schedule_like_daily(schedule_df: pd.DataFrame) -> pd.DataFrame:
+def schedule_like_daily(schedule_df_: pd.DataFrame) -> pd.DataFrame:
     rows = []
-    for _, r in schedule_df.iterrows():
-        row = {}
-        for c in daily_numeric_cols:
-            row[c] = np.nan
+    for _, r in schedule_df_.iterrows():
+        row = {c: np.nan for c in daily_numeric_cols}
         mapping = {
             d_team: team_col,
             d_opp: opp_col,
@@ -280,10 +277,7 @@ def schedule_like_daily(schedule_df: pd.DataFrame) -> pd.DataFrame:
         }
         for c in cat_cols:
             src = mapping.get(c, None)
-            if src and src in r.index:
-                row[c] = str(r[src])
-            else:
-                row[c] = ""
+            row[c] = str(r[src]) if src and src in r.index else ""
         rows.append(row)
     return pd.DataFrame(rows, columns=list(dict.fromkeys(daily_numeric_cols + cat_cols)))
 
@@ -309,8 +303,6 @@ preproc = ColumnTransformer(
 
 # Fit encoder on (train rows + schedule categories)
 preproc.fit(pd.concat([df_train[daily_numeric_cols + cat_cols], sched_aug_df], ignore_index=True))
-
-# Transform real training rows
 X_train = preproc.transform(df_train[daily_numeric_cols + cat_cols])
 
 # Win label
@@ -381,76 +373,55 @@ with colB:
 with colC:
     ladder_start = st.selectbox("Ladder Starter", ["No","Yes"], index=1)
     ladder_cont  = st.selectbox("Ladder Continuation", ["No","Yes"], index=0)
-    ladder_cont_amt = st.number_input("Ladder Continuation Units (excluded from base)", min_value=0.0, value=0.0, step=1.0)
+
+# Ladder amounts (starter ≤ 10% bankroll, continuation free entry)
+max_ladder_start = max(0.0, round(units_base * 0.10, 2))
+colL1, colL2 = st.columns(2)
+with colL1:
+    ladder_start_amt = st.slider("Ladder Starter Units (≤10% bankroll)", 0.0, float(max_ladder_start), min(float(max_ladder_start), 5.0), 0.5)
+with colL2:
+    ladder_cont_amt = st.number_input("Ladder Continuation Units (excluded from slate)", min_value=0.0, value=0.0, step=0.5)
 
 colD, colE = st.columns(2)
 with colD:
     min_bets, max_bets = st.slider("Bets minimum / maximum", 4, 100, (10, 25))
 with colE:
-    st.caption("No hard per-bet cap; stakes diversify by edge automatically.")
+    st.caption("Min stake per bet is 0.5u. No hard per-bet cap; diversification via edges.")
 
-effective_units = max(0.0, units_base - (ladder_cont_amt if ladder_cont == "Yes" else 0.0))
-st.info(f"Effective units for slate (excludes ladder continuation): {effective_units:.2f}")
+# Effective slate bankroll excludes both ladder buckets
+effective_units = max(0.0, units_base - (ladder_start_amt if ladder_start == "Yes" else 0.0) - (ladder_cont_amt if ladder_cont == "Yes" else 0.0))
+st.info(f"Effective units for slate (excludes ladders): {effective_units:.2f}")
 
 # =========================================================
 # SCHEDULE → FEATURE with TEAM/OPP PROFILES
 # =========================================================
 def schedule_row_to_feature(row: pd.Series) -> pd.DataFrame:
-    """
-    Build a one-row dataframe with numeric features populated from:
-      - schedule value if present,
-      - else TEAM profile,
-      - else (for OPP_* columns) OPPONENT profile on base column,
-      - else global median.
-    Categoricals are copied from schedule mapping.
-    """
     t = str(row[team_col]).strip()
     o = str(row[opp_col]).strip()
     team_prof = get_team_profile(t)
     opp_prof  = get_team_profile(o)
-
     data = {}
-    # numerics
     for c in daily_numeric_cols:
-        # schedule-specified?
         val = row.get(c) if c in row.index else np.nan
         val = pd.to_numeric(val, errors="coerce")
         if pd.notna(val):
             data[c] = float(val)
             continue
-        # OPP_ mapping
         base = opp_base_col(c)
         if base is not None:
-            # use opponent's value for the base column if available
-            if base in opp_prof.index and pd.notna(opp_prof[base]):
-                data[c] = float(opp_prof[base])
-            else:
-                data[c] = float(global_medians.get(c, np.nan))
+            data[c] = float(opp_prof.get(base, global_medians.get(c, np.nan)))
             continue
-        # team profile fallback
-        if c in team_prof.index and pd.notna(team_prof[c]):
-            data[c] = float(team_prof[c])
-        else:
-            data[c] = float(global_medians.get(c, np.nan))
-
-    # categoricals
+        data[c] = float(team_prof.get(c, global_medians.get(c, np.nan)))
     mapping = {
-        d_team: team_col,
-        d_opp: opp_col,
+        d_team: team_col, d_opp: opp_col,
         "Coach Name": coach_col, "Coach": coach_col, "Coach_Name": coach_col,
         "Opponent Coach": opp_coach_col, "Opp Coach": opp_coach_col,
-        "Conference": conf_col,
-        "Opponent Conference": opp_conf_col, "Opp Conference": opp_conf_col,
-        "HAN": han_col, "Home/Away": han_col, "HomeAway": han_col,
-        "Location": han_col, "Loc": han_col
+        "Conference": conf_col, "Opponent Conference": opp_conf_col, "Opp Conference": opp_conf_col,
+        "HAN": han_col, "Home/Away": han_col, "HomeAway": han_col, "Location": han_col, "Loc": han_col
     }
     for c in cat_cols:
         src = mapping.get(c, None)
-        if src and src in row.index:
-            data[c] = str(row.get(src))
-        else:
-            data[c] = ""
-
+        data[c] = str(row.get(src)) if (src and src in row.index) else ""
     one = pd.DataFrame([data], columns=list(dict.fromkeys(daily_numeric_cols + cat_cols)))
     return one
 
@@ -570,7 +541,7 @@ if pred_df.empty:
     st.stop()
 
 # =========================================================
-# SLATE CONSTRUCTION (diversified staking by edge)
+# SLATE CONSTRUCTION (diversified staking by edge; min 0.5u)
 # =========================================================
 pred_df["_prio"] = pred_df.apply(
     lambda r: (0 if r["IsTop25"] else 1, 0 if r["IsMM"] else 1, 0 if r["IsP5"] else 1, r["Date"]),
@@ -585,9 +556,29 @@ slate = slate.sort_values(by=["_prio","BestEdge"], ascending=[True, False]).rese
 N = min(max_bets, max(min_bets, len(slate)))
 slate = slate.head(N).copy()
 
-edges_pos = slate["BestEdge"].clip(lower=0.0001)
+edges_pos = slate["BestEdge"].clip(lower=1e-6)
 total_edge = float(edges_pos.sum()) if len(edges_pos) > 0 else 1.0
-slate["Stake"] = (edges_pos / total_edge * effective_units).round(2)
+slate["Stake_raw"] = edges_pos / total_edge * effective_units
+
+# round to nearest 0.5u and renormalize to hit bankroll
+slate["Stake"] = (slate["Stake_raw"] * 2).round() / 2.0
+def renorm_half_units(df, target):
+    diff = round(target - float(df["Stake"].sum()), 2)
+    # adjust in 0.5 increments
+    step = 0.5 if diff > 0 else -0.5
+    idx = 0
+    order = df.sort_values("BestEdge", ascending=False).index.tolist()
+    while abs(diff) >= 0.49 and idx < len(order) * 5:
+        i = order[idx % len(order)]
+        newv = df.at[i, "Stake"] + step
+        if newv >= 0.5:    # enforce min 0.5
+            df.at[i, "Stake"] = newv
+            diff = round(target - float(df["Stake"].sum()), 2)
+        idx += 1
+    return df
+if not slate.empty:
+    slate.loc[slate["Stake"] < 0.5, "Stake"] = 0.5
+    slate = renorm_half_units(slate, effective_units)
 
 # =========================================================
 # SUGGESTED SLATE TABLE (clean)
@@ -616,10 +607,10 @@ else:
     plan_rows = [{
         "GAME": f"{r['Team']} vs {r['Opponent']}",
         "BET TYPE": pick_label(r),
-        "BET AMOUNT": f"{r['Stake']} UNITS"
+        "BET AMOUNT": f"{r['Stake']:.1f} UNITS"
     } for _, r in slate.iterrows()]
 
-    if remainder > 0:
+    if remainder >= 0.5:
         ml_cand = pred_df[pred_df["BestMarket"]=="Moneyline"].copy()
         ml_cand = ml_cand.sort_values(["BestProb","BestEdge"], ascending=[False, False])
         if not ml_cand.empty:
@@ -627,7 +618,7 @@ else:
             plan_rows.append({
                 "GAME": f"{top['Team']} vs {top['Opponent']}",
                 "BET TYPE": "Most probable ML (remainder)",
-                "BET AMOUNT": f"{remainder} UNITS"
+                "BET AMOUNT": f"{(round(remainder*2)/2):.1f} UNITS"
             })
             st.info("Remainder assigned to the most probable ML — end of smart bets.")
 
@@ -639,48 +630,54 @@ else:
 # =========================================================
 st.markdown("---")
 st.markdown("### Ladders")
+
 def fmt_price(dec):
     if not np.isfinite(dec):
         return "-110"
     return decimal_to_american(dec)
 
-def pick_ladder(df: pd.DataFrame, exclude_key=None):
+def pick_ladder(df: pd.DataFrame, odds_min: float, odds_max: float, exclude_key=None):
+    """
+    Pick best within decimal-odds window [odds_min, odds_max].
+    """
     cands = []
     for _, r in df.iterrows():
         mkt = r["BestMarket"]
-        if not mkt: continue
+        if not mkt: 
+            continue
         key = (r["Team"], r["Opponent"], r["Date"], mkt)
         if exclude_key and key == exclude_key:
             continue
         dec = r["BestDecOdds"]
         if not np.isfinite(dec):
             if mkt in ("Spread","Over","Under","OU"):
-                dec = 1.909
+                dec = 1.909  # -110 default
             else:
                 continue
-        if 1.67 <= dec <= 2.5:
-            cands.append((r["BestProb"], -abs(dec-2.0), r))
+        if odds_min <= dec <= odds_max:
+            cands.append((r["BestProb"], r))
     if not cands:
         return None
-    cands.sort(key=lambda z: (z[0], z[1]), reverse=True)
-    return cands[0][2]
+    cands.sort(key=lambda z: z[0], reverse=True)
+    return cands[0][1]
 
 c1, c2 = st.columns(2)
 ladder_start_pick, ladder_cont_pick = None, None
 ex_key = None
-if ladder_start == "Yes":
-    ladder_start_pick = pick_ladder(pred_df)
+if ladder_start == "Yes" and ladder_start_amt >= 0.5:
+    ladder_start_pick = pick_ladder(pred_df, 1.83, 3.00)  # -120 .. +200
     if ladder_start_pick is not None:
         ex_key = (ladder_start_pick["Team"], ladder_start_pick["Opponent"], ladder_start_pick["Date"], ladder_start_pick["BestMarket"])
 
-if ladder_cont == "Yes":
-    ladder_cont_pick = pick_ladder(pred_df, exclude_key=ex_key)
+if ladder_cont == "Yes" and ladder_cont_amt >= 0.5:
+    ladder_cont_pick = pick_ladder(pred_df, 1.50, 2.05, exclude_key=ex_key)  # -200 .. +105
 
 with c1:
     st.write("Ladder Starter " + ("(enabled)" if ladder_start == "Yes" else "(disabled)"))
     if ladder_start_pick is not None:
         r = ladder_start_pick
         st.write(f"{r['Date'].strftime('%Y-%m-%d')}: {r['Team']} vs {r['Opponent']} — {r['BestMarket']} @ {fmt_price(r['BestDecOdds'])} — p={r['BestProb']:.2f}")
+        st.write(f"Starter Stake: {ladder_start_amt:.1f} units (already reserved)")
     else:
         st.write("No suitable starter identified.")
 with c2:
@@ -688,23 +685,23 @@ with c2:
     if ladder_cont_pick is not None:
         r = ladder_cont_pick
         st.write(f"{r['Date'].strftime('%Y-%m-%d')}: {r['Team']} vs {r['Opponent']} — {r['BestMarket']} @ {fmt_price(r['BestDecOdds'])} — p={r['BestProb']:.2f}")
-        st.write(f"Continuation Stake: {ladder_cont_amt:.2f} units (excluded from slate units)")
+        st.write(f"Continuation Stake: {ladder_cont_amt:.1f} units (excluded from slate)")
     else:
         st.write("No suitable continuation identified.")
 
 # =========================================================
-# PARLAY IDEAS (above Drilldown) — two-row look per parlay
+# PARLAY IDEAS (above Drilldown) — clear leg lines
 # =========================================================
 st.markdown("---")
 st.markdown("### Parlay Ideas")
-parlay_source = pred_df.sort_values(["BestProb","BestEdge"], ascending=[False, False]).head(20).copy()
+parlay_source = pred_df.sort_values(["BestProb","BestEdge"], ascending=[False, False]).head(24).copy()
 
 min_legs = int(np.interp(homerun, [1, 10], [2, 5]))
 max_legs = min_legs + 1
 
 def build_parlays(df: pd.DataFrame, min_legs: int, max_legs: int, max_sets: int = 3):
     out = []
-    picks = df.head(12).to_dict("records")
+    picks = df.to_dict("records")
     used = set()
     for L in range(min_legs, max_legs + 1):
         if len(out) >= max_sets:
@@ -718,35 +715,67 @@ def build_parlays(df: pd.DataFrame, min_legs: int, max_legs: int, max_sets: int 
             if not np.isfinite(dec):
                 dec = 1.909 if p["BestMarket"] in ("Spread","Over","Under","OU") else np.nan
             if not np.isfinite(dec): continue
-            legs.append(p)
-            acc_prob *= p["BestProb"]
-            acc_dec  *= dec
-            used.add(key)
+            legs.append(p); acc_prob *= p["BestProb"]; acc_dec *= dec; used.add(key)
             if len(legs) >= L: break
         if len(legs) == L and acc_prob > 0:
             out.append((legs, acc_prob, acc_dec))
     return out
+
+def leg_text(p):
+    m = p["BestMarket"]
+    if m in ("Over","Under","OU"):
+        side = m if m in ("Over","Under") else ("Over" if (p["OverProb"] and p["OverProb"]>=0.5) else "Under")
+        val  = int(p["BestLineVal"]) if p["BestLineVal"] is not None else ""
+        return f"{side} {val}"
+    if m == "Spread":
+        sign = "+" if (p['BestLineVal'] is not None and p['BestLineVal'] > 0) else ""
+        return f"{p['Team']} {sign}{p['BestLineVal']}"
+    if m == "Moneyline":
+        return f"{p['Team']} ML"
+    return "Bet"
 
 parlays = build_parlays(parlay_source, min_legs, max_legs, max_sets=3)
 if not parlays:
     st.write("No parlay suggestions currently.")
 else:
     for i, (legs, p_all, dec_all) in enumerate(parlays, 1):
-        with st.expander(f"Parlay {i} — {len(legs)} legs — price {dec_all:.2f} (~{decimal_to_american(dec_all)}) — hit prob ~{p_all:.2f}", expanded=False):
-            team_row = {f"Leg {j+1} Team 1": f"{leg['Team']}" for j, leg in enumerate(legs)}
-            opp_row  = {f"Leg {j+1} Team 2": f"{leg['Opponent']}" for j, leg in enumerate(legs)}
-            pts_row  = {f"Leg {j+1} Team 1 pts": f"{leg['Pred_Points']}" for j, leg in enumerate(legs)}
-            opp_pts_row = {f"Leg {j+1} Team 2 pts": f"{leg['Pred_Opp_Points']}" for j, leg in enumerate(legs)}
-            st.write(pd.DataFrame([team_row, opp_row]))
-            st.write(pd.DataFrame([pts_row, opp_pts_row]))
-            for leg in legs:
-                st.write(f"• {leg['Team']} vs {leg['Opponent']} — {leg['BestMarket']} @ {decimal_to_american(leg['BestDecOdds'])} (p={leg['BestProb']:.2f})")
+        with st.expander(f"Parlay {i} — {len(legs)} legs — {decimal_to_american(dec_all)} ({dec_all:.2f} dec) — hit p≈{p_all:.2f}", expanded=False):
+            top_row = {f"Leg {j+1} Team 1": f"{leg['Team']}" for j, leg in enumerate(legs)}
+            bot_row = {f"Leg {j+1} Team 2": f"{leg['Opponent']}" for j, leg in enumerate(legs)}
+            pts_row = {f"Leg {j+1} Team 1 pts": f"{leg['Pred_Points']}" for j, leg in enumerate(legs)}
+            pts2_row= {f"Leg {j+1} Team 2 pts": f"{leg['Pred_Opp_Points']}" for j, leg in enumerate(legs)}
+            st.write(pd.DataFrame([top_row, bot_row]))
+            st.write(pd.DataFrame([pts_row, pts2_row]))
+            leg_table = []
+            for j, leg in enumerate(legs, 1):
+                leg_table.append({
+                    "Leg": j,
+                    "Matchup": f"{leg['Team']} vs {leg['Opponent']}",
+                    "Market": leg_text(leg),
+                    "Price (dec)": f"{(1.909 if not np.isfinite(leg['BestDecOdds']) and leg['BestMarket'] in ('Spread','Over','Under','OU') else leg['BestDecOdds']):.3f}",
+                    "Price (US)": decimal_to_american(leg['BestDecOdds'] if np.isfinite(leg['BestDecOdds']) else 1.909),
+                    "Model p": f"{leg['BestProb']:.2f}"
+                })
+            st.dataframe(pd.DataFrame(leg_table), use_container_width=True)
 
 # =========================================================
-# DRILLDOWN
+# DRILLDOWN — show both teams' top-50 ranks (pull opponent row from RAW schedule)
 # =========================================================
 st.markdown("---")
 st.markdown("### Drilldown (click a matchup for team details and Top-50 categories)")
+
+def find_opponent_row_raw(team: str, opp: str, date_val: pd.Timestamp) -> Optional[pd.Series]:
+    if team_col not in schedule_df_raw.columns or opp_col not in schedule_df_raw.columns:
+        return None
+    # Find the row where the perspective is the opponent (opp vs team) on the same date
+    df = schedule_df_raw.copy()
+    df["__Date"] = parse_mdy(df[date_col])
+    mask = (df[team_col].astype(str).str.strip() == opp) & \
+           (df[opp_col].astype(str).str.strip() == team) & \
+           (df["__Date"].dt.date == date_val.date())
+    res = df.loc[mask]
+    return res.iloc[0] if not res.empty else None
+
 for _, r in pred_df.iterrows():
     label = (
         f"{r['Date'].strftime('%b %d, %Y')} — "
@@ -754,30 +783,34 @@ for _, r in pred_df.iterrows():
         f"Pred {int(round(r['Pred_Points']))}-{int(round(r['Pred_Opp_Points']))}"
     )
     with st.expander(label, expanded=False):
-        rowobj = r["RowObj"]
-        t_conf = rowobj.get(conf_col) if conf_col in rowobj.index else ""
-        o_conf = rowobj.get(opp_conf_col) if opp_conf_col in rowobj.index else ""
-        t_coach = rowobj.get(coach_col) if coach_col in rowobj.index else ""
-        o_coach = rowobj.get(opp_coach_col) if opp_coach_col in rowobj.index else ""
-        t_wins = rowobj.get("Wins") if "Wins" in rowobj.index else None
-        t_losses = rowobj.get("Losses") if "Losses" in rowobj.index else None
+        row_team = r["RowObj"]
+        row_opp  = find_opponent_row_raw(r["Team"], r["Opponent"], r["Date"])
+
+        # Meta
+        t_conf = row_team.get(conf_col) if conf_col in row_team.index else ""
+        o_conf = (row_team.get(opp_conf_col) if opp_conf_col in row_team.index else
+                  (row_opp.get(conf_col) if (row_opp is not None and conf_col in row_opp.index) else ""))
+
+        t_coach = row_team.get(coach_col) if coach_col in row_team.index else ""
+        o_coach = (row_team.get(opp_coach_col) if opp_coach_col in row_team.index else
+                   (row_opp.get(coach_col) if (row_opp is not None and coach_col in row_opp.index) else ""))
 
         cL, cR = st.columns(2)
         with cL:
             st.write(f"**{r['Team']}**")
             st.write(f"Coach: {t_coach}")
             st.write(f"Conference: {t_conf}")
-            if t_wins is not None:
-                st.write(f"Record: {t_wins}-{t_losses if t_losses is not None else ''}")
         with cR:
             st.write(f"**{r['Opponent']}**")
             st.write(f"Coach: {o_coach}")
             st.write(f"Conference: {o_conf}")
 
         st.markdown("---")
-        st.write("Top-50 Rank Categories")
+        st.write("Top-50 Rank Categories (≤ 50)")
 
-        left_top50 = extract_top50_from_row(rowobj)
+        left_top50 = extract_top50_any(row_team)
+        right_top50 = extract_top50_any(row_opp) if row_opp is not None else []
+
         cL2, cR2 = st.columns(2)
         with cL2:
             st.write(f"**{r['Team']}**")
@@ -786,21 +819,12 @@ for _, r in pred_df.iterrows():
             else:
                 st.dataframe(pd.DataFrame([{"Category": k, "Rank": v} for k, v in left_top50]),
                              use_container_width=True)
-
-        opp_top50 = []
-        for k in rowobj.index:
-            ku = k.upper()
-            if "OPP_" in ku and ("RANK" in ku or ku.endswith(" RANK") or ku.endswith("_RANK")):
-                rv = clean_rank_value(rowobj.get(k))
-                if rv <= 50:
-                    opp_top50.append((k, int(rv)))
-        opp_top50 = sorted(opp_top50, key=lambda z: z[1])
         with cR2:
             st.write(f"**{r['Opponent']}**")
-            if not opp_top50:
+            if not right_top50:
                 st.write("None in top 50")
             else:
-                st.dataframe(pd.DataFrame([{"Category": k, "Rank": v} for k, v in opp_top50]),
+                st.dataframe(pd.DataFrame([{"Category": k, "Rank": v} for k, v in right_top50]),
                              use_container_width=True)
 
 # =========================================================
