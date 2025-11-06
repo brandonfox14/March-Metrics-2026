@@ -1,30 +1,30 @@
 Players,Team,Location,Opponent,Opponent Conference,Power,Top 25,,STR,Min,FGM,FGA,3M,3A,FTM,FTA,OReb,DReb,AST,STL,TO,PF,PTS,OPP ACTIVE VALUE,OPP HISTORICAL VALUE,TEAM ACTIVE VALUE,TEAM HISTORICAL VALUE,Doubles,Double Doube,Triple Double,0-3+ FG,Perfect 2 FG min 3,Perfect 3 FG min 3,Points Leader,Def Reb Leader,Off Reb Leader,Steal Leader,Assist Leader,Foul Trouble,20+ minutes,20+ points,SM,Line,Clutch ,Overtime,Attendance,Player Points,
-Noah Feddersen,North Dakota St.,AWAY,Oregon St.,WCC,0,0,Starter,1,25,4,13,1,7,0,0,2,2,3,3,0,3,9,0,2.096,0,12.565,0,0,0,0,0,0,0,0,0,1,0,0,1,0,-2,9.5,1,0,"2,829",0,TRUE
-Trevian Carson,North Dakota St.,AWAY,Oregon St.,WCC,0,0,Starter,1,29,3,8,1,4,0,0,5,1,3,0,2,4,7,0,2.096,0,12.565,0,0,0,0,0,0,0,0,1,0,0,1,1,0,-2,9.5,1,0,"2,829",0,TRUE
-Damari Wheeler-Thomas,North Dakota St.,AWAY,Oregon St.,WCC,0,0,Starter,1,21,2,7,2,4,0,0,1,4,3,1,0,3,6,0,2.096,0,12.565,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-2,9.5,1,0,"2,829",0,TRUE
-Tay Smith,North Dakota St.,AWAY,Oregon St.,WCC,0,0,Starter,1,31,2,8,1,7,0,0,0,3,2,1,0,1,5,0,2.096,0,12.565,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-2,9.5,1,0,"2,829",0,TRUE
-Markhi Strickland,North Dakota St.,AWAY,Oregon St.,WCC,0,0,Starter,1,28,7,10,0,0,3,6,1,1,1,0,0,4,17,0,2.096,0,12.565,1,0,0,0,0,0,1,0,0,0,0,1,1,0,-2,9.5,1,0,"2,829",0,TRUE
-Treyson Anderson,North Dakota St.,AWAY,Oregon St.,WCC,0,0,Bench,0,15,4,7,1,2,1,2,1,2,1,0,2,1,10,0,2.096,0,12.565,1,0,0,0,0,0,0,0,0,0,0,0,0,0,-2,9.5,1,0,"2,829",0,TRUE
-Carson Smith,North Dakota St.,AWAY,Oregon St.,WCC,0,0,Bench,0,6,1,2,0,1,0,0,0,1,0,0,0,1,2,0,2.096,0,12.565,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-2,9.5,1,0,"2,829",0,FALSE
-Andy Stefonowicz,North Dakota St.,AWAY,Oregon St.,WCC,0,0,Bench,0,30,3,9,0,5,3,3,0,7,4,1,3,2,9,0,2.096,0,12.565,0,0,0,0,0,1,0,0,0,0,0,0,1,0,-2,9.5,1,0,"2,829",0,TRUE
-Max Majerle,North Dakota St.,AWAY,Oregon St.,WCC,0,0,Bench,0,9,0,2,0,1,0,0,0,1,0,1,0,1,0,0,2.096,0,12.565,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-2,9.5,1,0,"2,829",0,FALSE
-Emil Skytta,North Dakota St.,AWAY,Oregon St.,WCC,0,0,Bench,0,6,0,0,0,0,0,0,1,1,0,0,0,2,0,0,2.096,0,12.565,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-2,9.5,1,0,"2,829",0,FALSE
-Johan Munch,Oregon St.,HOME,North Dakota St.,Summit,0,0,Starter,1,15,3,5,0,1,4,7,0,3,0,0,0,3,10,0,12.565,0,2.096,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,-9.5,1,0,"2,829",0,TRUE
-Yaak Yaak,Oregon St.,HOME,North Dakota St.,Summit,0,0,Starter,1,24,2,3,0,0,6,6,0,2,0,1,0,1,10,0,12.565,0,2.096,1,0,0,0,0,1,0,0,0,0,0,0,1,0,2,-9.5,1,0,"2,829",0,TRUE
-Matija Samar,Oregon St.,HOME,North Dakota St.,Summit,0,0,Starter,1,21,3,6,3,6,0,0,0,3,0,1,3,1,9,0,12.565,0,2.096,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,-9.5,1,0,"2,829",0,TRUE
-Dez White,Oregon St.,HOME,North Dakota St.,Summit,0,0,Starter,1,33,3,8,2,4,2,2,0,4,5,2,3,2,10,0,12.565,0,2.096,1,0,0,0,0,0,0,0,0,0,1,0,1,0,2,-9.5,1,0,"2,829",0,TRUE
-Josiah Lake II,Oregon St.,HOME,North Dakota St.,Summit,0,0,Starter,1,35,3,5,0,1,4,5,0,8,1,1,3,2,10,0,12.565,0,2.096,1,0,0,0,0,0,0,1,0,0,0,0,1,0,2,-9.5,1,0,"2,829",0,TRUE
-Olavi Suutela,Oregon St.,HOME,North Dakota St.,Summit,0,0,Bench,0,15,1,2,0,1,0,0,0,0,1,0,0,0,2,0,12.565,0,2.096,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,-9.5,1,0,"2,829",0,FALSE
-Isaiah Sy,Oregon St.,HOME,North Dakota St.,Summit,0,0,Bench,0,20,3,6,3,6,3,4,1,4,3,0,2,2,12,0,12.565,0,2.096,1,0,0,0,0,0,0,0,0,0,0,0,1,0,2,-9.5,1,0,"2,829",0,TRUE
-Jorge Diaz Graham,Oregon St.,HOME,North Dakota St.,Summit,0,0,Bench,0,5,0,1,0,0,0,0,0,1,0,0,0,1,0,0,12.565,0,2.096,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,-9.5,1,0,"2,829",0,FALSE
-Noah Amenhauser,Oregon St.,HOME,North Dakota St.,Summit,0,0,Bench,0,9,1,1,0,0,0,0,1,0,0,0,0,1,2,0,12.565,0,2.096,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,-9.5,1,0,"2,829",0,FALSE
-Keziah Ekissi,Oregon St.,HOME,North Dakota St.,Summit,0,0,Bench,0,20,1,7,0,2,0,2,2,2,3,0,1,1,2,0,12.565,0,2.096,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,-9.5,1,0,"2,829",0,TRUE
-0,0,NEUTRAL,North Dakota St.,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.565,0,12.565,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,-9.5,1,0,"2,829",0,FALSE
-0,0,NEUTRAL,North Dakota St.,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.565,0,12.565,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,-9.5,1,0,"2,829",0,FALSE
-0,0,NEUTRAL,North Dakota St.,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.565,0,12.565,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,-9.5,1,0,"2,829",0,FALSE
-0,0,NEUTRAL,North Dakota St.,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.565,0,12.565,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,-9.5,1,0,"2,829",0,FALSE
-0,0,NEUTRAL,North Dakota St.,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.565,0,12.565,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,-9.5,1,0,"2,829",0,FALSE
-0,0,NEUTRAL,North Dakota St.,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.565,0,12.565,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,-9.5,1,0,"2,829",0,FALSE
-0,0,NEUTRAL,North Dakota St.,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.565,0,12.565,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,-9.5,1,0,"2,829",0,FALSE
-0,0,NEUTRAL,North Dakota St.,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.565,0,12.565,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,-9.5,1,0,"2,829",0,FALSE
-0,0,NEUTRAL,North Dakota St.,Summit,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.565,0,12.565,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,-9.5,1,0,"2,829",0,FALSE
+J.C. Riley Jr.,Northwestern St.,AWAY,Texas A&M,SEC,0,0,Starter,1,19,0,2,0,1,2,2,2,2,1,0,1,3,2,0,45.993,0,9.931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-30,21.5,0,0,"7,517",0,TRUE
+Landyn Jumawan,Northwestern St.,AWAY,Texas A&M,SEC,0,0,Starter,1,20,0,5,0,4,1,2,0,3,2,1,1,1,1,0,45.993,0,9.931,0,0,0,1,0,0,0,0,0,0,0,0,1,0,-30,21.5,0,0,"7,517",0,TRUE
+Izzy Miles,Northwestern St.,AWAY,Texas A&M,SEC,0,0,Starter,1,13,1,2,0,0,1,2,0,2,0,0,3,1,3,0,45.993,0,9.931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-30,21.5,0,0,"7,517",0,TRUE
+Chris Mubiru,Northwestern St.,AWAY,Texas A&M,SEC,0,0,Starter,1,27,1,6,1,2,1,4,3,4,3,0,3,2,4,0,45.993,0,9.931,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-30,21.5,0,0,"7,517",0,TRUE
+Micah Thomas,Northwestern St.,AWAY,Texas A&M,SEC,0,0,Starter,1,26,9,16,4,4,6,6,1,0,1,1,3,2,28,0,45.993,0,9.931,1,0,0,0,0,1,1,0,0,0,0,0,1,1,-30,21.5,0,0,"7,517",0,TRUE
+Kordrick Turner,Northwestern St.,AWAY,Texas A&M,SEC,0,0,Bench,0,13,1,1,0,0,0,0,0,3,0,1,1,1,2,0,45.993,0,9.931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-30,21.5,0,0,"7,517",0,FALSE
+Moustapha Loum,Northwestern St.,AWAY,Texas A&M,SEC,0,0,Bench,0,17,3,4,0,0,0,0,0,0,1,1,0,1,6,0,45.993,0,9.931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-30,21.5,0,0,"7,517",0,FALSE
+CJ Larry,Northwestern St.,AWAY,Texas A&M,SEC,0,0,Bench,0,17,0,2,0,1,0,1,0,1,0,2,1,3,0,0,45.993,0,9.931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-30,21.5,0,0,"7,517",0,FALSE
+Justin Redmond,Northwestern St.,AWAY,Texas A&M,SEC,0,0,Bench,0,29,3,11,2,6,0,0,4,2,4,1,3,1,8,0,45.993,0,9.931,0,0,0,0,0,0,0,0,0,0,1,0,1,0,-30,21.5,0,0,"7,517",0,TRUE
+Omar Adegbola,Northwestern St.,AWAY,Texas A&M,SEC,0,0,Bench,0,19,5,9,0,2,4,4,0,4,1,2,1,1,14,0,45.993,0,9.931,1,0,0,0,0,1,0,0,0,0,0,0,0,0,-30,21.5,0,0,"7,517",0,TRUE
+Zach Clemence,Texas A&M,HOME,Northwestern St.,Southland,1,0,Starter,1,17,1,4,0,2,0,0,2,3,1,0,1,1,2,0,9.931,0,45.993,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"7,517",0,TRUE
+Rashaun Agee,Texas A&M,HOME,Northwestern St.,Southland,1,0,Starter,1,19,6,8,0,2,0,1,2,3,1,1,1,1,12,0,9.931,0,45.993,1,0,0,0,1,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"7,517",0,TRUE
+Marcus Hill,Texas A&M,HOME,Northwestern St.,Southland,1,0,Starter,1,26,1,8,0,2,4,4,1,2,3,4,1,1,6,0,9.931,0,45.993,0,0,0,0,0,1,0,0,0,1,0,0,1,0,30,-21.5,0,0,"7,517",0,TRUE
+Jacari Lane,Texas A&M,HOME,Northwestern St.,Southland,1,0,Starter,1,17,4,9,3,6,1,1,0,2,3,1,0,0,12,0,9.931,0,45.993,1,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"7,517",0,TRUE
+Rylan Griffen,Texas A&M,HOME,Northwestern St.,Southland,1,0,Starter,1,22,4,7,1,4,4,4,0,4,4,3,2,2,13,0,9.931,0,45.993,1,0,0,0,1,1,0,0,0,0,1,0,1,0,30,-21.5,0,0,"7,517",0,TRUE
+Federiko Federiko,Texas A&M,HOME,Northwestern St.,Southland,1,0,Bench,0,18,3,4,0,0,2,4,5,3,1,1,1,1,8,0,9.931,0,45.993,0,0,0,0,0,0,0,0,1,0,0,0,0,0,30,-21.5,0,0,"7,517",0,FALSE
+Rubén Dominguez,Texas A&M,HOME,Northwestern St.,Southland,1,0,Bench,0,19,5,8,4,7,4,5,1,0,0,0,0,0,18,0,9.931,0,45.993,1,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"7,517",0,TRUE
+Josh Holloway,Texas A&M,HOME,Northwestern St.,Southland,1,0,Bench,0,18,5,6,1,2,2,2,0,3,4,2,0,1,13,0,9.931,0,45.993,1,0,0,0,1,0,0,0,0,0,1,0,0,0,30,-21.5,0,0,"7,517",0,TRUE
+Pop Isaacs,Texas A&M,HOME,Northwestern St.,Southland,1,0,Bench,0,18,3,8,2,5,0,0,0,1,2,0,3,3,8,0,9.931,0,45.993,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"7,517",0,FALSE
+Jeremiah Green,Texas A&M,HOME,Northwestern St.,Southland,1,0,Bench,0,5,0,1,0,1,0,0,0,0,0,1,0,1,0,0,9.931,0,45.993,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"7,517",0,FALSE
+Ali Dibba,Texas A&M,HOME,Northwestern St.,Southland,1,0,Bench,0,16,1,5,0,0,0,0,0,5,2,0,2,1,2,0,9.931,0,45.993,0,0,0,0,0,0,0,1,0,0,0,0,0,0,30,-21.5,0,0,"7,517",0,FALSE
+0,0,NEUTRAL,Northwestern St.,Southland,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9.931,0,9.931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"7,517",0,FALSE
+0,0,NEUTRAL,Northwestern St.,Southland,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9.931,0,9.931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"7,517",0,FALSE
+0,0,NEUTRAL,Northwestern St.,Southland,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9.931,0,9.931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"7,517",0,FALSE
+0,0,NEUTRAL,Northwestern St.,Southland,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9.931,0,9.931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"7,517",0,FALSE
+0,0,NEUTRAL,Northwestern St.,Southland,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9.931,0,9.931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"7,517",0,FALSE
+0,0,NEUTRAL,Northwestern St.,Southland,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9.931,0,9.931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"7,517",0,FALSE
+0,0,NEUTRAL,Northwestern St.,Southland,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9.931,0,9.931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"7,517",0,FALSE
+0,0,NEUTRAL,Northwestern St.,Southland,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9.931,0,9.931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"7,517",0,FALSE
