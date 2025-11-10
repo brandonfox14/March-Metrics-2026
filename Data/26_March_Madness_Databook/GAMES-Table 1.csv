@@ -1,8 +1,8 @@
-Loyola Chicago,FGM,FGA,3M,3A,FTM,FTA,REB,Oreb,Turn,steal,Cleveland State,FGM,FGA,3M,3A,FTM,FTA,REB,Oreb,Turn,steal,Players,Chat GPT Team,Team,Location,Opponent,Opponent Conference,Conference Game,Power,Top 25,STR/BENCH,,STR,Min,FGM,FGA,3M,3A,FTM,FTA,OReb,DReb,AST,STL,TO,PF,PTS,OPP ACTIVE VALUE,OPP HISTORICAL VALUE,TEAM ACTIVE VALUE,TEAM HISTORICAL VALUE,Doubles,Double Doube,Triple Double,0-3+ FG,Perfect 2 FG min 3,Perfect 3 FG min 3,Points Leader,Def Reb Leader,Off Reb Leader,Steal Leader,Assist Leader,Foul Trouble,20+ minutes,20+ points,SM,Line,Clutch ,Overtime,Attendance,Player Points,Points Loyola Chicago,Points Cleveland St.
+Wofford,FGM,FGA,3M,3A,FTM,FTA,REB,Oreb,Turn,steal,Milwaukee,FGM,FGA,3M,3A,FTM,FTA,REB,Oreb,Turn,steal,Players,Chat GPT Team,Team,Location,Opponent,Opponent Conference,Conference Game,Power,Top 25,STR/BENCH,,STR,Min,FGM,FGA,3M,3A,FTM,FTA,OReb,DReb,AST,STL,TO,PF,PTS,OPP ACTIVE VALUE,OPP HISTORICAL VALUE,TEAM ACTIVE VALUE,TEAM HISTORICAL VALUE,Doubles,Double Doube,Triple Double,0-3+ FG,Perfect 2 FG min 3,Perfect 3 FG min 3,Points Leader,Def Reb Leader,Off Reb Leader,Steal Leader,Assist Leader,Foul Trouble,20+ minutes,20+ points,SM,Line,Clutch ,Overtime,Attendance,Player Points,Points Wofford,Points Milwaukee
 ,,,,,,,,,,,,Line initial,,,,,,,,,Top 25,Active,Historical,MM Team,Conference,Home Location,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Abilene Christian,,,,,,,,,,,Abilene Christian,ACU,,,,,,,,,0,,Abilene Christian - 28.974,NO,WAC,"Abilene, TX",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Air Force,,,,,,,,,,,Air Force,AF,,,,,,,,,0,,Air Force - 5.743,NO,Mountain West,"Colorado Springs, CO",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Akron,,,,,,,,,,,Akron,,,,,,,,,,0,,Akron - 45.996,YES,MAC,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Akron,,,,,,,,,,,Akron,AKR,,,,,,,,,0,,Akron - 45.996,YES,MAC,"Akron, OH",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Alabama,,,,,,,,,,,Alabama,ALA,,,,,,,,,1,,Alabama - 84.245,YES,SEC,"Tuscaloosa, AL",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Alabama A&M,,,,,,,,,,,Alabama A&M,,,,,,,,,,0,,Alabama A&M - 10.112,NO,SWAC,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Alabama St.,,,,,,,,,,,Alabama St.,,,,,,,,,,0,,Alabama St. - 28.14,YES,SWAC,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -19,11 +19,11 @@ Army,,,,,,,,,,,Army,ARMY,,,,,,,,,0,,Army - 17.727,NO,Patriot,"West Point, NY",,,
 Auburn,,,,,,,,,,,Auburn,AUB,,,,,,,,,1,,Auburn - 75.482,YES,SEC,"Auburn, AL",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Austin Peay,,,,,,,,,,,Austin Peay,APSU,,,,,,,,,0,,Austin Peay - 16.897,NO,ASUN,"Clarksville, TN",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Ball St.,,,,,,,,,,,Ball St.,BALL,,,,,,,,,0,,Ball St. - 8.773,NO,MAC,"Muncie, IN",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Baylor,,,,,,,,,,,Baylor,BAY,,,,,,,,,0,,Baylor - 66.073,YES,Big 12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Baylor,,,,,,,,,,,Baylor,BAY,,,,,,,,,0,,Baylor - 66.073,YES,Big 12,"Waco, TX",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Bellarmine,,,,,,,,,,,Bellarmine,BELL,,,,,,,,,0,,Bellarmine - 11.536,NO,ASUN,"Louisville, KY",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Belmont,,,,,,,,,,,Belmont,BEL,,,,,,,,,0,,Belmont - 21.527,NO,Missouri Valley,"Nashville, TN",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Bethune Cookman,,,,,,,,,,,Bethune Cookman,BCU,,,,,,,,,0,,Bethune Cookman - 17.215,NO,SWAC,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Binghamton,,,,,,,,,,,Binghamton,,,,,,,,,,0,,Binghamton - 8.791,NO,American East,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Binghamton,,,,,,,,,,,Binghamton,BING,,,,,,,,,0,,Binghamton - 8.791,NO,American East,"Binghamton, NY",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Boise St.,,,,,,,,,,,Boise St.,BOIS,,,,,,,,,0,,Boise St. - 51.908,NO,Mountain West,"Boise, ID",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Boston College,,,,,,,,,,,Boston College,BC,,,,,,,,,0,,Boston College - -4.666,NO,ACC,"Chestnut Hill, MA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Boston University,,,,,,,,,,,Boston University,BU,,,,,,,,,0,,Boston University - 13.941,NO,Patriot,"Boston, MA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -89,7 +89,7 @@ Fairleigh Dickinson,,,,,,,,,,,Fairleigh Dickinson,,,,,,,,,,0,,Fairleigh Dickinso
 FIU,,,,,,,,,,,FIU,,,,,,,,,,0,,FIU - 11.134,NO,CUSA,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Florida,,,,,,,,,,,Florida,FLA,,,,,,,,,1,,Florida - 71.244,YES,SEC,"Gainesville, FL",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Florida A&M,,,,,,,,,,,Florida A&M,,,,,,,,,,0,,Florida A&M - 7.86,NO,SWAC,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Florida Atlantic,,,,,,,,,,,Florida Atlantic,FAU,,,,,,,,,0,,Florida Atlantic - 57.266,NO,American,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Florida Atlantic,,,,,,,,,,,Florida Atlantic,FAU,,,,,,,,,0,,Florida Atlantic - 57.266,NO,American,"Boca Raton, FL",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Florida Gulf Coast,,,,,,,,,,,Florida Gulf Coast,FGCU,,,,,,,,,0,,Florida Gulf Coast - 16.812,NO,ASUN,"Fort Myers, FL",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Florida St.,,,,,,,,,,,Florida St.,FSU,,,,,,,,,0,,Florida St. - 6.403,NO,ACC,"Tallahassee, FL",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Fordham,,,,,,,,,,,Fordham,FOR,,,,,,,,,0,,Fordham - 9.418,NO,A10,"Bronx, NY",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -135,7 +135,7 @@ James Madison,,,,,,,,,,,James Madison,JMU,,,,,,,,,0,,James Madison - 33.861,NO,S
 Kansas,,,,,,,,,,,Kansas,KU,,,,,,,,,1,,Kansas - 52.187,YES,Big 12,"Lawrence, KS",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Kansas St.,,,,,,,,,,,Kansas St.,KSU,,,,,,,,,0,,Kansas St. - 16.237,NO,Big 12,"Manhattan, KS",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Kennesaw St.,,,,,,,,,,,Kennesaw St.,KENN,,,,,,,,,0,,Kennesaw St. - 22.125,NO,CUSA,"Kennesaw, GA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Kent St.,,,,,,,,,,,Kent St.,KENT,,,,,,,,,0,,Kent St. - 34.322,NO,MAC,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Kent St.,,,,,,,,,,,Kent St.,KENT,,,,,,,,,0,,Kent St. - 34.322,NO,MAC,"Kent, OH",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Kentucky,,,,,,,,,,,Kentucky,UK,,,,,,,,,1,,Kentucky - 51.085,YES,SEC,"Lexington, KY",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 La Salle,,,,,,,,,,,La Salle,LAS,,,,,,,,,0,,La Salle - 11.448,NO,A10,"Philadelphia, PA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Lafayette,,,,,,,,,,,Lafayette,,,,,,,,,,0,,Lafayette - 9.471,NO,Patriot,"Easton, PA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -154,7 +154,7 @@ Louisiana Monroe,,,,,,,,,,,Louisiana Monroe,,,,,,,,,,0,,Louisiana Monroe - 6.515
 Louisiana Tech,,,,,,,,,,,Louisiana Tech,LT,,,,,,,,,0,,Louisiana Tech - 15.731,NO,CUSA,"Ruston, LA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Louisville,,,,,,,,,,,Louisville,LOU,,,,,,,,,1,,Louisville - 2.453,YES,ACC,"Louisville, KY",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Loyola Chicago,,,,,,,,,,,Loyola Chicago,LUC,,,,,,,,,0,,Loyola Chicago - 41.822,NO,A10,"Chicago, IL",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Loyola Marymount,,,,,,,,,,,Loyola Marymount,,,,,,,,,,0,,Loyola Marymount - 11.676,NO,WCC,"Los Angeles, CA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Loyola Marymount,,,,,,,,,,,Loyola Marymount,LMU,,,,,,,,,0,,Loyola Marymount - 11.676,NO,WCC,"Los Angeles, CA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Loyola MD,,,,,,,,,,,Loyola MD,L-MD,,,,,,,,,0,,Loyola MD - 10.16,NO,Patriot,"Baltimore, MD",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 LSU,,,,,,,,,,,LSU,LSU,,,,,,,,,0,,LSU - 10.328,NO,SEC,"Baton Rouge, LA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Maine,,,,,,,,,,,Maine,,,,,,,,,,0,,Maine - 13.165,NO,American East,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -175,7 +175,7 @@ Miami OH,,,,,,,,,,,Miami OH,M-OH,,,,,,,,,0,,Miami OH - 15.433,NO,MAC,"Oxford, OH
 Michigan,,,,,,,,,,,Michigan,MICH,,,,,,,,,1,,Michigan - 58.895,YES,Big Ten,"Ann Arbor, MI",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Michigan St.,,,,,,,,,,,Michigan St.,MSU,,,,,,,,,1,,Michigan St. - 84.604,YES,Big Ten,"East Lansing, MI",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Middle Tennessee,,,,,,,,,,,Middle Tennessee,MTSU,,,,,,,,,0,,Middle Tennessee - 27.162,NO,CUSA,"Murfreesboro, TN",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Milwaukee,,,,,,,,,,,Milwaukee,,,,,,,,,,0,,Milwaukee - 20.544,NO,Horizon,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Milwaukee,,,,,,,,,,,Milwaukee,MILW,,,,,,,,,0,,Milwaukee - 20.544,NO,Horizon,"Milwaukee, WI",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Minnesota,,,,,,,,,,,Minnesota,MINN,,,,,,,,,0,,Minnesota - -9.18,NO,Big Ten,"Minneapolis, MN",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Mississippi,,,,,,,,,,,Mississippi,MISS,,,,,,,,,0,,Mississippi - 25.285,YES,SEC,"Oxford, MS",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Mississippi St.,,,,,,,,,,,Mississippi St.,MSST,,,,,,,,,0,,Mississippi St. - 43.439,YES,SEC,"Starkville, MS",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -195,7 +195,7 @@ Nebraska,,,,,,,,,,,Nebraska,NEB,,,,,,,,,0,,Nebraska - 8.646,NO,Big Ten,"Lincoln,
 Nebraska Omaha,,,,,,,,,,,Nebraska Omaha,,,,,,,,,,0,,Nebraska Omaha - 27.277,YES,Summit,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Nevada,,,,,,,,,,,Nevada,NEV,,,,,,,,,0,,Nevada - 29.589,NO,Mountain West,"Reno, NV",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 New Hampshire,,,,,,,,,,,New Hampshire,UNH,,,,,,,,,0,,New Hampshire - 10.359,NO,American East,"Durham, NH",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-New Haven,,,,,,,,,,,New Haven,,,,,,,,,,0,,New Haven - 9,NO,NEC,"New Haven, CT",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+New Haven,,,,,,,,,,,New Haven,NHVN,,,,,,,,,0,,New Haven - 9,NO,NEC,"New Haven, CT","West Haven, CT",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 New Mexico,,,,,,,,,,,New Mexico,UNM,,,,,,,,,0,,New Mexico - 47.097,YES,Mountain West,"Albuquerque, NM",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 New Mexico St.,,,,,,,,,,,New Mexico St.,NMSU,,,,,,,,,0,,New Mexico St. - 15.152,NO,CUSA,"Las Cruces, NM",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 New Orleans,,,,,,,,,,,New Orleans,UNO,,,,,,,,,0,,New Orleans - 9.884,NO,Southland,"New Orleans, LA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -234,7 +234,7 @@ Penn,,,,,,,,,,,Penn,PENN,,,,,,,,,0,,Penn - 7.614,NO,Ivy,"Philadelphia, PA",,,,,,
 Penn St.,,,,,,,,,,,Penn St.,PSU,,,,,,,,,0,,Penn St. - 1.023,NO,Big Ten,"University Park, PA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Pepperdine,,,,,,,,,,,Pepperdine,PEPP,,,,,,,,,0,,Pepperdine - 17.68,NO,WCC,"Malibu, CA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Pittsburgh,,,,,,,,,,,Pittsburgh,PITT,,,,,,,,,0,,Pittsburgh - 24.556,NO,ACC,"Pittsburgh, PA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Portland,,,,,,,,,,,Portland,,,,,,,,,,0,,Portland - 10.328,NO,WCC,"Portland, OR",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Portland,,,,,,,,,,,Portland,PORT,,,,,,,,,0,,Portland - 10.328,NO,WCC,"Portland, OR",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Portland St.,,,,,,,,,,,Portland St.,PRST,,,,,,,,,0,,Portland St. - 8.802,NO,Big Sky,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Prairie View A&M,,,,,,,,,,,Prairie View A&M,,,,,,,,,,0,,Prairie View A&M - 7.368,NO,SWAC,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Presbyterian,,,,,,,,,,,Presbyterian,,,,,,,,,,0,,Presbyterian - 19.034,NO,Big South,"Clinton, SC",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -259,15 +259,15 @@ Saint Louis,,,,,,,,,,,Saint Louis,SLU,,,,,,,,,0,,Saint Louis - 27.591,NO,A10,"St
 Saint Mary's,,,,,,,,,,,Saint Mary's,SMC,,,,,,,,,0,,Saint Mary's - 68.726,YES,WCC,"Moraga, CA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Saint Peter's,,,,,,,,,,,Saint Peter's,SPU,,,,,,,,,0,,Saint Peter's - 33.92,NO,MAAC,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Sam Houston St.,,,,,,,,,,,Sam Houston St.,SHSU,,,,,,,,,0,,Sam Houston St. - 18.922,NO,CUSA,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Samford,,,,,,,,,,,Samford,SAM,,,,,,,,,0,,Samford - 34.11,NO,Southern,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Samford,,,,,,,,,,,Samford,SAM,,,,,,,,,0,,Samford - 34.11,NO,Southern,"Homewood, AL",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 San Diego,,,,,,,,,,,San Diego,USD,,,,,,,,,0,,San Diego - 10.771,NO,WCC,"San Diego, CA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 San Diego St.,,,,,,,,,,,San Diego St.,SDSU,,,,,,,,,0,,San Diego St. - 69.381,YES,Mountain West,"San Diego, CA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 San Francisco,,,,,,,,,,,San Francisco,SF,,,,,,,,,0,,San Francisco - 36.097,NO,WCC,"San Francisco, CA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 San Jose St.,,,,,,,,,,,San Jose St.,SJSU,,,,,,,,,0,,San Jose St. - 21.587,NO,Mountain West,"San Jose, CA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Santa Clara,,,,,,,,,,,Santa Clara,SCU,,,,,,,,,0,,Santa Clara - 30.114,NO,WCC,"Santa Clara, CA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Seattle,,,,,,,,,,,Seattle,SEA,,,,,,,,,0,,Seattle - 21.417,NO,WCC,"Seattle, WA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Seton Hall,,,,,,,,,,,Seton Hall,HALL,,,,,,,,,0,,Seton Hall - 16.5,NO,Big East,"Newark, NJ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Siena,,,,,,,,,,,Siena,,,,,,,,,,0,,Siena - 8.795,NO,MAAC,"Albany, NY",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Seton Hall,,,,,,,,,,,Seton Hall,HALL,,,,,,,,,0,,Seton Hall - 16.5,NO,Big East,"Newark, NJ","South Orange, NJ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Siena,,,,,,,,,,,Siena,SIE,,,,,,,,,0,,Siena - 8.795,NO,MAAC,"Albany, NY",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 SIU Edwardsville,,,,,,,,,,,SIU Edwardsville,SIUE,,,,,,,,,0,,SIU Edwardsville - 26.408,YES,Ohio Valley,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 SMU,,,,,,,,,,,SMU,SMU,,,,,,,,,0,,SMU - 27.576,NO,ACC,"Dallas, TX",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 South Alabama,,,,,,,,,,,South Alabama,USA,,,,,,,,,0,,South Alabama - 14.692,NO,Sun Belt,"Mobile, AL",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -290,7 +290,7 @@ Stanford,,,,,,,,,,,Stanford,STAN,,,,,,,,,0,,Stanford - 1.811,NO,ACC,"Stanford, C
 Stephen F. Austin,,,,,,,,,,,Stephen F. Austin,,,,,,,,,,0,,Stephen F. Austin - 15.861,NO,Southland,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Stetson,,,,,,,,,,,Stetson,STET,,,,,,,,,0,,Stetson - 25.884,NO,ASUN,"DeLand, FL",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Stonehill,,,,,,,,,,,Stonehill,STO,,,,,,,,,0,,Stonehill - 11.766,NO,NEC,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Stony Brook,,,,,,,,,,,Stony Brook,,,,,,,,,,0,,Stony Brook - 13.595,NO,CAA,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Stony Brook,,,,,,,,,,,Stony Brook,STBK,,,,,,,,,0,,Stony Brook - 13.595,NO,CAA,"Stony Brook, NY",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Syracuse,,,,,,,,,,,Syracuse,SYR,,,,,,,,,0,,Syracuse - 4.252,NO,ACC,"Syracuse, NY",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Tarleton St.,,,,,,,,,,,Tarleton St.,TAR,,,,,,,,,0,,Tarleton St. - 14.671,NO,WAC,"Stephenville, TX",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 TCU,,,,,,,,,,,TCU,TCU,,,,,,,,,0,,TCU - 28.789,NO,Big 12,"Fort Worth, TX",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -307,14 +307,14 @@ Texas St.,,,,,,,,,,,Texas St.,TXST,,,,,,,,,0,,Texas St. - 20.683,NO,Sun Belt,"Sa
 Texas Tech,,,,,,,,,,,Texas Tech,TTU,,,,,,,,,1,,Texas Tech - 64.049,YES,Big 12,"Lubbock, TX",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 The Citadel,,,,,,,,,,,The Citadel,CIT,,,,,,,,,0,,The Citadel - 6.354,NO,Southern,"Charleston, SC",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Toledo,,,,,,,,,,,Toledo,TOL,,,,,,,,,0,,Toledo - 32.869,NO,MAC,"Toledo, OH",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Towson,,,,,,,,,,,Towson,,,,,,,,,,0,,Towson - 25.028,NO,CAA,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Towson,,,,,,,,,,,Towson,TOW,,,,,,,,,0,,Towson - 25.028,NO,CAA,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Troy,,,,,,,,,,,Troy,TROY,,,,,,,,,0,,Troy - 34.931,YES,Sun Belt,"Troy, AL",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Tulane,,,,,,,,,,,Tulane,TULN,,,,,,,,,0,,Tulane - 20.462,NO,American,"New Orleans, LA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Tulsa,,,,,,,,,,,Tulsa,TLSA,,,,,,,,,0,,Tulsa - 9.611,NO,American,"Tulsa, OK",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 UAB,,,,,,,,,,,UAB,UAB,,,,,,,,,0,,UAB - 50.004,NO,American,"Birmingham, AL",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-UC Davis,,,,,,,,,,,UC Davis,UCD,,,,,,,,,0,,UC Davis - 12.377,NO,Big West,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-UC Irvine,,,,,,,,,,,UC Irvine,UCI,,,,,,,,,0,,UC Irvine - 37.729,NO,Big West,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-UC Riverside,,,,,,,,,,,UC Riverside,,,,,,,,,,0,,UC Riverside - 20.083,NO,Big West,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+UC Davis,,,,,,,,,,,UC Davis,UCD,,,,,,,,,0,,UC Davis - 12.377,NO,Big West,"Davis, CA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+UC Irvine,,,,,,,,,,,UC Irvine,UCI,,,,,,,,,0,,UC Irvine - 37.729,NO,Big West,"Irvine, CA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+UC Riverside,,,,,,,,,,,UC Riverside,UCR,,,,,,,,,0,,UC Riverside - 20.083,NO,Big West,"Riverside, CA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 UC San Diego,,,,,,,,,,,UC San Diego,UCSD,,,,,,,,,0,,UC San Diego - 32.042,YES,Big West,"San Diego, CA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 UC Santa Barbara,,,,,,,,,,,UC Santa Barbara,UCSB,,,,,,,,,0,,UC Santa Barbara - 31.073,NO,Big West,"Santa Barbara, CA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 UCF,,,,,,,,,,,UCF,UCF,,,,,,,,,0,,UCF - 26.79,NO,Big 12,"Orlando, FL",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -359,49 +359,49 @@ Wichita St.,,,,,,,,,,,Wichita St.,WICH,,,,,,,,,0,,Wichita St. - 25.395,NO,Americ
 William & Mary,,,,,,,,,,,William & Mary,W&M,,,,,,,,,0,,William & Mary - 9.398,NO,CAA,"Williamsburg, VA",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Winthrop,,,,,,,,,,,Winthrop,WIN,,,,,,,,,0,,Winthrop - 20.577,NO,Big South,"Rock Hill, SC",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Wisconsin,,,,,,,,,,,Wisconsin,WIS,,,,,,,,,1,,Wisconsin - 55.763,YES,Big Ten,"Madison, WI",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Wofford,,,,,,,,,,,Wofford,WOF,,,,,,,,,0,,Wofford - 28.364,YES,Southern,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Wofford,,,,,,,,,,,Wofford,WOF,,,,,,,,,0,,Wofford - 28.364,YES,Southern,"Spartanburg, SC",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Wright St.,,,,,,,,,,,Wright St.,,,,,,,,,,0,,Wright St. - 18.506,NO,Horizon,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Wyoming,,,,,,,,,,,Wyoming,WYO,,,,,,,,,0,,Wyoming - 13.636,NO,Mountain West,"Laramie, WY",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Xavier,,,,,,,,,,,Xavier,XAV,,,,,,,,,0,,Xavier - 46.89,YES,Big East,"Cincinnati, OH",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Yale,,,,,,,,,,,Yale,YALE,,,,,,,,,0,,Yale - 58.108,YES,Ivy,"New Haven, CT",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Youngstown St.,,,,,,,,,,,Youngstown St.,YSU,,,,,,,,,0,,Youngstown St. - 23.912,NO,Horizon,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Game Location,HOME TEAM,,,Month,,Day,,Year,,Favorite Team,,Line,,,Over/Under,,,Clutch,,Overtime,,Attendance,,Loyola Chicago SOS THOUGHT,Cleveland St. SOS THOUGHT,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Loyola Chicago,0,,
-"Chicago, IL",Loyola Chicago,,,November,,3,,2025,,LUC,,-17.5,,,151.5,,,TRUE,,FALSE,,"2,581",TRUE,15,30,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Cleveland St.,0,,
-Team - Record,TRUE,TRUE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,FALSE,TRUE,Team - Record,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,Dayan Nessah,Cleveland State,Cleveland St.,AWAY,Loyola Chicago,A10,1,0,0,Starter,TRUE,1,31,8,13,1,2,8,8,3,8,2,0,3,4,25,0,41.822,0,41.248,2,1,0,0,0,1,1,1,1,0,0,1,1,1,-3,17.5,1,0,"2,581",,0,0
-Loyola Chicago,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,Cleveland St.,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,Josiah Harris,Cleveland State,Cleveland St.,AWAY,Loyola Chicago,A10,1,0,0,Starter,TRUE,1,29,8,20,2,7,2,2,1,5,2,0,2,1,20,0,41.822,0,41.248,1,0,0,0,0,0,0,0,0,0,0,0,1,1,-3,17.5,1,0,"2,581",,0,0
-1,FALSE,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,0,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Tre Beard,Cleveland State,Cleveland St.,AWAY,Loyola Chicago,A10,1,0,0,Starter,TRUE,1,30,3,5,2,3,5,7,2,1,5,1,1,2,13,0,41.822,0,41.248,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,17.5,1,0,"2,581",,0,0
-0,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,1,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,Jaidon Lipscomb,Cleveland State,Cleveland St.,AWAY,Loyola Chicago,A10,1,0,0,Starter,TRUE,1,21,1,5,1,4,1,1,0,1,5,0,1,2,4,0,41.822,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,17.5,1,0,"2,581",,0,0
-Madness,FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,Madness,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,Foster Wonders,Cleveland State,Cleveland St.,AWAY,Loyola Chicago,A10,1,0,0,Starter,TRUE,1,29,3,7,2,6,0,0,1,5,1,1,2,0,8,0,41.822,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,17.5,1,0,"2,581",,0,0
-FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Ivan Spirov,Cleveland State,Cleveland St.,AWAY,Loyola Chicago,A10,1,0,0,Bench,FALSE,0,6,0,0,0,0,0,0,1,2,0,0,1,2,0,0,41.822,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,17.5,1,0,"2,581",,0,0
-Conference,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Conference,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Holden Pierre-Louis,Cleveland State,Cleveland St.,AWAY,Loyola Chicago,A10,1,0,0,Bench,FALSE,0,6,0,0,0,0,0,0,0,0,0,0,1,1,0,0,41.822,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,17.5,1,0,"2,581",,0,0
-A10,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,Horizon,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Preist Ryan,Cleveland State,Cleveland St.,AWAY,Loyola Chicago,A10,1,0,0,Bench,FALSE,0,12,0,1,0,0,2,2,2,0,0,0,0,3,2,0,41.822,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,17.5,1,0,"2,581",,0,0
-Power,FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Power,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,David Giddens,Cleveland State,Cleveland St.,AWAY,Loyola Chicago,A10,1,0,0,Bench,FALSE,0,7,0,0,0,0,0,0,0,1,0,0,0,0,0,0,41.822,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,17.5,1,0,"2,581",,0,0
-FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Kamari Jones,Cleveland State,Cleveland St.,AWAY,Loyola Chicago,A10,1,0,0,Bench,TRUE,0,12,3,4,3,3,3,3,0,0,1,0,0,2,12,0,41.822,0,41.248,1,0,0,0,0,1,0,0,0,0,0,0,0,0,-3,17.5,1,0,"2,581",,0,0
-Top 25,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Top 25,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Ice Emery,Cleveland State,Cleveland St.,AWAY,Loyola Chicago,A10,1,0,0,Bench,TRUE,0,17,2,9,0,5,0,0,1,0,2,0,2,2,4,0,41.822,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,17.5,1,0,"2,581",,0,0
-FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Miles Rubin,Loyola Chicago,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,0,Starter,TRUE,1,28,6,9,0,0,4,4,2,4,2,0,2,4,16,0,41.248,0,41.822,1,0,0,0,0,1,0,0,0,0,0,1,1,0,3,-17.5,1,0,"2,581",,0,0
-Points Scored,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Points Scored,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Kayde Dotson,Loyola Chicago,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,0,Starter,TRUE,1,34,5,11,4,10,2,3,1,2,4,3,0,2,16,0,41.248,0,41.822,1,0,0,0,0,0,0,0,0,1,0,0,1,0,3,-17.5,1,0,"2,581",,0,0
-91,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,88,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Justin Moore,Loyola Chicago,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,0,Starter,TRUE,1,31,3,12,0,3,2,2,0,2,6,1,3,3,8,0,41.248,0,41.822,0,0,0,0,0,0,0,0,0,0,1,0,1,0,3,-17.5,1,0,"2,581",,0,0
-Shooting:,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Shooting:,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Kymany Houinsou,Loyola Chicago,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,0,Starter,TRUE,1,20,2,6,1,3,1,3,3,0,4,0,0,3,6,0,41.248,0,41.822,0,0,0,0,0,0,0,0,1,0,0,0,1,0,3,-17.5,1,0,"2,581",,0,0
-29,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,28,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Dominick Harris,Loyola Chicago,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,0,Starter,TRUE,1,11,0,4,0,3,0,0,0,1,1,0,0,0,0,0,41.248,0,41.822,0,0,0,1,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",,0,0
-66,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,64,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Joshua Ola-Joseph,Loyola Chicago,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,0,Bench,TRUE,0,25,2,4,1,2,6,7,1,2,0,1,1,3,11,0,41.248,0,41.822,1,0,0,0,0,0,0,0,0,0,0,0,1,0,3,-17.5,1,0,"2,581",,0,0
-14,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,11,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Alexander Richardson,Loyola Chicago,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,0,Bench,FALSE,0,12,2,3,0,0,0,2,2,3,1,0,1,1,4,0,41.248,0,41.822,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",,0,0
-37,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,30,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Deywilk Tavarez,Loyola Chicago,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,0,Bench,FALSE,0,14,5,7,5,7,1,1,0,1,2,1,0,0,16,0,41.248,0,41.822,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",,0,0
-19,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,21,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Chuck Love,Loyola Chicago,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,0,Bench,TRUE,0,21,4,8,3,7,3,3,1,0,0,0,0,2,14,0,41.248,0,41.822,1,0,0,0,0,1,0,0,0,0,0,0,1,0,3,-17.5,1,0,"2,581",,0,0
-25,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,23,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",,0,0
-Rebounding,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Rebounding,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",,0,0
-12,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,18,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",,0,0
-18,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,29,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",,0,0
-AST/TURN/STL,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,AST/TURN/STL,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",,0,0
-21,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,18,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",,0,0
-7,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,14,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",,0,0
-6,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,2,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",,0,0
-MISC,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,MISC,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",,0,0
-24,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,9,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",,0,0
-8,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,11,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Clutch SM for Cleveland St.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-30,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,22,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Largest Lead,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Largest Lead,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,41.822,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-11,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,7,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,41.248,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Game Location,HOME TEAM,,,Month,,Day,,Year,,Favorite Team,,Line,,,Over/Under,,,Clutch,,Overtime,,Attendance,,Wofford SOS THOUGHT,Milwaukee SOS THOUGHT,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Wofford,0,,
+"Spartanburg, SC",Wofford,,,November,,8,,2025,,MILW,,-3.5,,,150.5,,,FALSE,,FALSE,,"1,342",TRUE,35,25,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Milwaukee,0,,
+Team - Record,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Team - Record,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Faizon Fields,Milwaukee,Milwaukee,AWAY,Wofford,Southern,1,0,0,Starter,TRUE,1,15,2,6,0,1,0,0,1,1,0,0,1,2,4,0,28.364,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,-3.5,0,0,"1,342",,0,0
+Wofford,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Milwaukee,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Danilo Jovanovich,Milwaukee,Milwaukee,AWAY,Wofford,Southern,1,0,0,Starter,TRUE,1,28,5,9,0,1,0,0,0,5,2,2,0,1,10,0,28.364,0,20.544,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-10,-3.5,0,0,"1,342",,0,0
+1,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,1,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Stevie Elam,Milwaukee,Milwaukee,AWAY,Wofford,Southern,1,0,0,Starter,TRUE,1,26,4,8,2,5,2,2,1,3,0,3,1,1,12,0,28.364,0,20.544,1,0,0,0,0,0,0,0,0,1,0,0,1,0,-10,-3.5,0,0,"1,342",,0,0
+1,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,1,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Esyah Pippa-White,Milwaukee,Milwaukee,AWAY,Wofford,Southern,1,0,0,Starter,TRUE,1,16,2,4,1,2,3,4,0,1,1,0,0,1,8,0,28.364,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,-3.5,0,0,"1,342",,0,0
+Madness,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Madness,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Seth Hubbard,Milwaukee,Milwaukee,AWAY,Wofford,Southern,1,0,0,Starter,TRUE,1,30,5,12,0,1,7,8,1,0,0,1,2,3,17,0,28.364,0,20.544,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-10,-3.5,0,0,"1,342",,0,0
+TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Sekou Konneh,Milwaukee,Milwaukee,AWAY,Wofford,Southern,1,0,0,Bench,FALSE,0,13,2,5,0,0,0,0,0,3,1,0,0,1,4,0,28.364,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,-3.5,0,0,"1,342",,0,0
+Conference,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Conference,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Isaiah Dorceus,Milwaukee,Milwaukee,AWAY,Wofford,Southern,1,0,0,Bench,TRUE,0,22,1,4,0,1,0,1,1,2,6,1,1,2,2,0,28.364,0,20.544,0,0,0,0,0,0,0,0,0,0,1,0,1,0,-10,-3.5,0,0,"1,342",,0,0
+Southern,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Horizon,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Aaron Franklin,Milwaukee,Milwaukee,AWAY,Wofford,Southern,1,0,0,Bench,FALSE,0,15,1,1,0,0,1,2,1,3,0,0,1,2,3,0,28.364,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,-3.5,0,0,"1,342",,0,0
+Power,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Power,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Josh Dixon,Milwaukee,Milwaukee,AWAY,Wofford,Southern,1,0,0,Bench,TRUE,0,18,4,11,3,5,0,0,1,2,0,1,1,3,11,0,28.364,0,20.544,1,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,-3.5,0,0,"1,342",,0,0
+FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Amar Augillard,Milwaukee,Milwaukee,AWAY,Wofford,Southern,1,0,0,Bench,FALSE,0,15,1,4,1,2,2,2,0,1,0,0,1,2,5,0,28.364,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,-3.5,0,0,"1,342",,0,0
+Top 25,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Top 25,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Cannon Richards,Wofford,Wofford,HOME,Milwaukee,Horizon,0,0,0,Starter,FALSE,1,3,0,0,0,0,0,0,0,1,1,1,0,0,0,0,20.544,0,28.364,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",,0,0
+FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Kahmare Holmes,Wofford,Wofford,HOME,Milwaukee,Horizon,0,0,0,Starter,TRUE,1,34,7,12,0,0,10,11,0,5,2,3,2,2,24,0,20.544,0,28.364,1,0,0,0,0,0,1,0,0,1,0,0,1,1,10,3.5,0,0,"1,342",,0,0
+Points Scored,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Points Scored,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Luke Flynn,Wofford,Wofford,HOME,Milwaukee,Horizon,0,0,0,Starter,TRUE,1,33,3,10,0,3,5,6,2,5,3,0,1,3,11,0,20.544,0,28.364,1,0,0,0,0,0,0,0,0,0,0,0,1,0,10,3.5,0,0,"1,342",,0,0
+86,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,76,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Cayden Vasko,Wofford,Wofford,HOME,Milwaukee,Horizon,0,0,0,Starter,TRUE,1,21,1,9,1,8,0,0,1,4,3,1,1,2,3,0,20.544,0,28.364,0,0,0,0,0,0,0,0,0,0,0,0,1,0,10,3.5,0,0,"1,342",,0,0
+Shooting:,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Shooting:,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Nils Machowski,Wofford,Wofford,HOME,Milwaukee,Horizon,0,0,0,Starter,TRUE,1,24,4,10,2,4,2,2,3,1,2,0,1,3,12,0,20.544,0,28.364,1,0,0,0,0,0,0,0,0,0,0,0,1,0,10,3.5,0,0,"1,342",,0,0
+28,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,27,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Brian Sumpter,Wofford,Wofford,HOME,Milwaukee,Horizon,0,0,0,Bench,TRUE,0,31,8,9,0,0,5,6,5,6,0,1,1,0,21,0,20.544,0,28.364,2,1,0,0,0,0,0,1,1,0,0,0,1,1,10,3.5,0,0,"1,342",,0,0
+64,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,64,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Callum Richard,Wofford,Wofford,HOME,Milwaukee,Horizon,0,0,0,Bench,FALSE,0,5,0,0,0,0,0,0,0,1,1,1,0,1,0,0,20.544,0,28.364,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",,0,0
+5,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,7,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Chace Watley,Wofford,Wofford,HOME,Milwaukee,Horizon,0,0,0,Bench,TRUE,0,26,3,9,1,3,1,1,0,4,2,0,3,2,8,0,20.544,0,28.364,0,0,0,0,0,0,0,0,0,0,0,0,1,0,10,3.5,0,0,"1,342",,0,0
+20,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,18,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Brendan Rigsbee,Wofford,Wofford,HOME,Milwaukee,Horizon,0,0,0,Bench,TRUE,0,20,2,4,1,2,2,4,0,4,1,0,0,1,7,0,20.544,0,28.364,0,0,0,0,0,0,0,0,0,0,0,0,1,0,10,3.5,0,0,"1,342",,0,0
+25,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,15,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",,0,0
+30,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,19,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",,0,0
+Rebounding,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Rebounding,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",,0,0
+15,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,7,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",,0,0
+33,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,23,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",,0,0
+AST/TURN/STL,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,AST/TURN/STL,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",,0,0
+15,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,10,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",,0,0
+13,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,8,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",,0,0
+5,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,8,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",,0,0
+MISC,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,MISC,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",,0,0
+12,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,18,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",,0,0
+4,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,4,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Clutch SM for Milwaukee,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+40,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,36,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Largest Lead,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Largest Lead,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,28.364,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+19,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,20.544,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,LEFT ACTIVE VALUE,LEFT HISTORICAL,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Line,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Line,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,Loyola Chicago - 41.822,,,FOULS,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,RIGHT ACTIVE VALUE,RIGHT HISTORICAL,,,Cleveland St.,19,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
--17.5,3,10,2,5,3,4,5,4,0,1,17.5,4,7,2,3,2,2,6,2,1,0,0,Cleveland St. - 41.248,,,Loyola Chicago,18,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Line,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Line,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0,Wofford - 28.364,,,FOULS,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,RIGHT ACTIVE VALUE,RIGHT HISTORICAL,,,Milwaukee,18,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+3.5,0,0,0,0,0,0,0,0,0,0,-3.5,0,0,0,0,0,0,0,0,0,0,0,Milwaukee - 20.544,,,Wofford,14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

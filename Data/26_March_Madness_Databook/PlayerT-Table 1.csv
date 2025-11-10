@@ -1,30 +1,30 @@
 Players,Team,Location,Opponent,Opponent Conference,Power,Top 25,,STR,Min,FGM,FGA,3M,3A,FTM,FTA,OReb,DReb,AST,STL,TO,PF,PTS,OPP ACTIVE VALUE,OPP HISTORICAL VALUE,TEAM ACTIVE VALUE,TEAM HISTORICAL VALUE,Doubles,Double Doube,Triple Double,0-3+ FG,Perfect 2 FG min 3,Perfect 3 FG min 3,Points Leader,Def Reb Leader,Off Reb Leader,Steal Leader,Assist Leader,Foul Trouble,20+ minutes,20+ points,SM,Line,Clutch ,Overtime,Attendance,Player Points,
-Dayan Nessah,Cleveland St.,AWAY,Loyola Chicago,A10,0,0,Starter,1,31,8,13,1,2,8,8,3,8,2,0,3,4,25,0,41.822,0,41.248,2,1,0,0,0,1,1,1,1,0,0,1,1,1,-3,17.5,1,0,"2,581",0,TRUE
-Josiah Harris,Cleveland St.,AWAY,Loyola Chicago,A10,0,0,Starter,1,29,8,20,2,7,2,2,1,5,2,0,2,1,20,0,41.822,0,41.248,1,0,0,0,0,0,0,0,0,0,0,0,1,1,-3,17.5,1,0,"2,581",0,TRUE
-Tre Beard,Cleveland St.,AWAY,Loyola Chicago,A10,0,0,Starter,1,30,3,5,2,3,5,7,2,1,5,1,1,2,13,0,41.822,0,41.248,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,17.5,1,0,"2,581",0,TRUE
-Jaidon Lipscomb,Cleveland St.,AWAY,Loyola Chicago,A10,0,0,Starter,1,21,1,5,1,4,1,1,0,1,5,0,1,2,4,0,41.822,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,17.5,1,0,"2,581",0,TRUE
-Foster Wonders,Cleveland St.,AWAY,Loyola Chicago,A10,0,0,Starter,1,29,3,7,2,6,0,0,1,5,1,1,2,0,8,0,41.822,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,17.5,1,0,"2,581",0,TRUE
-Ivan Spirov,Cleveland St.,AWAY,Loyola Chicago,A10,0,0,Bench,0,6,0,0,0,0,0,0,1,2,0,0,1,2,0,0,41.822,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,17.5,1,0,"2,581",0,FALSE
-Holden Pierre-Louis,Cleveland St.,AWAY,Loyola Chicago,A10,0,0,Bench,0,6,0,0,0,0,0,0,0,0,0,0,1,1,0,0,41.822,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,17.5,1,0,"2,581",0,FALSE
-Preist Ryan,Cleveland St.,AWAY,Loyola Chicago,A10,0,0,Bench,0,12,0,1,0,0,2,2,2,0,0,0,0,3,2,0,41.822,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,17.5,1,0,"2,581",0,FALSE
-David Giddens,Cleveland St.,AWAY,Loyola Chicago,A10,0,0,Bench,0,7,0,0,0,0,0,0,0,1,0,0,0,0,0,0,41.822,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,17.5,1,0,"2,581",0,FALSE
-Kamari Jones,Cleveland St.,AWAY,Loyola Chicago,A10,0,0,Bench,0,12,3,4,3,3,3,3,0,0,1,0,0,2,12,0,41.822,0,41.248,1,0,0,0,0,1,0,0,0,0,0,0,0,0,-3,17.5,1,0,"2,581",0,TRUE
-Ice Emery,Cleveland St.,AWAY,Loyola Chicago,A10,0,0,Bench,0,17,2,9,0,5,0,0,1,0,2,0,2,2,4,0,41.822,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,17.5,1,0,"2,581",0,TRUE
-Miles Rubin,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,Starter,1,28,6,9,0,0,4,4,2,4,2,0,2,4,16,0,41.248,0,41.822,1,0,0,0,0,1,0,0,0,0,0,1,1,0,3,-17.5,1,0,"2,581",0,TRUE
-Kayde Dotson,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,Starter,1,34,5,11,4,10,2,3,1,2,4,3,0,2,16,0,41.248,0,41.822,1,0,0,0,0,0,0,0,0,1,0,0,1,0,3,-17.5,1,0,"2,581",0,TRUE
-Justin Moore,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,Starter,1,31,3,12,0,3,2,2,0,2,6,1,3,3,8,0,41.248,0,41.822,0,0,0,0,0,0,0,0,0,0,1,0,1,0,3,-17.5,1,0,"2,581",0,TRUE
-Kymany Houinsou,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,Starter,1,20,2,6,1,3,1,3,3,0,4,0,0,3,6,0,41.248,0,41.822,0,0,0,0,0,0,0,0,1,0,0,0,1,0,3,-17.5,1,0,"2,581",0,TRUE
-Dominick Harris,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,Starter,1,11,0,4,0,3,0,0,0,1,1,0,0,0,0,0,41.248,0,41.822,0,0,0,1,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",0,TRUE
-Joshua Ola-Joseph,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,Bench,0,25,2,4,1,2,6,7,1,2,0,1,1,3,11,0,41.248,0,41.822,1,0,0,0,0,0,0,0,0,0,0,0,1,0,3,-17.5,1,0,"2,581",0,TRUE
-Alexander Richardson,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,Bench,0,12,2,3,0,0,0,2,2,3,1,0,1,1,4,0,41.248,0,41.822,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",0,FALSE
-Deywilk Tavarez,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,Bench,0,14,5,7,5,7,1,1,0,1,2,1,0,0,16,0,41.248,0,41.822,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",0,FALSE
-Chuck Love,Loyola Chicago,HOME,Cleveland St.,Horizon,0,0,Bench,0,21,4,8,3,7,3,3,1,0,0,0,0,2,14,0,41.248,0,41.822,1,0,0,0,0,1,0,0,0,0,0,0,1,0,3,-17.5,1,0,"2,581",0,TRUE
-0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",0,FALSE
-0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",0,FALSE
-0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",0,FALSE
-0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",0,FALSE
-0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",0,FALSE
-0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",0,FALSE
-0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",0,FALSE
-0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",0,FALSE
-0,0,NEUTRAL,Cleveland St.,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.248,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,-17.5,1,0,"2,581",0,FALSE
+Faizon Fields,Milwaukee,AWAY,Wofford,Southern,0,0,Starter,1,15,2,6,0,1,0,0,1,1,0,0,1,2,4,0,28.364,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,-3.5,0,0,"1,342",0,TRUE
+Danilo Jovanovich,Milwaukee,AWAY,Wofford,Southern,0,0,Starter,1,28,5,9,0,1,0,0,0,5,2,2,0,1,10,0,28.364,0,20.544,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-10,-3.5,0,0,"1,342",0,TRUE
+Stevie Elam,Milwaukee,AWAY,Wofford,Southern,0,0,Starter,1,26,4,8,2,5,2,2,1,3,0,3,1,1,12,0,28.364,0,20.544,1,0,0,0,0,0,0,0,0,1,0,0,1,0,-10,-3.5,0,0,"1,342",0,TRUE
+Esyah Pippa-White,Milwaukee,AWAY,Wofford,Southern,0,0,Starter,1,16,2,4,1,2,3,4,0,1,1,0,0,1,8,0,28.364,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,-3.5,0,0,"1,342",0,TRUE
+Seth Hubbard,Milwaukee,AWAY,Wofford,Southern,0,0,Starter,1,30,5,12,0,1,7,8,1,0,0,1,2,3,17,0,28.364,0,20.544,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-10,-3.5,0,0,"1,342",0,TRUE
+Sekou Konneh,Milwaukee,AWAY,Wofford,Southern,0,0,Bench,0,13,2,5,0,0,0,0,0,3,1,0,0,1,4,0,28.364,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,-3.5,0,0,"1,342",0,FALSE
+Isaiah Dorceus,Milwaukee,AWAY,Wofford,Southern,0,0,Bench,0,22,1,4,0,1,0,1,1,2,6,1,1,2,2,0,28.364,0,20.544,0,0,0,0,0,0,0,0,0,0,1,0,1,0,-10,-3.5,0,0,"1,342",0,TRUE
+Aaron Franklin,Milwaukee,AWAY,Wofford,Southern,0,0,Bench,0,15,1,1,0,0,1,2,1,3,0,0,1,2,3,0,28.364,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,-3.5,0,0,"1,342",0,FALSE
+Josh Dixon,Milwaukee,AWAY,Wofford,Southern,0,0,Bench,0,18,4,11,3,5,0,0,1,2,0,1,1,3,11,0,28.364,0,20.544,1,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,-3.5,0,0,"1,342",0,TRUE
+Amar Augillard,Milwaukee,AWAY,Wofford,Southern,0,0,Bench,0,15,1,4,1,2,2,2,0,1,0,0,1,2,5,0,28.364,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,-3.5,0,0,"1,342",0,FALSE
+Cannon Richards,Wofford,HOME,Milwaukee,Horizon,0,0,Starter,1,3,0,0,0,0,0,0,0,1,1,1,0,0,0,0,20.544,0,28.364,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",0,FALSE
+Kahmare Holmes,Wofford,HOME,Milwaukee,Horizon,0,0,Starter,1,34,7,12,0,0,10,11,0,5,2,3,2,2,24,0,20.544,0,28.364,1,0,0,0,0,0,1,0,0,1,0,0,1,1,10,3.5,0,0,"1,342",0,TRUE
+Luke Flynn,Wofford,HOME,Milwaukee,Horizon,0,0,Starter,1,33,3,10,0,3,5,6,2,5,3,0,1,3,11,0,20.544,0,28.364,1,0,0,0,0,0,0,0,0,0,0,0,1,0,10,3.5,0,0,"1,342",0,TRUE
+Cayden Vasko,Wofford,HOME,Milwaukee,Horizon,0,0,Starter,1,21,1,9,1,8,0,0,1,4,3,1,1,2,3,0,20.544,0,28.364,0,0,0,0,0,0,0,0,0,0,0,0,1,0,10,3.5,0,0,"1,342",0,TRUE
+Nils Machowski,Wofford,HOME,Milwaukee,Horizon,0,0,Starter,1,24,4,10,2,4,2,2,3,1,2,0,1,3,12,0,20.544,0,28.364,1,0,0,0,0,0,0,0,0,0,0,0,1,0,10,3.5,0,0,"1,342",0,TRUE
+Brian Sumpter,Wofford,HOME,Milwaukee,Horizon,0,0,Bench,0,31,8,9,0,0,5,6,5,6,0,1,1,0,21,0,20.544,0,28.364,2,1,0,0,0,0,0,1,1,0,0,0,1,1,10,3.5,0,0,"1,342",0,TRUE
+Callum Richard,Wofford,HOME,Milwaukee,Horizon,0,0,Bench,0,5,0,0,0,0,0,0,0,1,1,1,0,1,0,0,20.544,0,28.364,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",0,FALSE
+Chace Watley,Wofford,HOME,Milwaukee,Horizon,0,0,Bench,0,26,3,9,1,3,1,1,0,4,2,0,3,2,8,0,20.544,0,28.364,0,0,0,0,0,0,0,0,0,0,0,0,1,0,10,3.5,0,0,"1,342",0,TRUE
+Brendan Rigsbee,Wofford,HOME,Milwaukee,Horizon,0,0,Bench,0,20,2,4,1,2,2,4,0,4,1,0,0,1,7,0,20.544,0,28.364,0,0,0,0,0,0,0,0,0,0,0,0,1,0,10,3.5,0,0,"1,342",0,TRUE
+0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",0,FALSE
+0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",0,FALSE
+0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",0,FALSE
+0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",0,FALSE
+0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",0,FALSE
+0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",0,FALSE
+0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",0,FALSE
+0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",0,FALSE
+0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",0,FALSE
+0,0,NEUTRAL,Milwaukee,Horizon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20.544,0,20.544,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,3.5,0,0,"1,342",0,FALSE
