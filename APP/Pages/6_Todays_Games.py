@@ -1,15 +1,18 @@
 # APP/Pages/6_Todays_Games.py
 """
-Today's Games — Single Multi-Output Model (improved featurization)
+Today's Games — Single Multi-Output Model (improved featurization + probabilities)
 
-Changes vs prior:
+Key features:
 - Prevents ties (adds +1 to one side deterministically when rounded scores match).
 - Filters evaluate BOTH teams (base + mirror rows) for Top-25 and conference filters.
 - Initial ordering uses Game Time (if available), then Date; priority only used for tie-breaks.
+- Recency-weighted training (current season rows are up-weighted).
+- For each game, shows:
+    - Predicted score (no ties),
+    - Probabilities: team/opp win, team/opp cover, over/under.
 """
 
 import os
-import re
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -18,7 +21,6 @@ from typing import List, Tuple, Optional, Dict, Any
 
 from sklearn.preprocessing import OrdinalEncoder
 from sklearn.ensemble import RandomForestRegressor
-
 
 # =============================================================================
 # CONFIG
@@ -128,6 +130,9 @@ def parse_game_time(val: Any) -> Optional[dtime]:
     except Exception:
         return None
 
+def normal_cdf(x: float) -> float:
+    return 0.5 * (1.0 + np.math.erf(x / np.sqrt(2.0)))
+
 
 # =============================================================================
 # LOAD DATA (safe)
@@ -185,6 +190,8 @@ OPP_COACH_COL = find_col(schedule_df, ["Opponent Coach", "Opp Coach"])
 WINS_COL      = find_col(schedule_df, ["Wins", "wins"])
 LOSSES_COL    = find_col(schedule_df, ["Losses", "losses"])
 TIME_COL      = find_col(schedule_df, ["Game Time", "Time", "Tip", "Tipoff", "GameTime", "Start Time", "Start"])
+LINE_COL      = find_col(schedule_df, ["Line", "Spread", "Vegas Line"])
+OU_COL        = find_col(schedule_df, ["Over/Under Line", "OverUnder", "Over Under Line", "O/U", "Total Points Line", "Total"])
 
 if TEAM_COL is None or OPP_COL is None:
     st.error("Could not find Team and Opponent columns in the schedule file.")
@@ -218,7 +225,7 @@ def sched_key(team: str, opp: str, d: pd.Timestamp) -> Tuple[str, str, Optional[
     dt = d.date() if isinstance(d, pd.Timestamp) and pd.notna(d) else None
     return (tl, ol, dt)
 
-schedule_row_index = {}
+schedule_row_index: Dict[Tuple[str, str, Optional[datetime.date]], int] = {}
 for i, r in schedule_df.iterrows():
     schedule_row_index[sched_key(str(r[TEAM_COL]), str(r[OPP_COL]), r["__Date_parsed"])] = i
 
@@ -237,6 +244,17 @@ OPP_POINTS_COL = find_col(daily_df, ["Opp Points", "OppPoints", "Opp_Points", "O
 if POINTS_COL is None or OPP_POINTS_COL is None:
     st.error("Daily predictor must include 'Points' and 'Opp Points' columns.")
     st.stop()
+
+# Parse training date for recency weighting
+DAILY_DATE_COL = find_col(daily_df, ["Date", "Game Date", "Game_Date"])
+if DAILY_DATE_COL:
+    daily_df["__Date_parsed"] = pd.to_datetime(
+        daily_df[DAILY_DATE_COL].astype(str).str.strip(),
+        format="%m/%d/%Y",
+        errors="coerce"
+    )
+else:
+    daily_df["__Date_parsed"] = pd.NaT
 
 # Fill numerics similarly to schedule
 for c in daily_df.columns:
@@ -271,32 +289,40 @@ numeric_feature_cols = [c for c in all_daily_num_cols if c not in (POINTS_COL, O
 X_num = daily_df.loc[target_mask, numeric_feature_cols].apply(pd.to_numeric, errors="coerce").fillna(0.0)
 
 # Engineered binary flags (these will become columns in X_num with fixed names)
-DAILY_HAN_COL     = find_col(daily_df, ["HAN", "Han", "Home/Away", "Location Type", "HomeAway"])
-DAILY_NONCONF_COL = find_col(daily_df, ["Non Conference Game", "NonConference", "Non Conf", "NonConf", "Non-Conference"])
-DAILY_CONF_COL    = find_col(daily_df, ["Conference", "Conf", "conference"])
-DAILY_OPP_CONF_COL= find_col(daily_df, ["Opponent Conference", "Opp Conference"])
+DAILY_HAN_COL      = find_col(daily_df, ["HAN", "Han", "Home/Away", "Location Type", "HomeAway"])
+DAILY_NONCONF_COL  = find_col(daily_df, ["Non Conference Game", "NonConference", "Non Conf", "NonConf", "Non-Conference"])
+DAILY_CONF_COL     = find_col(daily_df, ["Conference", "Conf", "conference"])
+DAILY_OPP_CONF_COL = find_col(daily_df, ["Opponent Conference", "Opp Conference"])
 
 if "__flag_home" not in X_num.columns:
     if DAILY_HAN_COL:
-        X_num["__flag_home"] = daily_df.loc[target_mask, DAILY_HAN_COL].apply(lambda v: 1.0 if interpret_han(v) == "Home" else 0.0).astype(float)
+        X_num["__flag_home"] = daily_df.loc[target_mask, DAILY_HAN_COL].apply(
+            lambda v: 1.0 if interpret_han(v) == "Home" else 0.0
+        ).astype(float)
     else:
         X_num["__flag_home"] = 0.0
 
 if "__flag_nonconf" not in X_num.columns:
     if DAILY_NONCONF_COL:
-        X_num["__flag_nonconf"] = daily_df.loc[target_mask, DAILY_NONCONF_COL].apply(lambda v: 1.0 if boolish(v) else 0.0).astype(float)
+        X_num["__flag_nonconf"] = daily_df.loc[target_mask, DAILY_NONCONF_COL].apply(
+            lambda v: 1.0 if boolish(v) else 0.0
+        ).astype(float)
     else:
         X_num["__flag_nonconf"] = 0.0
 
 if "__flag_team_power_conf" not in X_num.columns:
     if DAILY_CONF_COL:
-        X_num["__flag_team_power_conf"] = daily_df.loc[target_mask, DAILY_CONF_COL].apply(power_conf_flag).astype(float)
+        X_num["__flag_team_power_conf"] = daily_df.loc[target_mask, DAILY_CONF_COL].apply(
+            power_conf_flag
+        ).astype(float)
     else:
         X_num["__flag_team_power_conf"] = 0.0
 
 if "__flag_opp_power_conf" not in X_num.columns:
     if DAILY_OPP_CONF_COL:
-        X_num["__flag_opp_power_conf"] = daily_df.loc[target_mask, DAILY_OPP_CONF_COL].apply(power_conf_flag).astype(float)
+        X_num["__flag_opp_power_conf"] = daily_df.loc[target_mask, DAILY_OPP_CONF_COL].apply(
+            power_conf_flag
+        ).astype(float)
     else:
         X_num["__flag_opp_power_conf"] = 0.0
 
@@ -322,6 +348,16 @@ Y_train = np.column_stack([
     y_opp.loc[target_mask].values
 ])
 
+# Recency weights (current year > prior years)
+df_targets = daily_df.loc[target_mask].copy()
+if "__Date_parsed" in df_targets.columns and df_targets["__Date_parsed"].notna().any():
+    current_year = int(df_targets["__Date_parsed"].dt.year.max())
+    sample_weight = np.ones(X_train.shape[0], dtype=float)
+    recent_mask = (df_targets["__Date_parsed"].dt.year == current_year)
+    sample_weight[recent_mask.values] = 3.0
+else:
+    sample_weight = np.ones(X_train.shape[0], dtype=float)
+
 # Train model
 st.write(f"Training on {X_train.shape[0]} rows and {X_train.shape[1]} features…")
 
@@ -332,8 +368,22 @@ rf = RandomForestRegressor(
     min_samples_leaf=1,
     max_features="sqrt"
 )
-rf.fit(X_train, Y_train)
+rf.fit(X_train, Y_train, sample_weight=sample_weight)
 st.write("Model trained.")
+
+# Residual spread to approximate probabilities for win/cover/total
+train_pred = rf.predict(X_train)
+train_margin = train_pred[:, 0] - train_pred[:, 1]
+true_margin  = Y_train[:, 0] - Y_train[:, 1]
+
+train_total = train_pred.sum(axis=1)
+true_total  = Y_train.sum(axis=1)
+
+res_margin = true_margin - train_margin
+res_total  = true_total  - train_total
+
+sigma_margin = max(5.0, float(np.nanstd(res_margin, ddof=1)) * 0.9)
+sigma_total  = max(9.0, float(np.nanstd(res_total,  ddof=1)) * 0.9)
 
 # Keep an ordered list of the final training numeric feature names (including engineered flags)
 feature_names_numeric = list(X_num.columns)
@@ -407,7 +457,7 @@ def row_priority(row: pd.Series) -> Tuple[int, int, int, pd.Timestamp]:
     return (0 if is_top25 else 1, 0 if is_mm else 1, conf_pri, row["__Date_parsed"])
 
 seen_pairs = set()
-unique_rows = []
+unique_rows: List[Tuple[Tuple[Any, ...], int]] = []
 for i, r in schedule_df.iterrows():
     t = str(r[TEAM_COL]).strip()
     o = str(r[OPP_COL]).strip()
@@ -441,7 +491,7 @@ def prevent_tie(team_pts: int, opp_pts: int, team: str, opp: str, dt: datetime) 
         return team_pts + 1, opp_pts
     return team_pts, opp_pts + 1
 
-pred_rows = []
+pred_rows: List[Dict[str, Any]] = []
 for idx in sorted_indices:
     r = schedule_df.iloc[idx]
 
@@ -461,12 +511,15 @@ for idx in sorted_indices:
     opp_name  = str(r[OPP_COL]).strip()
 
     # mirror row for proper metadata + ranks
-    mirror_key = (opp_name.lower(), team_name.lower(), r["__Date_parsed"].date() if not pd.isna(r["__Date_parsed"]) else None)
+    mirror_key = (opp_name.lower(), team_name.lower(),
+                  r["__Date_parsed"].date() if not pd.isna(r["__Date_parsed"]) else None)
     mirror_row = schedule_df.iloc[schedule_row_index[mirror_key]] if mirror_key in schedule_row_index else None
 
     # Meta dicts
-    def g(row_: pd.Series, c: Optional[str]) -> Any:
-        return row_.get(c) if (row_ is not None and c and c in row_.index) else ""
+    def g(row_: Optional[pd.Series], c: Optional[str]) -> Any:
+        if row_ is None or not c:
+            return ""
+        return row_.get(c) if c in row_.index else ""
 
     team_meta = {
         "Conference": g(r, CONF_COL),
@@ -504,9 +557,48 @@ for idx in sorted_indices:
         out.sort(key=lambda z: z[1])
         return out
 
+    # Rounded scores (no ties)
     team_pts = int(round(max(0.0, y_pred[0])))
     opp_pts  = int(round(max(0.0, y_pred[1])))
     team_pts, opp_pts = prevent_tie(team_pts, opp_pts, team_name, opp_name, r["__DT_parsed"])
+
+    # Continuous predictions for probability approximations
+    cont_team = max(0.0, float(y_pred[0]))
+    cont_opp  = max(0.0, float(y_pred[1]))
+    margin    = cont_team - cont_opp
+    total     = cont_team + cont_opp
+
+    # Win probabilities (Gaussian approx using residual spread)
+    p_team_win = normal_cdf(margin / max(1e-6, sigma_margin))
+    p_team_win = min(0.995, max(0.005, float(p_team_win)))
+    p_opp_win  = 1.0 - p_team_win
+
+    # Spread & total probabilities (if schedule line exists)
+    if LINE_COL:
+        line_val = to_num(r.get(LINE_COL), default=np.nan)
+    else:
+        line_val = np.nan
+
+    if OU_COL:
+        ou_val = to_num(r.get(OU_COL), default=np.nan)
+    else:
+        ou_val = np.nan
+
+    p_team_cover = np.nan
+    p_opp_cover  = np.nan
+    p_over       = np.nan
+    p_under      = np.nan
+
+    if np.isfinite(line_val):
+        # Team perspective: SM + Line > 0 ⇒ margin + line > 0
+        p_team_cover = normal_cdf((margin + line_val) / max(1e-6, sigma_margin))
+        p_team_cover = min(0.995, max(0.005, float(p_team_cover)))
+        p_opp_cover  = 1.0 - p_team_cover
+
+    if np.isfinite(ou_val):
+        p_over  = normal_cdf((total - ou_val) / max(1e-6, sigma_total))
+        p_over  = min(0.995, max(0.005, float(p_over)))
+        p_under = 1.0 - p_over
 
     pred_rows.append({
         "Date": r["__Date_parsed"],
@@ -520,7 +612,14 @@ for idx in sorted_indices:
         "Opp_Meta": opp_meta,
         "Team_Top50": extract_top50(r),
         "Opp_Top50": extract_top50(row_for_opp_ranks),
-        "Priority": row_priority(r)
+        "Priority": row_priority(r),
+        # probabilities for dropdown 2x3 grid
+        "P_Team_Win": p_team_win,
+        "P_Opp_Win": p_opp_win,
+        "P_Team_Cover": p_team_cover,
+        "P_Opp_Cover": p_opp_cover,
+        "P_Over": p_over,
+        "P_Under": p_under
     })
 
 
@@ -542,10 +641,12 @@ conf_selected = st.multiselect("Filter by conference (either team)", opp_conf_op
 
 def passes_filters(rec: Dict[str, Any]) -> bool:
     # locate both perspectives
-    key_base = (rec["Team"].lower(), rec["Opponent"].lower(), rec["Date"].date() if not pd.isna(rec["Date"]) else None)
+    key_base = (rec["Team"].lower(), rec["Opponent"].lower(),
+                rec["Date"].date() if not pd.isna(rec["Date"]) else None)
     base_row = schedule_df.iloc[schedule_row_index[key_base]] if key_base in schedule_row_index else None
 
-    key_mirr = (rec["Opponent"].lower(), rec["Team"].lower(), rec["Date"].date() if not pd.isna(rec["Date"]) else None)
+    key_mirr = (rec["Opponent"].lower(), rec["Team"].lower(),
+                rec["Date"].date() if not pd.isna(rec["Date"]) else None)
     mirror_row = schedule_df.iloc[schedule_row_index[key_mirr]] if key_mirr in schedule_row_index else None
 
     if base_row is None and mirror_row is None:
@@ -595,6 +696,17 @@ pred_rows.sort(key=lambda z: (z["DateTime"], z["Priority"]))
 st.markdown("---")
 st.subheader("Predicted Games (ordered by Game Time)")
 
+def fmt_prob(p: Any) -> str:
+    if p is None:
+        return "N/A"
+    try:
+        f = float(p)
+    except Exception:
+        return "N/A"
+    if not np.isfinite(f):
+        return "N/A"
+    return f"{f*100:.1f}%"
+
 for rec in pred_rows:
     date_str = rec["Date"].strftime("%m/%d/%Y") if not pd.isna(rec["Date"]) else "TBD"
     time_str = str(rec["GameTime"]) if rec["GameTime"] != "" else "TBD"
@@ -633,12 +745,40 @@ for rec in pred_rows:
             st.write(f"**{rec['Opponent']}**")
             st.dataframe(df_top50(rec["Opp_Top50"]), use_container_width=True)
 
+        # 2x3 probability grid
+        st.markdown("---")
+        st.markdown("#### Game Probabilities")
+
+        row1 = st.columns(3)
+        row2 = st.columns(3)
+
+        with row1[0]:
+            st.write("**Team Win**")
+            st.write(f"{rec['Team']}: {fmt_prob(rec['P_Team_Win'])}")
+        with row1[1]:
+            st.write("**Opponent Win**")
+            st.write(f"{rec['Opponent']}: {fmt_prob(rec['P_Opp_Win'])}")
+        with row1[2]:
+            st.write("**Total Over**")
+            st.write(f"Over: {fmt_prob(rec['P_Over'])}")
+
+        with row2[0]:
+            st.write("**Team Cover**")
+            st.write(f"{rec['Team']}: {fmt_prob(rec['P_Team_Cover'])}")
+        with row2[1]:
+            st.write("**Opponent Cover**")
+            st.write(f"{rec['Opponent']}: {fmt_prob(rec['P_Opp_Cover'])}")
+        with row2[2]:
+            st.write("**Total Under**")
+            st.write(f"Under: {fmt_prob(rec['P_Under'])}")
+
         st.markdown("---")
         st.write("Notes:")
         st.write("- Predictions use a single multi-output RandomForest with numeric stats, rank fields, categorical encodings (team/opponent/coach/conferences), and engineered flags.")
         st.write("- Missing rank values are treated as 51; other missing numerics are 0.")
         st.write("- HAN is used to set a home flag. Non-conference and power-conference flags are included for both sides.")
         st.write("- Initial ordering uses Game Time when available; ties fall back to date and then priority.")
+        st.write("- Probabilities use a Gaussian approximation on the residual spread for margin/total; they are meant as directional (not betting advice).")
 
 # Download CSV
 st.markdown("---")
@@ -648,7 +788,13 @@ out = pd.DataFrame([{
     "Team": r["Team"],
     "Opponent": r["Opponent"],
     "Pred_Team_Points": r["Pred_Team_Points"],
-    "Pred_Opp_Points": r["Pred_Opp_Points"]
+    "Pred_Opp_Points": r["Pred_Opp_Points"],
+    "P_Team_Win": r["P_Team_Win"],
+    "P_Opp_Win": r["P_Opp_Win"],
+    "P_Team_Cover": r["P_Team_Cover"],
+    "P_Opp_Cover": r["P_Opp_Cover"],
+    "P_Over": r["P_Over"],
+    "P_Under": r["P_Under"]
 } for r in pred_rows])
 st.download_button(
     "Download predictions CSV",
