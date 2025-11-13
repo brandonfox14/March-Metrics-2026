@@ -4,6 +4,7 @@
 # and recency-weighted ML models for Win / Spread / Total
 # =========================================================
 import os
+import math
 from typing import List, Tuple, Optional, Dict, Any
 
 import numpy as np
@@ -146,11 +147,10 @@ def is_penn_state(name: str) -> bool:
     s = str(name).strip().upper()
     return ("PENN ST" in s) or ("PENN STATE" in s)
 
-
 # =========================================================
 # LOAD DATA
 # =========================================================
-schedule_df_raw = load_csv(SCHEDULE_FILE)  # keep raw for drilldown lookup
+schedule_df_raw = load_csv(SCHEDULE_FILE)  # raw for drilldown
 schedule_df = None if schedule_df_raw is None else schedule_df_raw.copy()
 daily_df    = load_csv(DAILY_FILE)
 if schedule_df is None or daily_df is None:
@@ -422,7 +422,7 @@ if mask_over_fit.any():
 else:
     clf_over = None
 
-# Quick PR-AUC for win (optional, to sanity check)
+# Quick PR-AUC for win (optional, sanity check)
 def cv_ap_class(X, y, splits=5) -> Optional[float]:
     if len(np.unique(y)) < 2 or X.shape[0] < splits:
         return None
@@ -584,7 +584,7 @@ for _, r in schedule_df.iterrows():
     is_mm = False
     if mm_col and mm_col in schedule_df.columns:
         v = r.get(mm_col); is_mm = (str(v).strip() not in ("0","","N","FALSE","NaN"))
-    conf = r.get(opp_conf_col) if opp_conf_col in r.index else r.get(conf_col)
+    conf = r.get(opp_conf_col) if (opp_conf_col and opp_conf_col in r.index) else r.get(conf_col)
     cc = str(conf).strip().upper() if conf is not None else ""
     is_p5 = cc in ("SEC","BIG TEN","B1G","BIG 12","ACC","PAC-12","PAC 12","BIG EAST")
 
@@ -649,27 +649,99 @@ if pred_df.empty:
     st.stop()
 
 # =========================================================
-# SLATE CONSTRUCTION (diversified staking by edge; min 0.5u)
+# SLATE CONSTRUCTION (diversified by market type)
 # =========================================================
+st.markdown("---")
+st.markdown("### Suggested Slate (Model-Driven)")
+
+# Priority sort (Top25, MM, P5, Date, then edge)
 pred_df["_prio"] = pred_df.apply(
     lambda r: (0 if r["IsTop25"] else 1, 0 if r["IsMM"] else 1, 0 if r["IsP5"] else 1, r["Date"]),
     axis=1
 )
-pred_df = pred_df.sort_values(by=["_prio","BestEdge"], ascending=[True, False]).reset_index(drop=True)
+base = pred_df.dropna(subset=["BestEdge"]).copy()
+base = base[base["BestEdge"] > 0].copy()
+if base.empty:
+    st.info("No +EV bets under current markets.")
+    st.stop()
 
-slate = pred_df.dropna(subset=["BestEdge"]).copy()
-slate = slate[slate["BestEdge"] > 0].copy()
+base = base.sort_values(by=["_prio","BestEdge"], ascending=[True, False]).reset_index(drop=True)
+
+# Market buckets
+spread_cands = base[base["BestMarket"] == "Spread"].copy()
+ou_cands     = base[base["BestMarket"].isin(["Over","Under","OU"])].copy()
+ml_cands     = base[base["BestMarket"] == "Moneyline"].copy()
+
+# For ML, bias toward strong favorites (- odds) but still allow + odds with edge
+if not ml_cands.empty:
+    ml_cands = ml_cands.sort_values(
+        by=["WinProb","BestEdge"],
+        ascending=[False, False]
+    )
+
+dog_cands = base[base["IsDogPair"]].copy()  # games eligible for ML+spread pair
+
+# Determine slate size
+max_available = len(base)
+N_total = min(max_bets, max(min_bets, max_available))
+
+# Target counts by market (approximate)
+spread_target = int(math.floor(0.35 * N_total))
+ou_target     = int(math.floor(0.35 * N_total))
+ml_target     = int(math.floor(0.20 * N_total))
+
+base_sum = spread_target + ou_target + ml_target
+remaining = N_total - base_sum
+# Distribute remainder across buckets in order of richness
+bucket_order = [
+    ("spread", len(spread_cands)),
+    ("ou", len(ou_cands)),
+    ("ml", len(ml_cands)),
+]
+while remaining > 0:
+    changed = False
+    for name, size in bucket_order:
+        if remaining <= 0:
+            break
+        if name == "spread" and spread_target < size:
+            spread_target += 1; remaining -= 1; changed = True
+        elif name == "ou" and ou_target < size:
+            ou_target += 1; remaining -= 1; changed = True
+        elif name == "ml" and ml_target < size:
+            ml_target += 1; remaining -= 1; changed = True
+    if not changed:
+        break
+
+# Pick from each bucket (no restriction on re-using same game; each row is unique)
+slate_indices = []
+
+def pick_from_bucket(df: pd.DataFrame, target: int, already: List[int]) -> List[int]:
+    if target <= 0 or df.empty:
+        return []
+    df = df[~df.index.isin(already)]
+    if df.empty:
+        return []
+    return df.head(target).index.tolist()
+
+slate_indices += pick_from_bucket(spread_cands, spread_target, slate_indices)
+slate_indices += pick_from_bucket(ou_cands,     ou_target,     slate_indices)
+slate_indices += pick_from_bucket(ml_cands,     ml_target,     slate_indices)
+
+# If we still have room, fill with best remaining regardless of market
+if len(slate_indices) < N_total:
+    need = N_total - len(slate_indices)
+    remaining_df = base[~base.index.isin(slate_indices)]
+    extra_idx = remaining_df.head(need).index.tolist()
+    slate_indices += extra_idx
+
+slate = base.loc[slate_indices].copy()
 slate = slate.sort_values(by=["_prio","BestEdge"], ascending=[True, False]).reset_index(drop=True)
 
-N = min(max_bets, max(min_bets, len(slate)))
-slate = slate.head(N).copy()
-
+# Kelly-based stake sizing (normalized to effective_units, min 0.5u)
 edges_pos = slate["BestEdge"].clip(lower=1e-6)
 total_edge = float(edges_pos.sum()) if len(edges_pos) > 0 else 1.0
 slate["Stake_raw"] = edges_pos / total_edge * effective_units
-
-# round to nearest 0.5u and renormalize to hit bankroll
-slate["Stake"] = (slate["Stake_raw"] * 2).round() / 2.0
+slate["Stake"] = (slate["Stake_raw"] * 2).round() / 2.0  # nearest 0.5
 
 def renorm_half_units(df, target):
     diff = round(target - float(df["Stake"].sum()), 2)
@@ -689,12 +761,6 @@ if not slate.empty:
     slate.loc[slate["Stake"] < 0.5, "Stake"] = 0.5
     slate = renorm_half_units(slate, effective_units)
 
-# =========================================================
-# SUGGESTED SLATE TABLE (clean)
-# =========================================================
-st.markdown("---")
-st.markdown("### Suggested Slate (Model-Driven)")
-
 def pick_label(r):
     if r["BestMarket"] in ("Over","Under","OU"):
         side = r["BestMarket"] if r["BestMarket"] in ("Over","Under") else (
@@ -703,8 +769,11 @@ def pick_label(r):
         val = int(r["BestLineVal"]) if r["BestLineVal"] is not None else ""
         return f"{side} {val}".strip()
     elif r["BestMarket"] == "Spread":
-        sign = "+" if (r['BestLineVal'] is not None and r['BestLineVal'] > 0) else ""
-        return f"{r['Team']} {sign}{r['BestLineVal']}" if r['BestLineVal'] is not None else f"{r['Team']} Spread"
+        use_line = r["Line"]
+        if use_line is None:
+            return f"{r['Team']} Spread"
+        sign = "+" if use_line > 0 else ""
+        return f"{r['Team']} {sign}{use_line}"
     elif r["BestMarket"] == "Moneyline":
         return f"{r['Team']} ML"
     return r["BestMarket"] or "Bet"
@@ -720,22 +789,28 @@ else:
         game_label = f"{r['Team']} vs {r['Opponent']}"
         stake = float(r["Stake"])
 
-        # Rule 3: high-value dog pairing (ML + Spread with 2x hedge)
-        if r.get("IsDogPair", False) and r["BestMarket"] in ("Moneyline", "Spread"):
-            ml_units = round(stake / 3.0 * 2) / 2.0
-            spread_units = round((stake - ml_units) * 2) / 2.0
+        # Rule 3 UPDATED: big dog pairing (ML + Spread with 3x spread vs ML)
+        if r.get("IsDogPair", False):
+            # Maintain total stake while making spread = 3× ML
+            ml_units = stake / 4.0
+            spread_units = stake - ml_units
+            ml_units = round(ml_units * 2) / 2.0
+            spread_units = round(spread_units * 2) / 2.0
+
             if ml_units >= 0.5:
                 plan_rows.append({
                     "GAME": game_label,
                     "BET TYPE": f"{r['Team']} ML (dog value)",
                     "BET AMOUNT": f"{ml_units:.1f} UNITS"
                 })
-            if spread_units >= 0.5 and r["BestLineVal"] is not None:
-                sign = "+" if r["BestLineVal"] > 0 else ""
-                spread_label = f"{r['Team']} {sign}{r['BestLineVal']}"
+
+            spread_line = r["Line"]
+            if spread_units >= 0.5 and spread_line is not None:
+                sign = "+" if spread_line > 0 else ""
+                spread_label = f"{r['Team']} {sign}{spread_line}"
                 plan_rows.append({
                     "GAME": game_label,
-                    "BET TYPE": f"{spread_label} (hedge ~2x ML)",
+                    "BET TYPE": f"{spread_label} (spread ~3× ML stake)",
                     "BET AMOUNT": f"{spread_units:.1f} UNITS"
                 })
         else:
@@ -745,10 +820,10 @@ else:
                 "BET AMOUNT": f"{stake:.1f} UNITS"
             })
 
-    # Optionally allocate remainder to most probable ML
+    # Optionally allocate remainder to most probable ML favorite
     if remainder >= 0.5:
-        ml_cand = pred_df[pred_df["BestMarket"]=="Moneyline"].copy()
-        ml_cand = ml_cand.sort_values(["BestProb","BestEdge"], ascending=[False, False])
+        ml_cand = pred_df[(pred_df["BestMarket"]=="Moneyline") & pred_df["BestProb"].notna()].copy()
+        ml_cand = ml_cand.sort_values(["WinProb","BestEdge"], ascending=[False, False])
         if not ml_cand.empty:
             top = ml_cand.iloc[0]
             plan_rows.append({
@@ -828,78 +903,122 @@ with c2:
         st.write("No suitable continuation identified.")
 
 # =========================================================
-# PARLAY IDEAS
+# PARLAY BUILDER (80%+ bets + best underdog spreads)
 # =========================================================
 st.markdown("---")
-st.markdown("### Parlay Ideas")
-parlay_source = pred_df.sort_values(["BestProb","BestEdge"], ascending=[False, False]).head(24).copy()
+st.markdown("### Parlay Builder")
 
-min_legs = int(np.interp(homerun, [1, 10], [2, 5]))
-max_legs = min_legs + 1
-
-def build_parlays(df: pd.DataFrame, min_legs: int, max_legs: int, max_sets: int = 3):
-    out = []
-    picks = df.to_dict("records")
-    used = set()
-    for L in range(min_legs, max_legs + 1):
-        if len(out) >= max_sets:
-            break
-        legs, acc_prob, acc_dec = [], 1.0, 1.0
-        for p in picks:
-            key = (p["Team"], p["Opponent"], p["Date"], p["BestMarket"])
-            if key in used: continue
-            if not np.isfinite(p["BestProb"]): continue
-            dec = p["BestDecOdds"]
-            if not np.isfinite(dec):
-                if p["BestMarket"] in ("Spread","Over","Under","OU"):
-                    dec = 1.909
-                else:
-                    continue
-            legs.append(p); acc_prob *= p["BestProb"]; acc_dec *= dec; used.add(key)
-            if len(legs) >= L: break
-        if len(legs) == L and acc_prob > 0:
-            out.append((legs, acc_prob, acc_dec))
-    return out
+# 80%+ bets by model probability (BestProb >= 0.80)
+par_cands = pred_df.copy()
+par_cands = par_cands[par_cands["BestProb"].notna()]
+par_cands = par_cands[par_cands["BestProb"] >= 0.80]
+par_cands = par_cands.sort_values(["BestProb","BestEdge"], ascending=[False, False]).reset_index(drop=True)
 
 def leg_text(p):
     m = p["BestMarket"]
     if m in ("Over","Under","OU"):
         side = m if m in ("Over","Under") else ("Over" if (p["OverProb"] and p["OverProb"]>=0.5) else "Under")
         val  = int(p["BestLineVal"]) if p["BestLineVal"] is not None else ""
-        return f"{side} {val}"
+        return f"{side} {val}".strip()
     if m == "Spread":
-        sign = "+" if (p['BestLineVal'] is not None and p['BestLineVal'] > 0) else ""
-        return f"{p['Team']} {sign}{p['BestLineVal']}"
+        line = p["Line"]
+        if line is None:
+            return f"{p['Team']} Spread"
+        sign = "+" if line > 0 else ""
+        return f"{p['Team']} {sign}{line}"
     if m == "Moneyline":
         return f"{p['Team']} ML"
     return "Bet"
 
-parlays = build_parlays(parlay_source, min_legs, max_legs, max_sets=3)
-if not parlays:
-    st.write("No parlay suggestions currently.")
+def parlay_from_slice(df: pd.DataFrame, max_legs: int = 10):
+    legs = df.head(max_legs).to_dict("records")
+    if not legs:
+        return None
+    acc_prob = 1.0
+    acc_dec = 1.0
+    for leg in legs:
+        p = float(leg["BestProb"])
+        acc_prob *= p
+        dec = leg["BestDecOdds"]
+        if not np.isfinite(dec):
+            if leg["BestMarket"] in ("Spread","Over","Under","OU"):
+                dec = 1.909
+            else:
+                continue
+        acc_dec *= dec
+    return legs, acc_prob, acc_dec
+
+if par_cands.empty:
+    st.write("No bets with 80%+ model probability yet.")
 else:
-    for i, (legs, p_all, dec_all) in enumerate(parlays, 1):
-        with st.expander(f"Parlay {i} — {len(legs)} legs — {decimal_to_american(dec_all)} ({dec_all:.2f} dec) — hit p≈{p_all:.2f}", expanded=False):
-            top_row = {f"Leg {j+1} Team 1": f"{leg['Team']}" for j, leg in enumerate(legs)}
-            bot_row = {f"Leg {j+1} Team 2": f"{leg['Opponent']}" for j, leg in enumerate(legs)}
-            pts_row = {f"Leg {j+1} Team 1 pts": f"{leg['Pred_Points']}" for j, leg in enumerate(legs)}
-            pts2_row= {f"Leg {j+1} Team 2 pts": f"{leg['Pred_Opp_Points']}" for j, leg in enumerate(legs)}
-            st.write(pd.DataFrame([top_row, bot_row]))
-            st.write(pd.DataFrame([pts_row, pts2_row]))
-            leg_table = []
-            for j, leg in enumerate(legs, 1):
+    # Parlay 1
+    slice1 = par_cands.iloc[:10]
+    p1 = parlay_from_slice(slice1, max_legs=10)
+    if p1 is not None:
+        legs1, p_all1, dec_all1 = p1
+        st.subheader("80% Bet Parlay 1")
+        st.caption(f"{len(legs1)} legs — approx hit probability {p_all1:.2f}, combined odds {decimal_to_american(dec_all1)} ({dec_all1:.2f} dec)")
+        rows1 = []
+        for j, leg in enumerate(legs1, 1):
+            dec = leg["BestDecOdds"]
+            if not np.isfinite(dec) and leg["BestMarket"] in ("Spread","Over","Under","OU"):
+                dec = 1.909
+            rows1.append({
+                "Leg": j,
+                "Matchup": f"{leg['Team']} vs {leg['Opponent']}",
+                "Market": leg_text(leg),
+                "Price (US)": decimal_to_american(dec),
+                "Model p": f"{leg['BestProb']:.2f}"
+            })
+        st.dataframe(pd.DataFrame(rows1), use_container_width=True)
+
+    # Parlay 2 (remaining 80%+ bets)
+    if len(par_cands) > 10:
+        slice2 = par_cands.iloc[10:20]
+        p2 = parlay_from_slice(slice2, max_legs=10)
+        if p2 is not None:
+            legs2, p_all2, dec_all2 = p2
+            st.subheader("80% Bet Parlay 2")
+            st.caption(f"{len(legs2)} legs — approx hit probability {p_all2:.2f}, combined odds {decimal_to_american(dec_all2)} ({dec_all2:.2f} dec)")
+            rows2 = []
+            for j, leg in enumerate(legs2, 1):
                 dec = leg["BestDecOdds"]
                 if not np.isfinite(dec) and leg["BestMarket"] in ("Spread","Over","Under","OU"):
                     dec = 1.909
-                leg_table.append({
+                rows2.append({
                     "Leg": j,
                     "Matchup": f"{leg['Team']} vs {leg['Opponent']}",
                     "Market": leg_text(leg),
-                    "Price (dec)": f"{dec:.3f}",
                     "Price (US)": decimal_to_american(dec),
                     "Model p": f"{leg['BestProb']:.2f}"
                 })
-            st.dataframe(pd.DataFrame(leg_table), use_container_width=True)
+            st.dataframe(pd.DataFrame(rows2), use_container_width=True)
+
+# Top 5 Underdog ML spreads (most valuable dogs by edge)
+st.subheader("Top 5 Underdog ML Spreads")
+dog_spreads = pred_df.copy()
+dog_spreads = dog_spreads[dog_spreads["IsDogPair"]]
+dog_spreads = dog_spreads[dog_spreads["ML"].notna()]
+dog_spreads = dog_spreads[dog_spreads["ML"] > 0]  # + odds only
+dog_spreads = dog_spreads[dog_spreads["Line"].notna()]
+dog_spreads = dog_spreads.sort_values(["BestEdge","CoverProb"], ascending=[False, False]).head(5)
+
+if dog_spreads.empty:
+    st.write("No strong underdog ML+spread combos identified yet.")
+else:
+    rows_d = []
+    for _, r in dog_spreads.iterrows():
+        sign = "+" if r["Line"] > 0 else ""
+        spread_label = f"{r['Team']} {sign}{r['Line']}"
+        rows_d.append({
+            "Matchup": f"{r['Team']} vs {r['Opponent']}",
+            "ML Price": decimal_to_american(american_to_decimal(r["ML"])),
+            "Spread": spread_label,
+            "Win Prob (ML)": f"{r['WinProb']:.2f}",
+            "Cover Prob": f"{r['CoverProb']:.2f}",
+            "Edge": f"{r['BestEdge']:.3f}"
+        })
+    st.dataframe(pd.DataFrame(rows_d), use_container_width=True)
 
 # =========================================================
 # DRILLDOWN — show both teams' top-50 ranks (pull opponent row from RAW schedule)
@@ -933,15 +1052,15 @@ for _, r in pred_df.iterrows():
         row_opp  = find_opponent_row_raw(r["Team"], r["Opponent"], r["Date"])
 
         # Meta
-        t_conf = row_team.get(conf_col) if conf_col in row_team.index else ""
+        t_conf = row_team.get(conf_col) if (conf_col and conf_col in row_team.index) else ""
         o_conf = (
-            row_team.get(opp_conf_col) if opp_conf_col in row_team.index else
+            row_team.get(opp_conf_col) if (opp_conf_col and opp_conf_col in row_team.index) else
             (row_opp.get(conf_col) if (row_opp is not None and conf_col in row_opp.index) else "")
         )
 
-        t_coach = row_team.get(coach_col) if coach_col in row_team.index else ""
+        t_coach = row_team.get(coach_col) if (coach_col and coach_col in row_team.index) else ""
         o_coach = (
-            row_team.get(opp_coach_col) if opp_coach_col in row_team.index else
+            row_team.get(opp_coach_col) if (opp_coach_col and opp_coach_col in row_team.index) else
             (row_opp.get(coach_col) if (row_opp is not None and coach_col in row_opp.index) else "")
         )
 
