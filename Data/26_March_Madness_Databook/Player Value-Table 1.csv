@@ -198,23 +198,32 @@ Alabama St.,,,,,,,,,25,1000,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,24,841,112,26
 ,Tyler Mason,Alabama St.,AWAY,Air Force,Mountain West,0,0,Bench,0,14,0,4,0,0,0,0,1,2,0,0,0,0,0,0,5.743,0,28.14,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-2,1.5,1,0,"1,025",0,FALSE, , , , , , , , , , , , , , , , 
 ,Tyler Mason,Alabama St.,AWAY,UAB,American,0,0,Bench,0,9,1,2,0,0,0,0,0,0,0,1,1,0,2,0,50.004,0,28.14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,19.5,1,0,"3,556",0,FALSE, , , , , , , , , , , , , , , , 
 ,Tyler Mason,Alabama St.,NEUTRAL,IU Indy,Horizon,0,0,Bench,0,9,4,5,0,0,0,0,2,1,0,0,0,1,8,0,2.264,0,28.14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,2.5,0,0,0,0,FALSE, , , , , , , , , , , , , , , , 
-Albany,,,,,,,,,10,400,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,,,,,,,,,,,10,356,36,109,10,50,23,32,22,38,20,17,33,43,105,8
+Albany,,,,,,,,,15,597,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,15,518,54,161,16,79,30,44,32,53,29,24,45,56,154,8
 ,Amir Lindsey,Albany,AWAY,Marquette,Big East,0,0,Starter,1,35,7,17,3,8,3,5,4,4,3,1,3,4,20,0,44.645,0,10.277,1,0,0,0,0,0,1,0,1,0,0,1,1,1,-27,24.5,0,0,"13,168",0,TRUE,1,35,7,17,3,8,3,5,4,4,3,1,3,4,20,Amir Lindsey
 ,Amir Lindsey,Albany,AWAY,Massachusetts,MAC,0,0,Starter,1,37,2,12,1,8,2,2,0,0,3,2,7,2,7,0,8.526,0,10.277,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-21,8.5,0,0,"3,025",0,TRUE,1,37,2,12,1,8,2,2,0,0,3,2,7,2,7,Amir Lindsey
+,Amir Lindsey,Albany,AWAY,Rhode Island,A10,0,0,Starter,1,37,5,14,2,7,7,8,0,1,4,1,1,2,19,0,8.112,0,10.277,1,0,0,0,0,0,1,0,0,0,1,0,1,0,-19,14.5,0,0,"3,331",0,TRUE,1,37,5,14,2,7,7,8,0,1,4,1,1,2,19,Amir Lindsey
+,Ife West-Ingram,Albany,AWAY,Rhode Island,A10,0,0,Bench,0,13,4,5,0,0,0,0,0,0,0,0,0,4,8,0,8.112,0,10.277,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-19,14.5,0,0,"3,331",0,FALSE, , , , , , , , , , , , , , , , 
 ,Isaac Abidde,Albany,AWAY,Marquette,Big East,0,0,Starter,1,12,0,6,0,3,0,0,0,3,0,0,1,4,0,0,44.645,0,10.277,0,0,0,1,0,0,0,0,0,0,0,1,0,0,-27,24.5,0,0,"13,168",0,TRUE,1,12,0,6,0,3,0,0,0,3,0,0,1,4,0,Isaac Abidde
 ,Isaac Abidde,Albany,AWAY,Massachusetts,MAC,0,0,Starter,1,13,0,3,0,1,1,2,2,2,0,0,3,3,1,0,8.526,0,10.277,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-21,8.5,0,0,"3,025",0,TRUE,1,13,0,3,0,1,1,2,2,2,0,0,3,3,1,Isaac Abidde
+,Isaac Abidde,Albany,AWAY,Rhode Island,A10,0,0,Starter,1,20,2,8,0,5,0,0,1,1,0,0,2,1,4,0,8.112,0,10.277,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-19,14.5,0,0,"3,331",0,TRUE,1,20,2,8,0,5,0,0,1,1,0,0,2,1,4,Isaac Abidde
 ,Jaden Kempson,Albany,AWAY,Marquette,Big East,0,0,Starter,1,37,1,14,0,5,1,1,2,6,4,3,7,3,3,0,44.645,0,10.277,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-27,24.5,0,0,"13,168",0,TRUE,1,37,1,14,0,5,1,1,2,6,4,3,7,3,3,Jaden Kempson
 ,Jaden Kempson,Albany,AWAY,Massachusetts,MAC,0,0,Starter,1,38,5,11,1,4,6,9,0,5,4,4,0,3,17,0,8.526,0,10.277,1,0,0,0,0,0,0,0,0,1,0,0,1,0,-21,8.5,0,0,"3,025",0,TRUE,1,38,5,11,1,4,6,9,0,5,4,4,0,3,17,Jaden Kempson
-,Ma'Kye Taylor,Albany,AWAY,Marquette,Big East,0,0,Bench,0,8,0,2,0,2,0,0,0,0,0,0,1,2,0,0,44.645,0,10.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-27,24.5,0,0,"13,168",0,FALSE, , , , , , , , , , , , , , , , 
-,Ma’Kye Taylor,Albany,AWAY,Massachusetts,MAC,0,0,Bench,0,14,1,2,0,1,0,0,0,1,0,0,1,4,2,0,8.526,0,10.277,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-21,8.5,0,0,"3,025",0,FALSE, , , , , , , , , , , , , , , , 
+,Jaden Kempson,Albany,AWAY,Rhode Island,A10,0,0,Starter,1,27,1,11,0,4,0,0,2,3,3,3,5,2,2,0,8.112,0,10.277,0,0,0,0,0,0,0,0,0,1,0,0,1,0,-19,14.5,0,0,"3,331",0,TRUE,1,27,1,11,0,4,0,0,2,3,3,3,5,2,2,Jaden Kempson
+,Ma'Kye Taylor,Albany,AWAY,Marquette,Big East,0,0,Bench,0,8,0,2,0,2,0,0,0,0,0,0,1,2,0,0,44.645,0,10.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-27,24.5,0,0,"13,168",0,TRUE,0,8,0,2,0,2,0,0,0,0,0,0,1,2,0,Ma'Kye Taylor
+,Ma'Kye Taylor,Albany,AWAY,Rhode Island,A10,0,0,Bench,0,24,4,7,0,2,2,3,7,1,2,1,0,1,10,0,8.112,0,10.277,1,0,0,0,0,0,0,0,1,0,0,0,1,0,-19,14.5,0,0,"3,331",0,TRUE,0,24,4,7,0,2,2,3,7,1,2,1,0,1,10,Ma'Kye Taylor
+,Ma'Kye Taylor,Albany,AWAY,Massachusetts,MAC,0,0,Bench,0,14,1,2,0,1,0,0,0,1,0,0,1,4,2,0,8.526,0,10.277,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-21,8.5,0,0,"3,025",0,TRUE,0,14,1,2,0,1,0,0,0,1,0,0,1,4,2,Ma'Kye Taylor
 ,Miles Rose,Albany,AWAY,Marquette,Big East,0,0,Bench,0,9,0,2,0,1,1,2,0,0,1,0,2,1,1,0,44.645,0,10.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-27,24.5,0,0,"13,168",0,FALSE, , , , , , , , , , , , , , , , 
 ,Nas Muhammad,Albany,AWAY,Massachusetts,MAC,0,0,Bench,0,13,2,5,1,2,2,3,0,0,2,2,0,0,7,0,8.526,0,10.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-21,8.5,0,0,"3,025",0,FALSE, , , , , , , , , , , , , , , , 
+,Nas Muhammad,Albany,AWAY,Rhode Island,A10,0,0,Bench,0,11,0,4,0,2,0,0,0,1,2,0,0,0,0,0,8.112,0,10.277,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-19,14.5,0,0,"3,331",0,FALSE, , , , , , , , , , , , , , , , 
 ,Okechukwu Okeke,Albany,AWAY,Marquette,Big East,0,0,Starter,1,27,4,4,0,0,2,3,4,3,2,1,1,3,10,0,44.645,0,10.277,1,0,0,0,1,0,0,0,1,0,0,0,1,0,-27,24.5,0,0,"13,168",0,TRUE,1,27,4,4,0,0,2,3,4,3,2,1,1,3,10,Okechukwu Okeke
 ,Okechukwu Okeke,Albany,AWAY,Massachusetts,MAC,0,0,Starter,1,26,3,4,0,0,1,2,2,1,1,0,2,2,7,0,8.526,0,10.277,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-21,8.5,0,0,"3,025",0,TRUE,1,26,3,4,0,0,1,2,2,1,1,0,2,2,7,Okechukwu Okeke
+,Okechukwu Okeke,Albany,AWAY,Rhode Island,A10,0,0,Starter,1,27,2,2,0,0,0,3,2,4,1,1,2,2,4,0,8.112,0,10.277,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-19,14.5,0,0,"3,331",0,TRUE,1,27,2,2,0,0,0,3,2,4,1,1,2,2,4,Okechukwu Okeke
 ,Tarique Foster,Albany,AWAY,Marquette,Big East,0,0,Starter,1,29,3,12,2,8,0,0,1,0,0,1,3,2,8,0,44.645,0,10.277,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-27,24.5,0,0,"13,168",0,TRUE,1,29,3,12,2,8,0,0,1,0,0,1,3,2,8,Tarique Foster
 ,Tarique Foster,Albany,AWAY,Massachusetts,MAC,0,0,Starter,1,20,1,4,1,4,0,0,0,2,1,0,1,3,3,0,8.526,0,10.277,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-21,8.5,0,0,"3,025",0,TRUE,1,20,1,4,1,4,0,0,0,2,1,0,1,3,3,Tarique Foster
-,Yaya Keita,Albany,AWAY,Marquette,Big East,0,0,Bench,0,12,1,2,0,0,2,2,2,0,1,0,2,4,4,0,44.645,0,10.277,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-27,24.5,0,0,"13,168",0,TRUE,0,12,1,2,0,0,2,2,2,0,1,0,2,4,4,Yaya Keita
-,Yaya Keita,Albany,AWAY,Massachusetts,MAC,0,0,Bench,0,14,1,2,0,0,0,0,2,1,1,0,0,2,2,0,8.526,0,10.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-21,8.5,0,0,"3,025",0,TRUE,0,14,1,2,0,0,0,0,2,1,1,0,0,2,2,Yaya Keita
+,Yaya Keita,Albany,AWAY,Marquette,Big East,0,0,Bench,0,12,1,2,0,0,2,2,2,0,1,0,2,4,4,0,44.645,0,10.277,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-27,24.5,0,0,"13,168",0,FALSE, , , , , , , , , , , , , , , , 
+,Yaya Keita,Albany,AWAY,Massachusetts,MAC,0,0,Bench,0,14,1,2,0,0,0,0,2,1,1,0,0,2,2,0,8.526,0,10.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-21,8.5,0,0,"3,025",0,FALSE, , , , , , , , , , , , , , , , 
+,Yaya Keita,Albany,AWAY,Rhode Island,A10,0,0,Bench,0,7,0,0,0,0,0,0,3,1,0,0,0,3,0,0,8.112,0,10.277,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-19,14.5,0,0,"3,331",0,FALSE, , , , , , , , , , , , , , , , 
+,Zacharie Matulu,Albany,AWAY,Rhode Island,A10,0,0,Starter,1,31,5,10,4,8,0,0,2,5,1,1,2,5,14,0,8.112,0,10.277,1,0,0,0,0,0,0,0,0,0,0,1,1,0,-19,14.5,0,0,"3,331",0,TRUE,1,31,5,10,4,8,0,0,2,5,1,1,2,5,14,Zacharie Matulu
 ,Zacharie Matulu,Albany,AWAY,Marquette,Big East,0,0,Bench,0,31,3,8,0,3,1,1,3,7,0,2,2,4,7,0,44.645,0,10.277,1,0,0,0,0,0,0,1,0,0,0,1,1,0,-27,24.5,0,0,"13,168",0,TRUE,0,31,3,8,0,3,1,1,3,7,0,2,2,4,7,Zacharie Matulu
 ,Zacharie Matulu,Albany,AWAY,Massachusetts,MAC,0,0,Bench,0,25,5,10,2,6,4,5,0,4,0,3,1,4,16,0,8.526,0,10.277,1,0,0,0,0,0,0,0,0,0,0,1,1,0,-21,8.5,0,0,"3,025",0,TRUE,0,25,5,10,2,6,4,5,0,4,0,3,1,4,16,Zacharie Matulu
 Alcorn St.,,,,,,,,,25,998,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,25,813,100,233,38,98,45,65,31,56,50,32,68,68,283,8
@@ -1259,34 +1268,44 @@ Cal Poly,,,,,,,,,20,791,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,17,654,90,218,43,
 ,Troy Plumtree,Cal Poly,AWAY,USC,Big Ten,0,0,Bench,0,18,2,4,1,2,0,0,2,2,0,0,1,1,5,0,35.501,0,11.762,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-30,24.5,0,0,"3,902",0,FALSE, , , , , , , , , , , , , , , , 
 ,Troy Plumtree,Cal Poly,AWAY,Seattle,WCC,0,0,Bench,0,13,3,5,1,2,0,0,2,0,3,0,3,2,7,0,21.417,0,11.762,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,10.5,1,0,999,0,FALSE, , , , , , , , , , , , , , , , 
 ,Troy Plumtree,Cal Poly,AWAY,Colorado St.,Mountain West,0,0,Bench,0,9,3,5,0,1,0,1,0,0,0,0,0,3,6,0,57.765,0,11.762,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-14,18.5,0,0,"5,908",0,FALSE, , , , , , , , , , , , , , , , 
-Cal St. Bakersfield,,,,,,,,,15,591,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,15,496,64,135,16,39,48,67,34,47,29,17,40,45,192,8
+Cal St. Bakersfield,,,,,,,,,20,788,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,20,681,85,193,18,52,62,90,46,58,37,22,52,64,250,8
 ,AJ George,Cal St. Bakersfield,AWAY,California,ACC,0,0,Starter,1,23,2,9,1,2,0,0,1,1,1,0,3,4,5,0,-19.144,0,8.446,0,0,0,0,0,0,0,0,0,0,0,1,1,0,-27,15.5,0,0,3143,0,TRUE,1,23,2,9,1,2,0,0,1,1,1,0,3,4,5,AJ George
 ,AJ George,Cal St. Bakersfield,AWAY,Portland St.,Big Sky,0,0,Starter,1,29,4,9,1,3,1,2,2,1,2,1,0,1,10,0,8.802,0,8.446,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-13,6.5,0,0,685,0,TRUE,1,29,4,9,1,3,1,2,2,1,2,1,0,1,10,AJ George
+,AJ George,Cal St. Bakersfield,AWAY,Mississippi,SEC,0,0,Starter,1,31,5,10,0,0,1,3,1,2,1,0,0,1,11,0,25.285,0,8.446,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-22,24.5,0,0,"4,362",0,TRUE,1,31,5,10,0,0,1,3,1,2,1,0,0,1,11,AJ George
 ,AJ George,Cal St. Bakersfield,HOME,Western Illinois,Ohio Valley,0,0,Starter,1,27,2,6,1,2,2,4,2,2,1,1,1,3,7,0,11.267,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,1,0,16,-6.5,0,0,394,0,TRUE,1,27,2,6,1,2,2,4,2,2,1,1,1,3,7,AJ George
+,Caleb McCarty,Cal St. Bakersfield,AWAY,Mississippi,SEC,0,0,Bench,0,10,1,2,0,0,0,0,1,1,0,1,0,2,2,0,25.285,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-22,24.5,0,0,"4,362",0,FALSE, , , , , , , , , , , , , , , , 
 ,Caleb McCarty,Cal St. Bakersfield,HOME,Western Illinois,Ohio Valley,0,0,Bench,0,6,1,1,0,0,2,2,1,1,0,0,1,3,4,0,11.267,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,-6.5,0,0,394,0,FALSE, , , , , , , , , , , , , , , , 
 ,CJ Hardy,Cal St. Bakersfield,AWAY,California,ACC,0,0,Starter,1,23,2,5,0,0,4,5,0,3,0,2,2,1,8,0,-19.144,0,8.446,0,0,0,0,0,0,0,0,0,1,0,0,1,0,-27,15.5,0,0,3143,0,TRUE,1,23,2,5,0,0,4,5,0,3,0,2,2,1,8,CJ Hardy
 ,CJ Hardy,Cal St. Bakersfield,AWAY,Portland St.,Big Sky,0,0,Starter,1,31,5,9,1,3,10,11,1,2,7,1,4,5,21,0,8.802,0,8.446,1,0,0,0,0,0,0,0,0,0,1,1,1,1,-13,6.5,0,0,685,0,TRUE,1,31,5,9,1,3,10,11,1,2,7,1,4,5,21,CJ Hardy
+,CJ Hardy,Cal St. Bakersfield,AWAY,Mississippi,SEC,0,0,Starter,1,33,6,10,2,3,7,9,1,2,4,1,3,4,21,0,25.285,0,8.446,1,0,0,0,0,0,1,0,0,0,1,1,1,1,-22,24.5,0,0,"4,362",0,TRUE,1,33,6,10,2,3,7,9,1,2,4,1,3,4,21,CJ Hardy
 ,CJ Hardy,Cal St. Bakersfield,HOME,Western Illinois,Ohio Valley,0,0,Starter,1,31,5,11,2,3,6,6,1,7,3,0,2,1,18,0,11.267,0,8.446,1,0,0,0,0,1,1,1,0,0,1,0,1,0,16,-6.5,0,0,394,0,TRUE,1,31,5,11,2,3,6,6,1,7,3,0,2,1,18,CJ Hardy
 ,Dailin Smith,Cal St. Bakersfield,AWAY,California,ACC,0,0,Starter,1,29,5,12,1,3,5,9,1,2,1,0,1,1,16,0,-19.144,0,8.446,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-27,15.5,0,0,3143,0,TRUE,1,29,5,12,1,3,5,9,1,2,1,0,1,1,16,Dailin Smith
 ,Dailin Smith,Cal St. Bakersfield,AWAY,Portland St.,Big Sky,0,0,Starter,1,35,9,17,4,8,8,9,0,2,0,1,5,3,30,0,8.802,0,8.446,1,0,0,0,0,0,1,0,0,0,0,0,1,1,-13,6.5,0,0,685,0,TRUE,1,35,9,17,4,8,8,9,0,2,0,1,5,3,30,Dailin Smith
+,Dailin Smith,Cal St. Bakersfield,AWAY,Mississippi,SEC,0,0,Starter,1,24,2,10,0,4,5,8,1,1,3,2,3,3,9,0,25.285,0,8.446,0,0,0,0,0,0,0,0,0,1,0,0,1,0,-22,24.5,0,0,"4,362",0,TRUE,1,24,2,10,0,4,5,8,1,1,3,2,3,3,9,Dailin Smith
 ,Dailin Smith,Cal St. Bakersfield,HOME,Western Illinois,Ohio Valley,0,0,Starter,1,29,4,12,1,6,4,6,1,0,1,0,4,0,13,0,11.267,0,8.446,1,0,0,0,0,0,0,0,0,0,0,0,1,0,16,-6.5,0,0,394,0,TRUE,1,29,4,12,1,6,4,6,1,0,1,0,4,0,13,Dailin Smith
 ,Jaden Alexander,Cal St. Bakersfield,AWAY,California,ACC,0,0,Bench,0,23,1,6,0,0,3,4,2,0,3,2,2,2,5,0,-19.144,0,8.446,0,0,0,0,0,0,0,0,0,1,0,0,1,0,-27,15.5,0,0,3143,0,FALSE, , , , , , , , , , , , , , , , 
 ,Jaden Alexander,Cal St. Bakersfield,AWAY,Portland St.,Big Sky,0,0,Bench,0,11,0,2,0,0,3,4,1,0,1,0,0,2,3,0,8.802,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-13,6.5,0,0,685,0,FALSE, , , , , , , , , , , , , , , , 
+,Jaden Alexander,Cal St. Bakersfield,AWAY,Mississippi,SEC,0,0,Bench,0,5,0,0,0,0,0,0,1,1,0,0,0,0,0,0,25.285,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-22,24.5,0,0,"4,362",0,FALSE, , , , , , , , , , , , , , , , 
 ,Jaden Alexander,Cal St. Bakersfield,HOME,Western Illinois,Ohio Valley,0,0,Bench,0,7,1,4,0,0,0,0,0,0,0,2,0,1,2,0,11.267,0,8.446,0,0,0,0,0,0,0,0,0,1,0,0,0,0,16,-6.5,0,0,394,0,FALSE, , , , , , , , , , , , , , , , 
-,Kadar Waller,Cal St. Bakersfield,AWAY,California,ACC,0,0,Bench,0,17,0,1,0,0,0,0,0,1,1,1,0,0,0,0,-19.144,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-27,15.5,0,0,3143,0,TRUE,0,17,0,1,0,0,0,0,0,1,1,1,0,0,0,Kadar Waller
-,Kadar Waller,Cal St. Bakersfield,AWAY,Portland St.,Big Sky,0,0,Bench,0,13,0,1,0,0,0,0,0,1,1,1,4,2,0,0,8.802,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-13,6.5,0,0,685,0,TRUE,0,13,0,1,0,0,0,0,0,1,1,1,4,2,0,Kadar Waller
-,Kadar Waller,Cal St. Bakersfield,HOME,Western Illinois,Ohio Valley,0,0,Bench,0,7,1,1,0,0,0,0,0,0,2,1,0,0,2,0,11.267,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,-6.5,0,0,394,0,TRUE,0,7,1,1,0,0,0,0,0,0,2,1,0,0,2,Kadar Waller
-,Mike Price,Cal St. Bakersfield,AWAY,California,ACC,0,0,Bench,0,19,1,7,0,2,0,0,0,0,3,0,2,2,2,0,-19.144,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-27,15.5,0,0,3143,0,FALSE, , , , , , , , , , , , , , , , 
-,Mike Price,Cal St. Bakersfield,AWAY,Portland St.,Big Sky,0,0,Bench,0,9,1,5,0,0,0,0,0,1,0,2,1,1,2,0,8.802,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-13,6.5,0,0,685,0,FALSE, , , , , , , , , , , , , , , , 
-,Mike Price,Cal St. Bakersfield,HOME,Western Illinois,Ohio Valley,0,0,Bench,0,20,1,5,0,3,0,0,0,1,1,1,2,0,2,0,11.267,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,1,0,16,-6.5,0,0,394,0,FALSE, , , , , , , , , , , , , , , , 
+,Kadar Waller,Cal St. Bakersfield,AWAY,California,ACC,0,0,Bench,0,17,0,1,0,0,0,0,0,1,1,1,0,0,0,0,-19.144,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-27,15.5,0,0,3143,0,FALSE, , , , , , , , , , , , , , , , 
+,Kadar Waller,Cal St. Bakersfield,AWAY,Portland St.,Big Sky,0,0,Bench,0,13,0,1,0,0,0,0,0,1,1,1,4,2,0,0,8.802,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-13,6.5,0,0,685,0,FALSE, , , , , , , , , , , , , , , , 
+,Kadar Waller,Cal St. Bakersfield,AWAY,Mississippi,SEC,0,0,Bench,0,8,1,2,0,0,0,0,1,1,0,0,0,0,2,0,25.285,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-22,24.5,0,0,"4,362",0,FALSE, , , , , , , , , , , , , , , , 
+,Kadar Waller,Cal St. Bakersfield,HOME,Western Illinois,Ohio Valley,0,0,Bench,0,7,1,1,0,0,0,0,0,0,2,1,0,0,2,0,11.267,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,-6.5,0,0,394,0,FALSE, , , , , , , , , , , , , , , , 
+,Mike Price,Cal St. Bakersfield,AWAY,California,ACC,0,0,Bench,0,19,1,7,0,2,0,0,0,0,3,0,2,2,2,0,-19.144,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-27,15.5,0,0,3143,0,TRUE,0,19,1,7,0,2,0,0,0,0,3,0,2,2,2,Mike Price
+,Mike Price,Cal St. Bakersfield,AWAY,Portland St.,Big Sky,0,0,Bench,0,9,1,5,0,0,0,0,0,1,0,2,1,1,2,0,8.802,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-13,6.5,0,0,685,0,TRUE,0,9,1,5,0,0,0,0,0,1,0,2,1,1,2,Mike Price
+,Mike Price,Cal St. Bakersfield,AWAY,Mississippi,SEC,0,0,Bench,0,14,1,4,0,0,0,0,0,0,0,1,0,3,2,0,25.285,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-22,24.5,0,0,"4,362",0,TRUE,0,14,1,4,0,0,0,0,0,0,0,1,0,3,2,Mike Price
+,Mike Price,Cal St. Bakersfield,HOME,Western Illinois,Ohio Valley,0,0,Bench,0,20,1,5,0,3,0,0,0,1,1,1,2,0,2,0,11.267,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,1,0,16,-6.5,0,0,394,0,TRUE,0,20,1,5,0,3,0,0,0,1,1,1,2,0,2,Mike Price
 ,Pierre Geneste Jr.,Cal St. Bakersfield,AWAY,California,ACC,0,0,Starter,1,13,1,1,0,0,0,0,0,4,0,0,1,5,2,0,-19.144,0,8.446,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-27,15.5,0,0,3143,0,TRUE,1,13,1,1,0,0,0,0,0,4,0,0,1,5,2,Pierre Geneste Jr.
 ,Pierre Geneste Jr.,Cal St. Bakersfield,AWAY,Portland St.,Big Sky,0,0,Starter,1,13,1,1,0,0,0,0,1,1,0,1,1,3,2,0,8.802,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-13,6.5,0,0,685,0,TRUE,1,13,1,1,0,0,0,0,1,1,0,1,1,3,2,Pierre Geneste Jr.
+,Pierre Geneste Jr.,Cal St. Bakersfield,AWAY,Mississippi,SEC,0,0,Starter,1,17,0,0,0,0,0,0,5,1,0,1,0,1,0,0,25.285,0,8.446,0,0,0,0,0,0,0,0,1,0,0,0,0,0,-22,24.5,0,0,"4,362",0,TRUE,1,17,0,0,0,0,0,0,5,1,0,1,0,1,0,Pierre Geneste Jr.
 ,Pierre Geneste Jr.,Cal St. Bakersfield,HOME,Western Illinois,Ohio Valley,0,0,Starter,1,22,2,2,0,0,0,0,3,4,1,0,1,2,4,0,11.267,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,1,0,16,-6.5,0,0,394,0,TRUE,1,22,2,2,0,0,0,0,3,4,1,0,1,2,4,Pierre Geneste Jr.
 ,Ronald Jessamy,Cal St. Bakersfield,AWAY,California,ACC,0,0,Bench,0,22,6,9,1,1,3,6,4,3,0,1,5,3,16,0,-19.144,0,8.446,1,0,0,0,0,0,0,0,1,0,0,0,1,0,-27,15.5,0,0,3143,0,TRUE,0,22,6,9,1,1,3,6,4,3,0,1,5,3,16,Ronald Jessamy
 ,Ronald Jessamy,Cal St. Bakersfield,AWAY,Portland St.,Big Sky,0,0,Bench,0,27,3,6,1,1,0,1,2,0,0,3,1,1,7,0,8.802,0,8.446,0,0,0,0,0,0,0,0,0,1,0,0,1,0,-13,6.5,0,0,685,0,TRUE,0,27,3,6,1,1,0,1,2,0,0,3,1,1,7,Ronald Jessamy
+,Ronald Jessamy,Cal St. Bakersfield,AWAY,Mississippi,SEC,0,0,Bench,0,25,4,8,0,1,1,3,4,5,0,0,3,2,9,0,25.285,0,8.446,0,0,0,0,0,0,0,1,0,0,0,0,1,0,-22,24.5,0,0,"4,362",0,TRUE,0,25,4,8,0,1,1,3,4,5,0,0,3,2,9,Ronald Jessamy
 ,Ronald Jessamy,Cal St. Bakersfield,HOME,Western Illinois,Ohio Valley,0,0,Bench,0,21,5,6,0,0,2,2,6,4,2,1,2,1,12,0,11.267,0,8.446,2,1,0,0,0,0,0,0,1,0,0,0,1,0,16,-6.5,0,0,394,0,TRUE,0,21,5,6,0,0,2,2,6,4,2,1,2,1,12,Ronald Jessamy
 ,Tom Mark,Cal St. Bakersfield,AWAY,California,ACC,0,0,Starter,1,28,1,3,0,1,2,4,2,1,0,0,2,2,4,0,-19.144,0,8.446,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-27,15.5,0,0,3143,0,TRUE,1,28,1,3,0,1,2,4,2,1,0,0,2,2,4,Tom Mark
 ,Tom Mark,Cal St. Bakersfield,AWAY,Portland St.,Big Sky,0,0,Starter,1,30,2,4,0,2,1,2,3,4,4,1,1,3,5,0,8.802,0,8.446,0,0,0,0,0,0,0,1,0,0,0,0,1,0,-13,6.5,0,0,685,0,TRUE,1,30,2,4,0,2,1,2,3,4,4,1,1,3,5,Tom Mark
+,Tom Mark,Cal St. Bakersfield,AWAY,Mississippi,SEC,0,0,Starter,1,30,1,2,0,0,0,0,0,0,0,0,2,4,2,0,25.285,0,8.446,0,0,0,0,0,0,0,0,0,0,0,1,1,0,-22,24.5,0,0,"4,362",0,TRUE,1,30,1,2,0,0,0,0,0,0,0,0,2,4,2,Tom Mark
 ,Tom Mark,Cal St. Bakersfield,HOME,Western Illinois,Ohio Valley,0,0,Starter,1,26,4,10,2,4,0,0,4,4,2,1,0,4,10,0,11.267,0,8.446,1,0,0,0,0,0,0,0,0,0,0,1,1,0,16,-6.5,0,0,394,0,TRUE,1,26,4,10,2,4,0,0,4,4,2,1,0,4,10,Tom Mark
 Cal St. Fullerton,,,,,,,,,10,399,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,,,,,,,,,,,10,326,41,99,7,33,28,40,26,29,20,6,15,30,117,8
 ,Bailey Nunn,Cal St. Fullerton,AWAY,Wyoming,Mountain West,0,0,Starter,1,23,1,4,1,4,0,0,0,1,2,0,3,4,3,0,13.636,0,13.845,0,0,0,0,0,0,0,0,0,0,0,1,1,0,-10,15.5,1,0,"3,211",0,TRUE,1,23,1,4,1,4,0,0,0,1,2,0,3,4,3,Bailey Nunn
@@ -1586,43 +1605,54 @@ Central Michigan,,,,,,,,,25,993,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,25,810,10
 ,Will Ashford,Central Michigan,HOME,Northern Kentucky,Horizon,0,0,Bench,0,10,1,3,0,0,0,0,1,0,1,0,0,0,2,0,23.275,0,6.391,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-24,-4.5,0,0,"1,402",0,FALSE, , , , , , , , , , , , , , , , 
 ,Will Ashford,Central Michigan,NEUTRAL,South Alabama,Sun Belt,0,0,Bench,0,9,1,2,1,1,0,0,0,0,1,0,0,0,3,0,14.692,0,6.391,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-2,5.5,1,0,148,0,FALSE, , , , , , , , , , , , , , , , 
 ,Will Ashford,Central Michigan,NEUTRAL,Coppin St.,MEAC,0,0,Bench,0,17,1,1,0,0,0,0,2,0,3,0,1,0,2,0,5.405,0,6.391,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-10.5,0,0,142,0,FALSE, , , , , , , , , , , , , , , , 
-Charleston,,,,,,,,,20,794,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,,,,,,,,,,,18,561,70,164,18,59,47,59,41,73,24,21,25,54,205,8
+Charleston,,,,,,,,,25,992,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,,,,,,,,,,,22,729,95,207,21,72,65,85,56,98,44,27,29,73,276,8
 ,Bryce Baker,Charleston,HOME,Drake,Missouri Valley,0,0,Bench,0,11,1,2,1,2,0,0,1,2,0,1,0,1,3,0,73.492,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-9,-7.5,0,0,"4,786",0,FALSE, , , , , , , , , , , , , , , , 
+,Bryce Baker,Charleston,HOME,South Carolina St.,MEAC,0,0,Bench,0,19,1,6,0,5,1,2,0,0,0,0,0,1,3,0,12.443,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27,-7.5,0,0,"5,241",0,FALSE, , , , , , , , , , , , , , , , 
 ,Bryce Baker,Charleston,NEUTRAL,Massachusetts,MAC,0,0,Bench,0,14,1,2,1,2,0,0,0,1,1,0,0,0,3,0,8.526,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,-1.5,1,0,"1,224",0,FALSE, , , , , , , , , , , , , , , , 
 ,Chadlyn Traylor,Charleston,AWAY,Liberty,CUSA,0,0,Bench,0,28,0,5,0,3,1,2,0,0,2,0,2,3,1,0,45.395,0,38.671,0,0,0,1,0,0,0,0,0,0,0,0,1,0,-15,9.5,0,0,"3,998",0,FALSE, , , , , , , , , , , , , , , , 
-,Chadlyn Traylor,Charleston,HOME,Drake,Missouri Valley,0,0,Bench,0,18,2,7,1,4,0,2,1,1,1,0,0,0,5,0,73.492,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-9,-7.5,0,0,"4,786",0,FALSE, , , , , , , , , , , , , , , , 
-,Chadlyn Traylor,Charleston,NEUTRAL,Florida Atlantic,American,0,0,Bench,0,32,4,7,2,3,2,2,1,3,4,1,1,3,12,0,57.266,0,38.671,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-17,3.5,0,0,303,0,FALSE, , , , , , , , , , , , , , , , 
-,Chadlyn Traylor,Charleston,NEUTRAL,Massachusetts,MAC,0,0,Bench,0,15,2,5,1,3,4,6,0,2,1,0,0,0,9,0,8.526,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,-1.5,1,0,"1,224",0,FALSE, , , , , , , , , , , , , , , , 
+,Chadlyn Traylor,Charleston,HOME,Drake,Missouri Valley,0,0,Bench,0,18,2,7,1,4,0,2,1,1,1,0,0,0,5,0,73.492,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-9,-7.5,0,0,"4,786",0,TRUE,0,18,2,7,1,4,0,2,1,1,1,0,0,0,5,Chadlyn Traylor
+,Chadlyn Traylor,Charleston,HOME,South Carolina St.,MEAC,0,0,Bench,0,25,5,5,0,0,0,0,1,2,5,1,0,2,10,0,12.443,0,38.671,1,0,0,0,1,0,0,0,0,0,0,0,1,0,27,-7.5,0,0,"5,241",0,TRUE,0,25,5,5,0,0,0,0,1,2,5,1,0,2,10,Chadlyn Traylor
+,Chadlyn Traylor,Charleston,NEUTRAL,Florida Atlantic,American,0,0,Bench,0,32,4,7,2,3,2,2,1,3,4,1,1,3,12,0,57.266,0,38.671,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-17,3.5,0,0,303,0,TRUE,0,32,4,7,2,3,2,2,1,3,4,1,1,3,12,Chadlyn Traylor
+,Chadlyn Traylor,Charleston,NEUTRAL,Massachusetts,MAC,0,0,Bench,0,15,2,5,1,3,4,6,0,2,1,0,0,0,9,0,8.526,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,-1.5,1,0,"1,224",0,TRUE,0,15,2,5,1,3,4,6,0,2,1,0,0,0,9,Chadlyn Traylor
 ,Chol Machot,Charleston,HOME,Drake,Missouri Valley,0,0,Starter,1,28,3,6,0,1,1,2,4,5,0,0,3,4,7,0,73.492,0,38.671,0,0,0,0,0,0,0,0,0,0,0,1,1,0,-9,-7.5,0,0,"4,786",0,TRUE,1,28,3,6,0,1,1,2,4,5,0,0,3,4,7,Chol Machot
 ,Chol Machot,Charleston,AWAY,Liberty,CUSA,0,0,Bench,0,25,6,9,1,1,5,7,6,3,2,0,1,3,18,0,45.395,0,38.671,1,0,0,0,0,0,0,0,1,0,0,0,1,0,-15,9.5,0,0,"3,998",0,TRUE,0,25,6,9,1,1,5,7,6,3,2,0,1,3,18,Chol Machot
+,Chol Machot,Charleston,HOME,South Carolina St.,MEAC,0,0,Bench,0,18,6,6,0,0,0,0,1,0,0,0,1,3,12,0,12.443,0,38.671,1,0,0,0,1,0,0,0,0,0,0,0,0,0,27,-7.5,0,0,"5,241",0,TRUE,0,18,6,6,0,0,0,0,1,0,0,0,1,3,12,Chol Machot
 ,Chol Machot,Charleston,NEUTRAL,Florida Atlantic,American,0,0,Bench,0,19,3,7,0,1,2,2,1,4,0,0,0,4,8,0,57.266,0,38.671,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-17,3.5,0,0,303,0,TRUE,0,19,3,7,0,1,2,2,1,4,0,0,0,4,8,Chol Machot
 ,Chol Machot,Charleston,NEUTRAL,Massachusetts,MAC,0,0,Bench,0,21,0,0,0,0,2,3,0,3,0,5,0,3,2,0,8.526,0,38.671,0,0,0,0,0,0,0,0,0,1,0,0,1,0,4,-1.5,1,0,"1,224",0,TRUE,0,21,0,0,0,0,2,3,0,3,0,5,0,3,2,Chol Machot
 ,Chris Davis Jr.,Charleston,AWAY,Liberty,CUSA,0,0,Starter,1,25,3,7,2,4,0,0,1,2,1,0,3,1,8,0,45.395,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-15,9.5,0,0,"3,998",0,FALSE, , , , , , , , , , , , , , , , 
 ,Chris Davis Jr.,Charleston,HOME,Drake,Missouri Valley,0,0,Bench,0,10,0,2,0,2,0,0,1,1,0,2,0,0,0,0,73.492,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-9,-7.5,0,0,"4,786",0,FALSE, , , , , , , , , , , , , , , , 
+,Chris Davis Jr.,Charleston,HOME,South Carolina St.,MEAC,0,0,Bench,0,17,4,6,3,4,1,2,0,3,2,2,0,0,12,0,12.443,0,38.671,1,0,0,0,0,0,0,0,0,0,0,0,0,0,27,-7.5,0,0,"5,241",0,FALSE, , , , , , , , , , , , , , , , 
 ,Chris Davis Jr.,Charleston,NEUTRAL,Florida Atlantic,American,0,0,Bench,0,25,3,9,1,4,0,0,1,1,1,0,0,1,7,0,57.266,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-17,3.5,0,0,303,0,FALSE, , , , , , , , , , , , , , , , 
 ,Christian Reeves,Charleston,AWAY,Liberty,CUSA,0,0,Starter,1,14,3,6,0,0,0,0,0,2,0,0,2,3,6,0,45.395,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-15,9.5,0,0,"3,998",0,TRUE,1,14,3,6,0,0,0,0,0,2,0,0,2,3,6,Christian Reeves
+,Christian Reeves,Charleston,HOME,South Carolina St.,MEAC,0,0,Starter,1,13,2,4,0,0,3,4,5,5,1,0,0,1,7,0,12.443,0,38.671,1,0,0,0,0,0,0,0,0,0,0,0,0,0,27,-7.5,0,0,"5,241",0,TRUE,1,13,2,4,0,0,3,4,5,5,1,0,0,1,7,Christian Reeves
 ,Christian Reeves,Charleston,NEUTRAL,Florida Atlantic,American,0,0,Starter,1,21,2,5,0,0,0,2,3,5,0,0,0,2,4,0,57.266,0,38.671,0,0,0,0,0,0,0,1,0,0,0,0,1,0,-17,3.5,0,0,303,0,TRUE,1,21,2,5,0,0,0,2,3,5,0,0,0,2,4,Christian Reeves
 ,Christian Reeves,Charleston,NEUTRAL,Massachusetts,MAC,0,0,Starter,1,13,2,2,0,0,2,2,0,1,0,0,1,4,6,0,8.526,0,38.671,0,0,0,0,0,0,0,0,0,0,0,1,0,0,4,-1.5,1,0,"1,224",0,TRUE,1,13,2,2,0,0,2,2,0,1,0,0,1,4,6,Christian Reeves
-,Connor Hickman,Charleston,NEUTRAL,Massachusetts,MAC,0,0,Starter,1,34,3,15,1,9,2,2,0,1,1,0,2,1,9,0,8.526,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,1,0,4,-1.5,1,0,"1,224",0,TRUE,1,34,3,15,1,9,2,2,0,1,1,0,2,1,9,Connor Hickman
+,Connor Hickman,Charleston,NEUTRAL,Massachusetts,MAC,0,0,Starter,1,34,3,15,1,9,2,2,0,1,1,0,2,1,9,0,8.526,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,1,0,4,-1.5,1,0,"1,224",0,FALSE, , , , , , , , , , , , , , , , 
 ,Jaxon Prunty,Charleston,HOME,Drake,Missouri Valley,0,0,Starter,1,22,1,5,1,3,2,2,4,2,1,1,0,2,5,0,73.492,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-9,-7.5,0,0,"4,786",0,TRUE,1,22,1,5,1,3,2,2,4,2,1,1,0,2,5,Jaxon Prunty
+,Jaxon Prunty,Charleston,HOME,South Carolina St.,MEAC,0,0,Starter,1,25,1,5,0,3,5,6,1,6,1,1,0,4,7,0,12.443,0,38.671,0,0,0,0,0,0,0,1,0,0,0,1,1,0,27,-7.5,0,0,"5,241",0,TRUE,1,25,1,5,0,3,5,6,1,6,1,1,0,4,7,Jaxon Prunty
 ,Jaxon Prunty,Charleston,NEUTRAL,Florida Atlantic,American,0,0,Starter,1,33,1,3,1,2,10,10,4,4,1,1,1,4,13,0,57.266,0,38.671,1,0,0,0,0,1,0,0,1,0,0,1,1,0,-17,3.5,0,0,303,0,TRUE,1,33,1,3,1,2,10,10,4,4,1,1,1,4,13,Jaxon Prunty
 ,Jaxon Prunty,Charleston,AWAY,Liberty,CUSA,0,0,Bench,0,31,4,7,2,3,0,0,1,3,3,0,0,2,10,0,45.395,0,38.671,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-15,9.5,0,0,"3,998",0,TRUE,0,31,4,7,2,3,0,0,1,3,3,0,0,2,10,Jaxon Prunty
 ,Jaxon Prunty,Charleston,NEUTRAL,Massachusetts,MAC,0,0,Bench,0,19,1,3,0,2,1,1,0,2,2,0,0,2,3,0,8.526,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,-1.5,1,0,"1,224",0,TRUE,0,19,1,3,0,2,1,1,0,2,2,0,0,2,3,Jaxon Prunty
 ,Jlynn Counter,Charleston,AWAY,Liberty,CUSA,0,0,Starter,1,29,3,7,1,2,1,2,0,4,6,0,1,2,8,0,45.395,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-15,9.5,0,0,"3,998",0,TRUE,1,29,3,7,1,2,1,2,0,4,6,0,1,2,8,Jlynn Counter
 ,Jlynn Counter,Charleston,HOME,Drake,Missouri Valley,0,0,Starter,1,33,8,17,3,6,2,4,7,7,1,3,2,3,21,0,73.492,0,38.671,2,1,0,0,0,0,1,0,1,1,0,0,1,1,-9,-7.5,0,0,"4,786",0,TRUE,1,33,8,17,3,6,2,4,7,7,1,3,2,3,21,Jlynn Counter
+,Jlynn Counter,Charleston,HOME,South Carolina St.,MEAC,0,0,Starter,1,23,2,6,0,3,0,0,2,4,4,3,2,1,4,0,12.443,0,38.671,0,0,0,0,0,0,0,0,0,1,0,0,1,0,27,-7.5,0,0,"5,241",0,TRUE,1,23,2,6,0,3,0,0,2,4,4,3,2,1,4,Jlynn Counter
 ,Jlynn Counter,Charleston,NEUTRAL,Florida Atlantic,American,0,0,Starter,1,32,8,14,1,4,5,6,2,4,3,4,4,2,22,0,57.266,0,38.671,1,0,0,0,0,0,1,0,0,1,0,0,1,1,-17,3.5,0,0,303,0,TRUE,1,32,8,14,1,4,5,6,2,4,3,4,4,2,22,Jlynn Counter
 ,Jlynn Counter,Charleston,NEUTRAL,Massachusetts,MAC,0,0,Starter,1,28,4,5,0,1,4,4,0,3,1,0,2,0,12,0,8.526,0,38.671,1,0,0,0,1,1,0,0,0,0,0,0,1,0,4,-1.5,1,0,"1,224",0,TRUE,1,28,4,5,0,1,4,4,0,3,1,0,2,0,12,Jlynn Counter
 ,Kendall Taylor,Charleston,AWAY,Liberty,CUSA,0,0,Starter,1,18,1,3,0,2,0,0,1,3,0,0,1,1,2,0,45.395,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-15,9.5,0,0,"3,998",0,TRUE,1,18,1,3,0,2,0,0,1,3,0,0,1,1,2,Kendall Taylor
+,Kendall Taylor,Charleston,HOME,South Carolina St.,MEAC,0,0,Starter,1,11,1,4,0,2,0,1,1,0,1,0,1,5,2,0,12.443,0,38.671,0,0,0,0,0,0,0,0,0,0,0,1,0,0,27,-7.5,0,0,"5,241",0,TRUE,1,11,1,4,0,2,0,1,1,0,1,0,1,5,2,Kendall Taylor
 ,Kendall Taylor,Charleston,NEUTRAL,Florida Atlantic,American,0,0,Starter,1,11,0,5,0,2,0,0,1,1,0,0,1,1,0,0,57.266,0,38.671,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-17,3.5,0,0,303,0,TRUE,1,11,0,5,0,2,0,0,1,1,0,0,1,1,0,Kendall Taylor
 ,Kendall Taylor,Charleston,NEUTRAL,Massachusetts,MAC,0,0,Starter,1,11,0,3,0,1,0,0,0,1,0,1,0,1,0,0,8.526,0,38.671,0,0,0,1,0,0,0,0,0,0,0,0,0,0,4,-1.5,1,0,"1,224",0,TRUE,1,11,0,3,0,1,0,0,0,1,0,1,0,1,0,Kendall Taylor
 ,Kendall Taylor,Charleston,HOME,Drake,Missouri Valley,0,0,Bench,0,9,0,4,0,2,0,0,0,1,0,0,0,0,0,0,73.492,0,38.671,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-9,-7.5,0,0,"4,786",0,TRUE,0,9,0,4,0,2,0,0,0,1,0,0,0,0,0,Kendall Taylor
 ,Martin Kalu,Charleston,AWAY,Liberty,CUSA,0,0,Starter,1,29,7,11,4,7,4,6,3,4,1,1,2,2,22,0,45.395,0,38.671,1,0,0,0,0,0,0,0,0,0,0,0,1,1,-15,9.5,0,0,"3,998",0,TRUE,1,29,7,11,4,7,4,6,3,4,1,1,2,2,22,Martin Kalu
 ,Martin Kalu,Charleston,HOME,Drake,Missouri Valley,0,0,Starter,1,29,3,8,0,2,1,1,0,4,0,1,0,2,7,0,73.492,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-9,-7.5,0,0,"4,786",0,TRUE,1,29,3,8,0,2,1,1,0,4,0,1,0,2,7,Martin Kalu
+,Martin Kalu,Charleston,HOME,South Carolina St.,MEAC,0,0,Starter,1,22,3,9,0,4,6,7,2,3,3,0,1,1,12,0,12.443,0,38.671,1,0,0,0,0,0,0,0,0,0,0,0,1,0,27,-7.5,0,0,"5,241",0,TRUE,1,22,3,9,0,4,6,7,2,3,3,0,1,1,12,Martin Kalu
 ,Martin Kalu,Charleston,NEUTRAL,Florida Atlantic,American,0,0,Starter,1,24,3,10,3,5,2,2,3,3,1,1,1,3,11,0,57.266,0,38.671,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-17,3.5,0,0,303,0,TRUE,1,24,3,10,3,5,2,2,3,3,1,1,1,3,11,Martin Kalu
 ,Martin Kalu,Charleston,NEUTRAL,Massachusetts,MAC,0,0,Starter,1,28,4,9,0,3,1,1,1,3,1,3,1,3,9,0,8.526,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,1,0,4,-1.5,1,0,"1,224",0,TRUE,1,28,4,9,0,3,1,1,1,3,1,3,1,3,9,Martin Kalu
 ,Mister Dean,Charleston,HOME,Drake,Missouri Valley,0,0,Starter,1,26,3,9,0,2,6,8,3,4,3,3,4,3,12,0,73.492,0,38.671,1,0,0,0,0,0,0,0,0,1,0,0,1,0,-9,-7.5,0,0,"4,786",0,FALSE, , , , , , , , , , , , , , , , 
+,Mister Dean,Charleston,HOME,South Carolina St.,MEAC,0,0,Bench,0,16,3,5,0,0,5,8,4,0,5,0,2,0,11,0,12.443,0,38.671,1,0,0,0,0,0,0,0,0,0,0,0,0,0,27,-7.5,0,0,"5,241",0,FALSE, , , , , , , , , , , , , , , , 
 ,Mister Dean,Charleston,NEUTRAL,Massachusetts,MAC,0,0,Bench,0,10,4,5,0,0,0,0,0,0,1,1,2,3,8,0,8.526,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,-1.5,1,0,"1,224",0,FALSE, , , , , , , , , , , , , , , , 
 ,Will Mortimore,Charleston,HOME,Drake,Missouri Valley,0,0,Bench,0,12,1,3,0,0,0,0,0,2,0,1,0,1,2,0,73.492,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-9,-7.5,0,0,"4,786",0,FALSE, , , , , , , , , , , , , , , , 
+,Will Mortimore,Charleston,HOME,South Carolina St.,MEAC,0,0,Bench,0,9,4,5,0,0,0,1,2,1,0,1,0,3,8,0,12.443,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,0,0,27,-7.5,0,0,"5,241",0,FALSE, , , , , , , , , , , , , , , , 
 ,Will Mortimore,Charleston,NEUTRAL,Massachusetts,MAC,0,0,Bench,0,7,0,0,0,0,8,10,0,3,0,0,0,2,8,0,8.526,0,38.671,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,-1.5,1,0,"1,224",0,FALSE, , , , , , , , , , , , , , , , 
 Charleston Southern,,,,,,,,,20,793,,,,,,,,,,,,,,,,,,,,,,,,,,,,4,,,,,,,,,,,16,634,98,222,37,99,40,60,94,77,57,23,37,66,273,8
 ,A’lahn Sumler,Charleston Southern,AWAY,The Citadel,Southern,0,0,Starter,1,29,6,13,2,5,4,8,3,5,1,1,1,1,18,0,6.354,0,7.056,1,0,0,0,0,0,0,0,0,0,0,0,1,0,10,-2.5,0,0,"1,719",0,TRUE,1,29,6,13,2,5,4,8,3,5,1,1,1,1,18,A’lahn Sumler
@@ -1937,24 +1967,33 @@ Cleveland St.,,,,,,,,,25,986,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,25,810,113,2
 ,Tre Beard,Cleveland St.,HOME,Valparaiso,Missouri Valley,0,0,Starter,1,30,7,12,6,10,2,2,0,1,1,2,1,2,22,0,11.611,0,41.248,1,0,0,0,0,0,0,0,0,0,0,0,1,1,-15,-2.5,0,0,"2,017",0,TRUE,1,30,7,12,6,10,2,2,0,1,1,2,1,2,22,Tre Beard
 ,Tre Beard,Cleveland St.,NEUTRAL,Kent St.,MAC,0,0,Starter,1,27,8,12,5,9,6,6,2,3,4,0,0,3,27,0,34.322,0,41.248,1,0,0,0,1,1,0,0,0,0,0,0,1,1,-7,11.5,1,0,476,0,TRUE,1,27,8,12,5,9,6,6,2,3,4,0,0,3,27,Tre Beard
 ,Tre Beard,Cleveland St.,NEUTRAL,Radford,Big South,0,0,Starter,1,33,3,10,2,7,7,8,1,6,3,1,0,2,15,0,17.703,0,41.248,1,0,0,0,0,0,0,1,0,0,0,0,1,0,5,8.5,1,0,459,0,TRUE,1,33,3,10,2,7,7,8,1,6,3,1,0,2,15,Tre Beard
-Coastal Carolina,,,,,,,,,10,396,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,10,352,45,99,19,46,23,39,10,29,20,11,27,49,132,8
+Coastal Carolina,,,,,,,,,15,596,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,15,534,66,154,23,66,38,55,29,48,29,16,33,66,193,8
 ,AJ Dancler,Coastal Carolina,AWAY,Western Michigan,MAC,0,0,Starter,1,27,5,11,2,6,6,9,0,5,3,5,0,4,18,0,6.734,0,10.323,1,0,0,0,0,0,0,0,0,1,0,1,1,0,-5,2.5,1,0,1443,0,TRUE,1,27,5,11,2,6,6,9,0,5,3,5,0,4,18,AJ Dancler
+,AJ Dancler,Coastal Carolina,AWAY,Jacksonville St.,CUSA,0,0,Starter,1,28,2,11,0,6,3,3,2,2,3,0,1,4,7,0,26.248,0,10.323,0,0,0,0,0,1,0,0,0,0,0,1,1,0,-7,7.5,1,0,"2,023",0,TRUE,1,28,2,11,0,6,3,3,2,2,3,0,1,4,7,AJ Dancler
 ,AJ Dancler,Coastal Carolina,HOME,Winthrop,Big South,0,0,Starter,1,32,2,11,1,6,1,2,1,1,2,1,4,6,6,0,20.577,0,10.323,0,0,0,0,0,0,0,0,0,0,0,1,1,0,6,2.5,1,0,"2,663",0,TRUE,1,32,2,11,1,6,1,2,1,1,2,1,4,6,6,AJ Dancler
 ,Braeden MacVicar,Coastal Carolina,AWAY,Western Michigan,MAC,0,0,Bench,0,4,0,2,0,2,1,2,0,0,0,0,1,4,1,0,6.734,0,10.323,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-5,2.5,1,0,1443,0,FALSE, , , , , , , , , , , , , , , , 
+,Braeden MacVicar,Coastal Carolina,AWAY,Jacksonville St.,CUSA,0,0,Bench,0,7,1,5,1,5,0,0,1,1,0,0,1,2,3,0,26.248,0,10.323,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-7,7.5,1,0,"2,023",0,FALSE, , , , , , , , , , , , , , , , 
 ,Braeden MacVicar,Coastal Carolina,HOME,Winthrop,Big South,0,0,Bench,0,12,1,3,1,3,0,0,1,4,0,0,0,2,3,0,20.577,0,10.323,0,0,0,0,0,0,0,1,0,0,0,0,0,0,6,2.5,1,0,"2,663",0,FALSE, , , , , , , , , , , , , , , , 
 ,DaJohn Craig,Coastal Carolina,AWAY,Western Michigan,MAC,0,0,Bench,0,18,2,9,1,4,0,0,1,1,1,0,0,2,5,0,6.734,0,10.323,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5,2.5,1,0,1443,0,FALSE, , , , , , , , , , , , , , , , 
+,DaJohn Craig,Coastal Carolina,AWAY,Jacksonville St.,CUSA,0,0,Bench,0,11,1,3,1,3,0,0,1,1,0,0,0,1,3,0,26.248,0,10.323,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-7,7.5,1,0,"2,023",0,FALSE, , , , , , , , , , , , , , , , 
 ,Derrick Green,Coastal Carolina,AWAY,Western Michigan,MAC,0,0,Bench,0,5,0,0,0,0,0,0,1,1,0,0,2,4,0,0,6.734,0,10.323,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-5,2.5,1,0,1443,0,FALSE, , , , , , , , , , , , , , , , 
 ,Derrick Green,Coastal Carolina,HOME,Winthrop,Big South,0,0,Bench,0,5,1,1,0,0,0,0,0,1,0,0,0,2,2,0,20.577,0,10.323,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,2.5,1,0,"2,663",0,FALSE, , , , , , , , , , , , , , , , 
 ,Jerry Ngopot,Coastal Carolina,AWAY,Western Michigan,MAC,0,0,Starter,1,27,1,4,0,2,0,1,4,1,1,0,0,3,2,0,6.734,0,10.323,0,0,0,0,0,0,0,0,1,0,0,0,1,0,-5,2.5,1,0,1443,0,TRUE,1,27,1,4,0,2,0,1,4,1,1,0,0,3,2,Jerry Ngopot
+,Jerry Ngopot,Coastal Carolina,AWAY,Jacksonville St.,CUSA,0,0,Bench,0,15,2,6,1,1,0,0,3,2,0,0,1,2,5,0,26.248,0,10.323,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-7,7.5,1,0,"2,023",0,TRUE,0,15,2,6,1,1,0,0,3,2,0,0,1,2,5,Jerry Ngopot
 ,Jerry Ngopot,Coastal Carolina,HOME,Winthrop,Big South,0,0,Bench,0,18,2,6,1,4,0,0,1,2,0,0,0,6,5,0,20.577,0,10.323,0,0,0,0,0,0,0,0,0,0,0,1,0,0,6,2.5,1,0,"2,663",0,TRUE,0,18,2,6,1,4,0,0,1,2,0,0,0,6,5,Jerry Ngopot
 ,Joshua Beadle,Coastal Carolina,AWAY,Western Michigan,MAC,0,0,Starter,1,36,9,18,1,4,2,3,0,4,4,3,7,2,21,0,6.734,0,10.323,1,0,0,0,0,0,1,0,0,0,0,0,1,1,-5,2.5,1,0,1443,0,TRUE,1,36,9,18,1,4,2,3,0,4,4,3,7,2,21,Joshua Beadle
+,Joshua Beadle,Coastal Carolina,AWAY,Jacksonville St.,CUSA,0,0,Starter,1,34,7,15,0,2,6,7,2,2,1,2,1,2,20,0,26.248,0,10.323,1,0,0,0,0,0,0,0,0,1,0,0,1,1,-7,7.5,1,0,"2,023",0,TRUE,1,34,7,15,0,2,6,7,2,2,1,2,1,2,20,Joshua Beadle
 ,Joshua Beadle,Coastal Carolina,HOME,Winthrop,Big South,0,0,Starter,1,33,8,11,3,4,4,10,0,0,3,0,7,1,23,0,20.577,0,10.323,1,0,0,0,0,0,1,0,0,0,0,0,1,1,6,2.5,1,0,"2,663",0,TRUE,1,33,8,11,3,4,4,10,0,0,3,0,7,1,23,Joshua Beadle
 ,Nadjrick Peat,Coastal Carolina,AWAY,Western Michigan,MAC,0,0,Starter,1,30,1,1,0,0,0,0,1,7,0,0,2,3,2,0,6.734,0,10.323,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-5,2.5,1,0,1443,0,TRUE,1,30,1,1,0,0,0,0,1,7,0,0,2,3,2,Nadjrick Peat
+,Nadjrick Peat,Coastal Carolina,AWAY,Jacksonville St.,CUSA,0,0,Starter,1,20,0,1,0,0,0,0,1,2,1,1,0,3,0,0,26.248,0,10.323,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-7,7.5,1,0,"2,023",0,TRUE,1,20,0,1,0,0,0,0,1,2,1,1,0,3,0,Nadjrick Peat
 ,Nadjrick Peat,Coastal Carolina,HOME,Winthrop,Big South,0,0,Starter,1,14,0,0,0,0,0,0,2,0,0,0,1,5,0,0,20.577,0,10.323,0,0,0,0,0,0,0,0,1,0,0,1,0,0,6,2.5,1,0,"2,663",0,TRUE,1,14,0,0,0,0,0,0,2,0,0,0,1,5,0,Nadjrick Peat
 ,Rasheed Jones,Coastal Carolina,AWAY,Western Michigan,MAC,0,0,Starter,1,35,7,15,5,10,2,3,0,6,1,0,1,3,21,0,6.734,0,10.323,1,0,0,0,0,0,1,0,0,0,0,0,1,1,-5,2.5,1,0,1443,0,TRUE,1,35,7,15,5,10,2,3,0,6,1,0,1,3,21,Rasheed Jones
+,Rasheed Jones,Coastal Carolina,AWAY,Jacksonville St.,CUSA,0,0,Starter,1,35,6,14,2,8,0,0,6,1,3,1,1,1,14,0,26.248,0,10.323,1,0,0,0,0,0,0,0,1,0,0,0,1,0,-7,7.5,1,0,"2,023",0,TRUE,1,35,6,14,2,8,0,0,6,1,3,1,1,1,14,Rasheed Jones
 ,Rasheed Jones,Coastal Carolina,HOME,Winthrop,Big South,0,0,Starter,1,35,6,10,4,5,4,5,0,0,4,0,1,4,20,0,20.577,0,10.323,1,0,0,0,0,0,0,0,0,0,1,1,1,1,6,2.5,1,0,"2,663",0,TRUE,1,35,6,10,4,5,4,5,0,0,4,0,1,4,20,Rasheed Jones
+,Reggie Hill,Coastal Carolina,AWAY,Jacksonville St.,CUSA,0,0,Starter,1,24,1,2,1,1,0,0,3,5,0,0,2,3,3,0,26.248,0,10.323,0,0,0,0,0,0,0,1,0,0,0,0,1,0,-7,7.5,1,0,"2,023",0,TRUE,1,24,1,2,1,1,0,0,3,5,0,0,2,3,3,Reggie Hill
 ,Reggie Hill,Coastal Carolina,HOME,Winthrop,Big South,0,0,Starter,1,26,3,8,2,4,3,4,1,3,1,2,1,4,11,0,20.577,0,10.323,1,0,0,0,0,0,0,0,0,0,0,1,1,0,6,2.5,1,0,"2,663",0,TRUE,1,26,3,8,2,4,3,4,1,3,1,2,1,4,11,Reggie Hill
 ,Tristan Thompson,Coastal Carolina,AWAY,Western Michigan,MAC,0,0,Bench,0,18,0,1,0,1,1,2,0,0,0,0,0,4,1,0,6.734,0,10.323,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-5,2.5,1,0,1443,0,TRUE,0,18,0,1,0,1,1,2,0,0,0,0,0,4,1,Tristan Thompson
+,Tristan Thompson,Coastal Carolina,AWAY,Jacksonville St.,CUSA,0,0,Bench,0,26,3,6,0,2,6,6,2,5,1,1,0,2,12,0,26.248,0,10.323,1,0,0,0,0,1,0,1,0,0,0,0,1,0,-7,7.5,1,0,"2,023",0,TRUE,0,26,3,6,0,2,6,6,2,5,1,1,0,2,12,Tristan Thompson
 ,Tristan Thompson,Coastal Carolina,HOME,Winthrop,Big South,0,0,Bench,0,21,1,3,0,0,0,0,0,0,1,0,3,4,2,0,20.577,0,10.323,0,0,0,0,0,0,0,0,0,0,0,1,1,0,6,2.5,1,0,"2,663",0,TRUE,0,21,1,3,0,0,0,0,0,0,1,0,3,4,2,Tristan Thompson
 Colgate,,,,,,,,,30,1248,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,30,1110,159,335,37,114,71,85,41,109,73,34,55,119,426,8
 ,Andrew Alekseyenko,Colgate,AWAY,Michigan St.,Big Ten,0,0,Starter,1,35,6,12,1,4,1,1,2,3,1,0,4,4,14,0,84.604,0,45.446,1,0,0,0,0,0,0,0,0,0,0,1,1,0,-11,22.5,0,0,14797,0,TRUE,1,35,6,12,1,4,1,1,2,3,1,0,4,4,14,Andrew Alekseyenko
@@ -2574,32 +2613,41 @@ Detroit Mercy,,,,,,,,,20,787,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,19,543,83,19
 ,Xavier Istomin-Monroe,Detroit Mercy,AWAY,Michigan St.,Big Ten,0,0,Starter,1,21,2,3,0,0,0,0,3,1,0,1,0,4,4,0,84.604,0,6.754,0,0,0,0,0,0,0,0,0,0,0,1,1,0,-28,30.5,0,0,"14,797",0,FALSE, , , , , , , , , , , , , , , , 
 ,Xavier Istomin-Monroe,Detroit Mercy,AWAY,Illinois Chicago,Missouri Valley,0,0,Bench,0,5,0,0,0,0,0,0,0,3,0,0,1,0,0,0,9.362,0,6.754,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-20,9.5,0,0,"1,155",0,FALSE, , , , , , , , , , , , , , , , 
 ,Xavier Istomin-Monroe,Detroit Mercy,AWAY,Notre Dame,ACC,0,0,Bench,0,17,1,2,0,0,0,0,1,2,0,0,3,1,2,0,-1.821,0,6.754,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-32,21.5,0,0,"7,608",0,FALSE, , , , , , , , , , , , , , , , 
-Drake,,,,,,,,,15,625,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,15,563,73,177,24,75,47,64,29,65,32,15,29,36,217,8
+Drake,,,,,,,,,20,825,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,19,748,94,231,32,102,51,72,42,84,41,21,35,45,271,8
 ,Andrew Alia,Drake,AWAY,Charleston,CAA,0,0,Starter,1,38,5,9,3,5,0,0,2,2,1,1,1,2,13,0,38.671,0,73.492,1,0,0,0,0,0,0,0,0,0,0,0,1,0,9,7.5,0,0,"4,786",0,TRUE,1,38,5,9,3,5,0,0,2,2,1,1,1,2,13,Andrew Alia
 ,Andrew Alia,Drake,HOME,Robert Morris,Horizon,0,0,Starter,1,35,0,2,0,1,2,2,0,4,1,1,1,1,2,0,28.542,0,73.492,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-2,-7.5,1,1,"3,142",0,TRUE,1,35,0,2,0,1,2,2,0,4,1,1,1,1,2,Andrew Alia
 ,Andrew Alia,Drake,NEUTRAL,Northern Arizona,Big Sky,0,0,Starter,1,19,0,5,0,2,0,0,2,1,0,0,2,1,0,0,18.712,0,73.492,0,0,0,1,0,0,0,0,0,0,0,0,0,0,6,-8.5,1,0,1420,0,TRUE,1,19,0,5,0,2,0,0,2,1,0,0,2,1,0,Andrew Alia
+,Andrew Alia,Drake,HOME,SIU Edwardsville,Ohio Valley,0,0,Bench,0,27,4,4,4,4,0,0,0,2,0,2,1,3,12,0,26.408,0,73.492,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-2,-6.5,1,0,"3,234",0,TRUE,0,27,4,4,4,4,0,0,0,2,0,2,1,3,12,Andrew Alia
 ,Braden Appelhans,Drake,AWAY,Charleston,CAA,0,0,Bench,0,29,4,8,3,5,1,2,1,2,1,0,1,1,12,0,38.671,0,73.492,1,0,0,0,0,0,0,0,0,0,0,0,1,0,9,7.5,0,0,"4,786",0,TRUE,0,29,4,8,3,5,1,2,1,2,1,0,1,1,12,Braden Appelhans
 ,Braden Appelhans,Drake,HOME,Robert Morris,Horizon,0,0,Bench,0,10,1,4,1,1,0,0,0,0,0,0,1,3,3,0,28.542,0,73.492,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-2,-7.5,1,1,"3,142",0,TRUE,0,10,1,4,1,1,0,0,0,0,0,0,1,3,3,Braden Appelhans
+,Braden Appelhans,Drake,HOME,SIU Edwardsville,Ohio Valley,0,0,Bench,0,13,2,5,0,2,0,0,1,1,1,0,0,1,4,0,26.408,0,73.492,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-2,-6.5,1,0,"3,234",0,TRUE,0,13,2,5,0,2,0,0,1,1,1,0,0,1,4,Braden Appelhans
 ,Braden Appelhans,Drake,NEUTRAL,Northern Arizona,Big Sky,0,0,Bench,0,27,4,9,3,5,3,4,1,1,1,0,0,3,14,0,18.712,0,73.492,1,0,0,0,0,0,0,0,0,0,0,0,1,0,6,-8.5,1,0,1420,0,TRUE,0,27,4,9,3,5,3,4,1,1,1,0,0,3,14,Braden Appelhans
 ,Eli Shetlar,Drake,AWAY,Charleston,CAA,0,0,Bench,0,29,4,9,3,7,0,0,1,8,3,1,1,1,11,0,38.671,0,73.492,1,0,0,0,0,0,0,1,0,0,0,0,1,0,9,7.5,0,0,"4,786",0,TRUE,0,29,4,9,3,7,0,0,1,8,3,1,1,1,11,Eli Shetlar
 ,Eli Shetlar,Drake,HOME,Robert Morris,Horizon,0,0,Bench,0,26,2,6,2,6,0,0,0,2,1,3,1,0,6,0,28.542,0,73.492,0,0,0,0,0,0,0,0,0,1,0,0,1,0,-2,-7.5,1,1,"3,142",0,TRUE,0,26,2,6,2,6,0,0,0,2,1,3,1,0,6,Eli Shetlar
+,Eli Shetlar,Drake,HOME,SIU Edwardsville,Ohio Valley,0,0,Bench,0,20,0,5,0,5,0,0,4,4,2,0,0,0,0,0,26.408,0,73.492,0,0,0,1,0,0,0,0,1,0,0,0,1,0,-2,-6.5,1,0,"3,234",0,TRUE,0,20,0,5,0,5,0,0,4,4,2,0,0,0,0,Eli Shetlar
 ,Eli Shetlar,Drake,NEUTRAL,Northern Arizona,Big Sky,0,0,Bench,0,6,0,1,0,1,0,0,0,0,0,0,0,0,0,0,18.712,0,73.492,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-8.5,1,0,1420,0,TRUE,0,6,0,1,0,1,0,0,0,0,0,0,0,0,0,Eli Shetlar
 ,Griffen Goodbary,Drake,AWAY,Charleston,CAA,0,0,Bench,0,9,1,4,0,1,0,0,1,1,1,0,0,2,2,0,38.671,0,73.492,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,7.5,0,0,"4,786",0,FALSE, , , , , , , , , , , , , , , , 
 ,Griffen Goodbary,Drake,HOME,Robert Morris,Horizon,0,0,Bench,0,12,2,2,0,0,0,0,2,2,1,0,1,0,4,0,28.542,0,73.492,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-2,-7.5,1,1,"3,142",0,FALSE, , , , , , , , , , , , , , , , 
+,Griffen Goodbary,Drake,HOME,SIU Edwardsville,Ohio Valley,0,0,Bench,0,6,1,2,1,2,0,0,1,1,0,1,0,1,3,0,26.408,0,73.492,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-2,-6.5,1,0,"3,234",0,FALSE, , , , , , , , , , , , , , , , 
 ,Griffen Goodbary,Drake,NEUTRAL,Northern Arizona,Big Sky,0,0,Bench,0,11,0,0,0,0,0,0,1,3,1,0,0,1,0,0,18.712,0,73.492,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-8.5,1,0,1420,0,FALSE, , , , , , , , , , , , , , , , 
+,Isaiah Carr,Drake,HOME,SIU Edwardsville,Ohio Valley,0,0,Starter,1,9,1,4,0,1,0,0,1,0,0,1,2,1,2,0,26.408,0,73.492,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-2,-6.5,1,0,"3,234",0,FALSE, , , , , , , , , , , , , , , , 
 ,Isaiah Carr,Drake,HOME,Robert Morris,Horizon,0,0,Bench,0,8,1,1,0,0,0,0,0,1,0,0,0,2,2,0,28.542,0,73.492,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-2,-7.5,1,1,"3,142",0,FALSE, , , , , , , , , , , , , , , , 
 ,Isaiah Carr,Drake,NEUTRAL,Northern Arizona,Big Sky,0,0,Bench,0,22,0,2,0,0,2,4,1,6,2,2,1,2,2,0,18.712,0,73.492,0,0,0,0,0,0,0,0,0,1,0,0,1,0,6,-8.5,1,0,1420,0,FALSE, , , , , , , , , , , , , , , , 
 ,Jaehshon Thomas,Drake,AWAY,Charleston,CAA,0,0,Starter,1,16,0,3,0,1,0,0,1,1,0,1,0,1,0,0,38.671,0,73.492,0,0,0,1,0,0,0,0,0,0,0,0,0,0,9,7.5,0,0,"4,786",0,TRUE,1,16,0,3,0,1,0,0,1,1,0,1,0,1,0,Jaehshon Thomas
 ,Jaehshon Thomas,Drake,HOME,Robert Morris,Horizon,0,0,Starter,1,29,3,10,1,2,4,5,0,0,1,1,0,2,11,0,28.542,0,73.492,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-2,-7.5,1,1,"3,142",0,TRUE,1,29,3,10,1,2,4,5,0,0,1,1,0,2,11,Jaehshon Thomas
+,Jaehshon Thomas,Drake,HOME,SIU Edwardsville,Ohio Valley,0,0,Starter,1,23,2,9,0,5,0,0,0,2,0,1,0,0,4,0,26.408,0,73.492,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-2,-6.5,1,0,"3,234",0,TRUE,1,23,2,9,0,5,0,0,0,2,0,1,0,0,4,Jaehshon Thomas
 ,Jaehshon Thomas,Drake,NEUTRAL,Northern Arizona,Big Sky,0,0,Starter,1,30,7,12,1,4,0,0,0,2,2,0,1,0,15,0,18.712,0,73.492,1,0,0,0,0,0,0,0,0,0,0,0,1,0,6,-8.5,1,0,1420,0,TRUE,1,30,7,12,1,4,0,0,0,2,2,0,1,0,15,Jaehshon Thomas
 ,Jalen Quinn,Drake,AWAY,Charleston,CAA,0,0,Starter,1,35,5,11,1,2,6,7,1,6,3,2,4,3,17,0,38.671,0,73.492,1,0,0,0,0,0,0,0,0,0,0,0,1,0,9,7.5,0,0,"4,786",0,TRUE,1,35,5,11,1,2,6,7,1,6,3,2,4,3,17,Jalen Quinn
 ,Jalen Quinn,Drake,HOME,Robert Morris,Horizon,0,0,Starter,1,42,5,16,1,6,9,11,1,1,3,2,3,1,20,0,28.542,0,73.492,1,0,0,0,0,0,1,0,0,0,0,0,1,1,-2,-7.5,1,1,"3,142",0,TRUE,1,42,5,16,1,6,9,11,1,1,3,2,3,1,20,Jalen Quinn
+,Jalen Quinn,Drake,HOME,SIU Edwardsville,Ohio Valley,0,0,Starter,1,34,5,14,1,4,0,2,3,1,3,1,2,0,11,0,26.408,0,73.492,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-2,-6.5,1,0,"3,234",0,TRUE,1,34,5,14,1,4,0,2,3,1,3,1,2,0,11,Jalen Quinn
 ,Jalen Quinn,Drake,NEUTRAL,Northern Arizona,Big Sky,0,0,Starter,1,34,7,14,1,4,5,7,2,2,2,0,2,1,20,0,18.712,0,73.492,1,0,0,0,0,0,0,0,0,0,0,0,1,1,6,-8.5,1,0,1420,0,TRUE,1,34,7,14,1,4,5,7,2,2,2,0,2,1,20,Jalen Quinn
 ,Okku Federiko,Drake,AWAY,Charleston,CAA,0,0,Starter,1,26,5,10,1,6,1,4,2,5,2,0,3,5,12,0,38.671,0,73.492,1,0,0,0,1,0,0,0,0,0,0,1,1,0,9,7.5,0,0,"4,786",0,TRUE,1,26,5,10,1,6,1,4,2,5,2,0,3,5,12,Okku Federiko
 ,Okku Federiko,Drake,HOME,Robert Morris,Horizon,0,0,Starter,1,31,6,13,0,3,6,8,9,6,0,1,1,2,18,0,28.542,0,73.492,2,1,0,0,0,0,0,0,1,0,0,0,1,0,-2,-7.5,1,1,"3,142",0,TRUE,1,31,6,13,0,3,6,8,9,6,0,1,1,2,18,Okku Federiko
+,Okku Federiko,Drake,HOME,SIU Edwardsville,Ohio Valley,0,0,Starter,1,35,4,7,1,2,2,2,2,6,0,1,2,2,11,0,26.408,0,73.492,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-2,-6.5,1,0,"3,234",0,TRUE,1,35,4,7,1,2,2,2,2,6,0,1,2,2,11,Okku Federiko
 ,Okku Federiko,Drake,NEUTRAL,Northern Arizona,Big Sky,0,0,Starter,1,26,4,5,1,1,3,4,2,6,1,0,3,1,12,0,18.712,0,73.492,1,0,0,0,0,0,0,0,0,0,0,0,1,0,6,-8.5,1,0,1420,0,TRUE,1,26,4,5,1,1,3,4,2,6,1,0,3,1,12,Okku Federiko
 ,Wilguens Jr. Exacte,Drake,AWAY,Charleston,CAA,0,0,Starter,1,18,2,7,0,4,0,1,2,2,4,0,2,3,4,0,38.671,0,73.492,0,0,0,0,0,0,0,0,0,0,1,0,0,0,9,7.5,0,0,"4,786",0,TRUE,1,18,2,7,0,4,0,1,2,2,4,0,2,3,4,Wilguens Jr. Exacte
 ,Wilguens Jr. Exacte,Drake,HOME,Robert Morris,Horizon,0,0,Starter,1,32,4,11,1,4,4,6,1,3,2,2,1,3,13,0,28.542,0,73.492,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-2,-7.5,1,1,"3,142",0,TRUE,1,32,4,11,1,4,4,6,1,3,2,2,1,3,13,Wilguens Jr. Exacte
+,Wilguens Jr. Exacte,Drake,HOME,SIU Edwardsville,Ohio Valley,0,0,Starter,1,33,4,10,2,5,2,4,3,3,3,1,1,3,12,0,26.408,0,73.492,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-2,-6.5,1,0,"3,234",0,TRUE,1,33,4,10,2,5,2,4,3,3,3,1,1,3,12,Wilguens Jr. Exacte
 ,Wilguens Jr. Exacte,Drake,NEUTRAL,Northern Arizona,Big Sky,0,0,Starter,1,25,5,12,1,5,3,3,1,11,4,0,1,2,14,0,18.712,0,73.492,2,1,0,0,0,1,0,1,0,0,0,0,1,0,6,-8.5,1,0,1420,0,TRUE,1,25,5,12,1,5,3,3,1,11,4,0,1,2,14,Wilguens Jr. Exacte
 Drexel,,,,,,,,,10,388,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,10,355,51,120,22,54,12,21,25,40,25,11,18,37,136,8
 ,Eli Beard,Drexel,AWAY,Saint Joseph's,A10,0,0,Bench,0,18,3,8,1,4,0,0,0,1,1,0,0,1,7,0,31.56,0,17.215,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-11,9.5,0,0,"2,401",0,TRUE,0,18,3,8,1,4,0,0,0,1,1,0,0,1,7,Eli Beard
@@ -3261,22 +3309,29 @@ Fresno St.,,,,,,,,,15,594,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,14,500,65,148,1
 ,Zaon Collins,Fresno St.,HOME,USC Upstate,Big South,0,0,Starter,1,32,8,14,0,3,2,4,2,2,3,1,1,2,18,0,12.234,0,9.623,1,0,0,0,0,0,1,0,0,0,1,0,1,0,-1,-9.5,1,0,"2,722",0,TRUE,1,32,8,14,0,3,2,4,2,2,3,1,1,2,18,Zaon Collins
 ,Zaon Collins,Fresno St.,HOME,Long Beach St.,Big West,0,0,Starter,1,31,4,7,0,1,4,7,0,4,5,2,0,1,12,0,24.069,0,9.623,1,0,0,0,0,0,0,0,0,1,1,0,1,0,20,-7.5,0,0,"3,133",0,TRUE,1,31,4,7,0,1,4,7,0,4,5,2,0,1,12,Zaon Collins
 ,Zaon Collins,Fresno St.,HOME,UC San Diego,Big West,0,0,Starter,1,34,3,9,1,2,2,2,1,5,8,4,1,1,9,0,32.042,0,9.623,0,0,0,0,0,0,0,1,0,1,1,0,1,0,-5,-1.5,1,0,"2,950",0,TRUE,1,34,3,9,1,2,2,2,1,5,8,4,1,1,9,Zaon Collins
-Furman,,,,,,,,,10,391,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,10,345,43,100,16,44,19,26,18,47,22,8,34,24,121,8
+Furman,,,,,,,,,15,585,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,15,539,64,155,20,74,25,37,33,70,32,11,43,37,173,8
 ,Abijah Franklin,Furman,HOME,Troy,Sun Belt,0,0,Bench,0,8,1,1,0,0,1,1,1,0,0,0,0,1,3,0,34.931,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,-2.5,1,0,"2,207",0,FALSE, , , , , , , , , , , , , , , , 
 ,Abijah Franklin,Furman,NEUTRAL,High Point,Big South,0,0,Bench,0,19,2,9,0,5,2,2,0,0,3,0,1,4,6,0,35.312,0,41.248,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-26,3.5,0,0,473,0,FALSE, , , , , , , , , , , , , , , , 
+,Alex Wilkins,Furman,AWAY,Northern Iowa,Missouri Valley,0,0,Starter,1,33,4,14,0,9,2,2,0,1,4,0,3,4,10,0,23.772,0,41.248,1,0,0,0,0,0,0,0,0,0,1,1,1,0,-16,9.5,0,0,"3,585",0,TRUE,1,33,4,14,0,9,2,2,0,1,4,0,3,4,10,Alex Wilkins
 ,Alex Wilkins,Furman,HOME,Troy,Sun Belt,0,0,Starter,1,31,6,15,1,3,3,3,1,1,8,0,4,1,16,0,34.931,0,41.248,1,0,0,0,0,1,0,0,0,0,1,0,1,0,-3,-2.5,1,0,"2,207",0,TRUE,1,31,6,15,1,3,3,3,1,1,8,0,4,1,16,Alex Wilkins
 ,Alex Wilkins,Furman,NEUTRAL,High Point,Big South,0,0,Starter,1,20,4,9,1,3,2,2,0,2,2,0,6,1,11,0,35.312,0,41.248,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-26,3.5,0,0,473,0,TRUE,1,20,4,9,1,3,2,2,0,2,2,0,6,1,11,Alex Wilkins
+,Asa Thomas,Furman,AWAY,Northern Iowa,Missouri Valley,0,0,Bench,0,14,0,4,0,4,0,0,4,4,1,0,1,1,0,0,23.772,0,41.248,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-16,9.5,0,0,"3,585",0,TRUE,0,14,0,4,0,4,0,0,4,4,1,0,1,1,0,Asa Thomas
 ,Asa Thomas,Furman,HOME,Troy,Sun Belt,0,0,Bench,0,23,3,8,3,5,0,0,1,2,0,0,0,3,9,0,34.931,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,-2.5,1,0,"2,207",0,TRUE,0,23,3,8,3,5,0,0,1,2,0,0,0,3,9,Asa Thomas
 ,Asa Thomas,Furman,NEUTRAL,High Point,Big South,0,0,Bench,0,18,3,5,2,3,3,3,0,2,1,0,2,2,11,0,35.312,0,41.248,1,0,0,0,0,1,0,0,0,0,0,0,0,0,-26,3.5,0,0,473,0,TRUE,0,18,3,5,2,3,3,3,0,2,1,0,2,2,11,Asa Thomas
+,Ben Vander Wal,Furman,AWAY,Northern Iowa,Missouri Valley,0,0,Starter,1,29,3,4,0,0,0,2,1,3,3,2,1,4,6,0,23.772,0,41.248,0,0,0,0,0,0,0,0,0,1,0,1,1,0,-16,9.5,0,0,"3,585",0,TRUE,1,29,3,4,0,0,0,2,1,3,3,2,1,4,6,Ben Vander Wal
 ,Ben Vander Wal,Furman,HOME,Troy,Sun Belt,0,0,Starter,1,32,1,4,0,0,0,2,1,1,3,1,2,1,2,0,34.931,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,-2.5,1,0,"2,207",0,TRUE,1,32,1,4,0,0,0,2,1,1,3,1,2,1,2,Ben Vander Wal
 ,Ben Vander Wal,Furman,NEUTRAL,High Point,Big South,0,0,Starter,1,34,4,6,0,0,3,4,1,4,2,0,1,1,11,0,35.312,0,41.248,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-26,3.5,0,0,473,0,TRUE,1,34,4,6,0,0,3,4,1,4,2,0,1,1,11,Ben Vander Wal
+,Charles Johnston,Furman,AWAY,Northern Iowa,Missouri Valley,0,0,Starter,1,35,4,9,3,7,0,2,2,8,1,1,1,0,11,0,23.772,0,41.248,2,1,0,0,0,0,0,1,0,0,0,0,1,0,-16,9.5,0,0,"3,585",0,TRUE,1,35,4,9,3,7,0,2,2,8,1,1,1,0,11,Charles Johnston
 ,Charles Johnston,Furman,HOME,Troy,Sun Belt,0,0,Starter,1,27,2,6,1,4,0,2,1,9,0,2,6,3,5,0,34.931,0,41.248,1,0,0,0,0,0,0,1,0,0,0,0,1,0,-3,-2.5,1,0,"2,207",0,TRUE,1,27,2,6,1,4,0,2,1,9,0,2,6,3,5,Charles Johnston
 ,Charles Johnston,Furman,NEUTRAL,High Point,Big South,0,0,Starter,1,28,6,12,2,7,2,2,4,8,0,1,2,3,16,0,35.312,0,41.248,2,1,0,0,0,0,0,1,0,0,0,0,1,0,-26,3.5,0,0,473,0,TRUE,1,28,6,12,2,7,2,2,4,8,0,1,2,3,16,Charles Johnston
 ,Collin O'Neal,Furman,NEUTRAL,High Point,Big South,0,0,Bench,0,19,1,2,0,0,0,2,4,0,1,0,3,1,2,0,35.312,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-26,3.5,0,0,473,0,FALSE, , , , , , , , , , , , , , , , 
+,Cooper Bowser,Furman,AWAY,Northern Iowa,Missouri Valley,0,0,Starter,1,32,7,10,0,0,2,3,2,2,1,0,1,3,16,0,23.772,0,41.248,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-16,9.5,0,0,"3,585",0,TRUE,1,32,7,10,0,0,2,3,2,2,1,0,1,3,16,Cooper Bowser
 ,Cooper Bowser,Furman,HOME,Troy,Sun Belt,0,0,Starter,1,29,4,5,0,0,2,2,2,6,0,1,1,3,10,0,34.931,0,41.248,1,0,0,0,0,0,0,0,1,0,0,0,1,0,-3,-2.5,1,0,"2,207",0,TRUE,1,29,4,5,0,0,2,2,2,6,0,1,1,3,10,Cooper Bowser
 ,Cooper Bowser,Furman,NEUTRAL,High Point,Big South,0,0,Starter,1,33,2,5,0,0,2,4,5,4,4,0,3,3,6,0,35.312,0,41.248,0,0,0,0,0,0,0,0,1,0,1,0,1,0,-26,3.5,0,0,473,0,TRUE,1,33,2,5,0,0,2,4,5,4,4,0,3,3,6,Cooper Bowser
+,Eddrin Bronson,Furman,AWAY,Northern Iowa,Missouri Valley,0,0,Bench,0,20,3,7,1,5,0,0,1,0,0,0,2,1,7,0,23.772,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-16,9.5,0,0,"3,585",0,TRUE,0,20,3,7,1,5,0,0,1,0,0,0,2,1,7,Eddrin Bronson
 ,Eddrin Bronson,Furman,HOME,Troy,Sun Belt,0,0,Bench,0,22,5,10,4,7,0,0,0,2,0,2,1,0,14,0,34.931,0,41.248,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,-2.5,1,0,"2,207",0,TRUE,0,22,5,10,4,7,0,0,0,2,0,2,1,0,14,Eddrin Bronson
 ,Eddrin Bronson,Furman,NEUTRAL,High Point,Big South,0,0,Bench,0,7,0,0,0,0,0,0,0,1,0,0,2,0,0,0,35.312,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-26,3.5,0,0,473,0,TRUE,0,7,0,0,0,0,0,0,0,1,0,0,2,0,0,Eddrin Bronson
+,Tom House,Furman,AWAY,Northern Iowa,Missouri Valley,0,0,Starter,1,31,0,7,0,5,2,2,5,5,0,0,0,0,2,0,23.772,0,41.248,1,0,0,1,0,0,0,0,1,0,0,0,1,0,-16,9.5,0,0,"3,585",0,TRUE,1,31,0,7,0,5,2,2,5,5,0,0,0,0,2,Tom House
 ,Tom House,Furman,HOME,Troy,Sun Belt,0,0,Starter,1,22,0,6,0,4,2,2,2,2,2,1,2,2,2,0,34.931,0,41.248,0,0,0,1,0,0,0,0,1,0,0,0,1,0,-3,-2.5,1,0,"2,207",0,TRUE,1,22,0,6,0,4,2,2,2,2,2,1,2,2,2,Tom House
 ,Tom House,Furman,NEUTRAL,High Point,Big South,0,0,Starter,1,19,3,9,2,8,0,0,0,3,0,0,2,1,8,0,35.312,0,41.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-26,3.5,0,0,473,0,TRUE,1,19,3,9,2,8,0,0,0,3,0,0,2,1,8,Tom House
 Gardner Webb,,,,,,,,,10,397,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,,,,,,,,,,,8,306,32,84,11,32,30,47,11,29,12,6,22,22,105,8
@@ -3799,44 +3854,53 @@ Hawaii,,,,,,,,,20,796,,,,,,,,,,,,,,,,,,,,,,,,,,,,4,,,,,,,,,,,20,644,87,189,28,80
 ,Yacine Toumi,Hawaii,HOME,East Texas A&M,Southland,0,0,Bench,0,8,0,1,0,0,3,8,0,0,1,0,0,3,3,0,12.498,0,13.125,0,0,0,0,0,0,0,1,0,0,0,0,0,0,26,-20.5,0,0,"3,947",0,FALSE, , , , , , , , , , , , , , , , 
 ,Yacine Toumi,Hawaii,HOME,Arizona St.,Big 12,0,0,Bench,0,9,1,1,0,0,0,0,1,0,0,0,1,3,2,0,5.994,0,13.125,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-7,-1.5,1,0,"4,782",0,FALSE, , , , , , , , , , , , , , , , 
 ,Yacine Toumi,Hawaii,HOME,Mississippi Valley St.,SWAC,0,0,Bench,0,14,5,5,0,0,1,3,0,0,1,0,0,1,11,0,4.374,0,13.125,1,0,0,0,1,0,0,0,0,0,0,0,0,0,32,-24.5,0,0,"4,091",0,FALSE, , , , , , , , , , , , , , , , 
-High Point,,,,,,,,,20,778,,,,,,,,,,,,,,,,,,,,,,,,,,,,4,,,,,,,,,,,20,634,115,218,33,87,63,84,26,57,62,45,20,58,326,8
+High Point,,,,,,,,,25,974,,,,,,,,,,,,,,,,,,,,,,,,,,,,5,,,,,,,,,,,25,802,138,275,37,108,82,111,46,71,76,51,34,77,395,8
 ,Babacar Diallo,High Point,HOME,Canisius,MAAC,0,0,Bench,0,13,4,2,0,0,0,1,0,1,0,1,1,2,8,0,7.699,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,0,0,43,-23.5,0,0,0,0,FALSE, , , , , , , , , , , , , , , , 
 ,Babacar Diallo,High Point,HOME,Jacksonville,ASUN,0,0,Bench,0,12,0,1,0,1,0,0,0,1,1,0,0,0,0,0,20.991,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,-17.5,0,0,"2,786",0,FALSE, , , , , , , , , , , , , , , , 
 ,Babacar Diallo,High Point,NEUTRAL,Illinois Chicago,Missouri Valley,0,0,Bench,0,9,0,0,0,0,0,0,0,1,1,0,0,1,0,0,9.362,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,-10.5,0,0,449,0,FALSE, , , , , , , , , , , , , , , , 
+,Braden Hausen,High Point,AWAY,UAB,American,0,0,Bench,0,8,0,1,0,1,0,0,0,0,0,1,0,0,0,0,50.004,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-17,-2.5,0,0,"3,231",0,FALSE, , , , , , , , , , , , , , , , 
 ,Braden Hausen,High Point,HOME,Canisius,MAAC,0,0,Bench,0,19,3,4,3,4,0,0,2,1,3,1,1,0,9,0,7.699,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,0,0,43,-23.5,0,0,0,0,FALSE, , , , , , , , , , , , , , , , 
 ,Braden Hausen,High Point,HOME,Jacksonville,ASUN,0,0,Bench,0,15,1,3,1,3,1,1,3,3,1,2,1,4,4,0,20.991,0,35.312,0,0,0,0,0,0,0,0,1,1,0,1,0,0,21,-17.5,0,0,"2,786",0,FALSE, , , , , , , , , , , , , , , , 
 ,Braden Hausen,High Point,NEUTRAL,Furman,Southern,0,0,Bench,0,7,1,2,1,2,0,0,0,0,0,0,0,0,3,0,41.248,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,-3.5,0,0,473,0,FALSE, , , , , , , , , , , , , , , , 
 ,Caden Miller,High Point,HOME,Canisius,MAAC,0,0,Bench,0,6,0,0,0,0,0,0,2,2,1,0,1,0,0,0,7.699,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,0,0,43,-23.5,0,0,0,0,FALSE, , , , , , , , , , , , , , , , 
+,Cam’Ron Fletcher,High Point,AWAY,UAB,American,0,0,Starter,1,33,7,12,0,4,6,8,12,1,0,1,1,1,20,0,50.004,0,35.312,2,1,0,0,0,0,0,0,1,0,0,0,1,1,-17,-2.5,0,0,"3,231",0,TRUE,1,33,7,12,0,4,6,8,12,1,0,1,1,1,20,Cam’Ron Fletcher
 ,Cam’Ron Fletcher,High Point,HOME,Jacksonville,ASUN,0,0,Starter,1,24,7,12,2,3,2,2,1,8,0,1,0,3,18,0,20.991,0,35.312,1,0,0,0,0,0,1,1,0,0,0,0,1,0,21,-17.5,0,0,"2,786",0,TRUE,1,24,7,12,2,3,2,2,1,8,0,1,0,3,18,Cam’Ron Fletcher
 ,Cam’Ron Fletcher,High Point,HOME,Canisius,MAAC,0,0,Starter,1,17,5,9,1,5,1,1,0,1,1,1,0,4,12,0,7.699,0,35.312,1,0,0,0,1,0,0,0,0,0,0,1,0,0,43,-23.5,0,0,0,0,TRUE,1,17,5,9,1,5,1,1,0,1,1,1,0,4,12,Cam’Ron Fletcher
 ,Cam’Ron Fletcher,High Point,NEUTRAL,Illinois Chicago,Missouri Valley,0,0,Starter,1,35,9,12,2,4,7,7,1,3,0,2,2,2,27,0,9.362,0,35.312,1,0,0,0,0,1,1,0,0,0,0,0,1,1,10,-10.5,0,0,449,0,TRUE,1,35,9,12,2,4,7,7,1,3,0,2,2,2,27,Cam’Ron Fletcher
 ,Cam’Ron Fletcher,High Point,NEUTRAL,Furman,Southern,0,0,Starter,1,29,5,10,0,1,1,3,4,6,3,1,2,2,11,0,41.248,0,35.312,2,1,0,0,0,0,0,0,0,0,0,0,1,0,26,-3.5,0,0,473,0,TRUE,1,29,5,10,0,1,1,3,4,6,3,1,2,2,11,Cam’Ron Fletcher
+,Chase Johnston,High Point,AWAY,UAB,American,0,0,Starter,1,13,0,4,0,4,0,0,0,0,1,1,1,4,0,0,50.004,0,35.312,0,0,0,1,0,0,0,0,0,0,0,1,0,0,-17,-2.5,0,0,"3,231",0,TRUE,1,13,0,4,0,4,0,0,0,0,1,1,1,4,0,Chase Johnston
 ,Chase Johnston,High Point,HOME,Canisius,MAAC,0,0,Starter,1,21,5,12,5,12,0,0,2,0,0,1,1,2,15,0,7.699,0,35.312,1,0,0,0,0,0,0,0,0,0,0,0,1,0,43,-23.5,0,0,0,0,TRUE,1,21,5,12,5,12,0,0,2,0,0,1,1,2,15,Chase Johnston
 ,Chase Johnston,High Point,HOME,Jacksonville,ASUN,0,0,Starter,1,18,4,7,4,7,0,0,0,0,1,1,0,1,12,0,20.991,0,35.312,1,0,0,0,0,0,0,0,0,0,0,0,0,0,21,-17.5,0,0,"2,786",0,TRUE,1,18,4,7,4,7,0,0,0,0,1,1,0,1,12,Chase Johnston
 ,Chase Johnston,High Point,NEUTRAL,Furman,Southern,0,0,Starter,1,17,1,2,1,2,0,0,0,0,1,0,0,1,3,0,41.248,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,-3.5,0,0,473,0,TRUE,1,17,1,2,1,2,0,0,0,0,1,0,0,1,3,Chase Johnston
 ,Chase Johnston,High Point,NEUTRAL,Illinois Chicago,Missouri Valley,0,0,Starter,1,23,6,14,6,14,0,0,0,2,1,5,1,4,18,0,9.362,0,35.312,1,0,0,0,0,0,0,0,0,1,0,1,1,0,10,-10.5,0,0,449,0,TRUE,1,23,6,14,6,14,0,0,0,2,1,5,1,4,18,Chase Johnston
+,Conrad Martinez,High Point,AWAY,UAB,American,0,0,Bench,0,12,3,4,2,3,0,0,2,1,2,0,0,5,8,0,50.004,0,35.312,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-17,-2.5,0,0,"3,231",0,TRUE,0,12,3,4,2,3,0,0,2,1,2,0,0,5,8,Conrad Martinez
 ,Conrad Martinez,High Point,HOME,Canisius,MAAC,0,0,Bench,0,19,5,8,2,4,0,0,0,0,2,3,0,0,12,0,7.699,0,35.312,1,0,0,0,0,0,0,0,0,0,0,0,0,0,43,-23.5,0,0,0,0,TRUE,0,19,5,8,2,4,0,0,0,0,2,3,0,0,12,Conrad Martinez
 ,Conrad Martinez,High Point,HOME,Jacksonville,ASUN,0,0,Bench,0,19,3,4,1,2,3,3,0,1,3,2,0,1,10,0,20.991,0,35.312,1,0,0,0,0,1,0,0,0,1,0,0,0,0,21,-17.5,0,0,"2,786",0,TRUE,0,19,3,4,1,2,3,3,0,1,3,2,0,1,10,Conrad Martinez
 ,Conrad Martinez,High Point,NEUTRAL,Furman,Southern,0,0,Bench,0,23,6,9,3,5,2,2,0,0,4,3,1,1,17,0,41.248,0,35.312,1,0,0,0,0,0,0,0,0,0,1,0,1,0,26,-3.5,0,0,473,0,TRUE,0,23,6,9,3,5,2,2,0,0,4,3,1,1,17,Conrad Martinez
 ,Conrad Martinez,High Point,NEUTRAL,Illinois Chicago,Missouri Valley,0,0,Bench,0,25,0,2,0,0,9,10,0,0,3,1,2,1,9,0,9.362,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,1,0,10,-10.5,0,0,449,0,TRUE,0,25,0,2,0,0,9,10,0,0,3,1,2,1,9,Conrad Martinez
 ,Josh Ibukunoluwa,High Point,HOME,Canisius,MAAC,0,0,Bench,0,5,1,2,0,0,3,4,0,0,0,0,0,0,5,0,7.699,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,0,0,43,-23.5,0,0,0,0,FALSE, , , , , , , , , , , , , , , , 
 ,Josh Ibukunoluwa,High Point,NEUTRAL,Illinois Chicago,Missouri Valley,0,0,Bench,0,5,0,0,0,0,0,0,0,1,0,0,0,0,0,0,9.362,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,-10.5,0,0,449,0,FALSE, , , , , , , , , , , , , , , , 
+,Owen Aquino,High Point,AWAY,UAB,American,0,0,Starter,1,35,5,12,0,0,0,2,2,2,4,1,4,3,10,0,50.004,0,35.312,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-17,-2.5,0,0,"3,231",0,TRUE,1,35,5,12,0,0,0,2,2,2,4,1,4,3,10,Owen Aquino
 ,Owen Aquino,High Point,HOME,Canisius,MAAC,0,0,Starter,1,20,2,2,0,0,0,0,1,6,3,2,1,4,4,0,7.699,0,35.312,0,0,0,0,0,0,0,1,0,0,0,1,1,0,43,-23.5,0,0,0,0,TRUE,1,20,2,2,0,0,0,0,1,6,3,2,1,4,4,Owen Aquino
 ,Owen Aquino,High Point,HOME,Jacksonville,ASUN,0,0,Starter,1,20,2,5,0,0,0,2,1,4,1,1,0,1,4,0,20.991,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,1,0,21,-17.5,0,0,"2,786",0,TRUE,1,20,2,5,0,0,0,2,1,4,1,1,0,1,4,Owen Aquino
 ,Owen Aquino,High Point,NEUTRAL,Furman,Southern,0,0,Starter,1,30,6,10,0,1,5,7,1,5,2,3,2,3,17,0,41.248,0,35.312,1,0,0,0,0,0,0,0,0,0,0,0,1,0,26,-3.5,0,0,473,0,TRUE,1,30,6,10,0,1,5,7,1,5,2,3,2,3,17,Owen Aquino
 ,Owen Aquino,High Point,NEUTRAL,Illinois Chicago,Missouri Valley,0,0,Starter,1,31,1,1,0,0,0,0,2,2,3,1,0,4,2,0,9.362,0,35.312,0,0,0,0,0,0,0,0,0,0,0,1,1,0,10,-10.5,0,0,449,0,TRUE,1,31,1,1,0,0,0,0,2,2,3,1,0,4,2,Owen Aquino
+,Rob Martin,High Point,AWAY,UAB,American,0,0,Starter,1,39,7,17,2,5,5,8,2,5,7,2,4,2,21,0,50.004,0,35.312,1,0,0,0,0,0,0,0,0,0,1,0,1,1,-17,-2.5,0,0,"3,231",0,TRUE,1,39,7,17,2,5,5,8,2,5,7,2,4,2,21,Rob Martin
 ,Rob Martin,High Point,HOME,Canisius,MAAC,0,0,Starter,1,23,8,9,1,2,0,0,0,1,8,5,0,0,17,0,7.699,0,35.312,1,0,0,0,1,0,1,0,0,1,1,0,1,0,43,-23.5,0,0,0,0,TRUE,1,23,8,9,1,2,0,0,0,1,8,5,0,0,17,Rob Martin
 ,Rob Martin,High Point,HOME,Jacksonville,ASUN,0,0,Starter,1,27,1,9,0,3,7,8,1,0,6,1,1,0,9,0,20.991,0,35.312,0,0,0,0,0,0,0,0,0,0,1,0,1,0,21,-17.5,0,0,"2,786",0,TRUE,1,27,1,9,0,3,7,8,1,0,6,1,1,0,9,Rob Martin
 ,Rob Martin,High Point,NEUTRAL,Furman,Southern,0,0,Starter,1,25,10,18,2,5,0,1,1,1,3,4,1,2,22,0,41.248,0,35.312,1,0,0,0,0,0,1,0,0,1,0,0,1,1,26,-3.5,0,0,473,0,TRUE,1,25,10,18,2,5,0,1,1,1,3,4,1,2,22,Rob Martin
 ,Rob Martin,High Point,NEUTRAL,Illinois Chicago,Missouri Valley,0,0,Starter,1,24,4,12,0,3,6,6,1,1,8,3,3,3,14,0,9.362,0,35.312,1,0,0,0,0,1,0,0,0,0,1,0,1,0,10,-10.5,0,0,449,0,TRUE,1,24,4,12,0,3,6,6,1,1,8,3,3,3,14,Rob Martin
+,Scotty Washington,High Point,AWAY,UAB,American,0,0,Starter,1,14,0,3,0,2,6,7,1,1,0,1,0,3,6,0,50.004,0,35.312,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-17,-2.5,0,0,"3,231",0,TRUE,1,14,0,3,0,2,6,7,1,1,0,1,0,3,6,Scotty Washington
 ,Scotty Washington,High Point,HOME,Jacksonville,ASUN,0,0,Starter,1,18,1,6,0,3,5,6,2,0,1,1,0,1,7,0,20.991,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,-17.5,0,0,"2,786",0,TRUE,1,18,1,6,0,3,5,6,2,0,1,1,0,1,7,Scotty Washington
 ,Scotty Washington,High Point,NEUTRAL,Furman,Southern,0,0,Starter,1,24,3,7,0,1,0,1,0,3,1,0,0,0,6,0,41.248,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,1,0,26,-3.5,0,0,473,0,TRUE,1,24,3,7,0,1,0,1,0,3,1,0,0,0,6,Scotty Washington
 ,Scotty Washington,High Point,HOME,Canisius,MAAC,0,0,Bench,0,23,3,9,1,5,2,2,1,2,1,0,1,5,9,0,7.699,0,35.312,0,0,0,0,0,0,0,0,0,0,0,1,1,0,43,-23.5,0,0,0,0,TRUE,0,23,3,9,1,5,2,2,1,2,1,0,1,5,9,Scotty Washington
 ,Scotty Washington,High Point,NEUTRAL,Illinois Chicago,Missouri Valley,0,0,Bench,0,19,3,6,2,4,4,6,0,0,2,1,0,0,12,0,9.362,0,35.312,1,0,0,0,0,0,0,0,0,0,0,0,0,0,10,-10.5,0,0,449,0,TRUE,0,19,3,6,2,4,4,6,0,0,2,1,0,0,12,Scotty Washington
 ,Terry Anderson,High Point,HOME,Canisius,MAAC,0,0,Starter,1,16,0,1,0,0,2,2,0,1,1,0,1,4,2,0,7.699,0,35.312,0,0,0,0,0,0,0,0,0,0,0,1,0,0,43,-23.5,0,0,0,0,TRUE,1,16,0,1,0,0,2,2,0,1,1,0,1,4,2,Terry Anderson
 ,Terry Anderson,High Point,NEUTRAL,Illinois Chicago,Missouri Valley,0,0,Starter,1,24,2,5,0,0,4,8,4,3,1,0,1,4,8,0,9.362,0,35.312,0,0,0,0,0,0,0,0,0,0,0,1,1,0,10,-10.5,0,0,449,0,TRUE,1,24,2,5,0,0,4,8,4,3,1,0,1,4,8,Terry Anderson
+,Terry Anderson,High Point,AWAY,UAB,American,0,0,Bench,0,22,1,5,0,3,2,2,1,4,0,0,4,1,4,0,50.004,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-17,-2.5,0,0,"3,231",0,TRUE,0,22,1,5,0,3,2,2,1,4,0,0,4,1,4,Terry Anderson
 ,Terry Anderson,High Point,HOME,Jacksonville,ASUN,0,0,Bench,0,25,7,11,0,1,3,6,2,4,1,0,0,2,17,0,20.991,0,35.312,1,0,0,0,0,0,0,0,0,0,0,0,1,0,21,-17.5,0,0,"2,786",0,TRUE,0,25,7,11,0,1,3,6,2,4,1,0,0,2,17,Terry Anderson
 ,Terry Anderson,High Point,NEUTRAL,Furman,Southern,0,0,Bench,0,15,6,6,0,0,0,1,1,3,1,2,0,3,12,0,41.248,0,35.312,1,0,0,0,1,0,0,0,0,0,0,0,0,0,26,-3.5,0,0,473,0,TRUE,0,15,6,6,0,0,0,1,1,3,1,2,0,3,12,Terry Anderson
+,Vincent Brady II,High Point,AWAY,UAB,American,0,0,Bench,0,20,1,2,0,1,3,4,1,0,2,0,1,3,5,0,50.004,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-17,-2.5,0,0,"3,231",0,FALSE, , , , , , , , , , , , , , , , 
 ,Vincent Brady II,High Point,NEUTRAL,Furman,Southern,0,0,Bench,0,17,2,4,2,3,0,0,1,0,2,3,0,2,6,0,41.248,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,-3.5,0,0,473,0,FALSE, , , , , , , , , , , , , , , , 
 ,Youssouf Singare,High Point,HOME,Canisius,MAAC,0,0,Bench,0,16,2,4,0,0,0,0,3,2,1,0,1,1,4,0,7.699,0,35.312,0,0,0,0,0,0,0,0,1,0,0,0,0,0,43,-23.5,0,0,0,0,FALSE, , , , , , , , , , , , , , , , 
 ,Youssouf Singare,High Point,HOME,Jacksonville,ASUN,0,0,Bench,0,15,0,1,0,0,2,2,0,5,0,0,1,2,2,0,20.991,0,35.312,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,-17.5,0,0,"2,786",0,FALSE, , , , , , , , , , , , , , , , 
@@ -4485,17 +4549,27 @@ Jacksonville,,,,,,,,,15,593,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,15,445,65,133
 ,Michael Harper Jr.,Jacksonville,AWAY,Miami FL,ACC,0,0,Bench,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29.132,0,20.991,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-17,18.5,0,0,"5,633",0,FALSE, , , , , , , , , , , , , , , , 
 ,Michael Harper Jr.,Jacksonville,AWAY,High Point,Big South,0,0,Bench,0,5,1,2,1,2,0,0,0,0,1,0,0,0,3,0,35.312,0,20.991,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-21,17.5,0,0,"2,786",0,FALSE, , , , , , , , , , , , , , , , 
 ,Simon Wheeler,Jacksonville,AWAY,Miami FL,ACC,0,0,Bench,0,13,1,3,0,1,0,0,1,0,1,0,0,0,2,0,29.132,0,20.991,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-17,18.5,0,0,"5,633",0,FALSE, , , , , , , , , , , , , , , , 
-Jacksonville St.,,,,,,,,,5,200,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,5,172,19,52,10,28,1,4,9,19,18,2,11,13,49,8
+Jacksonville St.,,,,,,,,,10,400,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,10,336,43,102,18,45,15,25,17,40,29,5,16,26,119,8
 ,AC Bryant,Jacksonville St.,HOME,South Alabama,Sun Belt,0,0,Starter,1,35,8,18,8,17,0,0,1,7,1,1,0,1,24,0,14.692,0,26.248,1,0,0,0,0,0,1,1,0,0,0,0,1,1,-6,-3.5,1,0,"2,366",0,TRUE,1,35,8,18,8,17,0,0,1,7,1,1,0,1,24,AC Bryant
+,AC Bryant,Jacksonville St.,HOME,Coastal Carolina,Sun Belt,0,0,Starter,1,23,3,8,3,7,0,0,0,4,0,1,0,3,9,0,10.323,0,26.248,0,0,0,0,0,0,0,0,0,0,0,0,1,0,7,-7.5,1,0,"2,023",0,TRUE,1,23,3,8,3,7,0,0,0,4,0,1,0,3,9,AC Bryant
 ,Bencao Vungo,Jacksonville St.,HOME,South Alabama,Sun Belt,0,0,Bench,0,9,2,2,1,1,0,0,5,2,0,0,0,5,5,0,14.692,0,26.248,0,0,0,0,0,0,0,0,1,0,0,1,0,0,-6,-3.5,1,0,"2,366",0,FALSE, , , , , , , , , , , , , , , , 
+,Bencao Vungo,Jacksonville St.,HOME,Coastal Carolina,Sun Belt,0,0,Bench,0,7,1,1,0,0,0,0,2,0,0,1,1,1,2,0,10.323,0,26.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,-7.5,1,0,"2,023",0,FALSE, , , , , , , , , , , , , , , , 
 ,Emondrek Erkins-Ford,Jacksonville St.,HOME,South Alabama,Sun Belt,0,0,Starter,1,20,4,7,0,1,0,1,2,4,1,0,1,3,8,0,14.692,0,26.248,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-6,-3.5,1,0,"2,366",0,TRUE,1,20,4,7,0,1,0,1,2,4,1,0,1,3,8,Emondrek Erkins-Ford
+,Emondrek Erkins-Ford,Jacksonville St.,HOME,Coastal Carolina,Sun Belt,0,0,Starter,1,29,5,7,1,3,1,5,4,2,3,0,1,2,12,0,10.323,0,26.248,1,0,0,0,1,0,0,0,0,0,0,0,1,0,7,-7.5,1,0,"2,023",0,TRUE,1,29,5,7,1,3,1,5,4,2,3,0,1,2,12,Emondrek Erkins-Ford
 ,Iaroslav Niagu,Jacksonville St.,HOME,South Alabama,Sun Belt,0,0,Bench,0,20,1,1,0,0,0,0,2,1,0,0,1,2,2,0,14.692,0,26.248,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-6,-3.5,1,0,"2,366",0,TRUE,0,20,1,1,0,0,0,0,2,1,0,0,1,2,2,Iaroslav Niagu
+,Iaroslav Niagu,Jacksonville St.,HOME,Coastal Carolina,Sun Belt,0,0,Bench,0,12,1,3,0,0,0,0,0,4,0,1,0,0,2,0,10.323,0,26.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,-7.5,1,0,"2,023",0,TRUE,0,12,1,3,0,0,0,0,0,4,0,1,0,0,2,Iaroslav Niagu
 ,Jacoby Hill,Jacksonville St.,HOME,South Alabama,Sun Belt,0,0,Starter,1,27,0,4,0,2,0,0,3,0,2,0,3,2,0,0,14.692,0,26.248,0,0,0,1,0,0,0,0,0,0,0,0,1,0,-6,-3.5,1,0,"2,366",0,TRUE,1,27,0,4,0,2,0,0,3,0,2,0,3,2,0,Jacoby Hill
+,Jacoby Hill,Jacksonville St.,HOME,Coastal Carolina,Sun Belt,0,0,Starter,1,32,2,4,1,1,2,3,1,4,2,0,0,1,7,0,10.323,0,26.248,0,0,0,0,0,0,0,0,0,0,0,0,1,0,7,-7.5,1,0,"2,023",0,TRUE,1,32,2,4,1,1,2,3,1,4,2,0,0,1,7,Jacoby Hill
 ,Jamar Franklin,Jacksonville St.,HOME,South Alabama,Sun Belt,0,0,Bench,0,10,3,7,3,7,0,0,0,1,0,0,1,2,9,0,14.692,0,26.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-6,-3.5,1,0,"2,366",0,FALSE, , , , , , , , , , , , , , , , 
+,Jamar Franklin,Jacksonville St.,HOME,Coastal Carolina,Sun Belt,0,0,Bench,0,14,0,4,0,4,2,2,1,1,0,0,0,1,2,0,10.323,0,26.248,0,0,0,1,0,0,0,0,0,0,0,0,0,0,7,-7.5,1,0,"2,023",0,FALSE, , , , , , , , , , , , , , , , 
 ,Jaye Nash,Jacksonville St.,HOME,South Alabama,Sun Belt,0,0,Starter,1,30,0,6,0,0,0,1,0,1,12,1,3,1,0,0,14.692,0,26.248,1,0,0,1,0,0,0,0,0,0,1,0,1,0,-6,-3.5,1,0,"2,366",0,TRUE,1,30,0,6,0,0,0,1,0,1,12,1,3,1,0,Jaye Nash
+,Jaye Nash,Jacksonville St.,HOME,Coastal Carolina,Sun Belt,0,0,Starter,1,26,1,4,0,0,3,4,1,3,5,1,0,2,5,0,10.323,0,26.248,0,0,0,0,0,0,0,0,0,0,1,0,1,0,7,-7.5,1,0,"2,023",0,TRUE,1,26,1,4,0,0,3,4,1,3,5,1,0,2,5,Jaye Nash
 ,Marcus Fitzgerald Jr.,Jacksonville St.,HOME,South Alabama,Sun Belt,0,0,Bench,0,12,2,5,2,5,0,0,0,1,2,0,1,2,6,0,14.692,0,26.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-6,-3.5,1,0,"2,366",0,TRUE,0,12,2,5,2,5,0,0,0,1,2,0,1,2,6,Marcus Fitzgerald Jr.
+,Marcus Fitzgerald Jr.,Jacksonville St.,HOME,Coastal Carolina,Sun Belt,0,0,Bench,0,14,1,3,0,1,0,0,0,0,1,0,1,1,2,0,10.323,0,26.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,-7.5,1,0,"2,023",0,TRUE,0,14,1,3,0,1,0,0,0,0,1,0,1,1,2,Marcus Fitzgerald Jr.
 ,Mostapha El Moutaouakkil,Jacksonville St.,HOME,South Alabama,Sun Belt,0,0,Starter,1,28,4,11,0,3,1,2,1,5,0,0,2,2,9,0,14.692,0,26.248,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-6,-3.5,1,0,"2,366",0,TRUE,1,28,4,11,0,3,1,2,1,5,0,0,2,2,9,Mostapha El Moutaouakkil
+,Mostapha El Moutaouakkil,Jacksonville St.,HOME,Coastal Carolina,Sun Belt,0,0,Starter,1,28,11,21,3,5,8,9,2,4,0,0,3,4,33,0,10.323,0,26.248,1,0,0,0,0,0,1,0,0,0,0,1,1,1,7,-7.5,1,0,"2,023",0,TRUE,1,28,11,21,3,5,8,9,2,4,0,0,3,4,33,Mostapha El Moutaouakkil
 ,Toby Nnadozie,Jacksonville St.,HOME,South Alabama,Sun Belt,0,0,Bench,0,9,1,3,0,2,0,0,0,2,2,0,0,2,2,0,14.692,0,26.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-6,-3.5,1,0,"2,366",0,FALSE, , , , , , , , , , , , , , , , 
+,Toby Nnadozie,Jacksonville St.,HOME,Coastal Carolina,Sun Belt,0,0,Bench,0,15,0,2,0,0,0,0,1,1,1,0,1,0,0,0,10.323,0,26.248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,-7.5,1,0,"2,023",0,FALSE, , , , , , , , , , , , , , , , 
 James Madison,,,,,,,,,15,599,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,15,481,71,156,31,78,35,44,23,50,41,15,31,43,193,8
 ,Bradley Douglas,James Madison,AWAY,Longwood,Big South,0,0,Starter,1,30,8,17,1,5,5,7,0,2,7,1,0,0,22,0,28.884,0,33.861,1,0,0,0,0,0,1,0,0,0,1,0,1,1,-10,1.5,0,0,0,0,TRUE,1,30,8,17,1,5,5,7,0,2,7,1,0,0,22,Bradley Douglas
 ,Bradley Douglas,James Madison,HOME,Coppin St.,MEAC,0,0,Starter,1,23,3,6,1,4,4,4,0,0,4,1,1,2,11,0,5.405,0,33.861,1,0,0,0,0,1,0,0,0,0,0,0,1,0,14,-18.5,0,0,0,0,TRUE,1,23,3,6,1,4,4,4,0,0,4,1,1,2,11,Bradley Douglas
@@ -6194,40 +6268,51 @@ Minnesota,,,,,,,,,15,596,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,15,538,76,157,16
 ,Robert Vaihola,Minnesota,AWAY,Missouri,SEC,1,0,Starter,1,24,0,1,0,0,1,2,3,3,1,0,1,3,1,0,25.617,0,-9.18,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-23,6.5,0,0,"8,969",0,TRUE,1,24,0,1,0,0,1,2,3,3,1,0,1,3,1,Robert Vaihola
 ,Robert Vaihola,Minnesota,HOME,Gardner Webb,Big South,1,0,Starter,1,20,2,2,0,0,0,1,2,4,2,4,4,1,4,0,11.993,0,-9.18,0,0,0,0,0,0,0,0,0,1,0,0,1,0,27,-23.5,0,0,"7,669",0,TRUE,1,20,2,2,0,0,0,1,2,4,2,4,4,1,4,Robert Vaihola
 ,Robert Vaihola,Minnesota,HOME,Alcorn St.,SWAC,1,0,Starter,1,23,3,3,0,0,6,8,4,9,3,0,0,2,12,0,11.934,0,-9.18,2,1,0,0,1,0,0,0,0,0,0,0,1,0,45,-31.5,0,0,"7,166",0,TRUE,1,23,3,3,0,0,6,8,4,9,3,0,0,2,12,Robert Vaihola
-Mississippi,,,,,,,,,15,587,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,13,452,74,133,24,43,47,68,22,58,41,12,24,35,219,8
+Mississippi,,,,,,,,,20,780,,,,,,,,,,,,,,,,,,,,,,,,,,,,4,,,,,,,,,,,18,597,97,181,27,54,62,89,32,70,52,20,26,46,283,8
 ,AJ Storr,Mississippi,HOME,Southeastern Louisiana,Southland,1,0,Starter,1,22,5,8,4,5,4,6,1,5,4,0,0,4,18,0,10.623,0,25.285,1,0,0,0,0,0,0,0,0,0,1,1,1,0,30,-21.5,0,0,"8,883",0,TRUE,1,22,5,8,4,5,4,6,1,5,4,0,0,4,18,AJ Storr
 ,AJ Storr,Mississippi,HOME,Louisiana Monroe,Sun Belt,1,0,Starter,1,22,5,9,4,6,5,6,1,2,2,0,2,1,19,0,6.515,0,25.285,1,0,0,0,0,0,1,0,0,0,0,0,1,0,21,-37.5,0,0,"8,212",0,TRUE,1,22,5,9,4,6,5,6,1,2,2,0,2,1,19,AJ Storr
 ,AJ Storr,Mississippi,HOME,Memphis,American,1,0,Starter,1,20,3,7,0,0,4,4,1,1,2,0,1,3,10,0,47.037,0,25.285,1,0,0,0,0,1,0,0,0,0,0,0,1,0,6,-10.5,1,0,"8,731",0,TRUE,1,20,3,7,0,0,4,4,1,1,2,0,1,3,10,AJ Storr
+,AJ Storr,Mississippi,HOME,Cal St. Bakersfield,Big West,1,0,Starter,1,24,6,13,0,1,2,3,1,2,1,2,0,2,14,0,8.446,0,25.285,1,0,0,0,0,0,0,0,0,1,0,0,1,0,22,-24.5,0,0,"4,362",0,TRUE,1,24,6,13,0,1,2,3,1,2,1,2,0,2,14,AJ Storr
 ,Augusto Cassiá,Mississippi,HOME,Southeastern Louisiana,Southland,1,0,Bench,0,13,1,2,0,0,0,0,2,2,1,0,0,2,2,0,10.623,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"8,883",0,FALSE, , , , , , , , , , , , , , , , 
 ,Augusto Cassiá,Mississippi,HOME,Louisiana Monroe,Sun Belt,1,0,Bench,0,10,2,3,0,1,2,2,0,1,1,1,0,5,6,0,6.515,0,25.285,0,0,0,0,0,0,0,0,0,0,0,1,0,0,21,-37.5,0,0,"8,212",0,FALSE, , , , , , , , , , , , , , , , 
 ,Augusto Cassiá,Mississippi,HOME,Memphis,American,1,0,Bench,0,9,0,2,0,1,0,0,0,0,1,1,0,3,0,0,47.037,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-10.5,1,0,"8,731",0,FALSE, , , , , , , , , , , , , , , , 
+,Augusto Cassiá,Mississippi,HOME,Cal St. Bakersfield,Big West,1,0,Bench,0,13,1,2,0,0,2,2,1,3,0,0,1,1,4,0,8.446,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,-24.5,0,0,"4,362",0,FALSE, , , , , , , , , , , , , , , , 
 ,Corey Chest,Mississippi,HOME,Southeastern Louisiana,Southland,1,0,Bench,0,14,1,3,0,0,0,0,2,4,1,0,1,3,2,0,10.623,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"8,883",0,TRUE,0,14,1,3,0,0,0,0,2,4,1,0,1,3,2,Corey Chest
 ,Corey Chest,Mississippi,HOME,Louisiana Monroe,Sun Belt,1,0,Bench,0,16,0,1,0,0,0,0,3,6,2,2,3,1,0,0,6.515,0,25.285,0,0,0,0,0,0,0,0,1,0,0,0,0,0,21,-37.5,0,0,"8,212",0,TRUE,0,16,0,1,0,0,0,0,3,6,2,2,3,1,0,Corey Chest
 ,Corey Chest,Mississippi,HOME,Memphis,American,1,0,Bench,0,13,1,2,0,0,3,4,1,3,0,0,0,0,5,0,47.037,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-10.5,1,0,"8,731",0,TRUE,0,13,1,2,0,0,3,4,1,3,0,0,0,0,5,Corey Chest
+,Corey Chest,Mississippi,HOME,Cal St. Bakersfield,Big West,1,0,Bench,0,14,2,4,0,0,1,3,2,2,1,2,1,0,5,0,8.446,0,25.285,0,0,0,0,0,0,0,0,0,1,0,0,0,0,22,-24.5,0,0,"4,362",0,TRUE,0,14,2,4,0,0,1,3,2,2,1,2,1,0,5,Corey Chest
 ,Eduardo Klafke,Mississippi,HOME,Southeastern Louisiana,Southland,1,0,Bench,0,12,1,1,0,0,0,0,0,1,2,0,0,1,2,0,10.623,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"8,883",0,FALSE, , , , , , , , , , , , , , , , 
 ,Eduardo Klafke,Mississippi,HOME,Louisiana Monroe,Sun Belt,1,0,Bench,0,15,2,5,2,4,0,0,0,7,2,0,0,2,6,0,6.515,0,25.285,0,0,0,0,0,0,0,1,0,0,0,0,0,0,21,-37.5,0,0,"8,212",0,FALSE, , , , , , , , , , , , , , , , 
 ,Eduardo Klafke,Mississippi,HOME,Memphis,American,1,0,Bench,0,8,0,2,0,0,0,0,0,0,1,0,0,0,0,0,47.037,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-10.5,1,0,"8,731",0,FALSE, , , , , , , , , , , , , , , , 
+,Eduardo Klafke,Mississippi,HOME,Cal St. Bakersfield,Big West,1,0,Bench,0,11,0,2,0,1,2,2,0,2,0,1,0,4,2,0,8.446,0,25.285,0,0,0,0,0,0,0,0,0,0,0,1,0,0,22,-24.5,0,0,"4,362",0,FALSE, , , , , , , , , , , , , , , , 
 ,Hobert Grayson IV,Mississippi,HOME,Louisiana Monroe,Sun Belt,1,0,Bench,0,8,0,0,0,0,0,0,1,0,0,0,0,0,0,0,6.515,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,-37.5,0,0,"8,212",0,FALSE, , , , , , , , , , , , , , , , 
 ,Ilias Kamardine,Mississippi,HOME,Southeastern Louisiana,Southland,1,0,Starter,1,27,4,9,1,4,4,5,0,3,4,2,2,2,13,0,10.623,0,25.285,1,0,0,0,0,0,0,0,0,1,1,0,1,0,30,-21.5,0,0,"8,883",0,TRUE,1,27,4,9,1,4,4,5,0,3,4,2,2,2,13,Ilias Kamardine
 ,Ilias Kamardine,Mississippi,HOME,Louisiana Monroe,Sun Belt,1,0,Starter,1,25,6,9,3,5,0,0,0,1,7,3,3,3,15,0,6.515,0,25.285,1,0,0,0,0,0,0,0,0,1,1,0,1,0,21,-37.5,0,0,"8,212",0,TRUE,1,25,6,9,3,5,0,0,0,1,7,3,3,3,15,Ilias Kamardine
 ,Ilias Kamardine,Mississippi,HOME,Memphis,American,1,0,Starter,1,35,11,14,3,4,1,5,4,1,4,1,2,1,26,0,47.037,0,25.285,1,0,0,0,0,0,1,0,1,0,0,0,1,1,6,-10.5,1,0,"8,731",0,TRUE,1,35,11,14,3,4,1,5,4,1,4,1,2,1,26,Ilias Kamardine
+,Ilias Kamardine,Mississippi,HOME,Cal St. Bakersfield,Big West,1,0,Starter,1,26,4,10,1,4,1,2,0,2,4,2,1,2,10,0,8.446,0,25.285,1,0,0,0,0,0,0,0,0,1,1,0,1,0,22,-24.5,0,0,"4,362",0,TRUE,1,26,4,10,1,4,1,2,0,2,4,2,1,2,10,Ilias Kamardine
 ,James Scott,Mississippi,HOME,Southeastern Louisiana,Southland,1,0,Starter,1,23,3,3,0,0,0,0,2,7,1,0,0,1,6,0,10.623,0,25.285,0,0,0,0,1,0,0,1,0,0,0,0,1,0,30,-21.5,0,0,"8,883",0,TRUE,1,23,3,3,0,0,0,0,2,7,1,0,0,1,6,James Scott
 ,James Scott,Mississippi,HOME,Louisiana Monroe,Sun Belt,1,0,Starter,1,24,2,6,0,0,0,2,3,4,0,1,2,1,4,0,6.515,0,25.285,0,0,0,0,0,0,0,0,1,0,0,0,1,0,21,-37.5,0,0,"8,212",0,TRUE,1,24,2,6,0,0,0,2,3,4,0,1,2,1,4,James Scott
 ,James Scott,Mississippi,HOME,Memphis,American,1,0,Starter,1,27,1,1,0,0,1,2,1,6,2,0,1,0,3,0,47.037,0,25.285,0,0,0,0,0,0,0,1,0,0,0,0,1,0,6,-10.5,1,0,"8,731",0,TRUE,1,27,1,1,0,0,1,2,1,6,2,0,1,0,3,James Scott
+,James Scott,Mississippi,HOME,Cal St. Bakersfield,Big West,1,0,Starter,1,23,3,3,0,0,2,2,4,1,2,0,0,1,8,0,8.446,0,25.285,0,0,0,0,1,0,0,0,0,0,0,0,1,0,22,-24.5,0,0,"4,362",0,TRUE,1,23,3,3,0,0,2,2,4,1,2,0,0,1,8,James Scott
 ,Kezza Giffa,Mississippi,HOME,Memphis,American,1,0,Starter,1,33,4,7,1,2,6,11,0,2,5,1,0,2,15,0,47.037,0,25.285,1,0,0,0,0,0,0,0,0,0,0,0,1,0,6,-10.5,1,0,"8,731",0,TRUE,1,33,4,7,1,2,6,11,0,2,5,1,0,2,15,Kezza Giffa
+,Kezza Giffa,Mississippi,HOME,Cal St. Bakersfield,Big West,1,0,Starter,1,19,3,4,1,2,2,2,0,0,0,1,0,2,9,0,8.446,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,-24.5,0,0,"4,362",0,TRUE,1,19,3,4,1,2,2,2,0,0,0,1,0,2,9,Kezza Giffa
 ,Kezza Giffa,Mississippi,HOME,Southeastern Louisiana,Southland,1,0,Bench,0,15,3,3,1,1,5,6,0,0,1,0,1,2,12,0,10.623,0,25.285,1,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"8,883",0,TRUE,0,15,3,3,1,1,5,6,0,0,1,0,1,2,12,Kezza Giffa
 ,Kezza Giffa,Mississippi,HOME,Louisiana Monroe,Sun Belt,1,0,Bench,0,15,3,6,2,3,1,2,0,1,3,0,0,1,9,0,6.515,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,-37.5,0,0,"8,212",0,TRUE,0,15,3,6,2,3,1,2,0,1,3,0,0,1,9,Kezza Giffa
 ,Koren Johnson,Mississippi,HOME,Southeastern Louisiana,Southland,1,0,Bench,0,5,0,1,0,1,2,2,0,1,0,1,0,0,2,0,10.623,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"8,883",0,FALSE, , , , , , , , , , , , , , , , 
 ,Koren Johnson,Mississippi,HOME,Louisiana Monroe,Sun Belt,1,0,Bench,0,6,1,2,0,1,0,0,0,0,0,1,0,0,2,0,6.515,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,-37.5,0,0,"8,212",0,FALSE, , , , , , , , , , , , , , , , 
+,Koren Johnson,Mississippi,HOME,Cal St. Bakersfield,Big West,1,0,Bench,0,9,2,3,0,1,0,0,1,0,2,1,1,1,4,0,8.446,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,-24.5,0,0,"4,362",0,FALSE, , , , , , , , , , , , , , , , 
 ,Malik Dia,Mississippi,HOME,Southeastern Louisiana,Southland,1,0,Starter,1,25,7,13,0,3,6,7,2,2,1,2,2,3,20,0,10.623,0,25.285,1,0,0,0,0,0,1,0,0,1,0,0,1,1,30,-21.5,0,0,"8,883",0,TRUE,1,25,7,13,0,3,6,7,2,2,1,2,2,3,20,Malik Dia
 ,Malik Dia,Mississippi,HOME,Louisiana Monroe,Sun Belt,1,0,Starter,1,19,5,10,1,2,0,0,0,4,0,0,2,3,11,0,6.515,0,25.285,1,0,0,0,0,0,0,0,0,0,0,0,0,0,21,-37.5,0,0,"8,212",0,TRUE,1,19,5,10,1,2,0,0,0,4,0,0,2,3,11,Malik Dia
 ,Malik Dia,Mississippi,HOME,Memphis,American,1,0,Starter,1,29,3,9,2,3,5,6,0,4,1,0,2,4,13,0,47.037,0,25.285,1,0,0,0,0,0,0,0,0,0,0,1,1,0,6,-10.5,1,0,"8,731",0,TRUE,1,29,3,9,2,3,5,6,0,4,1,0,2,4,13,Malik Dia
+,Malik Dia,Mississippi,HOME,Cal St. Bakersfield,Big West,1,0,Starter,1,23,4,10,0,2,2,3,2,4,1,0,0,2,10,0,8.446,0,25.285,1,0,0,0,0,0,0,0,0,0,0,0,1,0,22,-24.5,0,0,"4,362",0,TRUE,1,23,4,10,0,2,2,3,2,4,1,0,0,2,10,Malik Dia
 ,Patton Pinkins,Mississippi,HOME,Southeastern Louisiana,Southland,1,0,Bench,0,16,2,4,1,3,0,0,0,0,0,0,0,0,5,0,10.623,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"8,883",0,TRUE,0,16,2,4,1,3,0,0,0,0,0,0,0,0,5,Patton Pinkins
 ,Patton Pinkins,Mississippi,HOME,Louisiana Monroe,Sun Belt,1,0,Bench,0,15,3,5,1,2,1,1,0,0,1,0,0,0,8,0,6.515,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,-37.5,0,0,"8,212",0,TRUE,0,15,3,5,1,2,1,1,0,0,1,0,0,0,8,Patton Pinkins
 ,Patton Pinkins,Mississippi,HOME,Memphis,American,1,0,Bench,0,17,2,4,0,0,1,1,1,2,0,0,0,0,5,0,47.037,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,-10.5,1,0,"8,731",0,TRUE,0,17,2,4,0,0,1,1,1,2,0,0,0,0,5,Patton Pinkins
+,Patton Pinkins,Mississippi,HOME,Cal St. Bakersfield,Big West,1,0,Bench,0,16,1,4,1,2,5,6,1,1,2,1,0,2,8,0,8.446,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,-24.5,0,0,"4,362",0,TRUE,0,16,1,4,1,2,5,6,1,1,2,1,0,2,8,Patton Pinkins
 ,Travis Perry,Mississippi,HOME,Southeastern Louisiana,Southland,1,0,Starter,1,19,0,5,0,4,2,2,0,3,1,0,0,2,2,0,10.623,0,25.285,0,0,0,1,0,0,0,0,0,0,0,0,0,0,30,-21.5,0,0,"8,883",0,FALSE, , , , , , , , , , , , , , , , 
 ,Travis Perry,Mississippi,HOME,Louisiana Monroe,Sun Belt,1,0,Starter,1,14,0,6,0,5,0,0,0,2,0,1,2,2,0,0,6.515,0,25.285,0,0,0,1,0,0,0,0,0,0,0,0,0,0,21,-37.5,0,0,"8,212",0,FALSE, , , , , , , , , , , , , , , , 
 ,Travis Perry,Mississippi,HOME,Memphis,American,1,0,Bench,0,9,2,4,2,3,0,0,0,2,1,2,1,2,6,0,47.037,0,25.285,0,0,0,0,0,0,0,0,0,1,0,0,0,0,6,-10.5,1,0,"8,731",0,FALSE, , , , , , , , , , , , , , , , 
+,Travis Perry,Mississippi,HOME,Cal St. Bakersfield,Big West,1,0,Bench,0,15,3,7,2,5,0,0,2,2,2,1,0,2,8,0,8.446,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,-24.5,0,0,"4,362",0,FALSE, , , , , , , , , , , , , , , , 
 ,Zach Day,Mississippi,HOME,Louisiana Monroe,Sun Belt,1,0,Bench,0,7,1,2,1,2,0,0,0,0,1,0,0,1,3,0,6.515,0,25.285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,-37.5,0,0,"8,212",0,FALSE, , , , , , , , , , , , , , , , 
 Mississippi St.,,,,,,,,,15,588,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,14,434,62,142,19,57,40,51,45,54,37,14,21,34,183,8
 ,Achor Achor,Mississippi St.,HOME,North Alabama,ASUN,1,0,Starter,1,16,1,3,0,1,0,1,2,6,0,0,2,0,2,0,25.958,0,43.439,0,0,0,0,0,0,0,0,0,0,0,0,0,0,24,-24.5,0,0,"9,060",0,TRUE,1,16,1,3,0,1,0,1,2,6,0,0,2,0,2,Achor Achor
@@ -6942,25 +7027,35 @@ NJIT,,,,,,,,,15,598,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,15,510,59,154,22,70,2
 ,Sebastian Robinson,NJIT,HOME,Fairfield,MAAC,0,0,Bench,0,15,1,5,0,0,1,2,0,1,3,0,1,3,3,0,16.682,0,5.919,0,0,0,0,0,0,0,0,0,0,1,0,0,0,-21,6.5,0,0,"1,454",0,FALSE, , , , , , , , , , , , , , , , 
 ,Zack Scherler,NJIT,AWAY,Fordham,A10,0,0,Bench,0,9,1,1,0,0,0,0,2,1,0,0,1,0,2,0,9.418,0,5.919,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,14.5,0,0,"1,008",0,FALSE, , , , , , , , , , , , , , , , 
 ,Zack Scherler,NJIT,AWAY,Loyola MD,Patriot,0,0,Bench,0,12,2,3,0,0,0,0,3,0,0,0,0,1,4,0,10.16,0,5.919,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,6.5,1,0,914,0,FALSE, , , , , , , , , , , , , , , , 
-Norfolk St.,,,,,,,,,10,397,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,10,341,41,102,15,43,24,36,14,27,25,11,26,41,121,8
+Norfolk St.,,,,,,,,,15,597,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,15,501,54,158,17,57,26,44,21,46,30,16,30,53,151,8
 ,Adrean Newton,Norfolk St.,AWAY,Old Dominion,Sun Belt,0,0,Starter,1,4,0,1,0,1,1,2,0,0,0,1,2,3,1,0,16.364,0,46.8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,9.5,1,0,"7,951",0,TRUE,1,4,0,1,0,1,1,2,0,0,0,1,2,3,1,Adrean Newton
+,Adrean Newton,Norfolk St.,AWAY,Towson,CAA,0,0,Starter,1,14,2,5,1,2,0,2,2,1,0,2,1,2,5,0,25.028,0,46.8,0,0,0,0,0,0,0,0,0,1,0,0,0,0,-10,11.5,1,0,"2,323",0,TRUE,1,14,2,5,1,2,0,2,2,1,0,2,1,2,5,Adrean Newton
 ,Adrean Newton,Norfolk St.,HOME,William & Mary,CAA,0,0,Starter,1,19,1,4,0,1,2,4,1,1,3,2,3,4,4,0,9.398,0,46.8,0,0,0,0,0,0,0,0,0,1,0,1,0,0,-3,2.5,1,0,"1,863",0,TRUE,1,19,1,4,0,1,2,4,1,1,3,2,3,4,4,Adrean Newton
 ,Anthony McComb III,Norfolk St.,AWAY,Old Dominion,Sun Belt,0,0,Starter,1,32,4,11,3,6,2,2,1,0,2,3,2,4,13,0,16.364,0,46.8,1,0,0,0,0,0,0,0,0,1,0,1,1,0,-3,9.5,1,0,"7,951",0,TRUE,1,32,4,11,3,6,2,2,1,0,2,3,2,4,13,Anthony McComb III
+,Anthony McComb III,Norfolk St.,AWAY,Towson,CAA,0,0,Starter,1,35,2,13,1,6,2,4,1,7,0,0,1,0,7,0,25.028,0,46.8,0,0,0,0,0,0,0,1,0,0,0,0,1,0,-10,11.5,1,0,"2,323",0,TRUE,1,35,2,13,1,6,2,4,1,7,0,0,1,0,7,Anthony McComb III
 ,Anthony McComb III,Norfolk St.,HOME,William & Mary,CAA,0,0,Starter,1,36,6,13,4,8,3,3,3,2,2,2,2,2,19,0,9.398,0,46.8,1,0,0,0,0,1,1,0,0,1,0,0,1,0,-3,2.5,1,0,"1,863",0,TRUE,1,36,6,13,4,8,3,3,3,2,2,2,2,2,19,Anthony McComb III
 ,Devon Ellis,Norfolk St.,AWAY,Old Dominion,Sun Belt,0,0,Starter,1,31,4,9,0,2,3,3,1,5,1,0,1,2,11,0,16.364,0,46.8,1,0,0,0,0,1,0,1,0,0,0,0,1,0,-3,9.5,1,0,"7,951",0,TRUE,1,31,4,9,0,2,3,3,1,5,1,0,1,2,11,Devon Ellis
+,Devon Ellis,Norfolk St.,AWAY,Towson,CAA,0,0,Starter,1,34,4,11,0,3,0,0,1,2,1,1,1,1,8,0,25.028,0,46.8,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-10,11.5,1,0,"2,323",0,TRUE,1,34,4,11,0,3,0,0,1,2,1,1,1,1,8,Devon Ellis
 ,Devon Ellis,Norfolk St.,HOME,William & Mary,CAA,0,0,Starter,1,17,5,6,1,2,1,1,1,1,1,0,1,3,12,0,9.398,0,46.8,1,0,0,0,1,0,0,0,0,0,0,0,0,0,-3,2.5,1,0,"1,863",0,TRUE,1,17,5,6,1,2,1,1,1,1,1,0,1,3,12,Devon Ellis
 ,Dian Wright-Forde,Norfolk St.,AWAY,Old Dominion,Sun Belt,0,0,Bench,0,9,0,1,0,0,0,0,0,1,1,0,0,1,0,0,16.364,0,46.8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,9.5,1,0,"7,951",0,FALSE, , , , , , , , , , , , , , , , 
+,Dian Wright-Forde,Norfolk St.,AWAY,Towson,CAA,0,0,Bench,0,12,1,4,0,2,1,3,2,0,0,0,1,2,3,0,25.028,0,46.8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,11.5,1,0,"2,323",0,FALSE, , , , , , , , , , , , , , , , 
 ,Dian Wright-Forde,Norfolk St.,HOME,William & Mary,CAA,0,0,Bench,0,12,2,4,0,1,2,4,0,2,0,1,1,3,6,0,9.398,0,46.8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,2.5,1,0,"1,863",0,FALSE, , , , , , , , , , , , , , , , 
 ,Elijah Jamison,Norfolk St.,AWAY,Old Dominion,Sun Belt,0,0,Bench,0,30,6,13,0,1,2,2,0,1,3,0,2,5,14,0,16.364,0,46.8,1,0,0,0,0,0,0,0,0,0,1,1,1,0,-3,9.5,1,0,"7,951",0,TRUE,0,30,6,13,0,1,2,2,0,1,3,0,2,5,14,Elijah Jamison
+,Elijah Jamison,Norfolk St.,AWAY,Towson,CAA,0,0,Bench,0,32,4,12,0,1,0,2,1,3,3,1,0,3,8,0,25.028,0,46.8,0,0,0,0,0,0,0,0,0,0,1,0,1,0,-10,11.5,1,0,"2,323",0,TRUE,0,32,4,12,0,1,0,2,1,3,3,1,0,3,8,Elijah Jamison
 ,Elijah Jamison,Norfolk St.,HOME,William & Mary,CAA,0,0,Bench,0,31,5,12,2,4,3,8,1,4,5,0,5,3,15,0,9.398,0,46.8,1,0,0,0,0,0,0,0,0,0,1,0,1,0,-3,2.5,1,0,"1,863",0,TRUE,0,31,5,12,2,4,3,8,1,4,5,0,5,3,15,Elijah Jamison
 ,Jaquel Morris,Norfolk St.,AWAY,Old Dominion,Sun Belt,0,0,Bench,0,5,0,0,0,0,0,0,1,0,0,0,0,1,0,0,16.364,0,46.8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,9.5,1,0,"7,951",0,FALSE, , , , , , , , , , , , , , , , 
+,Jaquel Morris,Norfolk St.,AWAY,Towson,CAA,0,0,Bench,0,18,3,3,0,0,0,0,1,3,0,0,1,4,6,0,25.028,0,46.8,0,0,0,0,1,0,0,0,0,0,0,1,0,0,-10,11.5,1,0,"2,323",0,FALSE, , , , , , , , , , , , , , , , 
 ,Jordan Leaks,Norfolk St.,AWAY,Old Dominion,Sun Belt,0,0,Starter,1,28,1,5,0,3,2,2,0,2,2,0,1,2,4,0,16.364,0,46.8,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,9.5,1,0,"7,951",0,TRUE,1,28,1,5,0,3,2,2,0,2,2,0,1,2,4,Jordan Leaks
+,Jordan Leaks,Norfolk St.,AWAY,Towson,CAA,0,0,Starter,1,15,1,4,0,0,0,0,0,2,1,0,1,2,2,0,25.028,0,46.8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,11.5,1,0,"2,323",0,TRUE,1,15,1,4,0,0,0,0,0,2,1,0,1,2,2,Jordan Leaks
 ,Jordan Leaks,Norfolk St.,HOME,William & Mary,CAA,0,0,Starter,1,14,0,3,0,3,0,0,0,1,2,0,1,4,0,0,9.398,0,46.8,0,0,0,1,0,0,0,0,0,0,0,1,0,0,-3,2.5,1,0,"1,863",0,TRUE,1,14,0,3,0,3,0,0,0,1,2,0,1,4,0,Jordan Leaks
 ,Keyontae Lewis,Norfolk St.,AWAY,Old Dominion,Sun Belt,0,0,Starter,1,23,0,2,0,0,1,2,0,2,1,0,3,3,1,0,16.364,0,46.8,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,9.5,1,0,"7,951",0,TRUE,1,23,0,2,0,0,1,2,0,2,1,0,3,3,1,Keyontae Lewis
+,Keyontae Lewis,Norfolk St.,AWAY,Towson,CAA,0,0,Starter,1,13,0,6,0,0,0,0,2,2,0,0,0,1,0,0,25.028,0,46.8,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-10,11.5,1,0,"2,323",0,TRUE,1,13,0,6,0,0,0,0,2,2,0,0,0,1,0,Keyontae Lewis
 ,Keyontae Lewis,Norfolk St.,HOME,William & Mary,CAA,0,0,Starter,1,24,2,5,0,0,1,3,5,2,0,2,3,4,5,0,9.398,0,46.8,0,0,0,0,0,0,0,0,1,1,0,1,1,0,-3,2.5,1,0,"1,863",0,TRUE,1,24,2,5,0,0,1,3,5,2,0,2,3,4,5,Keyontae Lewis
 ,Melo Baines,Norfolk St.,AWAY,Old Dominion,Sun Belt,0,0,Bench,0,12,3,6,0,0,0,0,0,0,0,1,0,0,6,0,16.364,0,46.8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,9.5,1,0,"7,951",0,FALSE, , , , , , , , , , , , , , , , 
+,Melo Baines,Norfolk St.,AWAY,Towson,CAA,0,0,Bench,0,10,1,2,0,0,0,0,1,1,0,0,0,0,2,0,25.028,0,46.8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,11.5,1,0,"2,323",0,FALSE, , , , , , , , , , , , , , , , 
 ,Melo Baines,Norfolk St.,HOME,William & Mary,CAA,0,0,Bench,0,13,0,1,0,0,2,4,1,1,0,0,1,3,2,0,9.398,0,46.8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,2.5,1,0,"1,863",0,FALSE, , , , , , , , , , , , , , , , 
 ,Mykel Jenkins,Norfolk St.,AWAY,Old Dominion,Sun Belt,0,0,Bench,0,21,3,8,1,4,0,0,0,0,0,0,0,1,7,0,16.364,0,46.8,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,9.5,1,0,"7,951",0,TRUE,0,21,3,8,1,4,0,0,0,0,0,0,0,1,7,Mykel Jenkins
+,Mykel Jenkins,Norfolk St.,AWAY,Towson,CAA,0,0,Bench,0,17,0,5,0,2,0,0,0,2,0,1,0,3,0,0,25.028,0,46.8,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-10,11.5,1,0,"2,323",0,TRUE,0,17,0,5,0,2,0,0,0,2,0,1,0,3,0,Mykel Jenkins
 ,Mykel Jenkins,Norfolk St.,HOME,William & Mary,CAA,0,0,Bench,0,31,4,10,4,8,3,4,1,6,3,1,0,1,15,0,9.398,0,46.8,1,0,0,0,0,0,0,1,0,0,0,0,1,0,-3,2.5,1,0,"1,863",0,TRUE,0,31,4,10,4,8,3,4,1,6,3,1,0,1,15,Mykel Jenkins
 ,Yel Deeng,Norfolk St.,AWAY,Old Dominion,Sun Belt,0,0,Bench,0,5,0,0,0,0,0,0,0,1,0,1,0,0,0,0,16.364,0,46.8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,9.5,1,0,"7,951",0,FALSE, , , , , , , , , , , , , , , , 
 North Alabama,,,,,,,,,15,615,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,14,503,66,152,19,55,39,55,27,50,24,13,23,37,190,8
@@ -7366,25 +7461,34 @@ Northern Illinois,,,,,,,,,15,592,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,14,466,5
 ,Taj Walters,Northern Illinois,HOME,Louisiana Monroe,Sun Belt,0,0,Starter,1,10,1,2,0,1,0,0,1,1,0,0,1,4,2,0,6.515,0,7.713,0,0,0,0,0,0,0,0,0,0,0,1,0,0,20,-7.5,0,0,"1,071",0,FALSE, , , , , , , , , , , , , , , , 
 ,Taj Walters,Northern Illinois,AWAY,Wisconsin,Big Ten,0,0,Bench,0,8,0,0,0,0,0,0,0,0,0,0,0,1,0,0,55.763,0,7.713,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-25,28.5,0,0,"15,222",0,FALSE, , , , , , , , , , , , , , , , 
 ,Taj Walters,Northern Illinois,AWAY,Grand Canyon,WAC,0,0,Bench,0,8,0,1,0,0,0,0,1,0,2,2,0,2,0,0,64.227,0,7.713,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-29,22.5,0,0,"7,008",0,FALSE, , , , , , , , , , , , , , , , 
-Northern Iowa,,,,,,,,,10,390,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,10,352,51,100,19,45,19,29,23,32,32,13,18,33,140,8
+Northern Iowa,,,,,,,,,15,587,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,15,530,76,151,25,63,32,44,31,55,41,18,24,43,209,8
 ,Ben Schwieger,Northern Iowa,HOME,Cal St. Northridge,Big West,0,0,Bench,0,24,4,6,1,2,4,4,0,5,3,0,1,2,13,0,15.796,0,23.772,1,0,0,0,0,1,0,0,0,0,0,0,1,0,29,-9.5,0,0,"3,173",0,TRUE,0,24,4,6,1,2,4,4,0,5,3,0,1,2,13,Ben Schwieger
 ,Ben Schwieger,Northern Iowa,HOME,South Dakota St.,Summit,0,0,Bench,0,23,3,6,0,1,1,1,5,3,0,0,1,7,7,0,32.195,0,23.772,0,0,0,0,0,0,0,0,0,0,0,1,1,0,7,-10.5,0,0,"3,657",0,TRUE,0,23,3,6,0,1,1,1,5,3,0,0,1,7,7,Ben Schwieger
+,Ben Schwieger,Northern Iowa,HOME,Furman,Southern,0,0,Bench,0,18,4,7,2,3,4,4,0,1,2,1,0,0,14,0,41.248,0,23.772,1,0,0,0,0,1,0,0,0,0,0,0,0,0,16,-9.5,0,0,"3,585",0,TRUE,0,18,4,7,2,3,4,4,0,1,2,1,0,0,14,Ben Schwieger
 ,Geon Hutchins,Northern Iowa,HOME,Cal St. Northridge,Big West,0,0,Bench,0,5,2,3,0,1,0,0,0,2,1,1,0,0,4,0,15.796,0,23.772,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,-9.5,0,0,"3,173",0,FALSE, , , , , , , , , , , , , , , , 
 ,Ismael Diouf,Northern Iowa,HOME,Cal St. Northridge,Big West,0,0,Bench,0,12,0,2,0,1,0,1,0,2,2,2,1,1,0,0,15.796,0,23.772,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,-9.5,0,0,"3,173",0,FALSE, , , , , , , , , , , , , , , , 
+,Ismael Diouf,Northern Iowa,HOME,Furman,Southern,0,0,Bench,0,7,0,2,0,2,0,0,0,1,0,0,0,1,0,0,41.248,0,23.772,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,-9.5,0,0,"3,585",0,FALSE, , , , , , , , , , , , , , , , 
 ,Kyle Pock,Northern Iowa,HOME,Cal St. Northridge,Big West,0,0,Bench,0,9,2,5,2,5,0,0,0,0,0,0,1,1,6,0,15.796,0,23.772,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,-9.5,0,0,"3,173",0,TRUE,0,9,2,5,2,5,0,0,0,0,0,0,1,1,6,Kyle Pock
 ,Kyle Pock,Northern Iowa,HOME,South Dakota St.,Summit,0,0,Bench,0,11,1,3,1,3,0,0,0,0,0,0,0,3,3,0,32.195,0,23.772,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,-10.5,0,0,"3,657",0,TRUE,0,11,1,3,1,3,0,0,0,0,0,0,0,3,3,Kyle Pock
+,Kyle Pock,Northern Iowa,HOME,Furman,Southern,0,0,Bench,0,14,0,3,0,3,0,0,2,2,0,0,1,2,0,0,41.248,0,23.772,0,0,0,1,0,0,0,0,0,0,0,0,0,0,16,-9.5,0,0,"3,585",0,TRUE,0,14,0,3,0,3,0,0,2,2,0,0,1,2,0,Kyle Pock
 ,Leon Bond III,Northern Iowa,HOME,Cal St. Northridge,Big West,0,0,Starter,1,28,9,14,5,8,0,0,2,0,5,3,2,3,23,0,15.796,0,23.772,1,0,0,0,0,0,1,0,1,1,0,0,1,1,29,-9.5,0,0,"3,173",0,TRUE,1,28,9,14,5,8,0,0,2,0,5,3,2,3,23,Leon Bond III
 ,Leon Bond III,Northern Iowa,HOME,South Dakota St.,Summit,0,0,Starter,1,35,4,6,2,4,1,3,2,2,1,1,1,1,11,0,32.195,0,23.772,1,0,0,0,0,0,0,0,0,0,0,0,1,0,7,-10.5,0,0,"3,657",0,TRUE,1,35,4,6,2,4,1,3,2,2,1,1,1,1,11,Leon Bond III
+,Leon Bond III,Northern Iowa,HOME,Furman,Southern,0,0,Starter,1,33,5,9,1,2,2,2,1,5,0,0,0,2,13,0,41.248,0,23.772,1,0,0,0,0,0,0,0,0,0,0,0,1,0,16,-9.5,0,0,"3,585",0,TRUE,1,33,5,9,1,2,2,2,1,5,0,0,0,2,13,Leon Bond III
 ,Max Weisbrod,Northern Iowa,HOME,Cal St. Northridge,Big West,0,0,Starter,1,16,2,5,2,4,0,0,0,1,2,1,0,2,6,0,15.796,0,23.772,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,-9.5,0,0,"3,173",0,TRUE,1,16,2,5,2,4,0,0,0,1,2,1,0,2,6,Max Weisbrod
 ,Max Weisbrod,Northern Iowa,HOME,South Dakota St.,Summit,0,0,Starter,1,29,3,4,2,3,1,2,4,4,2,1,0,1,9,0,32.195,0,23.772,0,0,0,0,0,0,0,0,0,0,0,0,1,0,7,-10.5,0,0,"3,657",0,TRUE,1,29,3,4,2,3,1,2,4,4,2,1,0,1,9,Max Weisbrod
+,Max Weisbrod,Northern Iowa,HOME,Furman,Southern,0,0,Starter,1,26,0,2,0,2,0,0,2,2,1,1,0,2,0,0,41.248,0,23.772,0,0,0,0,0,0,0,0,0,0,0,0,1,0,16,-9.5,0,0,"3,585",0,TRUE,1,26,0,2,0,2,0,0,2,2,1,1,0,2,0,Max Weisbrod
 ,RJ Taylor,Northern Iowa,HOME,Cal St. Northridge,Big West,0,0,Bench,0,13,2,3,1,2,0,0,0,2,1,0,1,3,5,0,15.796,0,23.772,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,-9.5,0,0,"3,173",0,FALSE, , , , , , , , , , , , , , , , 
 ,RJ Taylor,Northern Iowa,HOME,South Dakota St.,Summit,0,0,Bench,0,8,0,1,0,1,0,0,1,0,0,1,0,0,0,0,32.195,0,23.772,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,-10.5,0,0,"3,657",0,FALSE, , , , , , , , , , , , , , , , 
+,RJ Taylor,Northern Iowa,HOME,Furman,Southern,0,0,Bench,0,12,0,1,0,0,0,0,0,1,2,2,1,1,0,0,41.248,0,23.772,0,0,0,0,0,0,0,0,0,1,0,0,0,0,16,-9.5,0,0,"3,585",0,FALSE, , , , , , , , , , , , , , , , 
 ,Trey Campbell,Northern Iowa,HOME,Cal St. Northridge,Big West,0,0,Starter,1,32,4,13,3,9,2,2,1,5,7,1,1,0,13,0,15.796,0,23.772,1,0,0,0,0,0,0,0,0,0,1,0,1,0,29,-9.5,0,0,"3,173",0,TRUE,1,32,4,13,3,9,2,2,1,5,7,1,1,0,13,Trey Campbell
 ,Trey Campbell,Northern Iowa,HOME,South Dakota St.,Summit,0,0,Starter,1,31,2,12,1,5,2,3,1,1,3,3,4,7,7,0,32.195,0,23.772,0,0,0,0,0,0,0,0,0,1,0,1,1,0,7,-10.5,0,0,"3,657",0,TRUE,1,31,2,12,1,5,2,3,1,1,3,3,4,7,7,Trey Campbell
+,Trey Campbell,Northern Iowa,HOME,Furman,Southern,0,0,Starter,1,29,6,11,3,6,3,3,0,1,3,2,1,1,18,0,41.248,0,23.772,1,0,0,0,0,1,1,0,0,1,0,0,1,0,16,-9.5,0,0,"3,585",0,TRUE,1,29,6,11,3,6,3,3,0,1,3,2,1,1,18,Trey Campbell
 ,Tristan Smith,Northern Iowa,HOME,Cal St. Northridge,Big West,0,0,Starter,1,29,4,9,0,1,2,3,0,5,3,0,2,1,10,0,15.796,0,23.772,1,0,0,0,0,0,0,0,0,0,0,0,1,0,29,-9.5,0,0,"3,173",0,TRUE,1,29,4,9,0,1,2,3,0,5,3,0,2,1,10,Tristan Smith
 ,Tristan Smith,Northern Iowa,HOME,South Dakota St.,Summit,0,0,Starter,1,26,5,6,0,0,6,8,4,1,4,2,2,4,16,0,32.195,0,23.772,1,0,0,0,0,0,1,0,0,0,1,1,1,0,7,-10.5,0,0,"3,657",0,TRUE,1,26,5,6,0,0,6,8,4,1,4,2,2,4,16,Tristan Smith
+,Tristan Smith,Northern Iowa,HOME,Furman,Southern,0,0,Starter,1,28,5,12,0,2,3,3,2,5,3,0,3,2,13,0,41.248,0,23.772,1,0,0,0,0,1,0,0,0,0,0,0,1,0,16,-9.5,0,0,"3,585",0,TRUE,1,28,5,12,0,2,3,3,2,5,3,0,3,2,13,Tristan Smith
 ,Will Hornseth,Northern Iowa,HOME,Cal St. Northridge,Big West,0,0,Starter,1,28,2,2,0,0,0,0,0,3,0,1,1,0,4,0,15.796,0,23.772,0,0,0,0,0,0,0,0,0,0,0,0,1,0,29,-9.5,0,0,"3,173",0,TRUE,1,28,2,2,0,0,0,0,0,3,0,1,1,0,4,Will Hornseth
 ,Will Hornseth,Northern Iowa,HOME,South Dakota St.,Summit,0,0,Starter,1,31,6,9,0,0,0,3,4,2,2,0,2,1,12,0,32.195,0,23.772,1,0,0,0,0,0,0,0,0,0,0,0,1,0,7,-10.5,0,0,"3,657",0,TRUE,1,31,6,9,0,0,0,3,4,2,2,0,2,1,12,Will Hornseth
+,Will Hornseth,Northern Iowa,HOME,Furman,Southern,0,0,Starter,1,30,5,7,0,0,1,3,1,7,0,1,1,1,11,0,41.248,0,23.772,1,0,0,0,0,0,0,0,0,0,0,0,1,0,16,-9.5,0,0,"3,585",0,TRUE,1,30,5,7,0,0,1,3,1,7,0,1,1,1,11,Will Hornseth
 Northern Kentucky,,,,,,,,,15,598,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,15,520,74,168,27,82,20,33,23,46,45,33,41,52,195,8
 ,Addison Archer,Northern Kentucky,AWAY,Tennessee,SEC,0,0,Bench,0,8,0,1,0,0,0,0,0,0,0,0,0,1,0,0,79.812,0,23.275,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-39,27.5,0,0,"18,661",0,FALSE, , , , , , , , , , , , , , , , 
 ,Addison Archer,Northern Kentucky,AWAY,Central Michigan,MAC,0,0,Bench,0,10,0,1,0,0,0,0,2,1,0,0,0,2,0,0,6.391,0,23.275,0,0,0,0,0,0,0,0,0,0,0,0,0,0,24,4.5,0,0,"1,402",0,FALSE, , , , , , , , , , , , , , , , 
@@ -8405,34 +8509,43 @@ Radford,,,,,,,,,15,596,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,15,501,73,171,16,6
 ,Tyson Brown,Radford,AWAY,North Carolina,ACC,0,0,Starter,1,18,0,0,0,0,0,0,4,5,0,0,1,5,0,0,65.622,0,17.703,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-15,20.5,0,0,"16,613",0,TRUE,1,18,0,0,0,0,0,0,4,5,0,0,1,5,0,Tyson Brown
 ,Tyson Brown,Radford,HOME,Western Illinois,Ohio Valley,0,0,Starter,1,30,5,6,0,0,0,4,2,2,1,0,0,4,10,0,11.267,0,17.703,1,0,0,0,0,0,0,0,0,0,0,1,1,0,5,-16.5,1,0,"1,767",0,TRUE,1,30,5,6,0,0,0,4,2,2,1,0,0,4,10,Tyson Brown
 ,Tyson Brown,Radford,NEUTRAL,Cleveland St.,Horizon,0,0,Starter,1,33,4,6,0,0,3,8,13,0,2,1,1,7,11,0,41.248,0,17.703,2,1,0,0,0,0,0,0,0,0,0,1,1,0,-5,-8.5,1,0,459,0,TRUE,1,33,4,6,0,0,3,8,13,0,2,1,1,7,11,Tyson Brown
-Rhode Island,,,,,,,,,15,594,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,15,500,75,153,16,58,46,59,24,52,28,36,34,51,212,8
+Rhode Island,,,,,,,,,20,794,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,20,669,98,204,21,75,71,87,32,72,33,44,39,62,288,8
 ,Alex Crawford,Rhode Island,HOME,Stetson,ASUN,0,0,Starter,1,24,5,12,0,4,0,2,0,2,1,2,0,2,10,0,25.884,0,8.112,1,0,0,0,0,0,0,0,0,0,0,0,1,0,31,-18.5,0,0,"3,269",0,TRUE,1,24,5,12,0,4,0,2,0,2,1,2,0,2,10,Alex Crawford
 ,Alex Crawford,Rhode Island,HOME,Stonehill,NEC,0,0,Starter,1,17,2,3,0,1,1,1,1,0,1,1,2,3,5,0,11.766,0,8.112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-16.5,0,0,"3,451",0,TRUE,1,17,2,3,0,1,1,1,1,0,1,1,2,3,5,Alex Crawford
+,Alex Crawford,Rhode Island,HOME,Albany,American East,0,0,Starter,1,27,2,5,0,2,4,6,2,5,0,1,0,0,8,0,10.277,0,8.112,0,0,0,0,0,0,0,0,0,0,0,0,1,0,19,-14.5,0,0,"3,331",0,TRUE,1,27,2,5,0,2,4,6,2,5,0,1,0,0,8,Alex Crawford
 ,Alex Crawford,Rhode Island,NEUTRAL,Tulsa,American,0,0,Starter,1,14,0,2,0,1,0,0,2,1,0,0,0,1,0,0,9.611,0,8.112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-17,-3.5,0,0,0,0,TRUE,1,14,0,2,0,1,0,0,2,1,0,0,0,1,0,Alex Crawford
 ,Barrett Loer,Rhode Island,HOME,Stetson,ASUN,0,0,Bench,0,8,0,1,0,1,2,2,1,0,1,1,1,2,2,0,25.884,0,8.112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,-18.5,0,0,"3,269",0,FALSE, , , , , , , , , , , , , , , , 
 ,Damone King,Rhode Island,HOME,Stetson,ASUN,0,0,Bench,0,10,2,3,1,2,0,0,0,1,0,1,0,0,5,0,25.884,0,8.112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,-18.5,0,0,"3,269",0,FALSE, , , , , , , , , , , , , , , , 
 ,Damone King,Rhode Island,HOME,Stonehill,NEC,0,0,Bench,0,8,1,1,0,0,0,0,1,0,0,1,0,0,2,0,11.766,0,8.112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-16.5,0,0,"3,451",0,FALSE, , , , , , , , , , , , , , , , 
+,Damone King,Rhode Island,HOME,Albany,American East,0,0,Bench,0,15,2,6,0,3,0,0,1,1,1,3,1,0,4,0,10.277,0,8.112,0,0,0,0,0,0,0,0,0,1,0,0,0,0,19,-14.5,0,0,"3,331",0,FALSE, , , , , , , , , , , , , , , , 
 ,Jahmere Tripp,Rhode Island,HOME,Stetson,ASUN,0,0,Bench,0,22,5,12,1,4,4,5,2,4,3,0,3,3,15,0,25.884,0,8.112,1,0,0,0,0,0,0,0,0,0,0,0,1,0,31,-18.5,0,0,"3,269",0,TRUE,0,22,5,12,1,4,4,5,2,4,3,0,3,3,15,Jahmere Tripp
 ,Jahmere Tripp,Rhode Island,HOME,Stonehill,NEC,0,0,Bench,0,26,4,7,1,1,2,2,0,1,2,3,2,1,11,0,11.766,0,8.112,1,0,0,0,0,0,0,0,0,0,0,0,1,0,23,-16.5,0,0,"3,451",0,TRUE,0,26,4,7,1,1,2,2,0,1,2,3,2,1,11,Jahmere Tripp
+,Jahmere Tripp,Rhode Island,HOME,Albany,American East,0,0,Bench,0,23,3,7,2,3,8,8,3,2,2,0,1,4,16,0,10.277,0,8.112,1,0,0,0,0,1,0,0,0,0,0,1,1,0,19,-14.5,0,0,"3,331",0,TRUE,0,23,3,7,2,3,8,8,3,2,2,0,1,4,16,Jahmere Tripp
 ,Jahmere Tripp,Rhode Island,NEUTRAL,Tulsa,American,0,0,Bench,0,25,5,11,1,2,3,3,0,1,4,1,3,2,14,0,9.611,0,8.112,1,0,0,0,0,1,0,0,0,0,1,0,1,0,-17,-3.5,0,0,0,0,TRUE,0,25,5,11,1,2,3,3,0,1,4,1,3,2,14,Jahmere Tripp
 ,Jalen Harper,Rhode Island,HOME,Stetson,ASUN,0,0,Bench,0,5,0,0,0,0,0,0,0,1,0,0,1,0,0,0,25.884,0,8.112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,-18.5,0,0,"3,269",0,FALSE, , , , , , , , , , , , , , , , 
 ,Jonah Hinton,Rhode Island,HOME,Stetson,ASUN,0,0,Starter,1,27,4,6,2,4,2,2,1,0,3,0,0,1,12,0,25.884,0,8.112,1,0,0,0,0,0,0,0,0,0,0,0,1,0,31,-18.5,0,0,"3,269",0,TRUE,1,27,4,6,2,4,2,2,1,0,3,0,0,1,12,Jonah Hinton
 ,Jonah Hinton,Rhode Island,HOME,Stonehill,NEC,0,0,Starter,1,32,5,13,2,8,4,6,1,5,1,1,3,3,16,0,11.766,0,8.112,1,0,0,0,0,0,1,1,0,0,0,0,1,0,23,-16.5,0,0,"3,451",0,TRUE,1,32,5,13,2,8,4,6,1,5,1,1,3,3,16,Jonah Hinton
+,Jonah Hinton,Rhode Island,HOME,Albany,American East,0,0,Starter,1,24,3,10,1,6,0,0,0,6,0,0,2,0,7,0,10.277,0,8.112,0,0,0,0,0,0,0,1,0,0,0,0,1,0,19,-14.5,0,0,"3,331",0,TRUE,1,24,3,10,1,6,0,0,0,6,0,0,2,0,7,Jonah Hinton
 ,Jonah Hinton,Rhode Island,NEUTRAL,Tulsa,American,0,0,Starter,1,36,5,14,4,11,5,5,0,3,2,2,3,2,19,0,9.611,0,8.112,1,0,0,0,0,1,1,0,0,0,0,0,1,0,-17,-3.5,0,0,0,0,TRUE,1,36,5,14,4,11,5,5,0,3,2,2,3,2,19,Jonah Hinton
 ,Keeyan Itejere,Rhode Island,HOME,Stetson,ASUN,0,0,Starter,1,19,4,4,0,0,5,6,3,4,1,2,1,3,13,0,25.884,0,8.112,1,0,0,0,1,0,0,0,1,0,0,0,0,0,31,-18.5,0,0,"3,269",0,TRUE,1,19,4,4,0,0,5,6,3,4,1,2,1,3,13,Keeyan Itejere
 ,Keeyan Itejere,Rhode Island,HOME,Stonehill,NEC,0,0,Starter,1,19,2,3,0,0,0,0,1,4,1,0,2,4,4,0,11.766,0,8.112,0,0,0,0,0,0,0,0,0,0,0,1,0,0,23,-16.5,0,0,"3,451",0,TRUE,1,19,2,3,0,0,0,0,1,4,1,0,2,4,4,Keeyan Itejere
+,Keeyan Itejere,Rhode Island,HOME,Albany,American East,0,0,Starter,1,23,1,3,0,0,0,0,1,3,0,1,1,1,2,0,10.277,0,8.112,0,0,0,0,0,0,0,0,0,0,0,0,1,0,19,-14.5,0,0,"3,331",0,TRUE,1,23,1,3,0,0,0,0,1,3,0,1,1,1,2,Keeyan Itejere
 ,Keeyan Itejere,Rhode Island,NEUTRAL,Tulsa,American,0,0,Starter,1,29,4,4,0,0,2,2,2,1,0,0,0,3,10,0,9.611,0,8.112,1,0,0,0,1,0,0,0,0,0,0,0,1,0,-17,-3.5,0,0,0,0,TRUE,1,29,4,4,0,0,2,2,2,1,0,0,0,3,10,Keeyan Itejere
 ,Mouhamed Sow,Rhode Island,HOME,Stetson,ASUN,0,0,Bench,0,21,2,4,1,2,0,0,3,5,0,2,2,3,5,0,25.884,0,8.112,0,0,0,0,0,0,0,0,1,0,0,0,1,0,31,-18.5,0,0,"3,269",0,TRUE,0,21,2,4,1,2,0,0,3,5,0,2,2,3,5,Mouhamed Sow
 ,Mouhamed Sow,Rhode Island,HOME,Stonehill,NEC,0,0,Bench,0,23,2,7,0,2,1,2,1,3,0,0,0,2,5,0,11.766,0,8.112,0,0,0,0,0,0,0,0,0,0,0,0,1,0,23,-16.5,0,0,"3,451",0,TRUE,0,23,2,7,0,2,1,2,1,3,0,0,0,2,5,Mouhamed Sow
+,Mouhamed Sow,Rhode Island,HOME,Albany,American East,0,0,Bench,0,19,3,4,0,0,0,0,1,1,0,1,0,0,6,0,10.277,0,8.112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,19,-14.5,0,0,"3,331",0,TRUE,0,19,3,4,0,0,0,0,1,1,0,1,0,0,6,Mouhamed Sow
 ,Mouhamed Sow,Rhode Island,NEUTRAL,Tulsa,American,0,0,Bench,0,21,3,6,0,0,1,2,3,5,1,1,1,1,7,0,9.611,0,8.112,0,0,0,0,0,0,0,1,1,0,0,0,1,0,-17,-3.5,0,0,0,0,TRUE,0,21,3,6,0,0,1,2,3,5,1,1,1,1,7,Mouhamed Sow
 ,Myles Corey,Rhode Island,HOME,Stetson,ASUN,0,0,Starter,1,20,4,6,1,3,3,3,0,2,1,3,1,0,12,0,25.884,0,8.112,1,0,0,0,1,1,0,0,0,0,0,0,1,0,31,-18.5,0,0,"3,269",0,TRUE,1,20,4,6,1,3,3,3,0,2,1,3,1,0,12,Myles Corey
 ,Myles Corey,Rhode Island,HOME,Stonehill,NEC,0,0,Starter,1,19,3,7,0,2,0,0,0,1,0,1,1,1,6,0,11.766,0,8.112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-16.5,0,0,"3,451",0,TRUE,1,19,3,7,0,2,0,0,0,1,0,1,1,1,6,Myles Corey
+,Myles Corey,Rhode Island,HOME,Albany,American East,0,0,Starter,1,24,7,11,0,2,5,5,0,1,3,2,1,2,19,0,10.277,0,8.112,1,0,0,0,0,1,1,0,0,0,0,0,1,0,19,-14.5,0,0,"3,331",0,TRUE,1,24,7,11,0,2,5,5,0,1,3,2,1,2,19,Myles Corey
 ,Myles Corey,Rhode Island,NEUTRAL,Tulsa,American,0,0,Starter,1,18,0,1,0,1,2,2,0,2,1,1,2,5,2,0,9.611,0,8.112,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-17,-3.5,0,0,0,0,TRUE,1,18,0,1,0,1,2,2,0,2,1,1,2,5,2,Myles Corey
 ,RJ Johnson,Rhode Island,HOME,Stetson,ASUN,0,0,Bench,0,20,1,2,0,0,0,0,0,2,6,6,1,1,2,0,25.884,0,8.112,0,0,0,0,0,0,0,0,0,1,1,0,1,0,31,-18.5,0,0,"3,269",0,FALSE, , , , , , , , , , , , , , , , 
 ,RJ Johnson,Rhode Island,HOME,Stonehill,NEC,0,0,Bench,0,21,5,8,1,1,4,4,0,0,1,1,0,2,15,0,11.766,0,8.112,1,0,0,0,0,1,0,0,0,0,0,0,1,0,23,-16.5,0,0,"3,451",0,FALSE, , , , , , , , , , , , , , , , 
+,RJ Johnson,Rhode Island,HOME,Albany,American East,0,0,Bench,0,16,0,2,0,1,0,0,0,1,3,0,2,2,0,0,10.277,0,8.112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,19,-14.5,0,0,"3,331",0,FALSE, , , , , , , , , , , , , , , , 
 ,RJ Johnson,Rhode Island,NEUTRAL,Tulsa,American,0,0,Bench,0,22,0,2,0,1,0,0,0,1,4,4,0,4,0,0,9.611,0,8.112,0,0,0,0,0,0,0,0,0,0,1,1,1,0,-17,-3.5,0,0,0,0,FALSE, , , , , , , , , , , , , , , , 
 ,Tyler Cochran,Rhode Island,HOME,Stetson,ASUN,0,0,Starter,1,24,6,13,2,6,3,4,3,6,3,4,4,1,17,0,25.884,0,8.112,1,0,0,0,0,0,0,1,1,0,0,0,1,0,31,-18.5,0,0,"3,269",0,TRUE,1,24,6,13,2,6,3,4,3,6,3,4,4,1,17,Tyler Cochran
 ,Tyler Cochran,Rhode Island,HOME,Stonehill,NEC,0,0,Starter,1,32,5,10,0,4,6,7,0,0,2,9,1,7,16,0,11.766,0,8.112,1,0,0,0,0,0,1,0,0,1,0,1,1,0,23,-16.5,0,0,"3,451",0,TRUE,1,32,5,10,0,4,6,7,0,0,2,9,1,7,16,Tyler Cochran
+,Tyler Cochran,Rhode Island,HOME,Albany,American East,0,0,Starter,1,29,4,11,2,4,8,9,1,2,0,3,0,4,18,0,10.277,0,8.112,1,0,0,0,0,0,0,0,0,1,0,1,1,0,19,-14.5,0,0,"3,331",0,TRUE,1,29,4,11,2,4,8,9,1,2,0,3,0,4,18,Tyler Cochran
 ,Tyler Cochran,Rhode Island,NEUTRAL,Tulsa,American,0,0,Starter,1,32,5,8,1,2,2,5,1,2,1,3,3,3,13,0,9.611,0,8.112,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-17,-3.5,0,0,0,0,TRUE,1,32,5,8,1,2,2,5,1,2,1,3,3,3,13,Tyler Cochran
 Rice,,,,,,,,,20,789,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,20,653,75,205,33,86,49,77,42,64,40,24,34,67,232,8
 ,Andrew Akuchie,Rice,AWAY,Oregon,Big Ten,0,0,Starter,1,30,3,7,1,1,0,0,2,3,1,1,1,3,7,0,71.489,0,16.104,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-4,15.5,1,0,"5,619",0,TRUE,1,30,3,7,1,1,0,0,2,3,1,1,1,3,7,Andrew Akuchie
@@ -9123,8 +9236,9 @@ Siena,,,,,,,,,20,789,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,20,708,95,216,15,53,
 ,Tasman Goodrick,Siena,AWAY,St. Bonaventure,A10,0,0,Starter,1,35,2,9,0,0,0,0,1,6,2,0,2,4,4,0,21.26,0,8.795,0,0,0,0,0,0,0,1,0,0,0,1,1,0,-9,8.5,0,0,"3,451",0,TRUE,1,35,2,9,0,0,0,0,1,6,2,0,2,4,4,Tasman Goodrick
 ,Tasman Goodrick,Siena,HOME,Bryant,American East,0,0,Starter,1,24,11,14,0,0,0,0,4,7,0,0,0,3,22,0,36.596,0,8.795,2,1,0,0,0,0,1,1,1,0,0,0,1,1,16,-8.5,0,0,"4,072",0,TRUE,1,24,11,14,0,0,0,0,4,7,0,0,0,3,22,Tasman Goodrick
 ,Tasman Goodrick,Siena,HOME,Colgate,Patriot,0,0,Starter,1,29,4,5,0,0,0,2,3,1,0,0,2,3,8,0,45.446,0,8.795,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,-6.5,1,0,"4,078",0,TRUE,1,29,4,5,0,0,0,2,3,1,0,0,2,3,8,Tasman Goodrick
-SIU Edwardsville,,,,,,,,,15,585,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,15,501,62,147,10,33,26,41,22,72,22,21,30,37,160,8
+SIU Edwardsville,,,,,,,,,20,785,,,,,,,,,,,,,,,,,,,,,,,,,,,,4,,,,,,,,,,,20,673,84,199,17,57,31,50,33,98,33,27,39,47,216,8
 ,Arnas Sakenis,SIU Edwardsville,AWAY,Wisconsin,Big Ten,0,0,Starter,1,22,3,5,0,0,0,0,1,1,0,4,1,1,6,0,55.763,0,26.408,0,0,0,0,0,0,0,0,0,1,0,0,1,0,-25,25.5,0,0,"13,797",0,TRUE,1,22,3,5,0,0,0,0,1,1,0,4,1,1,6,Arnas Sakenis
+,Arnas Sakenis,SIU Edwardsville,AWAY,Drake,Missouri Valley,0,0,Starter,1,27,2,5,0,1,1,2,0,2,0,1,1,0,5,0,73.492,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,6.5,1,0,"3,234",0,TRUE,1,27,2,5,0,1,1,2,0,2,0,1,1,0,5,Arnas Sakenis
 ,Arnas Sakenis,SIU Edwardsville,AWAY,UTSA,American,0,0,Bench,0,15,1,2,0,0,0,0,1,3,0,0,0,1,2,0,7.034,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,6.5,0,0,840,0,TRUE,0,15,1,2,0,0,0,0,1,3,0,0,0,1,2,Arnas Sakenis
 ,Arnas Sakenis,SIU Edwardsville,HOME,Indiana St.,Missouri Valley,0,0,Bench,0,18,0,1,0,0,0,0,0,2,0,0,3,1,0,0,26.519,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-9,-2.5,1,0,"2,482",0,TRUE,0,18,0,1,0,0,0,0,0,2,0,0,3,1,0,Arnas Sakenis
 ,CJ Hall,SIU Edwardsville,AWAY,UTSA,American,0,0,Bench,0,12,2,5,0,0,1,2,0,4,0,0,2,2,5,0,7.034,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,6.5,0,0,840,0,FALSE, , , , , , , , , , , , , , , , 
@@ -9132,26 +9246,34 @@ SIU Edwardsville,,,,,,,,,15,585,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,15,501,62
 ,Corentin Efono,SIU Edwardsville,AWAY,Wisconsin,Big Ten,0,0,Bench,0,6,0,0,0,0,0,0,0,1,2,0,0,1,0,0,55.763,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-25,25.5,0,0,"13,797",0,FALSE, , , , , , , , , , , , , , , , 
 ,Darius Robinson Jr.,SIU Edwardsville,AWAY,UTSA,American,0,0,Bench,0,8,1,5,1,3,2,3,0,0,0,0,0,2,5,0,7.034,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,6.5,0,0,840,0,FALSE, , , , , , , , , , , , , , , , 
 ,Darius Robinson Jr.,SIU Edwardsville,AWAY,Wisconsin,Big Ten,0,0,Bench,0,16,3,5,2,4,0,0,0,0,1,0,2,0,8,0,55.763,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-25,25.5,0,0,"13,797",0,FALSE, , , , , , , , , , , , , , , , 
+,Darius Robinson Jr.,SIU Edwardsville,AWAY,Drake,Missouri Valley,0,0,Bench,0,13,0,4,0,3,0,0,0,0,0,0,0,1,0,0,73.492,0,26.408,0,0,0,1,0,0,0,0,0,0,0,0,0,0,2,6.5,1,0,"3,234",0,FALSE, , , , , , , , , , , , , , , , 
 ,Darrion Baker,SIU Edwardsville,AWAY,UTSA,American,0,0,Bench,0,13,4,4,2,2,0,0,0,2,0,1,2,0,10,0,7.034,0,26.408,1,0,0,0,0,0,0,0,0,0,0,0,0,0,17,6.5,0,0,840,0,FALSE, , , , , , , , , , , , , , , , 
 ,Darrion Baker,SIU Edwardsville,AWAY,Wisconsin,Big Ten,0,0,Bench,0,12,1,2,1,2,2,2,2,0,0,1,2,2,5,0,55.763,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-25,25.5,0,0,"13,797",0,FALSE, , , , , , , , , , , , , , , , 
+,Darrion Baker,SIU Edwardsville,AWAY,Drake,Missouri Valley,0,0,Bench,0,15,2,4,1,2,0,0,2,2,0,0,0,1,5,0,73.492,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,6.5,1,0,"3,234",0,FALSE, , , , , , , , , , , , , , , , 
 ,Darrion Baker,SIU Edwardsville,HOME,Indiana St.,Missouri Valley,0,0,Bench,0,7,0,2,0,2,0,0,1,2,0,0,1,2,0,0,26.519,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-9,-2.5,1,0,"2,482",0,FALSE, , , , , , , , , , , , , , , , 
 ,Jack Campion,SIU Edwardsville,AWAY,UTSA,American,0,0,Starter,1,20,2,4,0,0,0,1,1,4,4,2,1,4,4,0,7.034,0,26.408,0,0,0,0,0,0,0,0,0,0,1,1,1,0,17,6.5,0,0,840,0,TRUE,1,20,2,4,0,0,0,1,1,4,4,2,1,4,4,Jack Campion
 ,Jack Campion,SIU Edwardsville,AWAY,Wisconsin,Big Ten,0,0,Starter,1,22,2,8,0,0,2,2,0,3,1,1,1,2,6,0,55.763,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-25,25.5,0,0,"13,797",0,TRUE,1,22,2,8,0,0,2,2,0,3,1,1,1,2,6,Jack Campion
+,Jack Campion,SIU Edwardsville,AWAY,Drake,Missouri Valley,0,0,Starter,1,27,3,7,1,3,0,0,0,7,8,4,1,1,7,0,73.492,0,26.408,0,0,0,0,0,0,0,0,0,1,1,0,1,0,2,6.5,1,0,"3,234",0,TRUE,1,27,3,7,1,3,0,0,0,7,8,4,1,1,7,Jack Campion
 ,Jack Campion,SIU Edwardsville,HOME,Indiana St.,Missouri Valley,0,0,Starter,1,29,5,10,0,1,2,3,1,3,3,3,1,1,12,0,26.519,0,26.408,1,0,0,0,0,0,0,0,0,1,1,0,1,0,-9,-2.5,1,0,"2,482",0,TRUE,1,29,5,10,0,1,2,3,1,3,3,3,1,1,12,Jack Campion
 ,Jo Valrie,SIU Edwardsville,AWAY,UTSA,American,0,0,Bench,0,19,2,4,0,0,3,4,1,9,0,0,0,0,7,0,7.034,0,26.408,1,0,0,0,0,0,0,1,0,0,0,0,0,0,17,6.5,0,0,840,0,TRUE,0,19,2,4,0,0,3,4,1,9,0,0,0,0,7,Jo Valrie
 ,Jo Valrie,SIU Edwardsville,AWAY,Wisconsin,Big Ten,0,0,Bench,0,24,3,6,2,3,2,2,2,2,0,1,1,1,10,0,55.763,0,26.408,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-25,25.5,0,0,"13,797",0,TRUE,0,24,3,6,2,3,2,2,2,2,0,1,1,1,10,Jo Valrie
+,Jo Valrie,SIU Edwardsville,AWAY,Drake,Missouri Valley,0,0,Bench,0,25,4,8,3,6,2,2,2,2,0,0,2,3,13,0,73.492,0,26.408,1,0,0,0,0,0,0,0,0,0,0,0,1,0,2,6.5,1,0,"3,234",0,TRUE,0,25,4,8,3,6,2,2,2,2,0,0,2,3,13,Jo Valrie
 ,Jo Valrie,SIU Edwardsville,HOME,Indiana St.,Missouri Valley,0,0,Bench,0,23,2,6,0,1,1,2,2,4,1,3,2,4,5,0,26.519,0,26.408,0,0,0,0,0,0,0,0,0,1,0,1,1,0,-9,-2.5,1,0,"2,482",0,TRUE,0,23,2,6,0,1,1,2,2,4,1,3,2,4,5,Jo Valrie
 ,Jordan Pickett,SIU Edwardsville,AWAY,UTSA,American,0,0,Starter,1,30,4,9,1,3,0,1,0,3,1,2,3,2,9,0,7.034,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,1,0,17,6.5,0,0,840,0,TRUE,1,30,4,9,1,3,0,1,0,3,1,2,3,2,9,Jordan Pickett
 ,Jordan Pickett,SIU Edwardsville,AWAY,Wisconsin,Big Ten,0,0,Starter,1,29,5,8,2,5,0,0,0,2,3,0,1,3,12,0,55.763,0,26.408,1,0,0,0,1,0,0,0,0,0,0,0,1,0,-25,25.5,0,0,"13,797",0,TRUE,1,29,5,8,2,5,0,0,0,2,3,0,1,3,12,Jordan Pickett
+,Jordan Pickett,SIU Edwardsville,AWAY,Drake,Missouri Valley,0,0,Starter,1,21,0,5,0,3,0,2,1,3,0,0,1,2,0,0,73.492,0,26.408,0,0,0,1,0,0,0,0,0,0,0,0,1,0,2,6.5,1,0,"3,234",0,TRUE,1,21,0,5,0,3,0,2,1,3,0,0,1,2,0,Jordan Pickett
 ,Jordan Pickett,SIU Edwardsville,HOME,Indiana St.,Missouri Valley,0,0,Starter,1,27,0,5,0,3,2,2,0,7,0,0,1,1,2,0,26.519,0,26.408,0,0,0,1,0,0,0,0,0,0,0,0,1,0,-9,-2.5,1,0,"2,482",0,TRUE,1,27,0,5,0,3,2,2,0,7,0,0,1,1,2,Jordan Pickett
 ,Kyle Thomas,SIU Edwardsville,AWAY,UTSA,American,0,0,Starter,1,19,1,7,0,1,0,0,1,2,1,0,0,3,2,0,7.034,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,6.5,0,0,840,0,TRUE,1,19,1,7,0,1,0,0,1,2,1,0,0,3,2,Kyle Thomas
 ,Kyle Thomas,SIU Edwardsville,HOME,Indiana St.,Missouri Valley,0,0,Starter,1,26,3,8,2,3,0,0,1,2,0,0,0,2,8,0,26.519,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-9,-2.5,1,0,"2,482",0,TRUE,1,26,3,8,2,3,0,0,1,2,0,0,0,2,8,Kyle Thomas
 ,Kyle Thomas,SIU Edwardsville,AWAY,Wisconsin,Big Ten,0,0,Bench,0,19,1,8,0,2,0,0,1,1,2,1,1,0,2,0,55.763,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-25,25.5,0,0,"13,797",0,TRUE,0,19,1,8,0,2,0,0,1,1,2,1,1,0,2,Kyle Thomas
+,Kyle Thomas,SIU Edwardsville,AWAY,Drake,Missouri Valley,0,0,Bench,0,6,0,2,0,1,0,0,1,1,0,0,0,0,0,0,73.492,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,6.5,1,0,"3,234",0,TRUE,0,6,0,2,0,1,0,0,1,1,0,0,0,0,0,Kyle Thomas
 ,Myles Thompson,SIU Edwardsville,AWAY,UTSA,American,0,0,Starter,1,33,3,6,1,3,6,8,1,6,1,0,5,3,13,0,7.034,0,26.408,1,0,0,0,0,0,0,0,0,0,0,0,1,0,17,6.5,0,0,840,0,TRUE,1,33,3,6,1,3,6,8,1,6,1,0,5,3,13,Myles Thompson
 ,Myles Thompson,SIU Edwardsville,AWAY,Wisconsin,Big Ten,0,0,Starter,1,24,4,11,0,2,2,3,0,7,0,0,2,2,10,0,55.763,0,26.408,1,0,0,0,0,0,0,1,0,0,0,0,1,0,-25,25.5,0,0,"13,797",0,TRUE,1,24,4,11,0,2,2,3,0,7,0,0,2,2,10,Myles Thompson
+,Myles Thompson,SIU Edwardsville,AWAY,Drake,Missouri Valley,0,0,Starter,1,32,5,10,0,2,1,1,4,9,3,1,1,4,11,0,73.492,0,26.408,2,1,0,0,0,0,0,1,1,0,0,1,1,0,2,6.5,1,0,"3,234",0,TRUE,1,32,5,10,0,2,1,1,4,9,3,1,1,4,11,Myles Thompson
 ,Myles Thompson,SIU Edwardsville,HOME,Indiana St.,Missouri Valley,0,0,Starter,1,21,4,7,1,1,0,0,1,1,0,1,3,1,9,0,26.519,0,26.408,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-9,-2.5,1,0,"2,482",0,TRUE,1,21,4,7,1,1,0,0,1,1,0,1,3,1,9,Myles Thompson
 ,Ring Malith,SIU Edwardsville,AWAY,UTSA,American,0,0,Starter,1,28,8,12,1,2,3,7,5,4,1,1,1,0,20,0,7.034,0,26.408,1,0,0,0,0,0,1,0,0,0,0,0,1,1,17,6.5,0,0,840,0,TRUE,1,28,8,12,1,2,3,7,5,4,1,1,1,0,20,Ring Malith
 ,Ring Malith,SIU Edwardsville,AWAY,Wisconsin,Big Ten,0,0,Starter,1,18,3,3,0,0,0,0,0,3,1,0,1,4,6,0,55.763,0,26.408,0,0,0,0,1,0,0,0,0,0,0,1,0,0,-25,25.5,0,0,"13,797",0,TRUE,1,18,3,3,0,0,0,0,0,3,1,0,1,4,6,Ring Malith
+,Ring Malith,SIU Edwardsville,AWAY,Drake,Missouri Valley,0,0,Starter,1,34,8,15,3,8,1,2,3,2,0,0,3,0,20,0,73.492,0,26.408,1,0,0,0,0,0,1,0,0,0,0,0,1,1,2,6.5,1,0,"3,234",0,TRUE,1,34,8,15,3,8,1,2,3,2,0,0,3,0,20,Ring Malith
 ,Ring Malith,SIU Edwardsville,HOME,Indiana St.,Missouri Valley,0,0,Starter,1,35,6,17,0,3,3,6,3,3,3,2,2,1,15,0,26.519,0,26.408,1,0,0,0,0,0,0,0,0,0,1,0,1,0,-9,-2.5,1,0,"2,482",0,TRUE,1,35,6,17,0,3,3,6,3,3,3,2,2,1,15,Ring Malith
 SMU,,,,,,,,,15,595,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,15,553,79,175,18,48,79,97,30,72,44,19,27,49,255,8
 ,B.J. Davis-Ray,SMU,HOME,Tarleton St.,WAC,1,0,Bench,0,6,0,1,0,1,1,2,0,0,0,0,0,0,1,0,14.671,0,27.576,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,-21.5,0,0,"4,626",0,FALSE, , , , , , , , , , , , , , , , 
@@ -9270,13 +9392,16 @@ South Carolina,,,,,,,,,20,818,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,18,632,84,1
 ,Myles Stute,South Carolina,NEUTRAL,Butler,Big East,1,0,Starter,1,25,0,4,0,4,0,0,0,2,0,0,1,2,0,0,4.101,0,3.413,0,0,0,1,0,0,0,0,0,0,0,0,1,0,-7,1.5,0,0,"1,209",0,TRUE,1,25,0,4,0,4,0,0,0,2,0,0,1,2,0,Myles Stute
 ,Nordin Kapic,South Carolina,HOME,North Carolina A&T,CAA,1,0,Starter,1,18,5,7,3,5,0,0,1,4,1,1,0,1,13,0,2.888,0,3.413,1,0,0,0,0,0,0,0,0,0,0,0,0,0,19,-22.5,0,0,"12,344",0,FALSE, , , , , , , , , , , , , , , , 
 ,Nordin Kapic,South Carolina,HOME,Southern Miss,Sun Belt,1,0,Starter,1,17,2,3,1,2,0,0,1,2,1,0,1,1,5,0,17.211,0,3.413,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,-17.5,1,1,"11,420",0,FALSE, , , , , , , , , , , , , , , , 
-South Carolina St.,,,,,,,,,20,796,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,15,525,64,178,22,74,52,74,41,50,34,12,29,54,202,8
-,Cameron Clark,South Carolina St.,HOME,Chattanooga,Southern,0,0,Starter,1,27,3,11,0,0,0,0,3,3,1,0,2,2,6,0,27.877,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-12,9.5,0,0,200,0,FALSE, , , , , , , , , , , , , , , , 
+South Carolina St.,,,,,,,,,25,993,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,21,562,61,174,20,53,38,67,53,50,40,12,31,56,180,8
+,Cameron Clark,South Carolina St.,HOME,Chattanooga,Southern,0,0,Starter,1,27,3,11,0,0,0,0,3,3,1,0,2,2,6,0,27.877,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-12,9.5,0,0,200,0,TRUE,1,27,3,11,0,0,0,0,3,3,1,0,2,2,6,Cameron Clark
+,Cameron Clark,South Carolina St.,AWAY,Charleston,CAA,0,0,Bench,0,21,4,7,0,0,5,12,2,2,0,1,1,3,13,0,38.671,0,12.443,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-27,7.5,0,0,"5,241",0,TRUE,0,21,4,7,0,0,5,12,2,2,0,1,1,3,13,Cameron Clark
 ,Chris Parker,South Carolina St.,HOME,Chattanooga,Southern,0,0,Bench,0,9,0,2,0,0,0,0,1,1,0,0,1,2,0,0,27.877,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,9.5,0,0,200,0,FALSE, , , , , , , , , , , , , , , , 
 ,Colin McKenzie,South Carolina St.,AWAY,Louisville,ACC,0,0,Starter,1,15,0,2,0,1,0,0,0,2,2,0,4,2,0,0,2.453,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-59,35.5,0,0,14218,0,TRUE,1,15,0,2,0,1,0,0,0,2,2,0,4,2,0,Colin McKenzie
 ,Colin McKenzie,South Carolina St.,AWAY,Samford,Southern,0,0,Bench,0,21,1,2,0,0,0,0,0,2,0,0,1,3,2,0,34.11,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-10,14.5,0,0,"2,371",0,TRUE,0,21,1,2,0,0,0,0,0,2,0,0,1,3,2,Colin McKenzie
 ,Colin McKenzie,South Carolina St.,AWAY,North Carolina A&T,CAA,0,0,Bench,0,21,4,7,1,1,0,0,4,0,2,1,0,4,9,0,2.888,0,12.443,0,0,0,0,0,0,0,0,0,0,0,1,1,0,-23,2.5,0,0,"3,923",0,TRUE,0,21,4,7,1,1,0,0,4,0,2,1,0,4,9,Colin McKenzie
+,Colin McKenzie,South Carolina St.,AWAY,Charleston,CAA,0,0,Bench,0,11,0,1,0,0,0,0,0,0,0,0,1,1,0,0,38.671,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-27,7.5,0,0,"5,241",0,TRUE,0,11,0,1,0,0,0,0,0,0,0,0,1,1,0,Colin McKenzie
 ,Colin McKenzie,South Carolina St.,HOME,Chattanooga,Southern,0,0,Bench,0,22,2,9,1,6,0,0,0,1,0,0,0,2,5,0,27.877,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-12,9.5,0,0,200,0,TRUE,0,22,2,9,1,6,0,0,0,1,0,0,0,2,5,Colin McKenzie
+,D’Shay Knights Wright,South Carolina St.,AWAY,Charleston,CAA,0,0,Starter,1,15,0,2,0,0,1,2,4,1,1,0,1,2,1,0,38.671,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-27,7.5,0,0,"5,241",0,TRUE,1,15,0,2,0,0,1,2,4,1,1,0,1,2,1,D’Shay Knights Wright
 ,D’Shay Knights Wright,South Carolina St.,AWAY,Samford,Southern,0,0,Starter,1,24,2,5,1,3,3,4,2,3,0,0,2,3,8,0,34.11,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-10,14.5,0,0,"2,371",0,TRUE,1,24,2,5,1,3,3,4,2,3,0,0,2,3,8,D’Shay Knights Wright
 ,D’Shay Knights Wright,South Carolina St.,AWAY,Louisville,ACC,0,0,Starter,1,17,0,3,0,1,0,0,2,3,0,0,0,1,0,0,2.453,0,12.443,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-59,35.5,0,0,14218,0,TRUE,1,17,0,3,0,1,0,0,2,3,0,0,0,1,0,D’Shay Knights Wright
 ,D’Shay Knights Wright,South Carolina St.,AWAY,North Carolina A&T,CAA,0,0,Starter,1,15,2,6,0,0,1,2,2,0,0,2,3,0,5,0,2.888,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-23,2.5,0,0,"3,923",0,TRUE,1,15,2,6,0,0,1,2,2,0,0,2,3,0,5,D’Shay Knights Wright
@@ -9286,38 +9411,46 @@ South Carolina St.,,,,,,,,,20,796,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,15,525,
 ,Derwin Hodge Jr.,South Carolina St.,AWAY,North Carolina A&T,CAA,0,0,Starter,1,9,1,3,0,0,0,0,0,0,0,0,0,1,2,0,2.888,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-23,2.5,0,0,"3,923",0,FALSE, , , , , , , , , , , , , , , , 
 ,Florian Tenebay,South Carolina St.,AWAY,Samford,Southern,0,0,Starter,1,9,0,2,0,0,0,0,0,0,2,0,0,1,0,0,34.11,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,14.5,0,0,"2,371",0,TRUE,1,9,0,2,0,0,0,0,0,0,2,0,0,1,0,Florian Tenebay
 ,Florian Tenebay,South Carolina St.,AWAY,North Carolina A&T,CAA,0,0,Starter,1,24,3,4,1,2,4,9,7,2,4,0,0,3,11,0,2.888,0,12.443,1,0,0,0,0,0,0,0,1,0,0,0,1,0,-23,2.5,0,0,"3,923",0,TRUE,1,24,3,4,1,2,4,9,7,2,4,0,0,3,11,Florian Tenebay
+,Florian Tenebay,South Carolina St.,AWAY,Charleston,CAA,0,0,Starter,1,16,1,8,0,1,0,0,2,1,0,0,1,3,2,0,38.671,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-27,7.5,0,0,"5,241",0,TRUE,1,16,1,8,0,1,0,0,2,1,0,0,1,3,2,Florian Tenebay
 ,Florian Tenebay,South Carolina St.,HOME,Chattanooga,Southern,0,0,Starter,1,7,0,3,0,2,0,0,0,0,1,0,0,1,0,0,27.877,0,12.443,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-12,9.5,0,0,200,0,TRUE,1,7,0,3,0,2,0,0,0,0,1,0,0,1,0,Florian Tenebay
 ,Florian Tenebay,South Carolina St.,AWAY,Louisville,ACC,0,0,Bench,0,13,2,3,0,0,1,2,2,0,1,0,5,2,5,0,2.453,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-59,35.5,0,0,14218,0,TRUE,0,13,2,3,0,0,1,2,2,0,1,0,5,2,5,Florian Tenebay
 ,Jamal Miles,South Carolina St.,AWAY,Louisville,ACC,0,0,Bench,0,8,1,3,1,3,0,0,1,1,0,0,0,0,3,0,2.453,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-59,35.5,0,0,14218,0,FALSE, , , , , , , , , , , , , , , , 
 ,Jamal Miles,South Carolina St.,AWAY,North Carolina A&T,CAA,0,0,Bench,0,20,0,2,0,1,0,0,3,1,1,0,0,3,0,0,2.888,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-23,2.5,0,0,"3,923",0,FALSE, , , , , , , , , , , , , , , , 
 ,Jamal Miles,South Carolina St.,HOME,Chattanooga,Southern,0,0,Bench,0,13,1,3,1,3,1,2,0,0,0,0,1,3,4,0,27.877,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,9.5,0,0,200,0,FALSE, , , , , , , , , , , , , , , , 
-,James Morrow,South Carolina St.,HOME,Chattanooga,Southern,0,0,Starter,1,10,1,2,0,0,4,6,1,0,0,0,1,2,6,0,27.877,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,9.5,0,0,200,0,TRUE,1,10,1,2,0,0,4,6,1,0,0,0,1,2,6,James Morrow
-,James Morrow,South Carolina St.,AWAY,Louisville,ACC,0,0,Bench,0,17,2,8,0,2,2,2,1,3,0,0,0,3,6,0,2.453,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-59,35.5,0,0,14218,0,TRUE,0,17,2,8,0,2,2,2,1,3,0,0,0,3,6,James Morrow
-,James Morrow,South Carolina St.,AWAY,Samford,Southern,0,0,Bench,0,31,8,14,1,3,5,7,1,6,0,2,0,0,22,0,34.11,0,12.443,1,0,0,0,0,0,0,0,0,0,0,0,1,1,-10,14.5,0,0,"2,371",0,TRUE,0,31,8,14,1,3,5,7,1,6,0,2,0,0,22,James Morrow
-,James Morrow,South Carolina St.,AWAY,North Carolina A&T,CAA,0,0,Bench,0,19,1,5,0,1,2,2,4,0,3,1,1,2,4,0,2.888,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-23,2.5,0,0,"3,923",0,TRUE,0,19,1,5,0,1,2,2,4,0,3,1,1,2,4,James Morrow
+,James Morrow,South Carolina St.,HOME,Chattanooga,Southern,0,0,Starter,1,10,1,2,0,0,4,6,1,0,0,0,1,2,6,0,27.877,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,9.5,0,0,200,0,FALSE, , , , , , , , , , , , , , , , 
+,James Morrow,South Carolina St.,AWAY,Louisville,ACC,0,0,Bench,0,17,2,8,0,2,2,2,1,3,0,0,0,3,6,0,2.453,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-59,35.5,0,0,14218,0,FALSE, , , , , , , , , , , , , , , , 
+,James Morrow,South Carolina St.,AWAY,Samford,Southern,0,0,Bench,0,31,8,14,1,3,5,7,1,6,0,2,0,0,22,0,34.11,0,12.443,1,0,0,0,0,0,0,0,0,0,0,0,1,1,-10,14.5,0,0,"2,371",0,FALSE, , , , , , , , , , , , , , , , 
+,James Morrow,South Carolina St.,AWAY,North Carolina A&T,CAA,0,0,Bench,0,19,1,5,0,1,2,2,4,0,3,1,1,2,4,0,2.888,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-23,2.5,0,0,"3,923",0,FALSE, , , , , , , , , , , , , , , , 
+,James Morrow,South Carolina St.,AWAY,Charleston,CAA,0,0,Bench,0,8,0,2,0,0,0,0,0,0,2,1,1,2,0,0,38.671,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-27,7.5,0,0,"5,241",0,FALSE, , , , , , , , , , , , , , , , 
 ,Jayden Johnson,South Carolina St.,AWAY,Louisville,ACC,0,0,Starter,1,19,0,8,0,0,2,2,0,2,0,0,4,3,2,0,2.453,0,12.443,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-59,35.5,0,0,14218,0,TRUE,1,19,0,8,0,0,2,2,0,2,0,0,4,3,2,Jayden Johnson
 ,Jayden Johnson,South Carolina St.,AWAY,Samford,Southern,0,0,Starter,1,27,4,8,1,3,4,4,0,2,8,0,0,2,13,0,34.11,0,12.443,1,0,0,0,0,1,0,0,0,0,1,0,1,0,-10,14.5,0,0,"2,371",0,TRUE,1,27,4,8,1,3,4,4,0,2,8,0,0,2,13,Jayden Johnson
 ,Jayden Johnson,South Carolina St.,AWAY,North Carolina A&T,CAA,0,0,Starter,1,21,2,6,0,0,1,2,3,4,7,2,0,1,5,0,2.888,0,12.443,0,0,0,0,0,0,0,0,0,0,1,0,1,0,-23,2.5,0,0,"3,923",0,TRUE,1,21,2,6,0,0,1,2,3,4,7,2,0,1,5,Jayden Johnson
+,Jayden Johnson,South Carolina St.,AWAY,Charleston,CAA,0,0,Starter,1,18,3,6,0,1,3,4,0,0,6,1,1,0,9,0,38.671,0,12.443,0,0,0,0,0,0,0,0,0,0,1,0,0,0,-27,7.5,0,0,"5,241",0,TRUE,1,18,3,6,0,1,3,4,0,0,6,1,1,0,9,Jayden Johnson
 ,Jayden Johnson,South Carolina St.,HOME,Chattanooga,Southern,0,0,Starter,1,23,4,9,2,3,3,5,0,5,1,1,0,2,13,0,27.877,0,12.443,1,0,0,0,0,0,0,1,0,0,0,0,1,0,-12,9.5,0,0,200,0,TRUE,1,23,4,9,2,3,3,5,0,5,1,1,0,2,13,Jayden Johnson
-,Noah Treadwell,South Carolina St.,AWAY,Louisville,ACC,0,0,Bench,0,22,2,8,1,6,3,5,1,0,0,0,2,2,8,0,2.453,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-59,35.5,0,0,14218,0,TRUE,0,22,2,8,1,6,3,5,1,0,0,0,2,2,8,Noah Treadwell
-,Noah Treadwell,South Carolina St.,AWAY,Samford,Southern,0,0,Bench,0,18,2,8,1,7,2,2,0,0,0,0,2,2,7,0,34.11,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,14.5,0,0,"2,371",0,TRUE,0,18,2,8,1,7,2,2,0,0,0,0,2,2,7,Noah Treadwell
-,Noah Treadwell,South Carolina St.,AWAY,North Carolina A&T,CAA,0,0,Bench,0,16,1,5,1,5,3,4,2,2,0,0,1,1,6,0,2.888,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-23,2.5,0,0,"3,923",0,TRUE,0,16,1,5,1,5,3,4,2,2,0,0,1,1,6,Noah Treadwell
-,Noah Treadwell,South Carolina St.,HOME,Chattanooga,Southern,0,0,Bench,0,21,3,7,3,7,3,5,0,3,0,0,2,2,12,0,27.877,0,12.443,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-12,9.5,0,0,200,0,TRUE,0,21,3,7,3,7,3,5,0,3,0,0,2,2,12,Noah Treadwell
+,Noah Treadwell,South Carolina St.,AWAY,Louisville,ACC,0,0,Bench,0,22,2,8,1,6,3,5,1,0,0,0,2,2,8,0,2.453,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-59,35.5,0,0,14218,0,FALSE, , , , , , , , , , , , , , , , 
+,Noah Treadwell,South Carolina St.,AWAY,Samford,Southern,0,0,Bench,0,18,2,8,1,7,2,2,0,0,0,0,2,2,7,0,34.11,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,14.5,0,0,"2,371",0,FALSE, , , , , , , , , , , , , , , , 
+,Noah Treadwell,South Carolina St.,AWAY,North Carolina A&T,CAA,0,0,Bench,0,16,1,5,1,5,3,4,2,2,0,0,1,1,6,0,2.888,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-23,2.5,0,0,"3,923",0,FALSE, , , , , , , , , , , , , , , , 
+,Noah Treadwell,South Carolina St.,AWAY,Charleston,CAA,0,0,Bench,0,24,3,8,2,5,0,0,2,1,1,0,1,2,8,0,38.671,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-27,7.5,0,0,"5,241",0,FALSE, , , , , , , , , , , , , , , , 
+,Noah Treadwell,South Carolina St.,HOME,Chattanooga,Southern,0,0,Bench,0,21,3,7,3,7,3,5,0,3,0,0,2,2,12,0,27.877,0,12.443,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-12,9.5,0,0,200,0,FALSE, , , , , , , , , , , , , , , , 
 ,Owen Bronston Jr.,South Carolina St.,AWAY,Samford,Southern,0,0,Starter,1,25,6,11,3,5,1,1,0,4,0,0,1,1,16,0,34.11,0,12.443,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-10,14.5,0,0,"2,371",0,TRUE,1,25,6,11,3,5,1,1,0,4,0,0,1,1,16,Owen Bronston Jr.
 ,Owen Bronston Jr.,South Carolina St.,AWAY,North Carolina A&T,CAA,0,0,Starter,1,20,6,12,3,4,3,3,7,1,0,2,0,2,18,0,2.888,0,12.443,1,0,0,0,0,1,0,0,1,0,0,0,1,0,-23,2.5,0,0,"3,923",0,TRUE,1,20,6,12,3,4,3,3,7,1,0,2,0,2,18,Owen Bronston Jr.
+,Owen Bronston Jr.,South Carolina St.,AWAY,Charleston,CAA,0,0,Starter,1,24,5,11,5,8,0,0,1,3,0,1,1,2,15,0,38.671,0,12.443,1,0,0,0,0,0,1,0,0,0,0,0,1,0,-27,7.5,0,0,"5,241",0,TRUE,1,24,5,11,5,8,0,0,1,3,0,1,1,2,15,Owen Bronston Jr.
 ,Owen Bronston Jr.,South Carolina St.,HOME,Chattanooga,Southern,0,0,Starter,1,17,2,7,2,6,2,2,2,1,1,0,0,5,8,0,27.877,0,12.443,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-12,9.5,0,0,200,0,TRUE,1,17,2,7,2,6,2,2,2,1,1,0,0,5,8,Owen Bronston Jr.
 ,Owen Bronston Jr.,South Carolina St.,AWAY,Louisville,ACC,0,0,Bench,0,16,2,11,0,6,0,0,0,2,0,0,0,1,4,0,2.453,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-59,35.5,0,0,14218,0,TRUE,0,16,2,11,0,6,0,0,0,2,0,0,0,1,4,Owen Bronston Jr.
 ,Rayniel Wright,South Carolina St.,AWAY,Louisville,ACC,0,0,Bench,0,27,1,3,0,0,9,10,0,2,2,4,7,2,11,0,2.453,0,12.443,1,0,0,0,0,0,0,0,0,1,0,0,1,0,-59,35.5,0,0,14218,0,FALSE, , , , , , , , , , , , , , , , 
 ,Rayniel Wright,South Carolina St.,AWAY,Samford,Southern,0,0,Bench,0,21,2,6,0,0,0,0,0,1,1,5,0,0,4,0,34.11,0,12.443,0,0,0,0,0,0,0,0,0,1,0,0,1,0,-10,14.5,0,0,"2,371",0,FALSE, , , , , , , , , , , , , , , , 
 ,Rayniel Wright,South Carolina St.,AWAY,North Carolina A&T,CAA,0,0,Bench,0,11,0,2,0,1,0,2,0,2,3,0,0,0,0,0,2.888,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-23,2.5,0,0,"3,923",0,FALSE, , , , , , , , , , , , , , , , 
+,Rayniel Wright,South Carolina St.,AWAY,Charleston,CAA,0,0,Bench,0,25,2,6,0,0,1,2,2,2,1,0,2,2,5,0,38.671,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-27,7.5,0,0,"5,241",0,FALSE, , , , , , , , , , , , , , , , 
 ,Rayniel Wright,South Carolina St.,HOME,Chattanooga,Southern,0,0,Bench,0,18,0,4,0,1,2,4,0,1,2,2,1,1,2,0,27.877,0,12.443,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-12,9.5,0,0,200,0,FALSE, , , , , , , , , , , , , , , , 
 ,Teon Tindal,South Carolina St.,AWAY,Louisville,ACC,0,0,Bench,0,11,2,4,0,0,0,0,2,0,0,2,2,4,4,0,2.453,0,12.443,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-59,35.5,0,0,14218,0,FALSE, , , , , , , , , , , , , , , , 
 ,Teon Tindal,South Carolina St.,AWAY,Samford,Southern,0,0,Bench,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34.11,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,14.5,0,0,"2,371",0,FALSE, , , , , , , , , , , , , , , , 
 ,Teon Tindal,South Carolina St.,AWAY,North Carolina A&T,CAA,0,0,Bench,0,13,1,2,0,0,0,0,1,0,0,1,0,1,2,0,2.888,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-23,2.5,0,0,"3,923",0,FALSE, , , , , , , , , , , , , , , , 
+,Teon Tindal,South Carolina St.,AWAY,Charleston,CAA,0,0,Bench,0,12,2,4,0,0,1,3,2,1,0,1,0,1,5,0,38.671,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-27,7.5,0,0,"5,241",0,FALSE, , , , , , , , , , , , , , , , 
 ,Teon Tindal,South Carolina St.,HOME,Chattanooga,Southern,0,0,Bench,0,14,0,1,0,0,3,5,2,3,2,1,2,3,3,0,27.877,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,9.5,0,0,200,0,FALSE, , , , , , , , , , , , , , , , 
-,Tim Okojie,South Carolina St.,AWAY,Louisville,ACC,0,0,Starter,1,17,0,1,0,0,0,0,1,1,0,0,0,0,0,0,2.453,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-59,35.5,0,0,14218,0,FALSE, , , , , , , , , , , , , , , , 
-,Tim Okojie,South Carolina St.,AWAY,Samford,Southern,0,0,Bench,0,8,0,1,0,0,0,0,0,0,0,0,0,0,0,0,34.11,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,14.5,0,0,"2,371",0,FALSE, , , , , , , , , , , , , , , , 
-,Tim Okojie,South Carolina St.,AWAY,North Carolina A&T,CAA,0,0,Bench,0,11,0,1,0,0,0,4,2,0,1,0,1,1,0,0,2.888,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-23,2.5,0,0,"3,923",0,FALSE, , , , , , , , , , , , , , , , 
+,Tim Okojie,South Carolina St.,AWAY,Louisville,ACC,0,0,Starter,1,17,0,1,0,0,0,0,1,1,0,0,0,0,0,0,2.453,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-59,35.5,0,0,14218,0,TRUE,1,17,0,1,0,0,0,0,1,1,0,0,0,0,0,Tim Okojie
+,Tim Okojie,South Carolina St.,AWAY,Charleston,CAA,0,0,Starter,1,23,1,4,0,0,1,4,7,3,0,0,2,2,3,0,38.671,0,12.443,1,0,0,0,0,0,0,0,1,0,0,0,1,0,-27,7.5,0,0,"5,241",0,TRUE,1,23,1,4,0,0,1,4,7,3,0,0,2,2,3,Tim Okojie
+,Tim Okojie,South Carolina St.,AWAY,Samford,Southern,0,0,Bench,0,8,0,1,0,0,0,0,0,0,0,0,0,0,0,0,34.11,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,14.5,0,0,"2,371",0,TRUE,0,8,0,1,0,0,0,0,0,0,0,0,0,0,0,Tim Okojie
+,Tim Okojie,South Carolina St.,AWAY,North Carolina A&T,CAA,0,0,Bench,0,11,0,1,0,0,0,4,2,0,1,0,1,1,0,0,2.888,0,12.443,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-23,2.5,0,0,"3,923",0,TRUE,0,11,0,1,0,0,0,4,2,0,1,0,1,1,0,Tim Okojie
 South Dakota,,,,,,,,,25,1015,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,24,760,101,247,17,70,79,111,68,62,22,26,47,60,298,8
 ,Ashton Smith,South Dakota,AWAY,Missouri,SEC,0,0,Bench,0,8,0,1,0,0,1,2,1,1,0,0,1,2,1,0,25.617,0,11.341,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-34,28.5,0,0,"8,027",0,FALSE, , , , , , , , , , , , , , , , 
 ,Ashton Smith,South Dakota,HOME,Southern Indiana,Ohio Valley,0,0,Bench,0,7,0,1,0,0,0,0,0,1,0,0,1,2,0,0,11.638,0,11.341,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,-7.5,0,0,"1,263",0,FALSE, , , , , , , , , , , , , , , , 
@@ -10443,25 +10576,36 @@ Texas Tech,,,,,,,,,25,985,,,,,,,,,,,,,,,,,,,,,,,,,,,,5,,,,,,,,,,,24,914,139,312,
 ,Tyeree Bryan,Texas Tech,HOME,Sam Houston St.,CUSA,0,1,Starter,1,28,4,5,2,2,2,5,3,4,1,2,0,1,12,0,18.922,0,64.049,1,0,0,0,0,0,0,0,0,0,0,0,1,0,21,-31.5,0,0,"13,440",0,TRUE,1,28,4,5,2,2,2,5,3,4,1,2,0,1,12,Tyeree Bryan
 ,Tyeree Bryan,Texas Tech,HOME,Milwaukee,Horizon,0,1,Starter,1,31,5,10,1,3,2,2,4,1,0,0,0,3,13,0,20.544,0,64.049,1,0,0,0,0,0,0,0,0,0,0,0,1,0,17,-27.5,0,0,"13,126",0,TRUE,1,31,5,10,1,3,2,2,4,1,0,0,0,3,13,Tyeree Bryan
 ,Tyeree Bryan,Texas Tech,NEUTRAL,Wake Forest,ACC,0,1,Starter,1,36,3,10,3,8,4,4,1,3,1,2,4,2,13,0,15.996,0,64.049,1,0,0,0,0,1,0,0,0,1,0,0,1,0,1,-9.5,1,0,"2,437",0,TRUE,1,36,3,10,3,8,4,4,1,3,1,2,4,2,13,Tyeree Bryan
-The Citadel,,,,,,,,,10,390,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,10,340,40,96,10,37,28,43,28,33,16,6,12,29,118,8
+The Citadel,,,,,,,,,15,588,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,15,497,68,152,19,58,40,60,32,50,33,13,17,48,195,8
 ,Braxton Williams,The Citadel,AWAY,Boston College,ACC,0,0,Bench,0,24,4,11,1,6,0,1,0,2,1,0,2,1,9,0,-4.666,0,6.354,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-29,15.5,0,0,"2,538",0,TRUE,0,24,4,11,1,6,0,1,0,2,1,0,2,1,9,Braxton Williams
+,Braxton Williams,The Citadel,AWAY,West Georgia,ASUN,0,0,Bench,0,21,3,9,2,6,2,2,0,1,1,0,2,2,10,0,9.706,0,6.354,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-8,7.5,0,0,694,0,TRUE,0,21,3,9,2,6,2,2,0,1,1,0,2,2,10,Braxton Williams
 ,Braxton Williams,The Citadel,HOME,Charleston Southern,Big South,0,0,Bench,0,24,5,9,1,3,4,8,2,1,0,0,0,1,15,0,7.056,0,6.354,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-10,2.5,0,0,"1,719",0,TRUE,0,24,5,9,1,3,4,8,2,1,0,0,0,1,15,Braxton Williams
 ,Carter Kingsbury,The Citadel,AWAY,Boston College,ACC,0,0,Starter,1,24,0,3,0,0,0,0,1,2,2,0,1,2,0,0,-4.666,0,6.354,0,0,0,1,0,0,0,0,0,0,0,0,1,0,-29,15.5,0,0,"2,538",0,TRUE,1,24,0,3,0,0,0,0,1,2,2,0,1,2,0,Carter Kingsbury
+,Carter Kingsbury,The Citadel,AWAY,West Georgia,ASUN,0,0,Starter,1,21,2,5,1,3,0,0,0,3,4,1,1,2,5,0,9.706,0,6.354,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-8,7.5,0,0,694,0,TRUE,1,21,2,5,1,3,0,0,0,3,4,1,1,2,5,Carter Kingsbury
 ,Carter Kingsbury,The Citadel,HOME,Charleston Southern,Big South,0,0,Starter,1,33,6,8,0,0,0,0,4,1,1,0,0,3,12,0,7.056,0,6.354,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-10,2.5,0,0,"1,719",0,TRUE,1,33,6,8,0,0,0,0,4,1,1,0,0,3,12,Carter Kingsbury
 ,Cassius Bonjasky,The Citadel,AWAY,Boston College,ACC,0,0,Bench,0,8,0,1,0,1,1,2,0,0,0,0,0,1,1,0,-4.666,0,6.354,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-29,15.5,0,0,"2,538",0,FALSE, , , , , , , , , , , , , , , , 
+,Cassius Bonjasky,The Citadel,AWAY,West Georgia,ASUN,0,0,Bench,0,14,4,6,0,0,0,0,0,1,0,0,2,1,8,0,9.706,0,6.354,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-8,7.5,0,0,694,0,FALSE, , , , , , , , , , , , , , , , 
 ,Christian Moore,The Citadel,AWAY,Boston College,ACC,0,0,Starter,1,25,5,11,3,6,3,4,1,1,0,0,0,1,16,0,-4.666,0,6.354,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-29,15.5,0,0,"2,538",0,TRUE,1,25,5,11,3,6,3,4,1,1,0,0,0,1,16,Christian Moore
+,Christian Moore,The Citadel,AWAY,West Georgia,ASUN,0,0,Starter,1,24,4,12,1,4,0,0,3,2,0,0,0,3,9,0,9.706,0,6.354,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-8,7.5,0,0,694,0,TRUE,1,24,4,12,1,4,0,0,3,2,0,0,0,3,9,Christian Moore
 ,Christian Moore,The Citadel,HOME,Charleston Southern,Big South,0,0,Starter,1,26,6,13,4,8,5,6,2,0,0,0,0,1,21,0,7.056,0,6.354,1,0,0,0,0,0,0,0,0,0,0,0,1,1,-10,2.5,0,0,"1,719",0,TRUE,1,26,6,13,4,8,5,6,2,0,0,0,0,1,21,Christian Moore
+,Dante Kearse,The Citadel,AWAY,West Georgia,ASUN,0,0,Bench,0,6,1,2,0,0,1,2,0,1,0,0,0,1,3,0,9.706,0,6.354,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-8,7.5,0,0,694,0,FALSE, , , , , , , , , , , , , , , , 
 ,Dante Kearse,The Citadel,HOME,Charleston Southern,Big South,0,0,Bench,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,7.056,0,6.354,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,2.5,0,0,"1,719",0,FALSE, , , , , , , , , , , , , , , , 
 ,Eze Wali,The Citadel,AWAY,Boston College,ACC,0,0,Starter,1,19,0,4,0,2,1,2,1,4,1,1,1,4,1,0,-4.666,0,6.354,0,0,0,1,0,0,0,0,0,0,0,1,0,0,-29,15.5,0,0,"2,538",0,TRUE,1,19,0,4,0,2,1,2,1,4,1,1,1,4,1,Eze Wali
+,Eze Wali,The Citadel,AWAY,West Georgia,ASUN,0,0,Starter,1,17,4,7,1,1,2,2,0,0,2,2,1,2,11,0,9.706,0,6.354,1,0,0,0,0,0,0,0,0,0,0,0,0,0,-8,7.5,0,0,694,0,TRUE,1,17,4,7,1,1,2,2,0,0,2,2,1,2,11,Eze Wali
 ,Eze Wali,The Citadel,HOME,Charleston Southern,Big South,0,0,Starter,1,27,2,7,0,0,3,3,1,4,2,1,0,2,7,0,7.056,0,6.354,0,0,0,0,0,1,0,0,0,0,1,0,1,0,-10,2.5,0,0,"1,719",0,TRUE,1,27,2,7,0,0,3,3,1,4,2,1,0,2,7,Eze Wali
 ,Keynan Davis,The Citadel,AWAY,Boston College,ACC,0,0,Starter,1,27,0,5,0,4,3,4,0,4,2,0,2,4,3,0,-4.666,0,6.354,0,0,0,1,0,0,0,0,0,0,0,1,1,0,-29,15.5,0,0,"2,538",0,TRUE,1,27,0,5,0,4,3,4,0,4,2,0,2,4,3,Keynan Davis
+,Keynan Davis,The Citadel,AWAY,West Georgia,ASUN,0,0,Starter,1,24,6,9,3,5,2,5,0,3,2,0,0,4,17,0,9.706,0,6.354,1,0,0,0,0,0,0,0,0,0,0,1,1,0,-8,7.5,0,0,694,0,TRUE,1,24,6,9,3,5,2,5,0,3,2,0,0,4,17,Keynan Davis
 ,Keynan Davis,The Citadel,HOME,Charleston Southern,Big South,0,0,Starter,1,14,1,2,0,1,3,5,1,0,0,0,0,4,5,0,7.056,0,6.354,0,0,0,0,0,0,0,0,0,0,0,1,0,0,-10,2.5,0,0,"1,719",0,TRUE,1,14,1,2,0,1,3,5,1,0,0,0,0,4,5,Keynan Davis
 ,Logan Applegate,The Citadel,AWAY,Boston College,ACC,0,0,Bench,0,12,0,3,0,3,1,3,0,0,0,0,0,1,1,0,-4.666,0,6.354,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-29,15.5,0,0,"2,538",0,FALSE, , , , , , , , , , , , , , , , 
+,Logan Applegate,The Citadel,AWAY,West Georgia,ASUN,0,0,Bench,0,13,0,3,0,2,0,0,1,1,1,0,0,2,0,0,9.706,0,6.354,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-8,7.5,0,0,694,0,FALSE, , , , , , , , , , , , , , , , 
 ,Logan Applegate,The Citadel,HOME,Charleston Southern,Big South,0,0,Bench,0,17,3,4,3,4,0,0,3,0,0,1,0,1,9,0,7.056,0,6.354,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,2.5,0,0,"1,719",0,FALSE, , , , , , , , , , , , , , , , 
 ,Marcos Gonzales,The Citadel,AWAY,Boston College,ACC,0,0,Bench,0,19,3,5,0,0,0,2,1,3,2,2,3,2,6,0,-4.666,0,6.354,0,0,0,0,0,0,0,0,0,1,0,0,0,0,-29,15.5,0,0,"2,538",0,TRUE,0,19,3,5,0,0,0,2,1,3,2,2,3,2,6,Marcos Gonzales
+,Marcos Gonzales,The Citadel,AWAY,West Georgia,ASUN,0,0,Bench,0,27,5,8,0,1,4,5,0,4,7,1,1,2,14,0,9.706,0,6.354,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-8,7.5,0,0,694,0,TRUE,0,27,5,8,0,1,4,5,0,4,7,1,1,2,14,Marcos Gonzales
 ,Marcos Gonzales,The Citadel,HOME,Charleston Southern,Big South,0,0,Bench,0,15,3,5,0,1,0,0,4,2,2,1,0,0,6,0,7.056,0,6.354,0,0,0,0,0,0,0,0,0,0,1,0,0,0,-10,2.5,0,0,"1,719",0,TRUE,0,15,3,5,0,1,0,0,4,2,2,1,0,0,6,Marcos Gonzales
+,Simeon German,The Citadel,AWAY,West Georgia,ASUN,0,0,Bench,0,8,1,2,0,0,0,0,2,0,2,0,0,1,2,0,9.706,0,6.354,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-8,7.5,0,0,694,0,FALSE, , , , , , , , , , , , , , , , 
 ,Simeon German,The Citadel,HOME,Charleston Southern,Big South,0,0,Bench,0,12,2,3,0,0,0,2,1,0,1,0,2,2,4,0,7.056,0,6.354,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,2.5,0,0,"1,719",0,FALSE, , , , , , , , , , , , , , , , 
 ,Sola Adebisi,The Citadel,AWAY,Boston College,ACC,0,0,Starter,1,32,4,7,1,3,1,2,4,8,1,0,1,3,10,0,-4.666,0,6.354,2,1,0,0,0,0,0,1,1,0,0,0,1,0,-29,15.5,0,0,"2,538",0,TRUE,1,32,4,7,1,3,1,2,4,8,1,0,1,3,10,Sola Adebisi
+,Sola Adebisi,The Citadel,AWAY,West Georgia,ASUN,0,0,Starter,1,23,4,6,1,1,2,3,1,4,1,3,0,4,11,0,9.706,0,6.354,1,0,0,0,0,0,0,0,0,1,0,1,1,0,-8,7.5,0,0,694,0,TRUE,1,23,4,6,1,1,2,3,1,4,1,3,0,4,11,Sola Adebisi
 ,Sola Adebisi,The Citadel,HOME,Charleston Southern,Big South,0,0,Starter,1,31,1,6,0,3,5,6,6,1,2,1,2,1,7,0,7.056,0,6.354,0,0,0,0,0,0,0,0,0,0,1,0,1,0,-10,2.5,0,0,"1,719",0,TRUE,1,31,1,6,0,3,5,6,6,1,2,1,2,1,7,Sola Adebisi
 Toledo,,,,,,,,,25,989,,,,,,,,,,,,,,,,,,,,,,,,,,,,5,,,,,,,,,,,25,916,134,261,34,82,75,99,54,52,80,35,61,80,367,8
 ,Austin Parks,Toledo,AWAY,Wright St.,Horizon,0,0,Starter,1,28,6,7,0,0,2,3,0,1,1,0,2,2,14,0,18.506,0,32.869,1,0,0,0,0,0,0,0,0,0,0,0,1,0,10,5.5,0,0,"3,182",0,TRUE,1,28,6,7,0,0,2,3,0,1,1,0,2,2,14,Austin Parks
@@ -10506,25 +10650,35 @@ Toledo,,,,,,,,,25,989,,,,,,,,,,,,,,,,,,,,,,,,,,,,5,,,,,,,,,,,25,916,134,261,34,8
 ,Tyler Ode,Toledo,HOME,Marshall,Sun Belt,0,0,Bench,0,12,1,4,1,3,0,0,2,0,1,1,0,3,0,0,14.159,0,32.869,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,-2.5,0,0,"4,026",0,FALSE, , , , , , , , , , , , , , , , 
 ,Will James Jr.,Toledo,HOME,Marshall,Sun Belt,0,0,Bench,0,8,0,3,0,2,0,0,2,0,1,1,0,0,0,0,14.159,0,32.869,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-12,-2.5,0,0,"4,026",0,FALSE, , , , , , , , , , , , , , , , 
 ,Will James Jr.,Toledo,HOME,Youngstown St.,Horizon,0,0,Bench,0,9,3,3,0,0,4,4,0,3,0,1,0,1,10,0,23.912,0,32.869,1,0,0,0,1,1,0,0,0,0,0,0,0,0,17,-1.5,0,0,"3,741",0,FALSE, , , , , , , , , , , , , , , , 
-Towson,,,,,,,,,10,390,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,10,359,41,95,6,27,21,30,16,39,18,15,24,27,109,8
+Towson,,,,,,,,,15,587,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,15,515,57,147,10,56,30,44,27,65,26,20,29,33,154,8
 ,Abdou Samb,Towson,AWAY,Houston,Big 12,0,0,Bench,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,121.81,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-17,26.5,0,0,"7,035",0,FALSE, , , , , , , , , , , , , , , , 
+,Abdou Samb,Towson,HOME,Norfolk St.,MEAC,0,0,Bench,0,6,1,2,0,0,0,0,0,0,0,0,0,1,2,0,46.8,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,-11.5,1,0,"2,323",0,FALSE, , , , , , , , , , , , , , , , 
 ,Caleb Embeya,Towson,AWAY,Loyola MD,Patriot,0,0,Starter,1,21,1,4,0,0,0,0,3,3,0,2,0,3,2,0,10.16,0,25.028,0,0,0,0,0,0,0,0,1,1,0,0,1,0,11,-8.5,0,0,"3,167",0,TRUE,1,21,1,4,0,0,0,0,3,3,0,2,0,3,2,Caleb Embeya
 ,Caleb Embeya,Towson,AWAY,Houston,Big 12,0,0,Starter,1,21,0,0,0,0,0,0,1,2,2,1,2,3,0,0,121.81,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-17,26.5,0,0,"7,035",0,TRUE,1,21,0,0,0,0,0,0,1,2,2,1,2,3,0,Caleb Embeya
+,Caleb Embeya,Towson,HOME,Norfolk St.,MEAC,0,0,Starter,1,20,0,0,0,0,1,2,4,3,1,0,0,4,1,0,46.8,0,25.028,0,0,0,0,0,0,0,0,1,0,0,1,1,0,10,-11.5,1,0,"2,323",0,TRUE,1,20,0,0,0,0,1,2,4,3,1,0,0,4,1,Caleb Embeya
 ,Chike Ndefo,Towson,AWAY,Loyola MD,Patriot,0,0,Starter,1,19,2,5,0,0,0,0,1,4,0,0,0,2,4,0,10.16,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,-8.5,0,0,"3,167",0,TRUE,1,19,2,5,0,0,0,0,1,4,0,0,0,2,4,Chike Ndefo
 ,Chike Ndefo,Towson,AWAY,Houston,Big 12,0,0,Starter,1,15,1,4,0,0,0,0,0,4,0,0,1,0,2,0,121.81,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-17,26.5,0,0,"7,035",0,TRUE,1,15,1,4,0,0,0,0,0,4,0,0,1,0,2,Chike Ndefo
+,Chike Ndefo,Towson,HOME,Norfolk St.,MEAC,0,0,Starter,1,7,0,3,0,2,0,0,1,0,0,0,0,1,0,0,46.8,0,25.028,0,0,0,1,0,0,0,0,0,0,0,0,0,0,10,-11.5,1,0,"2,323",0,TRUE,1,7,0,3,0,2,0,0,1,0,0,0,0,1,0,Chike Ndefo
 ,Dylan Williamson,Towson,AWAY,Loyola MD,Patriot,0,0,Starter,1,39,5,9,2,5,2,3,0,1,5,1,3,1,14,0,10.16,0,25.028,1,0,0,0,0,0,0,0,0,0,1,0,1,0,11,-8.5,0,0,"3,167",0,TRUE,1,39,5,9,2,5,2,3,0,1,5,1,3,1,14,Dylan Williamson
 ,Dylan Williamson,Towson,AWAY,Houston,Big 12,0,0,Starter,1,38,5,9,0,3,3,4,0,0,3,2,6,0,13,0,121.81,0,25.028,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-17,26.5,0,0,"7,035",0,TRUE,1,38,5,9,0,3,3,4,0,0,3,2,6,0,13,Dylan Williamson
+,Dylan Williamson,Towson,HOME,Norfolk St.,MEAC,0,0,Starter,1,38,3,11,2,9,4,5,0,5,2,1,2,0,12,0,46.8,0,25.028,1,0,0,0,0,0,1,0,0,0,0,0,1,0,10,-11.5,1,0,"2,323",0,TRUE,1,38,3,11,2,9,4,5,0,5,2,1,2,0,12,Dylan Williamson
 ,Jack Doumbia Jr.,Towson,AWAY,Houston,Big 12,0,0,Starter,1,31,6,12,0,2,4,7,4,3,2,3,2,1,16,0,121.81,0,25.028,1,0,0,0,0,0,0,0,1,0,0,0,1,0,-17,26.5,0,0,"7,035",0,TRUE,1,31,6,12,0,2,4,7,4,3,2,3,2,1,16,Jack Doumbia Jr.
+,Jack Doumbia Jr.,Towson,HOME,Norfolk St.,MEAC,0,0,Starter,1,30,4,9,0,2,2,4,3,7,3,2,2,2,10,0,46.8,0,25.028,2,1,0,0,0,0,0,1,0,1,1,0,1,0,10,-11.5,1,0,"2,323",0,TRUE,1,30,4,9,0,2,2,4,3,7,3,2,2,2,10,Jack Doumbia Jr.
 ,Jack Doumbia Jr.,Towson,AWAY,Loyola MD,Patriot,0,0,Bench,0,30,4,10,0,0,5,6,1,6,1,2,1,3,13,0,10.16,0,25.028,1,0,0,0,0,0,0,0,0,1,0,0,1,0,11,-8.5,0,0,"3,167",0,TRUE,0,30,4,10,0,0,5,6,1,6,1,2,1,3,13,Jack Doumbia Jr.
-,Jaquan Womack,Towson,AWAY,Loyola MD,Patriot,0,0,Bench,0,13,3,6,0,1,0,0,1,1,0,1,1,1,6,0,10.16,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,-8.5,0,0,"3,167",0,FALSE, , , , , , , , , , , , , , , , 
-,Jaquan Womack,Towson,AWAY,Houston,Big 12,0,0,Bench,0,9,0,2,0,1,0,2,0,1,0,0,1,0,0,0,121.81,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-17,26.5,0,0,"7,035",0,FALSE, , , , , , , , , , , , , , , , 
-,Mor Seck,Towson,AWAY,Loyola MD,Patriot,0,0,Bench,0,16,1,5,0,0,0,0,3,3,0,1,1,2,2,0,10.16,0,25.028,0,0,0,0,0,0,0,0,1,0,0,0,0,0,11,-8.5,0,0,"3,167",0,TRUE,0,16,1,5,0,0,0,0,3,3,0,1,1,2,2,Mor Seck
-,Mor Seck,Towson,AWAY,Houston,Big 12,0,0,Bench,0,16,0,1,0,0,0,1,0,1,0,0,2,3,0,0,121.81,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-17,26.5,0,0,"7,035",0,TRUE,0,16,0,1,0,0,0,1,0,1,0,0,2,3,0,Mor Seck
+,Jaquan Womack,Towson,AWAY,Loyola MD,Patriot,0,0,Bench,0,13,3,6,0,1,0,0,1,1,0,1,1,1,6,0,10.16,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,-8.5,0,0,"3,167",0,TRUE,0,13,3,6,0,1,0,0,1,1,0,1,1,1,6,Jaquan Womack
+,Jaquan Womack,Towson,AWAY,Houston,Big 12,0,0,Bench,0,9,0,2,0,1,0,2,0,1,0,0,1,0,0,0,121.81,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-17,26.5,0,0,"7,035",0,TRUE,0,9,0,2,0,1,0,2,0,1,0,0,1,0,0,Jaquan Womack
+,Jaquan Womack,Towson,HOME,Norfolk St.,MEAC,0,0,Bench,0,16,3,11,1,5,0,0,3,4,0,1,1,2,7,0,46.8,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,-11.5,1,0,"2,323",0,TRUE,0,16,3,11,1,5,0,0,3,4,0,1,1,2,7,Jaquan Womack
+,Mor Seck,Towson,AWAY,Loyola MD,Patriot,0,0,Bench,0,16,1,5,0,0,0,0,3,3,0,1,1,2,2,0,10.16,0,25.028,0,0,0,0,0,0,0,0,1,0,0,0,0,0,11,-8.5,0,0,"3,167",0,FALSE, , , , , , , , , , , , , , , , 
+,Mor Seck,Towson,AWAY,Houston,Big 12,0,0,Bench,0,16,0,1,0,0,0,1,0,1,0,0,2,3,0,0,121.81,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-17,26.5,0,0,"7,035",0,FALSE, , , , , , , , , , , , , , , , 
+,Mor Seck,Towson,HOME,Norfolk St.,MEAC,0,0,Bench,0,14,0,0,0,0,2,5,2,2,0,0,1,1,2,0,46.8,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,-11.5,1,0,"2,323",0,FALSE, , , , , , , , , , , , , , , , 
+,Ryan Conway,Towson,HOME,Norfolk St.,MEAC,0,0,Bench,0,11,2,5,2,5,0,0,0,1,0,0,1,1,6,0,46.8,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,-11.5,1,0,"2,323",0,FALSE, , , , , , , , , , , , , , , , 
 ,Tyler Coleman,Towson,AWAY,Houston,Big 12,0,0,Bench,0,6,0,2,0,0,0,0,0,1,0,2,1,0,0,0,121.81,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-17,26.5,0,0,"7,035",0,FALSE, , , , , , , , , , , , , , , , 
 ,Tyler Schmidt,Towson,AWAY,Loyola MD,Patriot,0,0,Starter,1,13,1,3,0,2,0,0,0,1,0,0,1,3,2,0,10.16,0,25.028,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,-8.5,0,0,"3,167",0,TRUE,1,13,1,3,0,2,0,0,0,1,0,0,1,3,2,Tyler Schmidt
 ,Tyler Schmidt,Towson,AWAY,Houston,Big 12,0,0,Bench,0,23,2,5,2,5,0,0,1,1,0,0,0,4,6,0,121.81,0,25.028,0,0,0,0,0,0,0,0,0,0,0,1,1,0,-17,26.5,0,0,"7,035",0,TRUE,0,23,2,5,2,5,0,0,1,1,0,0,0,4,6,Tyler Schmidt
+,Tyler Schmidt,Towson,HOME,Norfolk St.,MEAC,0,0,Bench,0,16,0,3,0,3,0,0,0,2,1,1,0,0,0,0,46.8,0,25.028,0,0,0,1,0,0,0,0,0,0,0,0,0,0,10,-11.5,1,0,"2,323",0,TRUE,0,16,0,3,0,3,0,0,0,2,1,1,0,0,0,Tyler Schmidt
 ,Tyler Tejada,Towson,AWAY,Loyola MD,Patriot,0,0,Starter,1,39,8,14,1,3,7,9,0,4,3,2,2,2,24,0,10.16,0,25.028,1,0,0,0,0,0,1,0,0,1,0,0,1,1,11,-8.5,0,0,"3,167",0,TRUE,1,39,8,14,1,3,7,9,0,4,3,2,2,2,24,Tyler Tejada
 ,Tyler Tejada,Towson,AWAY,Houston,Big 12,0,0,Starter,1,38,5,14,1,7,0,0,2,6,2,1,3,0,11,0,121.81,0,25.028,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-17,26.5,0,0,"7,035",0,TRUE,1,38,5,14,1,7,0,0,2,6,2,1,3,0,11,Tyler Tejada
+,Tyler Tejada,Towson,HOME,Norfolk St.,MEAC,0,0,Starter,1,39,4,13,1,6,2,2,2,7,1,0,1,1,11,0,46.8,0,25.028,1,0,0,0,0,0,0,1,0,0,0,0,1,0,10,-11.5,1,0,"2,323",0,TRUE,1,39,4,13,1,6,2,2,2,7,1,0,1,1,11,Tyler Tejada
 Troy,,,,,,,,,20,884,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,20,831,113,256,41,116,70,91,49,99,54,35,37,70,337,8
 ,Austin Cross,Troy,AWAY,Kent St.,MAC,0,0,Bench,0,18,1,5,1,3,0,0,0,0,0,0,1,1,3,0,34.322,0,34.931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,3.5,1,1,"2,131",0,TRUE,0,18,1,5,1,3,0,0,0,0,0,0,1,1,3,Austin Cross
 ,Austin Cross,Troy,AWAY,Furman,Southern,0,0,Bench,0,16,2,3,2,3,0,0,0,0,0,0,0,1,6,0,41.248,0,34.931,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2.5,1,0,"2,207",0,TRUE,0,16,2,3,2,3,0,0,0,0,0,0,0,1,6,Austin Cross
@@ -10624,37 +10778,46 @@ Tulsa,,,,,,,,,15,600,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,15,510,67,143,24,61,
 ,Tyler Behrend,Tulsa,AWAY,Kansas St.,Big 12,0,0,Starter,1,12,2,4,0,1,0,0,2,2,1,0,0,1,4,0,16.237,0,9.611,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,12.5,1,0,"7,123",0,TRUE,1,12,2,4,0,1,0,0,2,2,1,0,0,1,4,Tyler Behrend
 ,Tyler Behrend,Tulsa,HOME,Oral Roberts,Summit,0,0,Starter,1,14,1,1,1,1,0,0,1,1,0,1,2,2,3,0,28.893,0,9.611,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,-6.5,1,0,"5,467",0,TRUE,1,14,1,1,1,1,0,0,1,1,0,1,2,2,3,Tyler Behrend
 ,Tyler Behrend,Tulsa,NEUTRAL,Rhode Island,A10,0,0,Starter,1,16,2,3,0,0,2,2,1,0,0,1,3,1,6,0,8.112,0,9.611,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,3.5,0,0,0,0,TRUE,1,16,2,3,0,0,2,2,1,0,0,1,3,1,6,Tyler Behrend
-UAB,,,,,,,,,15,591,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,15,453,90,186,14,53,38,58,33,56,35,27,26,41,232,8
+UAB,,,,,,,,,20,791,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,20,626,117,237,18,63,58,85,41,77,48,35,36,54,310,8
 ,Ahmad Robinson,UAB,AWAY,N.C. State,ACC,0,0,Starter,1,5,2,12,1,7,3,4,0,0,3,1,2,2,8,0,41.29,0,50.004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-24,19.5,0,0,"15,918",0,TRUE,1,5,2,12,1,7,3,4,0,0,3,1,2,2,8,Ahmad Robinson
 ,Ahmad Robinson,UAB,HOME,Mississippi Valley St.,SWAC,0,0,Starter,1,27,5,8,2,3,2,4,1,4,7,3,0,0,14,0,4.374,0,50.004,1,0,0,0,0,0,0,0,0,0,1,0,1,0,51,-34.5,0,0,"3,013",0,TRUE,1,27,5,8,2,3,2,4,1,4,7,3,0,0,14,Ahmad Robinson
 ,Ahmad Robinson,UAB,HOME,Alabama St.,SWAC,0,0,Starter,1,25,5,12,0,5,2,2,0,1,4,1,3,1,12,0,28.14,0,50.004,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,-19.5,1,0,"3,556",0,TRUE,1,25,5,12,0,5,2,2,0,1,4,1,3,1,12,Ahmad Robinson
+,Ahmad Robinson,UAB,HOME,High Point,Big South,0,0,Starter,1,34,4,11,4,5,4,6,1,2,4,2,3,3,16,0,35.312,0,50.004,1,0,0,0,0,0,0,0,0,0,0,0,1,0,17,2.5,0,0,"3,231",0,TRUE,1,34,4,11,4,5,4,6,1,2,4,2,3,3,16,Ahmad Robinson
 ,Ari Gooch,UAB,AWAY,N.C. State,ACC,0,0,Bench,0,22,0,2,0,2,0,2,0,0,0,1,0,1,0,0,41.29,0,50.004,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-24,19.5,0,0,"15,918",0,FALSE, , , , , , , , , , , , , , , , 
 ,Ari Gooch,UAB,HOME,Mississippi Valley St.,SWAC,0,0,Bench,0,10,0,2,0,1,0,0,1,1,2,1,0,0,0,0,4.374,0,50.004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,51,-34.5,0,0,"3,013",0,FALSE, , , , , , , , , , , , , , , , 
 ,Chance Westry,UAB,AWAY,N.C. State,ACC,0,0,Starter,1,26,6,9,0,1,2,2,0,2,4,1,1,3,14,0,41.29,0,50.004,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-24,19.5,0,0,"15,918",0,TRUE,1,26,6,9,0,1,2,2,0,2,4,1,1,3,14,Chance Westry
 ,Chance Westry,UAB,HOME,Mississippi Valley St.,SWAC,0,0,Starter,1,20,8,12,3,5,4,8,1,4,3,4,0,0,23,0,4.374,0,50.004,1,0,0,0,0,0,0,0,0,1,0,0,1,1,51,-34.5,0,0,"3,013",0,TRUE,1,20,8,12,3,5,4,8,1,4,3,4,0,0,23,Chance Westry
 ,Chance Westry,UAB,HOME,Alabama St.,SWAC,0,0,Starter,1,27,10,16,2,5,3,3,0,1,0,1,1,1,25,0,28.14,0,50.004,1,0,0,0,0,1,1,0,0,0,0,0,1,1,-3,-19.5,1,0,"3,556",0,TRUE,1,27,10,16,2,5,3,3,0,1,0,1,1,1,25,Chance Westry
+,Chance Westry,UAB,HOME,High Point,Big South,0,0,Starter,1,20,6,9,0,1,10,13,1,4,6,1,1,2,22,0,35.312,0,50.004,1,0,0,0,0,0,1,0,0,0,0,0,1,1,17,2.5,0,0,"3,231",0,TRUE,1,20,6,9,0,1,10,13,1,4,6,1,1,2,22,Chance Westry
 ,Daniel Rivera,UAB,AWAY,N.C. State,ACC,0,0,Starter,1,28,6,7,0,0,0,2,4,3,0,1,1,3,12,0,41.29,0,50.004,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-24,19.5,0,0,"15,918",0,TRUE,1,28,6,7,0,0,0,2,4,3,0,1,1,3,12,Daniel Rivera
 ,Daniel Rivera,UAB,HOME,Mississippi Valley St.,SWAC,0,0,Starter,1,20,5,9,0,0,0,2,1,3,0,0,0,3,10,0,4.374,0,50.004,1,0,0,0,0,0,0,0,0,0,0,0,1,0,51,-34.5,0,0,"3,013",0,TRUE,1,20,5,9,0,0,0,2,1,3,0,0,0,3,10,Daniel Rivera
 ,Daniel Rivera,UAB,HOME,Alabama St.,SWAC,0,0,Starter,1,29,3,9,0,0,1,3,3,4,0,1,0,4,7,0,28.14,0,50.004,0,0,0,0,0,0,0,0,1,0,0,1,1,0,-3,-19.5,1,0,"3,556",0,TRUE,1,29,3,9,0,0,1,3,3,4,0,1,0,4,7,Daniel Rivera
+,Daniel Rivera,UAB,HOME,High Point,Big South,0,0,Starter,1,31,5,9,0,0,0,2,2,5,1,0,2,2,10,0,35.312,0,50.004,1,0,0,0,0,0,0,0,0,0,0,0,1,0,17,2.5,0,0,"3,231",0,TRUE,1,31,5,9,0,0,0,2,2,5,1,0,2,2,10,Daniel Rivera
 ,Dayjaun Anderson,UAB,AWAY,N.C. State,ACC,0,0,Bench,0,26,0,3,0,3,0,0,0,0,1,0,0,0,0,0,41.29,0,50.004,0,0,0,1,0,0,0,0,0,0,0,0,1,0,-24,19.5,0,0,"15,918",0,FALSE, , , , , , , , , , , , , , , , 
 ,Dayjaun Anderson,UAB,HOME,Mississippi Valley St.,SWAC,0,0,Bench,0,19,2,7,1,6,1,1,0,3,2,2,0,0,6,0,4.374,0,50.004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,51,-34.5,0,0,"3,013",0,FALSE, , , , , , , , , , , , , , , , 
 ,Dayjaun Anderson,UAB,HOME,Alabama St.,SWAC,0,0,Bench,0,11,1,5,0,4,0,0,0,0,0,0,1,0,2,0,28.14,0,50.004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,-19.5,1,0,"3,556",0,FALSE, , , , , , , , , , , , , , , , 
+,Dayjaun Anderson,UAB,HOME,High Point,Big South,0,0,Bench,0,9,1,3,0,2,0,0,2,2,0,0,0,3,2,0,35.312,0,50.004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,2.5,0,0,"3,231",0,FALSE, , , , , , , , , , , , , , , , 
 ,Evan Chatman,UAB,HOME,Alabama St.,SWAC,0,0,Starter,1,28,2,6,0,3,0,0,3,6,0,0,0,3,4,0,28.14,0,50.004,0,0,0,0,0,0,0,0,1,0,0,0,1,0,-3,-19.5,1,0,"3,556",0,TRUE,1,28,2,6,0,3,0,0,3,6,0,0,0,3,4,Evan Chatman
+,Evan Chatman,UAB,HOME,High Point,Big South,0,0,Starter,1,26,3,5,0,1,0,0,0,7,1,2,1,3,6,0,35.312,0,50.004,0,0,0,0,0,0,0,1,0,0,0,0,1,0,17,2.5,0,0,"3,231",0,TRUE,1,26,3,5,0,1,0,0,0,7,1,2,1,3,6,Evan Chatman
 ,Evan Chatman,UAB,AWAY,N.C. State,ACC,0,0,Bench,0,22,2,6,1,4,0,0,3,7,3,0,2,2,5,0,41.29,0,50.004,1,0,0,0,0,0,0,1,0,0,0,0,1,0,-24,19.5,0,0,"15,918",0,TRUE,0,22,2,6,1,4,0,0,3,7,3,0,2,2,5,Evan Chatman
 ,Evan Chatman,UAB,HOME,Mississippi Valley St.,SWAC,0,0,Bench,0,22,2,5,1,4,2,5,4,4,2,1,0,4,7,0,4.374,0,50.004,0,0,0,0,0,0,0,0,1,0,0,1,1,0,51,-34.5,0,0,"3,013",0,TRUE,0,22,2,5,1,4,2,5,4,4,2,1,0,4,7,Evan Chatman
 ,Jacob Meyer,UAB,AWAY,N.C. State,ACC,0,0,Starter,1,11,6,18,0,5,3,4,2,3,1,3,2,0,15,0,41.29,0,50.004,1,0,0,0,0,0,0,0,0,1,0,0,0,0,-24,19.5,0,0,"15,918",0,TRUE,1,11,6,18,0,5,3,4,2,3,1,3,2,0,15,Jacob Meyer
 ,Jacob Meyer,UAB,HOME,Mississippi Valley St.,SWAC,0,0,Starter,1,23,8,14,1,3,5,7,1,1,0,2,0,1,22,0,4.374,0,50.004,1,0,0,0,0,0,0,0,0,0,0,0,1,1,51,-34.5,0,0,"3,013",0,TRUE,1,23,8,14,1,3,5,7,1,1,0,2,0,1,22,Jacob Meyer
 ,Jacob Meyer,UAB,HOME,Alabama St.,SWAC,0,0,Starter,1,27,2,8,0,1,1,2,0,2,0,0,4,2,5,0,28.14,0,50.004,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,-19.5,1,0,"3,556",0,TRUE,1,27,2,8,0,1,1,2,0,2,0,0,4,2,5,Jacob Meyer
+,Jacob Meyer,UAB,HOME,High Point,Big South,0,0,Starter,1,33,6,12,0,3,4,4,2,0,1,0,2,1,16,0,35.312,0,50.004,1,0,0,0,0,1,0,0,0,0,0,0,1,0,17,2.5,0,0,"3,231",0,TRUE,1,33,6,12,0,3,4,4,2,0,1,0,2,1,16,Jacob Meyer
 ,Joao Das Chagas,UAB,HOME,Mississippi Valley St.,SWAC,0,0,Bench,0,13,1,5,0,0,0,0,1,4,0,0,0,2,2,0,4.374,0,50.004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,51,-34.5,0,0,"3,013",0,FALSE, , , , , , , , , , , , , , , , 
 ,KyeRon Lindsay-Martin,UAB,AWAY,N.C. State,ACC,0,0,Starter,1,4,4,7,0,0,0,0,5,1,0,1,2,4,8,0,41.29,0,50.004,0,0,0,0,0,0,0,0,1,0,0,1,0,0,-24,19.5,0,0,"15,918",0,TRUE,1,4,4,7,0,0,0,0,5,1,0,1,2,4,8,KyeRon Lindsay-Martin
 ,KyeRon Lindsay-Martin,UAB,HOME,Mississippi Valley St.,SWAC,0,0,Starter,1,21,3,6,0,0,2,2,4,2,1,2,2,3,8,0,4.374,0,50.004,0,0,0,0,0,0,0,0,1,0,0,0,1,0,51,-34.5,0,0,"3,013",0,TRUE,1,21,3,6,0,0,2,2,4,2,1,2,2,3,8,KyeRon Lindsay-Martin
 ,KyeRon Lindsay-Martin,UAB,HOME,Alabama St.,SWAC,0,0,Bench,0,23,5,7,0,0,4,4,1,2,1,1,0,3,14,0,28.14,0,50.004,1,0,0,0,0,1,0,0,0,0,0,0,1,0,-3,-19.5,1,0,"3,556",0,TRUE,0,23,5,7,0,0,4,4,1,2,1,1,0,3,14,KyeRon Lindsay-Martin
+,KyeRon Lindsay-Martin,UAB,HOME,High Point,Big South,0,0,Bench,0,23,3,5,0,0,0,0,1,2,0,3,0,1,6,0,35.312,0,50.004,0,0,0,0,0,0,0,0,0,1,0,0,1,0,17,2.5,0,0,"3,231",0,TRUE,0,23,3,5,0,0,0,0,1,2,0,3,0,1,6,KyeRon Lindsay-Martin
 ,Lance Carr,UAB,AWAY,N.C. State,ACC,0,0,Bench,0,19,0,0,0,0,0,0,1,0,0,0,0,0,0,0,41.29,0,50.004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-24,19.5,0,0,"15,918",0,FALSE, , , , , , , , , , , , , , , , 
 ,Quaran McPherson,UAB,HOME,Mississippi Valley St.,SWAC,0,0,Bench,0,7,0,1,0,1,3,4,0,0,0,1,2,0,3,0,4.374,0,50.004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,51,-34.5,0,0,"3,013",0,FALSE, , , , , , , , , , , , , , , , 
 ,Quaran McPherson,UAB,HOME,Alabama St.,SWAC,0,0,Bench,0,11,1,4,0,1,3,4,1,2,1,0,1,1,5,0,28.14,0,50.004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-3,-19.5,1,0,"3,556",0,FALSE, , , , , , , , , , , , , , , , 
+,Quaran McPherson,UAB,HOME,High Point,Big South,0,0,Bench,0,18,2,5,0,1,7,8,1,1,3,1,1,2,11,0,35.312,0,50.004,1,0,0,0,0,0,0,0,0,0,0,0,0,0,17,2.5,0,0,"3,231",0,FALSE, , , , , , , , , , , , , , , , 
 ,Salim London,UAB,AWAY,N.C. State,ACC,0,0,Bench,0,35,3,7,2,3,0,0,0,0,1,2,2,0,8,0,41.29,0,50.004,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-24,19.5,0,0,"15,918",0,TRUE,0,35,3,7,2,3,0,0,0,0,1,2,2,0,8,Salim London
 ,Salim London,UAB,HOME,Mississippi Valley St.,SWAC,0,0,Bench,0,15,3,5,1,3,4,4,0,2,1,1,2,2,11,0,4.374,0,50.004,1,0,0,0,0,1,0,0,0,0,0,0,0,0,51,-34.5,0,0,"3,013",0,TRUE,0,15,3,5,1,3,4,4,0,2,1,1,2,2,11,Salim London
 ,Salim London,UAB,HOME,Alabama St.,SWAC,0,0,Bench,0,15,0,3,0,1,0,0,0,4,4,1,2,0,0,0,28.14,0,50.004,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-3,-19.5,1,0,"3,556",0,TRUE,0,15,0,3,0,1,0,0,0,4,4,1,2,0,0,Salim London
+,Salim London,UAB,HOME,High Point,Big South,0,0,Bench,0,6,0,0,0,0,2,2,1,1,0,0,1,1,2,0,35.312,0,50.004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,2.5,0,0,"3,231",0,TRUE,0,6,0,0,0,0,2,2,1,1,0,0,1,1,2,Salim London
 UC Davis,,,,,,,,,10,400,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,10,336,50,104,14,42,24,32,15,37,21,11,25,25,138,8
 ,Abdullah Amzil,UC Davis,AWAY,Portland,WCC,0,0,Bench,0,6,1,1,1,1,0,0,0,0,0,0,0,1,3,0,10.328,0,12.377,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-4,1.5,1,0,948,0,FALSE, , , , , , , , , , , , , , , , 
 ,Brayden Fagbemi,UC Davis,AWAY,Portland,WCC,0,0,Bench,0,31,0,7,0,6,0,0,4,2,7,3,2,3,0,0,10.328,0,12.377,0,0,0,1,0,0,0,0,0,1,1,0,1,0,-4,1.5,1,0,948,0,FALSE, , , , , , , , , , , , , , , , 
@@ -11856,32 +12019,40 @@ Weber St.,,,,,,,,,15,612,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,14,526,77,159,17
 ,Viljami Vartiainen,Weber St.,AWAY,Utah,Big 12,0,0,Starter,1,29,2,5,1,3,5,8,0,4,3,2,1,3,10,0,-3.877,0,13.897,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,15.5,1,1,"6,214",0,TRUE,1,29,2,5,1,3,5,8,0,4,3,2,1,3,10,Viljami Vartiainen
 ,Viljami Vartiainen,Weber St.,AWAY,Utah St.,Mountain West,0,0,Starter,1,18,2,10,2,7,0,0,0,3,1,2,1,2,6,0,56.176,0,13.897,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10,22.5,0,0,"9,124",0,FALSE, , , , , , , , , , , , , , , , 
 ,Viljami Vartiainen,Weber St.,HOME,Campbell,CAA,0,0,Starter,1,30,5,13,4,12,2,2,0,4,3,1,1,3,16,0,10.836,0,13.897,1,0,0,0,0,0,0,0,0,0,0,0,1,0,6,-1.5,1,0,"2,224",0,TRUE,1,30,5,13,4,12,2,2,0,4,3,1,1,3,16,Viljami Vartiainen
-West Georgia,,,,,,,,,15,592,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,15,540,59,168,23,60,29,39,34,55,31,17,26,48,170,8
+West Georgia,,,,,,,,,20,789,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,,,,,,,,,,,20,726,97,231,29,71,47,64,41,76,48,23,35,66,270,8
 ,Brady Hardewig,West Georgia,AWAY,Nebraska,Big Ten,0,0,Starter,1,27,1,5,1,5,2,2,1,2,0,3,1,4,5,0,8.646,0,9.706,0,0,0,0,0,0,0,0,0,1,0,1,1,0,-33,24.5,0,0,"13,555",0,TRUE,1,27,1,5,1,5,2,2,1,2,0,3,1,4,5,Brady Hardewig
 ,Brady Hardewig,West Georgia,AWAY,UCLA,Big Ten,0,0,Starter,1,23,5,8,4,7,0,0,0,0,0,1,0,3,14,0,55.924,0,9.706,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-21,30.5,0,0,"4,133",0,TRUE,1,23,5,8,4,7,0,0,0,0,0,1,0,3,14,Brady Hardewig
 ,Brady Hardewig,West Georgia,AWAY,Tennessee Tech,Ohio Valley,0,0,Starter,1,16,0,0,0,0,0,0,0,1,0,0,0,2,0,0,8.697,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,4.5,1,0,648,0,TRUE,1,16,0,0,0,0,0,0,0,1,0,0,0,2,0,Brady Hardewig
+,Brady Hardewig,West Georgia,HOME,The Citadel,Southern,0,0,Starter,1,22,1,3,1,2,0,0,0,2,2,1,2,2,3,0,6.354,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,1,0,8,-7.5,0,0,694,0,TRUE,1,22,1,3,1,2,0,0,0,2,2,1,2,2,3,Brady Hardewig
 ,Chas Lewless,West Georgia,AWAY,Nebraska,Big Ten,0,0,Starter,1,30,4,15,3,11,0,0,1,5,2,1,1,2,11,0,8.646,0,9.706,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-33,24.5,0,0,"13,555",0,TRUE,1,30,4,15,3,11,0,0,1,5,2,1,1,2,11,Chas Lewless
 ,Chas Lewless,West Georgia,AWAY,UCLA,Big Ten,0,0,Starter,1,27,5,10,3,7,0,0,1,3,3,0,0,2,13,0,55.924,0,9.706,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-21,30.5,0,0,"4,133",0,TRUE,1,27,5,10,3,7,0,0,1,3,3,0,0,2,13,Chas Lewless
 ,Chas Lewless,West Georgia,AWAY,Tennessee Tech,Ohio Valley,0,0,Starter,1,32,5,14,4,10,5,6,0,2,2,0,5,1,19,0,8.697,0,9.706,1,0,0,0,0,0,1,0,0,0,0,0,1,0,2,4.5,1,0,648,0,TRUE,1,32,5,14,4,10,5,6,0,2,2,0,5,1,19,Chas Lewless
+,Chas Lewless,West Georgia,HOME,The Citadel,Southern,0,0,Starter,1,30,6,10,2,4,2,3,0,5,9,1,3,3,16,0,6.354,0,9.706,1,0,0,0,0,0,0,0,0,0,1,0,1,0,8,-7.5,0,0,694,0,TRUE,1,30,6,10,2,4,2,3,0,5,9,1,3,3,16,Chas Lewless
 ,JaVar Daniel,West Georgia,AWAY,Nebraska,Big Ten,0,0,Bench,0,12,2,4,0,0,0,0,0,2,0,0,1,0,4,0,8.646,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-33,24.5,0,0,"13,555",0,TRUE,0,12,2,4,0,0,0,0,0,2,0,0,1,0,4,JaVar Daniel
 ,JaVar Daniel,West Georgia,AWAY,UCLA,Big Ten,0,0,Bench,0,17,2,3,0,0,1,2,1,0,1,2,0,2,5,0,55.924,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-21,30.5,0,0,"4,133",0,TRUE,0,17,2,3,0,0,1,2,1,0,1,2,0,2,5,JaVar Daniel
 ,JaVar Daniel,West Georgia,AWAY,Tennessee Tech,Ohio Valley,0,0,Bench,0,16,1,5,0,0,0,0,3,6,0,0,1,1,2,0,8.697,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,4.5,1,0,648,0,TRUE,0,16,1,5,0,0,0,0,3,6,0,0,1,1,2,JaVar Daniel
+,JaVar Daniel,West Georgia,HOME,The Citadel,Southern,0,0,Bench,0,21,5,6,0,0,3,4,4,2,0,1,1,2,13,0,6.354,0,9.706,1,0,0,0,0,0,0,0,1,0,0,0,1,0,8,-7.5,0,0,694,0,TRUE,0,21,5,6,0,0,3,4,4,2,0,1,1,2,13,JaVar Daniel
 ,Josh Smith,West Georgia,AWAY,Nebraska,Big Ten,0,0,Bench,0,24,1,8,0,4,2,2,1,2,1,0,1,0,4,0,8.646,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-33,24.5,0,0,"13,555",0,TRUE,0,24,1,8,0,4,2,2,1,2,1,0,1,0,4,Josh Smith
 ,Josh Smith,West Georgia,AWAY,UCLA,Big Ten,0,0,Bench,0,27,2,8,2,3,1,4,1,2,4,0,0,3,7,0,55.924,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-21,30.5,0,0,"4,133",0,TRUE,0,27,2,8,2,3,1,4,1,2,4,0,0,3,7,Josh Smith
 ,Josh Smith,West Georgia,AWAY,Tennessee Tech,Ohio Valley,0,0,Bench,0,30,6,12,3,5,0,0,0,0,2,0,2,1,15,0,8.697,0,9.706,1,0,0,0,0,0,0,0,0,0,0,0,1,0,2,4.5,1,0,648,0,TRUE,0,30,6,12,3,5,0,0,0,0,2,0,2,1,15,Josh Smith
+,Josh Smith,West Georgia,HOME,The Citadel,Southern,0,0,Bench,0,27,9,15,3,4,6,7,0,1,3,0,1,2,27,0,6.354,0,9.706,1,0,0,0,0,0,1,0,0,0,0,0,1,1,8,-7.5,0,0,694,0,TRUE,0,27,9,15,3,4,6,7,0,1,3,0,1,2,27,Josh Smith
 ,Kenneth Chime,West Georgia,AWAY,Nebraska,Big Ten,0,0,Starter,1,28,3,5,0,0,1,2,4,3,1,0,3,3,7,0,8.646,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-33,24.5,0,0,"13,555",0,TRUE,1,28,3,5,0,0,1,2,4,3,1,0,3,3,7,Kenneth Chime
 ,Kenneth Chime,West Georgia,AWAY,UCLA,Big Ten,0,0,Starter,1,23,0,1,0,0,0,0,1,2,0,2,5,4,0,0,55.924,0,9.706,0,0,0,0,0,0,0,0,0,0,0,1,1,0,-21,30.5,0,0,"4,133",0,TRUE,1,23,0,1,0,0,0,0,1,2,0,2,5,4,0,Kenneth Chime
 ,Kenneth Chime,West Georgia,AWAY,Tennessee Tech,Ohio Valley,0,0,Starter,1,23,1,5,0,0,0,0,2,4,0,0,1,5,2,0,8.697,0,9.706,0,0,0,0,0,0,0,0,0,0,0,1,1,0,2,4.5,1,0,648,0,TRUE,1,23,1,5,0,0,0,0,2,4,0,0,1,5,2,Kenneth Chime
+,Kenneth Chime,West Georgia,HOME,The Citadel,Southern,0,0,Starter,1,16,1,1,0,0,2,2,1,0,0,1,0,3,4,0,6.354,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,-7.5,0,0,694,0,TRUE,1,16,1,1,0,0,2,2,1,0,0,1,0,3,4,Kenneth Chime
 ,Kolten Griffin,West Georgia,AWAY,Nebraska,Big Ten,0,0,Starter,1,27,2,6,0,2,1,2,0,2,4,2,2,4,5,0,8.646,0,9.706,0,0,0,0,0,0,0,0,0,0,0,1,1,0,-33,24.5,0,0,"13,555",0,TRUE,1,27,2,6,0,2,1,2,0,2,4,2,2,4,5,Kolten Griffin
 ,Kolten Griffin,West Georgia,AWAY,UCLA,Big Ten,0,0,Starter,1,32,1,5,0,2,2,2,3,3,3,1,0,0,4,0,55.924,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-21,30.5,0,0,"4,133",0,TRUE,1,32,1,5,0,2,2,2,3,3,3,1,0,0,4,Kolten Griffin
 ,Kolten Griffin,West Georgia,AWAY,Tennessee Tech,Ohio Valley,0,0,Starter,1,34,2,6,0,0,0,0,1,3,2,1,1,3,4,0,8.697,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,4.5,1,0,648,0,TRUE,1,34,2,6,0,0,0,0,1,3,2,1,1,3,4,Kolten Griffin
+,Kolten Griffin,West Georgia,HOME,The Citadel,Southern,0,0,Starter,1,35,7,9,0,0,1,4,1,4,2,2,2,5,15,0,6.354,0,9.706,1,0,0,0,0,0,0,0,0,0,0,1,1,0,8,-7.5,0,0,694,0,TRUE,1,35,7,9,0,0,1,4,1,4,2,2,2,5,15,Kolten Griffin
 ,Malcolm Noel,West Georgia,AWAY,Tennessee Tech,Ohio Valley,0,0,Bench,0,8,0,1,0,0,0,0,0,1,0,0,0,0,0,0,8.697,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,4.5,1,0,648,0,FALSE, , , , , , , , , , , , , , , , 
 ,Shelton Williams-Dryden,West Georgia,AWAY,Nebraska,Big Ten,0,0,Starter,1,30,5,19,0,0,4,4,2,3,0,1,1,4,14,0,8.646,0,9.706,1,0,0,0,0,1,0,0,0,0,0,1,1,0,-33,24.5,0,0,"13,555",0,TRUE,1,30,5,19,0,0,4,4,2,3,0,1,1,4,14,Shelton Williams-Dryden
 ,Shelton Williams-Dryden,West Georgia,AWAY,UCLA,Big Ten,0,0,Starter,1,28,6,12,3,4,1,3,6,3,5,1,0,2,16,0,55.924,0,9.706,1,0,0,0,0,0,0,0,1,0,1,0,1,0,-21,30.5,0,0,"4,133",0,TRUE,1,28,6,12,3,4,1,3,6,3,5,1,0,2,16,Shelton Williams-Dryden
 ,Shelton Williams-Dryden,West Georgia,AWAY,Tennessee Tech,Ohio Valley,0,0,Starter,1,34,5,17,0,0,9,10,6,7,1,2,1,2,19,0,8.697,0,9.706,2,1,0,0,0,0,1,1,0,1,0,0,1,0,2,4.5,1,0,648,0,TRUE,1,34,5,17,0,0,9,10,6,7,1,2,1,2,19,Shelton Williams-Dryden
+,Shelton Williams-Dryden,West Georgia,HOME,The Citadel,Southern,0,0,Starter,1,35,9,19,0,1,4,5,1,7,1,0,0,1,22,0,6.354,0,9.706,1,0,0,0,0,0,0,1,0,0,0,0,1,1,8,-7.5,0,0,694,0,TRUE,1,35,9,19,0,1,4,5,1,7,1,0,0,1,22,Shelton Williams-Dryden
 ,Xavier Shegog,West Georgia,AWAY,Nebraska,Big Ten,0,0,Bench,0,19,1,2,0,1,1,1,1,5,0,0,1,3,3,0,8.646,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-33,24.5,0,0,"13,555",0,FALSE, , , , , , , , , , , , , , , , 
 ,Xavier Shegog,West Georgia,AWAY,UCLA,Big Ten,0,0,Bench,0,18,0,2,0,0,0,0,3,2,1,1,0,2,0,0,55.924,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-21,30.5,0,0,"4,133",0,FALSE, , , , , , , , , , , , , , , , 
 ,Xavier Shegog,West Georgia,AWAY,Tennessee Tech,Ohio Valley,0,0,Bench,0,7,0,1,0,0,0,0,1,0,0,0,1,0,0,0,8.697,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,4.5,1,0,648,0,FALSE, , , , , , , , , , , , , , , , 
+,Xavier Shegog,West Georgia,HOME,The Citadel,Southern,0,0,Bench,0,11,0,1,0,0,0,2,0,2,0,0,0,2,0,0,6.354,0,9.706,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,-7.5,0,0,694,0,FALSE, , , , , , , , , , , , , , , , 
 West Virginia,,,,,,,,,25,992,,,,,,,,,,,,,,,,,,,,,,,,,,,,5,,,,,,,,,,,25,918,114,246,34,95,84,118,78,88,55,37,39,68,346,8
 ,Amir Jenkins,West Virginia,HOME,Mount St. Mary's,MAAC,0,0,Bench,0,12,0,2,0,1,1,2,0,1,1,1,1,0,1,0,32.212,0,2.488,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,-19.5,0,0,"10,081",0,FALSE, , , , , , , , , , , , , , , , 
 ,Amir Jenkins,West Virginia,HOME,Campbell,CAA,0,0,Bench,0,9,0,3,0,0,0,0,0,0,1,0,1,0,0,0,10.836,0,2.488,0,0,0,1,0,0,0,0,0,0,0,0,0,0,8,-15.5,1,0,"9,251",0,FALSE, , , , , , , , , , , , , , , , 
@@ -12424,6 +12595,13 @@ Youngstown St.,,,,,,,,,15,598,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,,,,,,,,,,,13,484,64,1
 ,Tyler Robinett,Youngstown St.,AWAY,Grand Canyon,WAC,0,0,Starter,1,13,1,3,1,3,0,0,1,0,1,0,1,2,3,0,64.227,0,23.912,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,15.5,0,0,"7,142",0,FALSE, , , , , , , , , , , , , , , , 
 ,Vlad Salaridze,Youngstown St.,AWAY,Toledo,MAC,0,0,Bench,0,24,6,9,1,3,0,0,1,4,1,1,3,2,13,0,32.869,0,23.912,1,0,0,0,0,0,0,0,1,0,0,0,1,0,-17,1.5,0,0,"3,741",0,FALSE, , , , , , , , , , , , , , , , 
 (blank),,,,,,,,,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FALSE, , , , , , , , , , , , , , , , 
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FALSE, , , , , , , , , , , , , , , , 
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FALSE, , , , , , , , , , , , , , , , 
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FALSE, , , , , , , , , , , , , , , , 
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FALSE, , , , , , , , , , , , , , , , 
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FALSE, , , , , , , , , , , , , , , , 
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FALSE, , , , , , , , , , , , , , , , 
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FALSE, , , , , , , , , , , , , , , , 
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FALSE, , , , , , , , , , , , , , , , 
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FALSE, , , , , , , , , , , , , , , , 
