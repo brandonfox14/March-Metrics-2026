@@ -1,10 +1,4 @@
 Team,Opponent,Coach Name,Opponent Coach,Conference,Opponent Conference,Date,,Location,HAN,Attendance,Non Conference Game,Neutral Site Game,Road Game,Top 25 Opponent,March Madness Opponent,Points,Opp Points,SM,Line,ML,Over/Under Line,Total Points,,Game Number
-Mississippi Valley St.,Kansas St.,George Ivory,Jerome Tang,SWAC,Big 12,12/8/2025,,"Manhattan, KS",AWAY,,1,0,0,,0,,,,,,,,,1673
-Kansas St.,Mississippi Valley St.,Jerome Tang,George Ivory,Big 12,SWAC,12/8/2025,,"Manhattan, KS",HOME,,1,0,0,,0,,,,,,,,,1673
-South Carolina St.,Charleston Southern,Erik Martin,Saah Nimley,MEAC,Big South,12/8/2025,,"Charleston, SC",AWAY,,1,0,0,,0,,,,,,,,,1939
-Charleston Southern,South Carolina St.,Saah Nimley,Erik Martin,Big South,MEAC,12/8/2025,,"Charleston, SC",HOME,,1,0,0,,0,,,,,,,,,1939
-Penn,Lafayette,Fran McCaffrey,Mike McGarvey,Ivy,Patriot,12/8/2025,,"Philadelphia, PA",HOME,,1,0,0,,0,,,,,,,,,3191
-Lafayette,Penn,Mike McGarvey,Fran McCaffrey,Patriot,Ivy,12/8/2025,,"Philadelphia, PA",AWAY,,1,0,0,,0,,,,,,,,,3191
 Florida,Connecticut,Todd Golden,Dan Hurley,SEC,Big East,12/9/2025,,"New York, NY",NEUTRAL,,1,1,0,,1,,,,,,,,,96
 Connecticut,Florida,Dan Hurley,Todd Golden,Big East,SEC,12/9/2025,,"New York, NY",NEUTRAL,,1,1,0,,1,,,,,,,,,96
 Villanova,Michigan,Kevin Willard,Dusty May,Big East,Big Ten,12/9/2025,,"Ann Arbor, MI",AWAY,,1,0,0,,1,,,,,,,,,139
@@ -5725,8 +5719,8 @@ Michigan St.,Michigan,Tom Izzo,Dusty May,Big Ten,Big Ten,3/8/2026,,"Ann Arbor, M
 Michigan,Michigan St.,Dusty May,Tom Izzo,Big Ten,Big Ten,3/8/2026,,"Ann Arbor, MI",HOME,,0,0,0,,1,,,,,,,,,2205
 Rutgers,Penn St.,Steve Pikiell,Mike Rhodes,Big Ten,Big Ten,3/8/2026,,"Piscataway, NJ",HOME,,0,0,0,,0,,,,,,,,,2330
 Penn St.,Rutgers,Mike Rhodes,Steve Pikiell,Big Ten,Big Ten,3/8/2026,,"Piscataway, NJ",AWAY,,0,0,0,,0,,,,,,,,,2330
-,,,,,,,,,HOME,,,0,0,,0,,,,,,,,,4251
-,,,,,,,,,AWAY,,,0,0,,0,,,,,,,,,4251
+Loyola MD,VMI,Josh Loeffler,Andrew Wilson,Patriot,Southern,,,,HOME,,1,0,0,,0,,,,,,,,,4251
+VMI,Loyola MD,Andrew Wilson,Josh Loeffler,Southern,Patriot,,,,AWAY,,1,0,0,,0,,,,,,,,,4251
 ,,,,,,,,,HOME,,,0,0,,0,,,,,,,,,4252
 ,,,,,,,,,AWAY,,,0,0,,0,,,,,,,,,4252
 ,,,,,,,,,HOME,,,0,0,,0,,,,,,,,,4253
