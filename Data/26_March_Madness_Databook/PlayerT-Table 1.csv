@@ -1,30 +1,30 @@
 Players,Team,Location,Opponent,Opponent Conference,Power,Top 25,,STR,Min,FGM,FGA,3M,3A,FTM,FTA,OReb,DReb,AST,STL,TO,PF,PTS,OPP ACTIVE VALUE,OPP HISTORICAL VALUE,TEAM ACTIVE VALUE,TEAM HISTORICAL VALUE,Doubles,Double Doube,Triple Double,0-3+ FG,Perfect 2 FG min 3,Perfect 3 FG min 3,Points Leader,Def Reb Leader,Off Reb Leader,Steal Leader,Assist Leader,Foul Trouble,20+ minutes,20+ points,SM,Line,Clutch ,Overtime,Attendance,Player Points,
-Elias Ralph,Pacific,AWAY,Cal St. Fullerton,Big West,0,0,Starter,1,27,2,6,1,2,3,3,2,0,0,1,4,7,8,0,13.845,0,5.636,0,0,0,0,0,1,0,0,0,0,0,1,1,0,12,-6.5,0,0,459,0,TRUE
-Isaac Jack,Pacific,AWAY,Cal St. Fullerton,Big West,0,0,Starter,1,15,3,3,0,0,2,2,0,1,0,0,3,4,8,0,13.845,0,5.636,0,0,0,0,1,0,0,0,0,0,0,1,0,0,12,-6.5,0,0,459,0,TRUE
-Jaden Clayton,Pacific,AWAY,Cal St. Fullerton,Big West,0,0,Starter,1,25,3,6,1,2,3,3,0,0,3,2,4,2,10,0,13.845,0,5.636,1,0,0,0,0,1,0,0,0,1,1,0,1,0,12,-6.5,0,0,459,0,TRUE
-Justin Rochelin,Pacific,AWAY,Cal St. Fullerton,Big West,0,0,Starter,1,10,2,4,1,1,0,1,0,1,0,0,0,7,5,0,13.845,0,5.636,0,0,0,0,0,0,0,0,0,0,0,1,0,0,12,-6.5,0,0,459,0,FALSE
-TJ Wainwright,Pacific,AWAY,Cal St. Fullerton,Big West,0,0,Starter,1,35,9,15,2,5,0,0,0,0,1,0,1,0,20,0,13.845,0,5.636,1,0,0,0,0,0,1,0,0,0,0,0,1,1,12,-6.5,0,0,459,0,TRUE
-Jaion Pitt,Pacific,AWAY,Cal St. Fullerton,Big West,0,0,Bench,0,21,6,7,1,1,3,4,0,0,3,0,1,4,16,0,13.845,0,5.636,1,0,0,0,0,0,0,0,0,0,1,1,1,0,12,-6.5,0,0,459,0,TRUE
-KC Ibekwe,Pacific,AWAY,Cal St. Fullerton,Big West,0,0,Bench,0,23,4,5,0,0,0,0,0,3,1,0,1,6,8,0,13.845,0,5.636,0,0,0,0,0,0,0,0,0,0,0,1,1,0,12,-6.5,0,0,459,0,TRUE
-Alexis Marmolejos,Pacific,AWAY,Cal St. Fullerton,Big West,0,0,Bench,0,24,1,3,1,3,3,4,0,0,1,0,0,4,6,0,13.845,0,5.636,0,0,0,0,0,0,0,0,0,0,0,1,1,0,12,-6.5,0,0,459,0,TRUE
-Kajus Kublickas,Pacific,AWAY,Cal St. Fullerton,Big West,0,0,Bench,0,19,2,8,0,1,0,0,0,1,3,1,4,2,4,0,13.845,0,5.636,0,0,0,0,0,0,0,0,0,0,1,0,0,0,12,-6.5,0,0,459,0,FALSE
-Kendrick De Luna,Cal St. Fullerton,HOME,Pacific,WCC,0,0,Starter,1,22,1,6,0,0,0,0,1,0,1,1,0,2,2,0,5.636,0,13.845,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-12,6.5,0,0,459,0,TRUE
-Davis White,Cal St. Fullerton,HOME,Pacific,WCC,0,0,Starter,1,11,0,2,0,1,0,0,0,0,0,0,0,2,0,0,5.636,0,13.845,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,6.5,0,0,459,0,FALSE
-Joshua Ward,Cal St. Fullerton,HOME,Pacific,WCC,0,0,Starter,1,30,4,12,1,7,1,1,1,3,2,2,0,2,10,0,5.636,0,13.845,1,0,0,0,0,0,0,0,0,1,0,0,1,0,-12,6.5,0,0,459,0,TRUE
-Jefferson De La Cruz Monegro,Cal St. Fullerton,HOME,Pacific,WCC,0,0,Starter,1,24,3,6,1,4,3,3,0,1,0,1,1,1,10,0,5.636,0,13.845,1,0,0,0,0,1,0,0,0,0,0,0,1,0,-12,6.5,0,0,459,0,TRUE
-Bailey Nunn,Cal St. Fullerton,HOME,Pacific,WCC,0,0,Starter,1,9,0,2,0,2,0,0,0,0,0,1,0,0,0,0,5.636,0,13.845,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,6.5,0,0,459,0,FALSE
-Landon Seaman,Cal St. Fullerton,HOME,Pacific,WCC,0,0,Bench,0,20,3,11,0,2,0,1,2,2,1,1,1,1,6,0,5.636,0,13.845,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-12,6.5,0,0,459,0,TRUE
-Christian Williams,Cal St. Fullerton,HOME,Pacific,WCC,0,0,Bench,0,21,2,4,0,1,2,2,0,4,2,0,2,3,6,0,5.636,0,13.845,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-12,6.5,0,0,459,0,TRUE
-KJ Garris,Cal St. Fullerton,HOME,Pacific,WCC,0,0,Bench,0,15,3,6,2,3,1,1,1,5,2,0,0,2,9,0,5.636,0,13.845,0,0,0,0,0,0,0,1,0,0,0,0,0,0,-12,6.5,0,0,459,0,FALSE
-Bryce Cofield,Cal St. Fullerton,HOME,Pacific,WCC,0,0,Bench,0,24,6,15,1,2,5,8,3,2,0,1,1,3,18,0,5.636,0,13.845,1,0,0,0,0,0,0,0,1,0,0,0,1,0,-12,6.5,0,0,459,0,TRUE
-Jaden Henderson,Cal St. Fullerton,HOME,Pacific,WCC,0,0,Bench,0,24,3,10,1,3,5,6,1,2,2,1,1,0,12,0,5.636,0,13.845,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-12,6.5,0,0,459,0,TRUE
-0,0,NEUTRAL,Pacific,WCC,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.636,0,5.636,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,6.5,0,0,459,0,FALSE
-0,0,NEUTRAL,Pacific,WCC,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.636,0,5.636,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,6.5,0,0,459,0,FALSE
-0,0,NEUTRAL,Pacific,WCC,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.636,0,5.636,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,6.5,0,0,459,0,FALSE
-0,0,NEUTRAL,Pacific,WCC,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.636,0,5.636,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,6.5,0,0,459,0,FALSE
-0,0,NEUTRAL,Pacific,WCC,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.636,0,5.636,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,6.5,0,0,459,0,FALSE
-0,0,NEUTRAL,Pacific,WCC,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.636,0,5.636,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,6.5,0,0,459,0,FALSE
-0,0,NEUTRAL,Pacific,WCC,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.636,0,5.636,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,6.5,0,0,459,0,FALSE
-0,0,NEUTRAL,Pacific,WCC,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.636,0,5.636,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,6.5,0,0,459,0,FALSE
-0,0,NEUTRAL,Pacific,WCC,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.636,0,5.636,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,6.5,0,0,459,0,FALSE
-0,0,NEUTRAL,Pacific,WCC,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.636,0,5.636,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,6.5,0,0,459,0,FALSE
+Andre Pasha,New Haven,AWAY,Seton Hall,Big East,0,0,Starter,1,25,6,12,2,4,1,2,1,4,1,0,1,1,15,0,16.5,0,9,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-23,23.5,0,0,"6,201",0,TRUE
+Stefano Faloppa,New Haven,AWAY,Seton Hall,Big East,0,0,Starter,1,30,3,6,2,4,0,0,1,2,1,1,3,2,8,0,16.5,0,9,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-23,23.5,0,0,"6,201",0,TRUE
+Najimi George,New Haven,AWAY,Seton Hall,Big East,0,0,Starter,1,33,1,5,0,3,1,2,0,2,2,0,1,4,3,0,16.5,0,9,0,0,0,0,0,0,0,0,0,0,0,1,1,0,-23,23.5,0,0,"6,201",0,TRUE
+Maison Adeleye,New Haven,AWAY,Seton Hall,Big East,0,0,Starter,1,9,0,1,0,0,0,0,0,1,0,0,2,0,0,0,16.5,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-23,23.5,0,0,"6,201",0,TRUE
+Jabri Fitzpatrick,New Haven,AWAY,Seton Hall,Big East,0,0,Starter,1,36,1,9,0,1,0,0,5,1,3,0,3,1,2,0,16.5,0,9,0,0,0,0,0,0,0,0,1,0,0,0,1,0,-23,23.5,0,0,"6,201",0,TRUE
+Tristan Burth,New Haven,AWAY,Seton Hall,Big East,0,0,Bench,0,14,1,2,0,0,1,2,1,2,0,1,0,1,3,0,16.5,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-23,23.5,0,0,"6,201",0,TRUE
+Zoumana Traore,New Haven,AWAY,Seton Hall,Big East,0,0,Bench,0,7,0,2,0,2,2,2,0,2,0,0,1,1,2,0,16.5,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-23,23.5,0,0,"6,201",0,FALSE
+Teshaun Steele,New Haven,AWAY,Seton Hall,Big East,0,0,Bench,0,10,0,2,0,2,0,0,0,1,0,0,0,0,0,0,16.5,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-23,23.5,0,0,"6,201",0,FALSE
+Vere Anthony,New Haven,AWAY,Seton Hall,Big East,0,0,Bench,0,24,3,6,1,3,0,0,2,2,1,1,1,0,7,0,16.5,0,9,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-23,23.5,0,0,"6,201",0,TRUE
+Kheni Briggs,New Haven,AWAY,Seton Hall,Big East,0,0,Bench,0,10,1,2,1,1,0,0,0,0,0,0,1,0,3,0,16.5,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-23,23.5,0,0,"6,201",0,FALSE
+Stephon Payne,Seton Hall,HOME,New Haven,NEC,1,0,Starter,1,19,6,8,0,0,1,2,4,7,1,0,0,1,13,0,9,0,16.5,2,1,0,0,0,0,0,1,0,0,0,0,0,0,23,-23.5,0,0,"6,201",0,TRUE
+Adam Clark,Seton Hall,HOME,New Haven,NEC,1,0,Starter,1,30,1,7,0,2,0,0,0,2,5,3,6,3,2,0,9,0,16.5,0,0,0,0,0,0,0,0,0,1,1,0,1,0,23,-23.5,0,0,"6,201",0,TRUE
+Mike Williams,Seton Hall,HOME,New Haven,NEC,1,0,Starter,1,16,3,8,2,4,0,0,1,2,3,0,1,1,8,0,9,0,16.5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-23.5,0,0,"6,201",0,TRUE
+Elijah Fisher,Seton Hall,HOME,New Haven,NEC,1,0,Starter,1,22,1,3,1,2,0,0,1,1,1,1,0,2,3,0,9,0,16.5,0,0,0,0,0,0,0,0,0,0,0,0,1,0,23,-23.5,0,0,"6,201",0,TRUE
+AJ Staton-McCray,Seton Hall,HOME,New Haven,NEC,1,0,Starter,1,28,5,8,1,3,1,1,0,3,0,1,0,1,12,0,9,0,16.5,1,0,0,0,0,0,0,0,0,0,0,0,1,0,23,-23.5,0,0,"6,201",0,TRUE
+Najai Hines,Seton Hall,HOME,New Haven,NEC,1,0,Bench,0,17,1,3,0,0,0,0,0,6,2,0,0,1,2,0,9,0,16.5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-23.5,0,0,"6,201",0,FALSE
+Josh Rivera,Seton Hall,HOME,New Haven,NEC,1,0,Bench,0,8,1,2,0,1,1,2,1,1,0,1,0,0,3,0,9,0,16.5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-23.5,0,0,"6,201",0,FALSE
+Tajuan Simpkins,Seton Hall,HOME,New Haven,NEC,1,0,Bench,0,27,6,8,4,5,2,2,0,1,1,1,2,1,18,0,9,0,16.5,1,0,0,0,0,0,1,0,0,0,0,0,1,0,23,-23.5,0,0,"6,201",0,TRUE
+Trey Parker,Seton Hall,HOME,New Haven,NEC,1,0,Bench,0,15,0,3,0,2,2,2,1,4,3,2,0,2,2,0,9,0,16.5,0,0,0,1,0,0,0,0,0,0,0,0,0,0,23,-23.5,0,0,"6,201",0,FALSE
+Jacob Dar,Seton Hall,HOME,New Haven,NEC,1,0,Bench,0,16,2,4,0,1,1,1,0,1,1,1,0,0,5,0,9,0,16.5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-23.5,0,0,"6,201",0,TRUE
+0,0,NEUTRAL,New Haven,NEC,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-23.5,0,0,"6,201",0,FALSE
+0,0,NEUTRAL,New Haven,NEC,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-23.5,0,0,"6,201",0,FALSE
+0,0,NEUTRAL,New Haven,NEC,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-23.5,0,0,"6,201",0,FALSE
+0,0,NEUTRAL,New Haven,NEC,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-23.5,0,0,"6,201",0,FALSE
+0,0,NEUTRAL,New Haven,NEC,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-23.5,0,0,"6,201",0,FALSE
+0,0,NEUTRAL,New Haven,NEC,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-23.5,0,0,"6,201",0,FALSE
+0,0,NEUTRAL,New Haven,NEC,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-23.5,0,0,"6,201",0,FALSE
+0,0,NEUTRAL,New Haven,NEC,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-23.5,0,0,"6,201",0,FALSE
+0,0,NEUTRAL,New Haven,NEC,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,-23.5,0,0,"6,201",0,FALSE
