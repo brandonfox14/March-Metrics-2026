@@ -1,0 +1,25 @@
+,GAME,BET TYPE,BET AMOUNT,WIN PAYOUT,WIN/LOSS,Payout
+1,Washington St. vs USC,Washington St. ML (dog value),3.5,31.5,FALSE,0
+2,Washington St. vs USC,Washington St. +14.5 (spread ~3× ML stake),11,21,TRUE,21
+3,Bethune Cookman vs Missouri,Bethune Cookman +19.5,5,9.55,FALSE,0
+4,Texas Southern vs Minnesota,Texas Southern +18.5 ,2.5,4.77,FALSE,0
+5,Western Michigan vs Iowa,Over 142,1,1.91,TRUE,1.91
+6,Wake Forest vs Queens,Over 160,7.5,14.32,TRUE,14.32
+7,Charlotte vs Charleston,Charlotte ML,6.5,17.55,FALSE,0
+8,UAB vs Troy,Over 152,6.5,12.41,TRUE,12.41
+9,Kent St. vs Portland,Over 163,6.5,12.41,TRUE,12.41
+10,Milwaukee vs Indiana St.,Over 156,5.5,10.5,FALSE,0
+11,Campbell vs Ball St.,Campbell -7.5,4.5,8.59,FALSE,0
+12,Texas A&M vs Jacksonville,Over 149,4.5,8.59,TRUE,8.59
+13,Boise St. vs Saint Mary's,Boise St. ML,4,6.7,TRUE,6.7
+14,South Alabama vs North Texas,Over 132,4,7.64,FALSE,0
+15,Purdue Fort Wayne vs Detroit Mercy,Over 153,4,7.64,TRUE,7.64
+16,Radford vs Coppin St.,Over 152,4,7.64,TRUE,7.64
+17,High Point vs Appalachian St.,Over 144,3.5,6.68,TRUE,6.68
+18,Virginia Tech vs Maryland Eastern Shore,Over 138,3.5,6.68,FALSE,0
+19,Temple vs Saint Francis,Over 153,2,3.82,TRUE,3.82
+20,East Carolina vs Buffalo,East Carolina ML,1,1.82,TRUE,1.82
+21,New Mexico vs Florida Gulf Coast,Over 159,1,1.91,FALSE,0
+22,Vermont vs Merrimack,Under 136,0.5,0.95,TRUE,0.95
+,,,,,,
+,,,92,,,105.89
