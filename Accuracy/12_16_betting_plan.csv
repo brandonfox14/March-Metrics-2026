@@ -1,0 +1,35 @@
+,GAME,BET TYPE,BET AMOUNT,WIN PAYOUT,WIN/LOSS,Payout
+1,Toledo vs Michigan St.,Toledo +23.5 (spread ~3× ML stake),9,17.18,FALSE,0
+2,Tennessee vs Louisville,Tennessee ML,7.5,13.86,TRUE,13.86
+3,Towson vs Kansas,Towson ML (dog value),1,1.91,FALSE,0
+4,Towson vs Kansas,Towson +17.5 (spread ~3× ML stake),4,7.64,FALSE,0
+5,Lipscomb vs Duke,Lipscomb +33.5,3.5,6.68,TRUE,6.68
+6,Pacific vs BYU,Under 147,1,1.91,FALSE,0
+7,Queens vs Arkansas,Arkansas -25.5,0.5,0.95,TRUE,0.95
+9,South Carolina vs Clemson,South Carolina +12.5 (spread ~3× ML stake),7,13.36,TRUE,13.36
+10,UMKC vs Oklahoma,Under 152,4,7.64,FALSE,0
+11,Le Moyne vs Texas,Over 159,4,7.64,FALSE,0
+12,LIU vs Mississippi St.,Under 153,0.5,0.95,FALSE,0
+14,Marist vs Georgia Tech,Marist +6.5 (spread ~3× ML stake),5,9.55,FALSE,0
+16,Valparaiso vs Northwestern,Valparaiso +17.5 (spread ~3× ML stake),3,5.73,TRUE,5.73
+17,St. John's vs DePaul,St. John's -19.5,1.5,2.86,FALSE,0
+18,Connecticut vs Butler,Under 148,1,1.91,TRUE,1.91
+20,Florida St. vs Dayton,Florida St. +6.5 (spread ~3× ML stake),7,13.36,FALSE,0
+21,Little Rock vs Morehead St.,Under 139,6,11.45,FALSE,0
+22,Montana St. vs Cal Poly,Over 158,4.5,8.59,TRUE,8.59
+23,Oral Roberts vs Missouri St.,Over 147,3,5.73,FALSE,0
+24,North Carolina vs East Tennessee St.,Under 149,2.5,4.77,TRUE,4.77
+25,Miami FL vs FIU,Miami FL -23.5,2,3.82,FALSE,0
+27,Evansville vs Belmont,Evansville +9.5 (spread ~3× ML stake),1.5,2.86,TRUE,2.86
+28,Howard vs Drexel,Howard ML (dog value),0.5,1.65,TRUE,1.65
+29,Howard vs Drexel,Howard +6.5 (spread ~3× ML stake),1.5,2.86,TRUE,2.86
+30,Wright St. vs Miami OH,Over 151,1.5,2.86,TRUE,2.86
+31,Rider vs Delaware,Under 133,1.5,2.86,TRUE,2.86
+32,Chicago St. vs Bowling Green,Chicago St. +21.5,1.5,2.86,TRUE,2.86
+33,UMass Lowell vs Sacred Heart,UMass Lowell ML,1,1.95,TRUE,1.95
+34,USC Upstate vs South Carolina St.,Over 147,1,1.91,TRUE,1.91
+35,UC San Diego vs Loyola Marymount,UC San Diego ML,1,1.91,TRUE,1.91
+36,Rhode Island vs Canisius,Rhode Island -22.5,1,1.91,FALSE,0
+37,Texas Tech vs Northern Colorado,Over 155,0.5,0.95,TRUE,0.95
+,,,,,,
+,,,90,,FALSE,78.52
