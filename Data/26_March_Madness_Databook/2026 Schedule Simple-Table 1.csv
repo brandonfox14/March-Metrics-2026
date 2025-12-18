@@ -1,94 +1,6 @@
 Team,Opponent,Coach Name,Opponent Coach,Conference,Opponent Conference,Date,,Location,HAN,Attendance,Non Conference Game,Neutral Site Game,Road Game,Top 25 Opponent,March Madness Opponent,Points,Opp Points,SM,Line,ML,Over/Under Line,Total Points,,Game Number
-Marquette,Georgetown,Shaka Smart,Ed Cooley,Big East,Big East,12/17/2025,,"Milwaukee, WI",HOME,,0,0,0,,0,,,,,,,,,12
-Georgetown,Marquette,Ed Cooley,Shaka Smart,Big East,Big East,12/17/2025,,"Milwaukee, WI",AWAY,,0,0,0,,1,,,,,,,,,12
-Xavier,Creighton,Richard Pitino,Greg McDermott,Big East,Big East,12/17/2025,,"Cincinnati, OH",HOME,,0,0,0,,1,,,,,,,,,41
-Creighton,Xavier,Greg McDermott,Richard Pitino,Big East,Big East,12/17/2025,,"Cincinnati, OH",AWAY,,0,0,0,,1,,,,,,,,,41
-Texas Southern,N.C. State,Johnny Jones,Will Wade,SWAC,ACC,12/17/2025,,"Raleigh, NC",AWAY,,1,0,0,,0,,,,,,,,,440
-N.C. State,Texas Southern,Will Wade,Johnny Jones,ACC,SWAC,12/17/2025,,"Raleigh, NC",HOME,,1,0,0,,0,,,,,,,,,440
-Pittsburgh,Binghamton,Jeff Capel III,Levell Sanders,ACC,American East,12/17/2025,,"Pittsburgh, PA",HOME,,1,0,0,,0,,,,,,,,,503
-Binghamton,Pittsburgh,Levell Sanders,Jeff Capel III,American East,ACC,12/17/2025,,"Pittsburgh, PA",AWAY,,1,0,0,,0,,,,,,,,,503
-UT Arlington,Stanford,K.T. Turner,Kyle Smith,WAC,ACC,12/17/2025,,"Stanford, CA",AWAY,,1,0,0,,0,,,,,,,,,537
-Stanford,UT Arlington,Kyle Smith,K.T. Turner,ACC,WAC,12/17/2025,,"Stanford, CA",HOME,,1,0,0,,0,,,,,,,,,537
-Syracuse,Mercyhurst,Adrian Autry,Gary Manchel,ACC,NEC,12/17/2025,,"Syracuse, NY",HOME,,1,0,0,,0,,,,,,,,,552
-Mercyhurst,Syracuse,Gary Manchel,Adrian Autry,NEC,ACC,12/17/2025,,"Syracuse, NY",AWAY,,1,0,0,,0,,,,,,,,,552
-Wake Forest,Longwood,Steve Forbes,Ronnie Thomas,ACC,Big South,12/17/2025,,"Winston-Salem, NC",HOME,,1,0,0,,0,,,,,,,,,595
-Longwood,Wake Forest,Ronnie Thomas,Steve Forbes,Big South,ACC,12/17/2025,,"Winston-Salem, NC",AWAY,,1,0,0,,0,,,,,,,,,595
-Chattanooga,Bellarmine,Dan Earl,Doug Davenport,Southern,ASUN,12/17/2025,,"Louisville, KY",AWAY,,1,0,0,,0,,,,,,,,,633
-Bellarmine,Chattanooga,Doug Davenport,Dan Earl,ASUN,Southern,12/17/2025,,"Louisville, KY",HOME,,1,0,0,,0,,,,,,,,,633
-Jacksonville St.,Eastern Kentucky,Ray Harper,A.W. Hamilton,CUSA,ASUN,12/17/2025,,"Jacksonville, AL",HOME,,1,0,0,,0,,,,,,,,,684
-Eastern Kentucky,Jacksonville St.,A.W. Hamilton,Ray Harper,ASUN,CUSA,12/17/2025,,"Jacksonville, AL",AWAY,,1,0,0,,0,,,,,,,,,684
-Jacksonville,Florida A&M,Jordan Mincy,Charlie Ward,ASUN,SWAC,12/17/2025,,"Tallahassee, FL",AWAY,,1,0,0,,0,,,,,,,,,728
-Florida A&M,Jacksonville,Charlie Ward,Jordan Mincy,SWAC,ASUN,12/17/2025,,"Tallahassee, FL",HOME,,1,0,0,,0,,,,,,,,,728
-Stonehill,New Hampshire,Chris Kraus,Nathan Davis,NEC,American East,12/17/2025,,"Durham, NH",AWAY,,1,0,0,,0,,,,,,,,,921
-New Hampshire,Stonehill,Nathan Davis,Chris Kraus,American East,NEC,12/17/2025,,"Durham, NH",HOME,,1,0,0,,0,,,,,,,,,921
-Stonehill,Albany,Chris Kraus,Dwayne Killings,NEC,American East,12/17/2025,,"Stony Brook, NY",HOME,,1,0,0,,0,,,,,,,,,939
-Albany,Stonehill,Dwayne Killings,Chris Kraus,American East,NEC,12/17/2025,,"Stony Brook, NY",AWAY,,1,0,0,,0,,,,,,,,,939
-Vermont,Siena,John Becker,Gerry McNamara,American East,MAAC,12/17/2025,,"Burlington, VT",HOME,,1,0,0,,0,,,,,,,,,982
-Siena,Vermont,Gerry McNamara,John Becker,MAAC,American East,12/17/2025,,"Burlington, VT",AWAY,,1,0,0,,0,,,,,,,,,982
-Presbyterian,East Carolina,Quinton Ferrell,Michael Schwartz,Big South,American,12/17/2025,,"Greenville, NC",AWAY,,1,0,0,,0,,,,,,,,,1023
-East Carolina,Presbyterian,Michael Schwartz,Quinton Ferrell,American,Big South,12/17/2025,,"Greenville, NC",HOME,,1,0,0,,0,,,,,,,,,1023
-Vanderbilt,Memphis,Mark Byington,Penny Hardaway,SEC,American,12/17/2025,,"Memphis, TN",AWAY,,1,0,0,,1,,,,,,,,,1070
-Memphis,Vanderbilt,Penny Hardaway,Mark Byington,American,SEC,12/17/2025,,"Memphis, TN",HOME,,1,0,0,,1,,,,,,,,,1070
-Santa Clara,North Texas,Herb Sendek,Daniyal Robinson,WCC,American,12/17/2025,,"Santa Clara, CA",HOME,,1,0,0,,0,,,,,,,,,1097
-North Texas,Santa Clara,Daniyal Robinson,Herb Sendek,American,WCC,12/17/2025,,"Santa Clara, CA",AWAY,,1,0,0,,0,,,,,,,,,1097
-South Florida,Alabama,Bryan Hodgson,Nate Oats,American,SEC,12/17/2025,,"Tuscaloosa, AL",AWAY,,1,0,0,,1,,,,,,,,,1138
-Alabama,South Florida,Nate Oats,Bryan Hodgson,SEC,American,12/17/2025,,"Tuscaloosa, AL",HOME,,1,0,0,,0,,,,,,,,,1138
-Tulane,Louisiana Tech,Ron Hunter,Talvin Hester,American,CUSA,12/17/2025,,"New Orleans, LA",HOME,,1,0,0,,0,,,,,,,,,1172
-Louisiana Tech,Tulane,Talvin Hester,Ron Hunter,CUSA,American,12/17/2025,,"New Orleans, LA",AWAY,,1,0,0,,0,,,,,,,,,1172
-UAB,Cleveland St.,Andy Kennedy,Rob Summers,American,Horizon,12/17/2025,,"Birmingham, AL",HOME,,1,0,0,,0,,,,,,,,,1202
-Cleveland St.,UAB,Rob Summers,Andy Kennedy,Horizon,American,12/17/2025,,"Birmingham, AL",AWAY,,1,0,0,,0,,,,,,,,,1202
-UTSA,USC,Austin Claunch,Eric Musselman,American,Big Ten,12/17/2025,,"Los Angeles, CA",AWAY,,1,0,0,,0,,,,,,,,,1213
-USC,UTSA,Eric Musselman,Austin Claunch,Big Ten,American,12/17/2025,,"Los Angeles, CA",HOME,,1,0,0,,0,,,,,,,,,1213
-Wofford,Wichita St.,Kevin Giltner,Paul Mills,Southern,American,12/17/2025,,"Wichita, KS",AWAY,,1,0,0,,0,,,,,,,,,1224
-Wichita St.,Wofford,Paul Mills,Kevin Giltner,American,Southern,12/17/2025,,"Wichita, KS",HOME,,1,0,0,,1,,,,,,,,,1224
-San Francisco,Loyola Chicago,Chris Gerlufsen,Drew Valentine,WCC,A10,12/17/2025,,"San Francisco, CA",HOME,,1,0,0,,0,,,,,,,,,1389
-Loyola Chicago,San Francisco,Drew Valentine,Chris Gerlufsen,A10,WCC,12/17/2025,,"San Francisco, CA",AWAY,,1,0,0,,0,,,,,,,,,1389
-Richmond,Elon,Chris Mooney,Billy Taylor,A10,CAA,12/17/2025,,"Elon, NC",AWAY,,1,0,0,,0,,,,,,,,,1419
-Elon,Richmond,Billy Taylor,Chris Mooney,CAA,A10,12/17/2025,,"Elon, NC",HOME,,1,0,0,,0,,,,,,,,,1419
-Saint Louis,Bethune Cookman,Josh Schertz,Reggie Theus,A10,SWAC,12/17/2025,,"St. Louis, MO",HOME,,1,0,0,,0,,,,,,,,,1448
-Bethune Cookman,Saint Louis,Reggie Theus,Josh Schertz,SWAC,A10,12/17/2025,,"St. Louis, MO",AWAY,,1,0,0,,0,,,,,,,,,1448
-UCLA,Arizona St.,Mick Cronin,Bobby Hurley,Big Ten,Big 12,12/17/2025,,"Los Angeles, CA",HOME,,1,0,0,,0,,,,,,,,,1480
-Arizona St.,UCLA,Bobby Hurley,Mick Cronin,Big 12,Big Ten,12/17/2025,,"Los Angeles, CA",AWAY,,1,0,0,,1,,,,,,,,,1480
-Cincinnati,Alabama St.,Wes Miller,Tony Madlock,Big 12,SWAC,12/17/2025,,"Cincinnati, OH",HOME,,1,0,0,,1,,,,,,,,,1579
-Alabama St.,Cincinnati,Tony Madlock,Wes Miller,SWAC,Big 12,12/17/2025,,"Cincinnati, OH",AWAY,,1,0,0,,0,,,,,,,,,1579
-Portland St.,Colorado,Jase Coburn,Tad Boyle,Big Sky,Big 12,12/17/2025,,"Boulder, CO",AWAY,,1,0,0,,0,,,,,,,,,1602
-Colorado,Portland St.,Tad Boyle,Jase Coburn,Big 12,Big Sky,12/17/2025,,"Boulder, CO",HOME,,1,0,0,,0,,,,,,,,,1602
-UCF,Mercer,Johnny Dawkins,Ryan Ridder,Big 12,Southern,12/17/2025,,"Orlando, FL",HOME,,1,0,0,,0,,,,,,,,,1739
-Mercer,UCF,Ryan Ridder,Johnny Dawkins,Southern,Big 12,12/17/2025,,"Orlando, FL",AWAY,,1,0,0,,0,,,,,,,,,1739
-Washington St.,Eastern Washington,David Riley,Dan Monsoon,WCC,Big Sky,12/17/2025,,"Cheney, WA",AWAY,,1,0,0,,0,,,,,,,,,1770
-Eastern Washington,Washington St.,Dan Monsoon,David Riley,Big Sky,WCC,12/17/2025,,"Cheney, WA",HOME,,1,0,0,,0,,,,,,,,,1770
-Weber St.,Utah Valley,Eric Duft,Todd Phillips,Big Sky,WAC,12/17/2025,,"Orem, UT",AWAY,,1,0,0,,0,,,,,,,,,1931
-Utah Valley,Weber St.,Todd Phillips,Eric Duft,WAC,Big Sky,12/17/2025,,"Orem, UT",HOME,,1,0,0,,0,,,,,,,,,1931
-Portland,Oregon,Shantay Legans,Dana Altman,WCC,Big Ten,12/17/2025,,"Eugene, OR",AWAY,,1,0,0,,1,,,,,,,,,2305
-Oregon,Portland,Dana Altman,Shantay Legans,Big Ten,WCC,12/17/2025,,"Eugene, OR",HOME,,1,0,0,,0,,,,,,,,,2305
-UC Davis,Seattle,Jim Les,Chris Victor,Big West,WCC,12/17/2025,,"Davis, CA",HOME,,1,0,0,,0,,,,,,,,,2520
-Seattle,UC Davis,Chris Victor,Jim Les,WCC,Big West,12/17/2025,,"Davis, CA",AWAY,,1,0,0,,0,,,,,,,,,2520
-UC Santa Barbara,Green Bay,Joe Pasternack,Doug Gottlieb,Big West,Horizon,12/17/2025,,"Ashwaubenon, WI",AWAY,,1,0,0,,0,,,,,,,,,2567
-Green Bay,UC Santa Barbara,Doug Gottlieb,Joe Pasternack,Horizon,Big West,12/17/2025,,"Ashwaubenon, WI",HOME,,1,0,0,,0,,,,,,,,,2567
-Gonzaga,Campbell,Mark Few,John Andrzejek,WCC,CAA,12/17/2025,,"Spokane, WA",HOME,,1,0,0,,0,,,,,,,,,2572
-Campbell,Gonzaga,John Andrzejek,Mark Few,CAA,WCC,12/17/2025,,"Spokane, WA",AWAY,,1,0,0,,1,,,,,,,,,2572
-The Citadel,Charleston,Ed Conroy,Chris Mack,Southern,CAA,12/17/2025,,"Charleston, SC",AWAY,,1,0,0,,0,,,,,,,,,2597
-Charleston,The Citadel,Chris Mack,Ed Conroy,CAA,Southern,12/17/2025,,"Charleston, SC",HOME,,1,0,0,,0,,,,,,,,,2597
-Quinnipiac,Monmouth,Tom Pecora,King Rice,MAAC,CAA,12/17/2025,,"West Long Branch, NJ",AWAY,,1,0,0,,0,,,,,,,,,2703
-Monmouth,Quinnipiac,King Rice,Tom Pecora,CAA,MAAC,12/17/2025,,"West Long Branch, NJ",HOME,,1,0,0,,0,,,,,,,,,2703
-Middle Tennessee,Kennesaw St.,Nick McDevitt,Antoine Pettway,CUSA,CUSA,12/17/2025,,"Murfreesboro, TN",HOME,,0,0,0,,0,,,,,,,,,2848
-Kennesaw St.,Middle Tennessee,Antoine Pettway,Nick McDevitt,CUSA,CUSA,12/17/2025,,"Murfreesboro, TN",AWAY,,0,0,0,,0,,,,,,,,,2848
-Sam Houston St.,Oregon St.,Chris Mudge,Wayne Tinkle,CUSA,WCC,12/17/2025,,"Corvallis, OR",AWAY,,1,0,0,,0,,,,,,,,,2935
-Oregon St.,Sam Houston St.,Wayne Tinkle,Chris Mudge,WCC,CUSA,12/17/2025,,"Corvallis, OR",HOME,,1,0,0,,0,,,,,,,,,2935
-Oakland,Northern Kentucky,Greg Kampe,Darrin Horn,Horizon,Horizon,12/17/2025,,"Highland Heights, KY",AWAY,,0,0,0,,0,,,,,,,,,3057
-Northern Kentucky,Oakland,Darrin Horn,Greg Kampe,Horizon,Horizon,12/17/2025,,"Highland Heights, KY",HOME,,0,0,0,,0,,,,,,,,,3057
-Youngstown St.,Robert Morris,Ethan Faulkner,Andrew Toole,Horizon,Horizon,12/17/2025,,"Moon Township, PA",AWAY,,0,0,0,,1,,,,,,,,,3092
-Robert Morris,Youngstown St.,Andrew Toole,Ethan Faulkner,Horizon,Horizon,12/17/2025,,"Moon Township, PA",HOME,,0,0,0,,0,,,,,,,,,3092
-Wagner,Maryland Eastern Shore,Dwan McMillan,Cleo Hill Jr,NEC,MEAC,12/17/2025,,"Staten Island, NY",HOME,,1,0,0,,0,,,,,,,,,3427
-Maryland Eastern Shore,Wagner,Cleo Hill Jr,Dwan McMillan,MEAC,NEC,12/17/2025,,"Staten Island, NY",AWAY,,1,0,0,,0,,,,,,,,,3427
-Northern Iowa,Illinois Chicago,Ben Jacobson,Rob Ehsan,Missouri Valley,Missouri Valley,12/17/2025,,"Chicago, IL",AWAY,,0,0,0,,0,,,,,,,,,3757
-Illinois Chicago,Northern Iowa,Rob Ehsan,Ben Jacobson,Missouri Valley,Missouri Valley,12/17/2025,,"Chicago, IL",HOME,,0,0,0,,0,,,,,,,,,3757
-San Diego St.,Air Force,Brian Dutcher,Joe Scott,Mountain West,Mountain West,12/17/2025,,"San Diego, CA",HOME,,0,0,0,,0,,,,,,,,,3787
-Air Force,San Diego St.,Joe Scott,Brian Dutcher,Mountain West,Mountain West,12/17/2025,,"San Diego, CA",AWAY,,0,0,0,,1,,,,,,,,,3787
-Saint Francis,Florida,Luke McConnell,Todd Golden,NEC,SEC,12/17/2025,,"Gainesville, FL",AWAY,,1,0,0,,1,,,,,,,,,4035
-Florida,Saint Francis,Todd Golden,Luke McConnell,SEC,NEC,12/17/2025,,"Gainesville, FL",HOME,,1,0,0,,1,,,,,,,,,4035
-North Florida,Charleston Southern,Bobby Kennen,Saah Nimley,ASUN,Big South,12/18/2025,,"Charleston, SC",AWAY,,1,0,0,,0,,,,,,,,,780
-Charleston Southern,North Florida,Saah Nimley,Bobby Kennen,Big South,ASUN,12/18/2025,,"Charleston, SC",HOME,,1,0,0,,0,,,,,,,,,780
+Georgia St.,Georgia Southern,Jonas Hayes,Charlie Henry,Sun Belt,Sun Belt,12/18/2025,,"Statesboro, GA",AWAY,,0,0,0,,0,,,,,,,,,780
+Georgia Southern,Georgia St.,Charlie Henry,Jonas Hayes,Sun Belt,Sun Belt,12/18/2025,,"Charleston, SC",HOME,,0,0,0,,0,,,,,,,,,780
 Lafayette,Charlotte,Mike McGarvey,Aaron Fearne,Patriot,American,12/18/2025,,"Charlotte, NC",AWAY,,1,0,0,,0,,,,,,,,,993
 Charlotte,Lafayette,Aaron Fearne,Mike McGarvey,American,Patriot,12/18/2025,,"Charlotte, NC",HOME,,1,0,0,,0,,,,,,,,,993
 Temple,Davidson,Adam Fisher,Matt McKillop,American,A10,12/18/2025,,"Davidson, NC",AWAY,,1,0,0,,0,,,,,,,,,1154
@@ -5299,8 +5211,8 @@ Michigan St.,Michigan,Tom Izzo,Dusty May,Big Ten,Big Ten,3/8/2026,,"Ann Arbor, M
 Michigan,Michigan St.,Dusty May,Tom Izzo,Big Ten,Big Ten,3/8/2026,,"Ann Arbor, MI",HOME,,0,0,0,,1,,,,,,,,,2205
 Rutgers,Penn St.,Steve Pikiell,Mike Rhodes,Big Ten,Big Ten,3/8/2026,,"Piscataway, NJ",HOME,,0,0,0,,0,,,,,,,,,2330
 Penn St.,Rutgers,Mike Rhodes,Steve Pikiell,Big Ten,Big Ten,3/8/2026,,"Piscataway, NJ",AWAY,,0,0,0,,0,,,,,,,,,2330
-Texas A&M Corpus Chris,Stephen F. Austin,Jim Shaw,Matt Braeuer,Southland,Southland,,,,HOME,,0,0,0,,0,,,,,,,,,4251
-Stephen F. Austin,Texas A&M Corpus Chris,Matt Braeuer,Jim Shaw,Southland,Southland,,,,AWAY,,0,0,0,,0,,,,,,,,,4251
+,,,,,,,,,HOME,,,0,0,,0,,,,,,,,,4251
+,,,,,,,,,AWAY,,,0,0,,0,,,,,,,,,4251
 ,,,,,,,,,HOME,,,0,0,,0,,,,,,,,,4252
 ,,,,,,,,,AWAY,,,0,0,,0,,,,,,,,,4252
 ,,,,,,,,,HOME,,,0,0,,0,,,,,,,,,4253
