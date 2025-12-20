@@ -1,30 +1,30 @@
 Players,Team,Location,Opponent,Opponent Conference,Power,Top 25,,STR,Min,FGM,FGA,3M,3A,FTM,FTA,OReb,DReb,AST,STL,TO,PF,PTS,OPP ACTIVE VALUE,OPP HISTORICAL VALUE,TEAM ACTIVE VALUE,TEAM HISTORICAL VALUE,Doubles,Double Doube,Triple Double,0-3+ FG,Perfect 2 FG min 3,Perfect 3 FG min 3,Points Leader,Def Reb Leader,Off Reb Leader,Steal Leader,Assist Leader,Foul Trouble,20+ minutes,20+ points,SM,Line,Clutch ,Overtime,Attendance,Player Points,
-Karson Templin,Utah St.,NEUTRAL,Davidson,A10,0,0,Starter,1,16,3,5,0,1,0,1,0,4,1,0,0,1,6,0,21.293,0,56.176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,-9.5,0,0,"1,817",0,TRUE
-Tucker Anderson,Utah St.,NEUTRAL,Davidson,A10,0,0,Starter,1,24,1,4,1,3,2,2,0,2,2,0,1,3,5,0,21.293,0,56.176,0,0,0,0,0,0,0,0,0,0,0,0,1,0,34,-9.5,0,0,"1,817",0,TRUE
-Mason Falslev,Utah St.,NEUTRAL,Davidson,A10,0,0,Starter,1,26,3,5,0,0,2,2,0,3,4,4,1,0,8,0,21.293,0,56.176,0,0,0,0,0,0,0,0,0,0,0,0,1,0,34,-9.5,0,0,"1,817",0,TRUE
-Drake Allen,Utah St.,NEUTRAL,Davidson,A10,0,0,Starter,1,25,5,9,1,4,1,2,0,5,7,5,1,3,12,0,21.293,0,56.176,1,0,0,0,0,0,0,1,0,1,1,0,1,0,34,-9.5,0,0,"1,817",0,TRUE
-MJ Collins Jr.,Utah St.,NEUTRAL,Davidson,A10,0,0,Starter,1,28,14,19,8,12,4,4,0,1,2,2,0,1,40,0,21.293,0,56.176,1,0,0,0,0,1,1,0,0,0,0,0,1,1,34,-9.5,0,0,"1,817",0,TRUE
-Adlan Elamin,Utah St.,NEUTRAL,Davidson,A10,0,0,Bench,0,10,0,1,0,1,0,0,0,0,1,0,2,2,0,0,21.293,0,56.176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,-9.5,0,0,"1,817",0,FALSE
-Luke Kearney,Utah St.,NEUTRAL,Davidson,A10,0,0,Bench,0,5,1,1,1,1,0,0,0,0,0,0,0,0,3,0,21.293,0,56.176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,-9.5,0,0,"1,817",0,FALSE
-Garry Clark,Utah St.,NEUTRAL,Davidson,A10,0,0,Bench,0,18,3,6,0,0,0,0,4,3,0,1,2,3,6,0,21.293,0,56.176,0,0,0,0,0,0,0,0,1,0,0,0,0,0,34,-9.5,0,0,"1,817",0,TRUE
-Zach Keller,Utah St.,NEUTRAL,Davidson,A10,0,0,Bench,0,9,0,1,0,0,0,0,1,0,0,0,1,3,0,0,21.293,0,56.176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,-9.5,0,0,"1,817",0,FALSE
-Elijah Perryman,Utah St.,NEUTRAL,Davidson,A10,0,0,Bench,0,10,2,2,1,1,0,0,0,1,0,1,0,2,5,0,21.293,0,56.176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,-9.5,0,0,"1,817",0,FALSE
-Jordy Barnes,Utah St.,NEUTRAL,Davidson,A10,0,0,Bench,0,8,0,0,0,0,0,0,0,1,2,0,0,1,0,0,21.293,0,56.176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,-9.5,0,0,"1,817",0,FALSE
-Kolby King,Utah St.,NEUTRAL,Davidson,A10,0,0,Bench,0,21,3,6,0,3,3,3,0,4,1,2,3,1,9,0,21.293,0,56.176,0,0,0,0,1,1,0,0,0,0,0,0,1,0,34,-9.5,0,0,"1,817",0,TRUE
-Manie Joses,Davidson,NEUTRAL,Utah St.,Mountain West,0,0,Starter,1,8,0,2,0,2,0,0,0,0,0,0,1,0,0,0,56.176,0,21.293,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-34,9.5,0,0,"1,817",0,TRUE
-Sean Logan,Davidson,NEUTRAL,Utah St.,Mountain West,0,0,Starter,1,8,0,3,0,0,0,0,0,2,1,0,2,0,0,0,56.176,0,21.293,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-34,9.5,0,0,"1,817",0,TRUE
-Sam Brown,Davidson,NEUTRAL,Utah St.,Mountain West,0,0,Starter,1,23,3,7,1,4,2,4,0,2,0,0,3,3,9,0,56.176,0,21.293,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-34,9.5,0,0,"1,817",0,TRUE
-Josh Scovens,Davidson,NEUTRAL,Utah St.,Mountain West,0,0,Starter,1,23,3,6,1,1,2,3,2,1,0,3,2,0,9,0,56.176,0,21.293,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-34,9.5,0,0,"1,817",0,TRUE
-Parker Friedrichsen,Davidson,NEUTRAL,Utah St.,Mountain West,0,0,Starter,1,16,0,3,0,2,0,0,1,0,0,0,1,1,0,0,56.176,0,21.293,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-34,9.5,0,0,"1,817",0,TRUE
-JaQualon Roberts,Davidson,NEUTRAL,Utah St.,Mountain West,0,0,Bench,0,16,2,4,1,2,0,0,4,2,0,1,1,1,5,0,56.176,0,21.293,0,0,0,0,0,0,0,0,1,0,0,0,0,0,-34,9.5,0,0,"1,817",0,FALSE
-Ian Platteeuw,Davidson,NEUTRAL,Utah St.,Mountain West,0,0,Bench,0,16,0,2,0,1,0,1,1,1,3,1,0,0,0,0,56.176,0,21.293,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-34,9.5,0,0,"1,817",0,FALSE
-RJ Greer,Davidson,NEUTRAL,Utah St.,Mountain West,0,0,Bench,0,8,0,1,0,1,0,0,0,0,1,0,1,1,0,0,56.176,0,21.293,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-34,9.5,0,0,"1,817",0,FALSE
-Devin Brown,Davidson,NEUTRAL,Utah St.,Mountain West,0,0,Bench,0,24,2,4,0,1,3,4,0,4,3,1,3,1,7,0,56.176,0,21.293,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-34,9.5,0,0,"1,817",0,TRUE
-Roberts Blums,Davidson,NEUTRAL,Utah St.,Mountain West,0,0,Bench,0,24,5,9,2,6,2,3,0,2,0,0,2,2,14,0,56.176,0,21.293,1,0,0,0,1,0,0,0,0,0,0,0,1,0,-34,9.5,0,0,"1,817",0,TRUE
-Nick Coval,Davidson,NEUTRAL,Utah St.,Mountain West,0,0,Bench,0,16,1,4,0,1,0,0,0,0,1,1,2,2,2,0,56.176,0,21.293,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-34,9.5,0,0,"1,817",0,FALSE
-Hunter Adam,Davidson,NEUTRAL,Utah St.,Mountain West,0,0,Bench,0,18,5,8,2,5,2,2,2,2,1,0,1,2,14,0,56.176,0,21.293,1,0,0,0,1,0,0,0,0,0,0,0,0,0,-34,9.5,0,0,"1,817",0,FALSE
-0,0,NEUTRAL,Utah St.,Mountain West,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56.176,0,56.176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-34,9.5,0,0,"1,817",0,FALSE
-0,0,NEUTRAL,Utah St.,Mountain West,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56.176,0,56.176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-34,9.5,0,0,"1,817",0,FALSE
-0,0,NEUTRAL,Utah St.,Mountain West,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56.176,0,56.176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-34,9.5,0,0,"1,817",0,FALSE
-0,0,NEUTRAL,Utah St.,Mountain West,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56.176,0,56.176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-34,9.5,0,0,"1,817",0,FALSE
-0,0,NEUTRAL,Utah St.,Mountain West,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56.176,0,56.176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-34,9.5,0,0,"1,817",0,FALSE
+Quin Gorman,Stony Brook,NEUTRAL,Pacific,WCC,0,0,Starter,1,16,0,2,0,1,0,0,1,0,0,0,0,0,0,0,5.636,0,13.595,0,0,0,0,0,0,0,0,1,0,0,0,0,0,-28,4.5,0,0,N/A,0,TRUE
+Richard Goods,Stony Brook,NEUTRAL,Pacific,WCC,0,0,Starter,1,24,3,6,2,3,0,0,0,4,2,0,1,4,8,0,5.636,0,13.595,0,0,0,0,0,0,0,0,0,0,0,1,1,0,-28,4.5,0,0,N/A,0,TRUE
+Collin O’Connor,Stony Brook,NEUTRAL,Pacific,WCC,0,0,Starter,1,25,3,7,1,4,0,0,1,2,0,1,2,1,7,0,5.636,0,13.595,0,0,0,0,0,0,0,0,1,0,0,0,1,0,-28,4.5,0,0,N/A,0,TRUE
+Erik Pratt,Stony Brook,NEUTRAL,Pacific,WCC,0,0,Starter,1,25,1,10,0,6,4,4,0,2,2,3,2,1,6,0,5.636,0,13.595,0,0,0,0,0,1,0,0,0,1,0,0,1,0,-28,4.5,0,0,N/A,0,TRUE
+Rob Brown III,Stony Brook,NEUTRAL,Pacific,WCC,0,0,Starter,1,28,3,7,2,4,0,0,1,2,1,0,0,0,8,0,5.636,0,13.595,0,0,0,0,0,0,0,0,1,0,0,0,1,0,-28,4.5,0,0,N/A,0,TRUE
+Tomas Valentiny,Stony Brook,NEUTRAL,Pacific,WCC,0,0,Bench,0,22,1,4,1,3,0,2,1,0,1,1,2,2,3,0,5.636,0,13.595,0,0,0,0,0,0,0,0,1,0,0,0,1,0,-28,4.5,0,0,N/A,0,TRUE
+Oleg Kojenets,Stony Brook,NEUTRAL,Pacific,WCC,0,0,Bench,0,15,1,4,0,0,2,2,0,3,0,1,2,3,4,0,5.636,0,13.595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-28,4.5,0,0,N/A,0,FALSE
+Andrej Shoshkikj,Stony Brook,NEUTRAL,Pacific,WCC,0,0,Bench,0,17,2,6,1,4,0,0,1,0,2,1,1,0,5,0,5.636,0,13.595,0,0,0,0,0,0,0,0,1,0,0,0,0,0,-28,4.5,0,0,N/A,0,TRUE
+Ethan Simmon,Stony Brook,NEUTRAL,Pacific,WCC,0,0,Bench,0,7,1,4,0,2,5,5,1,0,0,1,0,0,7,0,5.636,0,13.595,0,0,0,0,0,1,0,0,1,0,0,0,0,0,-28,4.5,0,0,N/A,0,FALSE
+Jonah Butler,Stony Brook,NEUTRAL,Pacific,WCC,0,0,Bench,0,12,2,5,1,4,0,0,0,1,0,0,0,3,5,0,5.636,0,13.595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-28,4.5,0,0,N/A,0,FALSE
+Toby Onyekonwu,Stony Brook,NEUTRAL,Pacific,WCC,0,0,Bench,0,6,2,2,1,1,0,0,0,0,1,1,0,0,5,0,5.636,0,13.595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-28,4.5,0,0,N/A,0,FALSE
+Elias Ralph,Pacific,NEUTRAL,Stony Brook,CAA,0,0,Starter,1,27,6,11,1,2,4,4,1,0,3,0,0,1,17,0,13.595,0,5.636,1,0,0,0,0,1,1,0,1,0,1,0,1,0,28,-4.5,0,0,N/A,0,TRUE
+Isaac Jack,Pacific,NEUTRAL,Stony Brook,CAA,0,0,Starter,1,24,5,6,0,0,0,0,0,5,0,1,0,0,10,0,13.595,0,5.636,1,0,0,0,0,0,0,0,0,0,0,0,1,0,28,-4.5,0,0,N/A,0,TRUE
+Kajus Kublickas,Pacific,NEUTRAL,Stony Brook,CAA,0,0,Starter,1,22,2,4,2,3,4,4,0,4,1,0,1,2,10,0,13.595,0,5.636,1,0,0,0,0,1,0,0,0,0,0,0,1,0,28,-4.5,0,0,N/A,0,TRUE
+Justin Rochelin,Pacific,NEUTRAL,Stony Brook,CAA,0,0,Starter,1,28,1,1,0,0,3,4,0,5,0,1,4,1,5,0,13.595,0,5.636,0,0,0,0,0,0,0,0,0,0,0,0,1,0,28,-4.5,0,0,N/A,0,TRUE
+TJ Wainwright,Pacific,NEUTRAL,Stony Brook,CAA,0,0,Starter,1,24,1,4,1,2,4,4,0,8,1,1,1,1,7,0,13.595,0,5.636,0,0,0,0,0,1,0,1,0,0,0,0,1,0,28,-4.5,0,0,N/A,0,TRUE
+Jaion Pitt,Pacific,NEUTRAL,Stony Brook,CAA,0,0,Bench,0,14,1,2,0,0,2,2,1,3,2,1,0,1,4,0,13.595,0,5.636,0,0,0,0,0,0,0,0,1,0,0,0,0,0,28,-4.5,0,0,N/A,0,FALSE
+KC Ibekwe,Pacific,NEUTRAL,Stony Brook,CAA,0,0,Bench,0,14,5,5,0,0,1,4,0,0,0,0,2,1,11,0,13.595,0,5.636,1,0,0,0,1,0,0,0,0,0,0,0,0,0,28,-4.5,0,0,N/A,0,FALSE
+Emmanuel Manyuon,Pacific,NEUTRAL,Stony Brook,CAA,0,0,Bench,0,5,0,0,0,0,0,0,0,1,0,0,1,0,0,0,13.595,0,5.636,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,-4.5,0,0,N/A,0,FALSE
+Alexis Marmolejos,Pacific,NEUTRAL,Stony Brook,CAA,0,0,Bench,0,16,2,4,1,3,2,2,1,2,0,1,0,2,7,0,13.595,0,5.636,0,0,0,0,0,0,0,0,1,0,0,0,0,0,28,-4.5,0,0,N/A,0,TRUE
+Jaden Clayton,Pacific,NEUTRAL,Stony Brook,CAA,0,0,Bench,0,23,6,6,3,3,0,0,0,2,2,0,3,0,15,0,13.595,0,5.636,1,0,0,0,1,0,0,0,0,0,0,0,1,0,28,-4.5,0,0,N/A,0,TRUE
+0,0,NEUTRAL,Stony Brook,CAA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13.595,0,13.595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,-4.5,0,0,N/A,0,FALSE
+0,0,NEUTRAL,Stony Brook,CAA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13.595,0,13.595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,-4.5,0,0,N/A,0,FALSE
+0,0,NEUTRAL,Stony Brook,CAA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13.595,0,13.595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,-4.5,0,0,N/A,0,FALSE
+0,0,NEUTRAL,Stony Brook,CAA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13.595,0,13.595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,-4.5,0,0,N/A,0,FALSE
+0,0,NEUTRAL,Stony Brook,CAA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13.595,0,13.595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,-4.5,0,0,N/A,0,FALSE
+0,0,NEUTRAL,Stony Brook,CAA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13.595,0,13.595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,-4.5,0,0,N/A,0,FALSE
+0,0,NEUTRAL,Stony Brook,CAA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13.595,0,13.595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,-4.5,0,0,N/A,0,FALSE
+0,0,NEUTRAL,Stony Brook,CAA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13.595,0,13.595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,-4.5,0,0,N/A,0,FALSE
