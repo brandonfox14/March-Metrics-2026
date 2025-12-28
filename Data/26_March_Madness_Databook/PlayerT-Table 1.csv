@@ -1,30 +1,30 @@
-Players,Team,Location,Opponent,Opponent Conference,Power,Top 25,,STR,Min,FGM,FGA,3M,3A,FTM,FTA,OReb,DReb,AST,STL,TO,PF,PTS,OPP ACTIVE VALUE,OPP HISTORICAL VALUE,TEAM ACTIVE VALUE,TEAM HISTORICAL VALUE,Doubles,Double Doube,Triple Double,0-3+ FG,Perfect 2 FG min 3,Perfect 3 FG min 3,Points Leader,Def Reb Leader,Off Reb Leader,Steal Leader,Assist Leader,Foul Trouble,20+ minutes,20+ points,SM,Line,Clutch ,Overtime,Attendance,Player Points,
-N'famara Dabo,Brown,AWAY,New Hampshire,American East,0,0,Starter,1,27,1,4,0,0,0,2,3,5,1,1,0,2,2,0,10.359,0,12.865,0,0,0,0,0,0,0,0,1,0,0,0,1,0,12,-4.5,0,0,302,0,TRUE
-Landon Lewis,Brown,AWAY,New Hampshire,American East,0,0,Starter,1,32,7,14,0,2,3,4,1,7,1,0,2,0,17,0,10.359,0,12.865,1,0,0,0,0,0,1,1,0,0,0,0,1,0,12,-4.5,0,0,302,0,TRUE
-Isaiah Langham,Brown,AWAY,New Hampshire,American East,0,0,Starter,1,18,0,5,0,2,0,0,1,0,1,1,3,1,0,0,10.359,0,12.865,0,0,0,1,0,0,0,0,0,0,0,0,0,0,12,-4.5,0,0,302,0,TRUE
-Luke Paragon,Brown,AWAY,New Hampshire,American East,0,0,Starter,1,10,0,2,0,2,0,0,0,0,0,0,0,0,0,0,10.359,0,12.865,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12,-4.5,0,0,302,0,FALSE
-Jeremiah Jenkins,Brown,AWAY,New Hampshire,American East,0,0,Starter,1,29,2,4,2,2,0,0,0,3,3,3,2,3,6,0,10.359,0,12.865,0,0,0,0,0,0,0,0,0,1,1,0,1,0,12,-4.5,0,0,302,0,TRUE
-David Rochester,Brown,AWAY,New Hampshire,American East,0,0,Bench,0,21,0,3,0,2,4,4,2,4,3,0,1,2,4,0,10.359,0,12.865,0,0,0,1,0,1,0,0,0,0,1,0,1,0,12,-4.5,0,0,302,0,TRUE
-Brady Loughlin,Brown,AWAY,New Hampshire,American East,0,0,Bench,0,21,6,8,3,5,2,3,0,3,0,1,1,1,17,0,10.359,0,12.865,1,0,0,0,1,0,1,0,0,0,0,0,1,0,12,-4.5,0,0,302,0,TRUE
-Adrian Uchidiuno,Brown,AWAY,New Hampshire,American East,0,0,Bench,0,27,6,11,0,4,1,2,0,2,1,2,3,4,13,0,10.359,0,12.865,1,0,0,0,0,0,0,0,0,0,0,1,1,0,12,-4.5,0,0,302,0,TRUE
-Malcolm Wrisby-Jefferson,Brown,AWAY,New Hampshire,American East,0,0,Bench,0,15,0,0,0,0,0,0,0,3,2,0,1,2,0,0,10.359,0,12.865,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12,-4.5,0,0,302,0,FALSE
-John Squire,New Hampshire,HOME,Brown,Ivy,0,0,Starter,1,28,1,5,1,1,0,0,0,6,1,2,2,3,3,0,12.865,0,10.359,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-12,4.5,0,0,302,0,TRUE
-Belal El Shakery,New Hampshire,HOME,Brown,Ivy,0,0,Starter,1,26,4,13,0,5,2,2,1,4,0,1,3,3,10,0,12.865,0,10.359,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-12,4.5,0,0,302,0,TRUE
-Davide Poser,New Hampshire,HOME,Brown,Ivy,0,0,Starter,1,31,3,7,3,6,0,0,1,3,0,0,0,0,9,0,12.865,0,10.359,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-12,4.5,0,0,302,0,TRUE
-Tyler Bike,New Hampshire,HOME,Brown,Ivy,0,0,Starter,1,22,0,3,0,3,0,0,0,3,2,0,1,1,0,0,12.865,0,10.359,0,0,0,1,0,0,0,0,0,0,0,0,1,0,-12,4.5,0,0,302,0,TRUE
-Jack Graham,New Hampshire,HOME,Brown,Ivy,0,0,Starter,1,29,5,9,2,4,2,2,0,2,0,2,0,1,14,0,12.865,0,10.359,1,0,0,0,0,0,0,0,0,0,0,0,1,0,-12,4.5,0,0,302,0,TRUE
-Giannos Xanthopoulos,New Hampshire,HOME,Brown,Ivy,0,0,Bench,0,5,0,0,0,0,0,0,0,0,0,0,2,2,0,0,12.865,0,10.359,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,4.5,0,0,302,0,FALSE
-R.J. Kennedy,New Hampshire,HOME,Brown,Ivy,0,0,Bench,0,14,2,6,1,5,0,0,1,1,1,2,0,1,5,0,12.865,0,10.359,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,4.5,0,0,302,0,FALSE
-KiJan Robinson,New Hampshire,HOME,Brown,Ivy,0,0,Bench,0,24,0,6,0,3,0,0,2,2,2,1,4,3,0,0,12.865,0,10.359,0,0,0,1,0,0,0,0,0,0,0,0,1,0,-12,4.5,0,0,302,0,TRUE
-Comeh Emuobor,New Hampshire,HOME,Brown,Ivy,0,0,Bench,0,17,3,11,0,3,0,0,2,4,1,1,2,2,6,0,12.865,0,10.359,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,4.5,0,0,302,0,TRUE
-0,0,NEUTRAL,Brown,Ivy,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.865,0,12.865,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,4.5,0,0,302,0,FALSE
-0,0,NEUTRAL,Brown,Ivy,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.865,0,12.865,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,4.5,0,0,302,0,FALSE
-0,0,NEUTRAL,Brown,Ivy,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.865,0,12.865,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,4.5,0,0,302,0,FALSE
-0,0,NEUTRAL,Brown,Ivy,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.865,0,12.865,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,4.5,0,0,302,0,FALSE
-0,0,NEUTRAL,Brown,Ivy,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.865,0,12.865,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,4.5,0,0,302,0,FALSE
-0,0,NEUTRAL,Brown,Ivy,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.865,0,12.865,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,4.5,0,0,302,0,FALSE
-0,0,NEUTRAL,Brown,Ivy,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.865,0,12.865,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,4.5,0,0,302,0,FALSE
-0,0,NEUTRAL,Brown,Ivy,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.865,0,12.865,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,4.5,0,0,302,0,FALSE
-0,0,NEUTRAL,Brown,Ivy,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.865,0,12.865,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,4.5,0,0,302,0,FALSE
-0,0,NEUTRAL,Brown,Ivy,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.865,0,12.865,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,4.5,0,0,302,0,FALSE
-0,0,NEUTRAL,Brown,Ivy,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12.865,0,12.865,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-12,4.5,0,0,302,0,FALSE
+Players,Team,Location,Opponent,Opponent Conference,Power,Top 25,,STR,Min,FGM,FGA,3M,3A,FTM,FTA,OReb,DReb,AST,STL,TO,PF,PTS,OPP ACTIVE VALUE,OPP HISTORICAL VALUE,TEAM ACTIVE VALUE,TEAM HISTORICAL VALUE,Doubles,Double Doube,Triple Double,0-3+ FG,Perfect 2 FG min 3,Perfect 3 FG min 3,Points Leader,Def Reb Leader,Off Reb Leader,Steal Leader,Assist Leader,Foul Trouble,20+ minutes,20+ points,SM,Line,Clutch ,Overtime,Attendance,Player Points
+Gus Yalden,Vermont,NEUTRAL,Princeton,Ivy,0,0,Starter,1,22,11,14,3,4,2,3,2,1,0,0,1,3,27,0,38.911,0,45.113,1,0,0,0,0,0,1,0,1,0,0,0,1,1,5,-5.5,1,0,—,0
+Lucas Mari,Vermont,NEUTRAL,Princeton,Ivy,0,0,Starter,1,20,2,5,0,3,0,0,0,0,2,1,0,0,4,0,38.911,0,45.113,0,0,0,0,0,0,0,0,0,1,0,0,1,0,5,-5.5,1,0,—,0
+Sean Blake,Vermont,NEUTRAL,Princeton,Ivy,0,0,Starter,1,25,2,5,0,1,2,3,1,6,4,0,1,4,6,0,38.911,0,45.113,0,0,0,0,0,0,0,0,0,0,1,1,1,0,5,-5.5,1,0,—,0
+TJ Hurley,Vermont,NEUTRAL,Princeton,Ivy,0,0,Starter,1,22,3,8,1,3,0,1,1,3,1,1,1,0,7,0,38.911,0,45.113,0,0,0,0,0,0,0,0,0,1,0,0,1,0,5,-5.5,1,0,—,0
+TJ Long,Vermont,NEUTRAL,Princeton,Ivy,0,0,Starter,1,29,6,11,3,7,2,3,0,8,2,0,1,0,17,0,38.911,0,45.113,1,0,0,0,0,0,0,1,0,0,0,0,1,0,5,-5.5,1,0,—,0
+Ben Michaels,Vermont,NEUTRAL,Princeton,Ivy,0,0,Bench,0,17,0,2,0,1,2,2,1,1,1,0,1,3,2,0,38.911,0,45.113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,-5.5,1,0,—,0
+Noah Barnett,Vermont,NEUTRAL,Princeton,Ivy,0,0,Bench,0,17,2,3,0,0,0,0,2,2,0,0,1,1,4,0,38.911,0,45.113,0,0,0,0,0,0,0,0,1,0,0,0,0,0,5,-5.5,1,0,—,0
+Jackson Skipper,Vermont,NEUTRAL,Princeton,Ivy,0,0,Bench,0,9,2,5,0,2,1,1,0,0,0,0,1,0,5,0,38.911,0,45.113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,-5.5,1,0,—,0
+Momo Nkugwa,Vermont,NEUTRAL,Princeton,Ivy,0,0,Bench,0,23,2,3,0,1,0,0,1,4,1,0,0,1,4,0,38.911,0,45.113,0,0,0,0,0,0,0,0,0,0,0,0,1,0,5,-5.5,1,0,—,0
+Ben Johnson,Vermont,NEUTRAL,Princeton,Ivy,0,0,Bench,0,16,1,4,1,3,0,0,0,3,2,0,0,2,3,0,38.911,0,45.113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,-5.5,1,0,—,0
+CJ Happy,Princeton,NEUTRAL,Vermont,American East,0,0,Starter,1,27,9,12,4,6,0,4,1,2,3,1,1,3,22,0,45.113,0,38.911,1,0,0,0,0,0,0,0,0,1,0,0,1,1,-5,5.5,1,0,—,0
+Malik Abdullahi,Princeton,NEUTRAL,Vermont,American East,0,0,Starter,1,34,6,8,0,2,2,4,1,5,4,0,0,2,14,0,45.113,0,38.911,1,0,0,0,1,0,0,0,0,0,1,0,1,0,-5,5.5,1,0,—,0
+Jack Stanton,Princeton,NEUTRAL,Vermont,American East,0,0,Starter,1,35,3,11,2,9,0,0,0,3,2,1,1,2,8,0,45.113,0,38.911,0,0,0,0,0,0,0,0,0,1,0,0,1,0,-5,5.5,1,0,—,0
+Landon Clark,Princeton,NEUTRAL,Vermont,American East,0,0,Starter,1,34,0,1,0,1,0,0,2,3,3,1,1,1,0,0,45.113,0,38.911,0,0,0,0,0,0,0,0,1,1,0,0,1,0,-5,5.5,1,0,—,0
+Jackson Hicke,Princeton,NEUTRAL,Vermont,American East,0,0,Starter,1,38,8,18,4,9,0,2,0,4,1,1,0,3,20,0,45.113,0,38.911,1,0,0,0,0,0,0,0,0,1,0,0,1,1,-5,5.5,1,0,—,0
+Sebastian Whitfield,Princeton,NEUTRAL,Vermont,American East,0,0,Bench,0,9,1,2,1,1,0,0,0,0,1,0,1,0,3,0,45.113,0,38.911,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5,5.5,1,0,—,0
+Jacob Hammond,Princeton,NEUTRAL,Vermont,American East,0,0,Bench,0,5,0,1,0,1,0,0,0,1,0,0,1,0,0,0,45.113,0,38.911,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5,5.5,1,0,—,0
+Jacob Huggins,Princeton,NEUTRAL,Vermont,American East,0,0,Bench,0,13,2,5,1,2,2,2,1,2,2,0,0,2,7,0,45.113,0,38.911,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5,5.5,1,0,—,0
+0,0,NEUTRAL,Vermont,American East,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45.113,0,45.113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5,5.5,1,0,—,0
+0,0,NEUTRAL,Vermont,American East,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45.113,0,45.113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5,5.5,1,0,—,0
+0,0,NEUTRAL,Vermont,American East,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45.113,0,45.113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5,5.5,1,0,—,0
+0,0,NEUTRAL,Vermont,American East,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45.113,0,45.113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5,5.5,1,0,—,0
+0,0,NEUTRAL,Vermont,American East,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45.113,0,45.113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5,5.5,1,0,—,0
+0,0,NEUTRAL,Vermont,American East,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45.113,0,45.113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5,5.5,1,0,—,0
+0,0,NEUTRAL,Vermont,American East,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45.113,0,45.113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5,5.5,1,0,—,0
+0,0,NEUTRAL,Vermont,American East,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45.113,0,45.113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5,5.5,1,0,—,0
+0,0,NEUTRAL,Vermont,American East,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45.113,0,45.113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5,5.5,1,0,—,0
+0,0,NEUTRAL,Vermont,American East,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45.113,0,45.113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5,5.5,1,0,—,0
+0,0,NEUTRAL,Vermont,American East,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45.113,0,45.113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5,5.5,1,0,—,0
