@@ -895,3 +895,4 @@ for _, rr in pred_games_df.iterrows():
             if right_top50:
                 st.dataframe(pd.DataFrame([{"Category": k, "Rank": v} for k, v in right_top50]),
                              use_container_width=True)
+                

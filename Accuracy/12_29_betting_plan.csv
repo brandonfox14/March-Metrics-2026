@@ -1,0 +1,83 @@
+﻿,GAME,BET TYPE,BET,VALUE,ODDS,Probability of accuracy,Payout if win
+0,Southern vs Illinois,SPREAD,Illinois +30.5,3,-110,0.995,5.73
+1,Yale vs Alabama,SPREAD,Yale +16.5,2,-110,0.9154234654234654,3.82
+2,LIU vs Georgia,OVER UNDER,Under 174.5,1,-110,0.7567123088940014,1.91
+3,New Haven vs Vanderbilt,SPREAD,New Haven +41.5,1,-110,0.686877123880136,1.91
+4,Middle Tennessee vs Houston,SPREAD,Middle Tennessee +27.5,1,-110,0.6833798301701739,1.91
+5,South Dakota St. vs Arizona,OVER UNDER,Under 159.5,1,-110,0.6551912319251276,1.91
+6,New Haven vs Vanderbilt,OVER UNDER,Under 143.5,1,-110,0.6546192824178743,1.91
+7,Alcorn St. vs Mississippi,SPREAD,Alcorn St. +27.5,2,-110,0.7872303655996568,3.82
+8,Queens vs Auburn,SPREAD,Auburn -24.5,1,-110,0.6828117438041076,1.91
+9,Illinois St. vs Drake,ML,Illinois St. ML,2,-148,0.995,3.35
+10,Illinois St. vs Drake,SPREAD,Illinois St. -2.5,1,-110,0.7246613386613386,1.91
+11,Michigan vs McNeese St.,OVER UNDER,Under 159.5,1,-110,0.6782440100867195,1.91
+12,Southern Miss vs LSU,SPREAD,Southern Miss +18.5,2,-110,0.8865656565656567,3.82
+13,Lipscomb vs Cincinnati,SPREAD,Lipscomb +13.5,2,-110,0.7988782061312183,3.82
+14,Lipscomb vs Cincinnati,OVER UNDER,Under 149.5,1,-110,0.7437545870773725,1.91
+15,Mississippi Valley St. vs Oklahoma,OVER UNDER,Over 152.5,1,-110,0.7409822792931979,1.91
+16,Mississippi Valley St. vs Oklahoma,SPREAD,Mississippi Valley St. +44.5,1,-110,0.7246613386613386,1.91
+17,Washington vs Utah,SPREAD,Utah +11.5,1,-110,0.6797295520267091,1.91
+18,Washington vs Utah,OVER UNDER,Over 158.5,1,-110,0.6398114034101562,1.91
+19,Cal Baptist vs Utah Valley,ML,Cal Baptist ML,6,285,0.9764646464646465,23.1
+20,Northeastern vs Elon,ML,Northeastern ML,3,185,0.8630181623931623,8.55
+21,William & Mary vs Towson,ML,William & Mary ML,2,-108,0.9911111111111112,3.85
+22,Sacred Heart vs Merrimack,SPREAD,Merrimack +1.5,3,-110,0.9865424430641823,5.73
+23,Cal Baptist vs Utah Valley,SPREAD,Cal Baptist +8.5,3,-110,0.9764646464646465,5.73
+24,Lamar vs Northwestern St.,SPREAD,Northwestern St. +3.5,2,-110,0.912767484067024,3.82
+25,UMBC vs Coppin St.,SPREAD,Coppin St. +11.5,2,-110,0.8779848753713718,3.82
+26,Northeastern vs Elon,SPREAD,Northeastern +5.5,2,-110,0.8630181623931623,3.82
+27,Western Kentucky vs Jacksonville St.,ML,Western Kentucky ML,2,-192,0.9855555555555556,3.04
+28,Stephen F. Austin vs East Texas A&M,OVER UNDER,Under 147.5,1,-110,0.7813659426034565,1.91
+29,Texas A&M Corpus Chris vs Nicholls St.,SPREAD,Nicholls St. +5.5,1,-110,0.7812574915549744,1.91
+30,UNC Wilmington vs North Carolina A&T,SPREAD,UNC Wilmington -9.5,1,-110,0.7727863386613387,1.91
+31,Drexel vs Charleston,OVER UNDER,Under 147.5,1,-110,0.7567123088940014,1.91
+32,Cal Baptist vs Utah Valley,OVER UNDER,Under 143.5,1,-110,0.7567123088940014,1.91
+33,New Orleans vs UT Rio Grande Valley,OVER UNDER,Under 154.5,1,-110,0.7509441295610325,1.91
+34,UTEP vs Louisiana Tech,OVER UNDER,Under 128.5,1,-110,0.7509441295610325,1.91
+35,Evansville vs Bradley,OVER UNDER,Under 137.5,1,-110,0.7509441295610325,1.91
+36,Rutgers vs Delaware St.,OVER UNDER,Under 132.5,1,-110,0.7362159373992121,1.91
+37,UTEP vs Louisiana Tech,SPREAD,Louisiana Tech -3.5,1,-110,0.7331833860507498,1.91
+38,Valparaiso vs Northern Iowa,SPREAD,Northern Iowa -11.5,1,-110,0.7331833860507498,1.91
+39,Southern Illinois vs Murray St.,SPREAD,Murray St. -6.5,1,-110,0.7309367438041076,1.91
+40,Stephen F. Austin vs East Texas A&M,ML,Stephen F. Austin ML,1,-285,0.9911111111111112,1.35
+41,Texas A&M Corpus Chris vs Nicholls St.,OVER UNDER,Over 137.5,1,-110,0.7268420058107777,1.91
+42,Iowa St. vs Houston Christian,SPREAD,Iowa St. -36.5,1,-110,0.7265659873072663,1.91
+43,Youngstown St. vs Detroit Mercy,SPREAD,Youngstown St. -9.5,1,-110,0.7231408601438721,1.91
+44,Evansville vs Bradley,SPREAD,Bradley -12.5,1,-110,0.718205490383199,1.91
+45,IU Indy vs Cleveland St.,SPREAD,Cleveland St. -3.5,1,-110,0.7166281689248805,1.91
+46,Michigan St. vs Cornell,OVER UNDER,Under 157.5,1,-110,0.7143511977828902,1.91
+47,Rider vs Manhattan,SPREAD,Manhattan -2.5,1,-110,0.7141192179006328,1.91
+48,Quinnipiac vs Marist,OVER UNDER,Over 145.5,1,-110,0.7131198378950614,1.91
+49,Florida vs Dartmouth,SPREAD,Dartmouth +35.5,1,-110,0.7125240453914092,1.91
+50,New Orleans vs UT Rio Grande Valley,SPREAD,UT Rio Grande Valley -4.5,1,-110,0.7125240453914092,1.91
+51,Minnesota vs Fairleigh Dickinson,SPREAD,Fairleigh Dickinson +23.5,1,-110,0.7125240453914092,1.91
+52,Youngstown St. vs Detroit Mercy,OVER UNDER,Under 143.5,1,-110,0.7122780441207536,1.91
+53,Missouri St. vs Delaware,SPREAD,Delaware -1.5,1,-110,0.707357804982202,1.91
+54,Michigan St. vs Cornell,SPREAD,Michigan St. -26.5,1,-110,0.7037089577089577,1.91
+55,Stephen F. Austin vs East Texas A&M,SPREAD,Stephen F. Austin -6.5,1,-110,0.6998441456814675,1.91
+56,TCU vs Jackson St.,SPREAD,TCU -32.5,1,-110,0.6975887145799937,1.91
+57,Tarleton St. vs UT Arlington,SPREAD,UT Arlington -2.5,1,-110,0.6961765048759526,1.91
+58,Saint Peter's vs Fairfield,OVER UNDER,Under 138.5,1,-110,0.6923970601956521,1.91
+59,William & Mary vs Towson,OVER UNDER,Over 149.5,1,-110,0.6883627431379666,1.91
+60,Western Kentucky vs Jacksonville St.,SPREAD,Western Kentucky -4.5,1,-110,0.6861195587358377,1.91
+61,UNC Wilmington vs North Carolina A&T,ML,UNC Wilmington ML,1,-380,0.995,1.26
+62,Mount St. Mary's vs Iona,SPREAD,Iona -4.5,1,-110,0.6828117438041076,1.91
+63,Valparaiso vs Northern Iowa,OVER UNDER,Under 126.5,1,-110,0.6736641383290686,1.91
+64,Missouri St. vs Delaware,OVER UNDER,Under 136.5,1,-110,0.6684556502983597,1.91
+65,Drexel vs Charleston,SPREAD,Charleston -8.5,1,-110,0.6643990453914091,1.91
+66,Youngstown St. vs Detroit Mercy,ML,Youngstown St. ML,1,-340,0.93989898989899,1.29
+67,Stony Brook vs Hampton,SPREAD,Stony Brook +1.5,1,-110,0.6560018729700554,1.91
+68,Rider vs Manhattan,OVER UNDER,Under 148.5,1,-110,0.6551912319251276,1.91
+69,Southern Illinois vs Murray St.,OVER UNDER,Under 166.5,1,-110,0.6486143804570899,1.91
+70,Oklahoma St. vs Bethune Cookman,SPREAD,Bethune Cookman +18.5,1,-110,0.6480515048759526,1.91
+71,Saint Peter's vs Fairfield,SPREAD,Fairfield -3.5,1,-110,0.6453348772412922,1.91
+72,Indiana St. vs Belmont,SPREAD,Indiana St. +8.5,1,-110,0.6433485687609004,1.91
+73,Penn St. vs North Carolina Central,SPREAD,North Carolina Central +22.5,1,-110,0.6383071779215297,1.91
+74,Oakland vs Wright St.,SPREAD,Wright St. -2.5,1,-110,0.637803494906144,1.91
+75,Hofstra vs Campbell,OVER UNDER,Over 151.5,1,-110,0.6349716897469132,1.91
+76,Southern Utah vs Utah Tech,SPREAD,Southern Utah +6.5,1,-110,0.6336902068519715,1.91
+77,Purdue Fort Wayne vs Milwaukee,OVER UNDER,Over 158.5,1,-110,0.6324039960027488,1.91
+78,Hofstra vs Campbell,SPREAD,Hofstra -9.5,1,-110,0.6307727669927327,1.91
+79,William & Mary vs Towson,SPREAD,William & Mary -1.5,1,-110,0.6299100055001758,1.91
+80,Western Kentucky vs Jacksonville St.,OVER UNDER,Over 144.5,1,-110,0.6242190015748702,1.91
+81,Oklahoma St. vs Bethune Cookman,OVER UNDER,Over 164.5,1,-110,0.6222732770485004,1.91

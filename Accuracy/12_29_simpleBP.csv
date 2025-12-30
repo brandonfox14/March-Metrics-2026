@@ -1,0 +1,26 @@
+﻿,GAME,BET TYPE,BET,VALUE,ODDS,Probability of accuracy,Payout if win
+0,Southern vs Illinois,SPREAD,Illinois +30.5,7,-110,0.995,13.36
+1,Yale vs Alabama,SPREAD,Yale +16.5,6,-110,0.9154234654234654,11.45
+2,LIU vs Georgia,OVER UNDER,Under 174.5,3,-110,0.7567123088940014,5.73
+3,New Haven vs Vanderbilt,SPREAD,New Haven +41.5,2,-110,0.686877123880136,3.82
+4,Middle Tennessee vs Houston,SPREAD,Middle Tennessee +27.5,2,-110,0.6833798301701739,3.82
+5,Alcorn St. vs Mississippi,SPREAD,Alcorn St. +27.5,4,-110,0.7872303655996568,7.64
+6,Queens vs Auburn,SPREAD,Auburn -24.5,2,-110,0.6828117438041076,3.82
+7,Illinois St. vs Drake,ML,Illinois St. ML,6,-148,0.995,10.05
+8,Illinois St. vs Drake,SPREAD,Illinois St. -2.5,3,-110,0.7246613386613386,5.73
+9,Southern Miss vs LSU,SPREAD,Southern Miss +18.5,5,-110,0.8865656565656567,9.55
+10,Lipscomb vs Cincinnati,SPREAD,Lipscomb +13.5,4,-110,0.7988782061312183,7.64
+11,Lipscomb vs Cincinnati,OVER UNDER,Under 149.5,3,-110,0.7437545870773725,5.73
+12,Mississippi Valley St. vs Oklahoma,OVER UNDER,Over 152.5,3,-110,0.7409822792931979,5.73
+13,Mississippi Valley St. vs Oklahoma,SPREAD,Mississippi Valley St. +44.5,3,-110,0.7246613386613386,5.73
+14,Northeastern vs Elon,ML,Northeastern ML,9,185,0.8630181623931623,25.65
+15,William & Mary vs Towson,ML,William & Mary ML,8,-108,0.9911111111111112,15.41
+16,Western Kentucky vs Jacksonville St.,ML,Western Kentucky ML,5,-192,0.9855555555555556,7.6
+17,Stephen F. Austin vs East Texas A&M,OVER UNDER,Under 147.5,4,-110,0.7813659426034565,7.64
+18,Stephen F. Austin vs East Texas A&M,ML,Stephen F. Austin ML,3,-285,0.9911111111111112,4.05
+19,Drexel vs Charleston,OVER UNDER,Under 147.5,3,-110,0.7567123088940014,5.73
+20,Cal Baptist vs Utah Valley,OVER UNDER,Under 143.5,3,-110,0.7567123088940014,5.73
+21,New Orleans vs UT Rio Grande Valley,OVER UNDER,Under 154.5,3,-110,0.7509441295610325,5.73
+22,UTEP vs Louisiana Tech,OVER UNDER,Under 128.5,3,-110,0.7509441295610325,5.73
+23,Evansville vs Bradley,OVER UNDER,Under 137.5,3,-110,0.7509441295610325,5.73
+24,Rutgers vs Delaware St.,OVER UNDER,Under 132.5,3,-110,0.7362159373992121,5.73
