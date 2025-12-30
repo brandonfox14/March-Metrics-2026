@@ -1,11 +1,10 @@
 # APP/Pages/6_Betting.py
 # =========================================================
-# Betting Page — efficient single "bundle" model + improved logic
-# (Replaces prior version; keeps file paths/columns compatible)
+# Betting Page — multi-market plan (ML/Spread/OU)
 # =========================================================
+#493 is where to adjust things
 import os
 import math
-from dataclasses import dataclass
 from typing import List, Tuple, Optional, Dict, Any
 
 import numpy as np
@@ -15,12 +14,9 @@ import streamlit as st
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.impute import SimpleImputer
-from sklearn.pipeline import Pipeline
-from sklearn.multioutput import MultiOutputRegressor
-from sklearn.ensemble import HistGradientBoostingRegressor
-from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.model_selection import StratifiedKFold
-from sklearn.metrics import roc_auc_score, accuracy_score
+from sklearn.metrics import average_precision_score, roc_auc_score, accuracy_score
 from sklearn.calibration import CalibratedClassifierCV
 
 # =========================================================
@@ -54,15 +50,34 @@ def find_col(df: pd.DataFrame, candidates: List[str]) -> Optional[str]:
             return c
     return None
 
-def parse_mixed_date(series_like: pd.Series) -> pd.Series:
+def parse_mdy(series_like: pd.Series) -> pd.Series:
     s = series_like.astype(str).str.strip()
-    s = s.replace({"": np.nan, "NA": np.nan, "N/A": np.nan, "nan": np.nan, "None": np.nan})
+    out = pd.to_datetime(s, errors="coerce", format="%m/%d/%Y")
+    mask = out.isna()
+    if mask.any():
+        try2 = pd.to_datetime(s[mask], errors="coerce", infer_datetime_format=True)
+        out.loc[mask] = try2
+    return out
 
-    d1 = pd.to_datetime(s, errors="coerce", infer_datetime_format=True)
-    d2 = pd.to_datetime(s, errors="coerce", dayfirst=True, infer_datetime_format=True)
-    out = d1.fillna(d2)
+def american_to_decimal(odds) -> float:
+    try:
+        o = float(odds)
+    except Exception:
+        return np.nan
+    if o > 0:
+        return 1.0 + (o / 100.0)
+    elif o < 0:
+        return 1.0 + (100.0 / -o)
+    return np.nan
 
-    return pd.to_datetime(out, errors="coerce")
+def payout_if_win_total(stake: float, odds_us: float) -> float:
+    """Total return if win = stake + winnings."""
+    if not np.isfinite(stake) or stake <= 0 or not np.isfinite(odds_us):
+        return np.nan
+    dec = american_to_decimal(odds_us)
+    if not np.isfinite(dec):
+        return np.nan
+    return float(stake * dec)
 
 def safe_num(x, default=np.nan) -> float:
     try:
@@ -73,86 +88,56 @@ def safe_num(x, default=np.nan) -> float:
     except Exception:
         return default
 
-def clamp_prob(p: float, lo: float = 0.001, hi: float = 0.999) -> float:
-    if not np.isfinite(p):
-        return np.nan
-    return float(min(hi, max(lo, p)))
-
-def american_to_decimal(odds: float) -> float:
-    if not np.isfinite(odds) or odds == 0:
-        return np.nan
-    if odds > 0:
-        return 1.0 + (odds / 100.0)
-    return 1.0 + (100.0 / abs(odds))
-
-def american_to_implied_prob(odds: float) -> float:
-    """
-    Implied probability from American odds (no-vig not applied; you said implied will include house edge).
-    +100 -> 0.50
-    -130 -> 130/(130+100) = 0.5652
-    """
-    if not np.isfinite(odds) or odds == 0:
-        return np.nan
-    if odds > 0:
-        return 100.0 / (odds + 100.0)
-    return abs(odds) / (abs(odds) + 100.0)
-
-def expected_profit_per_dollar(prob: float, dec: float) -> float:
-    # EV profit per $1 stake (not total return): p*(dec-1) - (1-p)
-    if not np.isfinite(prob) or not np.isfinite(dec) or dec <= 1.0:
-        return np.nan
-    p = clamp_prob(prob)
-    return float(p * (dec - 1.0) - (1.0 - p))
-
 def uniq_jitter(key: str, scale: float = 0.11) -> float:
     h = abs(hash(key)) % 10_000
     return (h / 10_000.0 - 0.5) * 2.0 * scale  # [-scale, +scale]
 
-def truthy_flag(v) -> bool:
-    if pd.isna(v):
-        return False
-    s = str(v).strip().upper()
-    return s not in ("0", "", "N", "NO", "FALSE", "F", "NA", "NAN", "NONE")
+def clean_rank_value(x) -> float:
+    try:
+        v = float(x)
+        if np.isnan(v): return 51.0
+        return v
+    except Exception:
+        return 51.0
 
-def round_units(u: float) -> float:
-    """
-    Units must be > 0.5 and in tenths (0.1) increments.
-    """
-    if not np.isfinite(u):
+def extract_top50_any(row: Optional[pd.Series]) -> List[Tuple[str, int]]:
+    if row is None:
+        return []
+    out = []
+    for c in row.index:
+        cu = c.strip()
+        cu_upper = cu.upper()
+        if ("RANK" in cu_upper) or cu_upper.endswith("_RANK"):
+            rv = clean_rank_value(row.get(c))
+            if rv <= 50:
+                out.append((c, int(rv)))
+    return sorted(out, key=lambda z: z[1])
+
+def is_penn_state(name: str) -> bool:
+    s = str(name).strip().upper()
+    return ("PENN ST" in s) or ("PENN STATE" in s)
+
+def clamp_prob(p: float, lo: float = 0.005, hi: float = 0.995) -> float:
+    if not np.isfinite(p):
         return np.nan
-    u = float(u)
-    u = max(u, 0.0)
-    u = math.floor(u * 10.0 + 1e-9) / 10.0
-    if 0.0 < u <= 0.5:
-        u = 0.6
-    return u
+    return float(min(hi, max(lo, p)))
 
-def force_integer_non_tie(pts: float, opp: float, key: str) -> Tuple[int, int]:
+def pick_binary_side(p_event: float, label_event: str, label_other: str):
     """
-    Finalized prediction must be whole number and cannot tie.
-    We allow a tiny deterministic jitter, then integer-round, then fix ties.
+    Given P(event), return (picked_label, picked_prob).
+    Ensures picked_prob >= 0.50 (binary complement).
     """
-    if not np.isfinite(pts): pts = 0.0
-    if not np.isfinite(opp): opp = 0.0
-
-    j = uniq_jitter(key, scale=0.12)
-    pts2 = max(0.0, pts + j)
-    opp2 = max(0.0, opp - j)
-
-    p_int = int(round(pts2))
-    o_int = int(round(opp2))
-
-    if p_int == o_int:
-        # break tie by nudging the higher underlying float
-        if pts2 >= opp2:
-            p_int += 1
-        else:
-            o_int += 1
-    return p_int, o_int
+    p_event = clamp_prob(p_event)
+    if not np.isfinite(p_event):
+        return None, np.nan
+    p_other = 1.0 - p_event
+    if p_event >= 0.5:
+        return label_event, p_event
+    return label_other, p_other
 
 def enforce_ml_spread_consistency(line: float, win_prob: float, cover_prob: float) -> float:
     """
-    Logical relationship between Win and Cover probabilities for a given side.
+    Enforce logical relationship between Win and Cover probabilities for a given side.
     - If line < 0 (favorite laying points): P(cover) <= P(win)
     - If line > 0 (underdog getting points): P(cover) >= P(win)
     - If line == 0: P(cover) == P(win)
@@ -161,11 +146,33 @@ def enforce_ml_spread_consistency(line: float, win_prob: float, cover_prob: floa
         return cover_prob
     win_prob = clamp_prob(win_prob)
     cover_prob = clamp_prob(cover_prob)
+
     if line < 0:
         return float(min(cover_prob, win_prob))
     if line > 0:
         return float(max(cover_prob, win_prob))
     return float(win_prob)
+
+def truthy_flag(v) -> bool:
+    if pd.isna(v):
+        return False
+    s = str(v).strip().upper()
+    return s not in ("0", "", "N", "NO", "FALSE", "F", "NA", "NAN", "NONE")
+
+# Goal-based ranking helpers
+def profit_multiple(dec: float) -> float:
+    # profit per $1 stake if win
+    if not np.isfinite(dec) or dec <= 1.0:
+        return np.nan
+    return float(dec - 1.0)
+
+def expected_profit_per_dollar(prob: float, dec: float) -> float:
+    # EV profit per $1 stake (not total return)
+    # = p*(dec-1) - (1-p)
+    if not np.isfinite(prob) or not np.isfinite(dec) or dec <= 1.0:
+        return np.nan
+    p = clamp_prob(prob)
+    return float(p * (dec - 1.0) - (1.0 - p))
 
 # =========================================================
 # LOAD DATA
@@ -175,34 +182,6 @@ schedule_df = None if schedule_df_raw is None else schedule_df_raw.copy()
 daily_df    = load_csv(DAILY_FILE)
 if schedule_df is None or daily_df is None:
     st.stop()
-
-# =========================================================
-# DATE PARSING (ROBUST FOR MIXED FORMATS)
-# =========================================================
-def parse_mixed_date(series_like: pd.Series) -> pd.Series:
-    s = series_like.astype(str).str.strip()
-    s = s.replace({"": np.nan, "NA": np.nan, "N/A": np.nan, "nan": np.nan, "None": np.nan})
-
-    d1 = pd.to_datetime(s, errors="coerce", infer_datetime_format=True)
-    d2 = pd.to_datetime(s, errors="coerce", dayfirst=True, infer_datetime_format=True)
-    out = d1.fillna(d2)
-
-    return pd.to_datetime(out, errors="coerce")
-
-# ---- Schedule dates
-date_col = find_col(schedule_df, ["Date", "Game Date", "Game_Date"])
-schedule_df["__Date"] = parse_mixed_date(schedule_df[date_col])
-
-# ---- Daily predictor dates
-d_date = find_col(daily_df, ["Date", "Game Date", "Game_Date"])
-if d_date and d_date in daily_df.columns:
-    daily_df["__Date"] = parse_mixed_date(daily_df[d_date])
-else:
-    daily_df["__Date"] = pd.Timestamp("2000-01-01")
-
-# Safety: if everything failed, force a constant datetime
-if daily_df["__Date"].notna().sum() == 0:
-    daily_df["__Date"] = pd.Timestamp("2000-01-01")
 
 # =========================================================
 # COLUMN DETECTION (SCHEDULE)
@@ -226,11 +205,11 @@ mm_col     = find_col(schedule_df, ["March Madness Opponent","March Madness"])
 if team_col is None or opp_col is None or date_col is None:
     st.error("Schedule must include Team, Opponent, and Date.")
     st.stop()
-    
-schedule_df["__Date"] = parse_mixed_date(schedule_df[date_col])
+
+schedule_df["__Date"] = parse_mdy(schedule_df[date_col])
 schedule_df = schedule_df.dropna(subset=["__Date"]).copy()
 
-# Deduplicate mirrored fixtures (keep one per matchup+date)
+# Deduplicate mirrored fixtures for scoring
 seen = set()
 keep_idx = []
 for idx, r in schedule_df.iterrows():
@@ -252,7 +231,6 @@ d_opp  = find_col(daily_df, ["Opponent","Opp","opponent"])
 
 d_pts  = find_col(daily_df, ["Points"])
 d_opp_pts = find_col(daily_df, ["Opp Points","Opp_Points","OppPoints"])
-
 d_line = find_col(daily_df, ["Line"])
 d_ou   = find_col(daily_df, ["Over/Under Line","OverUnder","Over Under Line","O/U"])
 d_ml   = find_col(daily_df, ["ML","Moneyline","Money Line"])
@@ -261,36 +239,7 @@ if d_team is None or d_opp is None or d_pts is None or d_opp_pts is None:
     st.error("Daily predictor must include Team, Opponent, Points, Opp Points.")
     st.stop()
 
-# Coerce core numeric targets
-daily_df[d_pts]     = pd.to_numeric(daily_df[d_pts], errors="coerce")
-daily_df[d_opp_pts] = pd.to_numeric(daily_df[d_opp_pts], errors="coerce")
-
-# Date
-d_date = find_col(daily_df, ["Date", "Game Date", "Game_Date"])
-daily_df["__Date"] = parse_mixed_date(daily_df[d_date]) if d_date else pd.Timestamp("2000-01-01")
-if daily_df["__Date"].notna().sum() == 0:
-    daily_df["__Date"] = pd.Timestamp("2000-01-01")
-
-# Derived labels
-daily_df["__SM"] = daily_df[d_pts] - daily_df[d_opp_pts]
-daily_df["__TOTAL"] = daily_df[d_pts] + daily_df[d_opp_pts]
-
-# Win label (ML correctness logic)
-y_win = (daily_df[d_pts] > daily_df[d_opp_pts]).astype(int)
-
-# Spread cover label: (Points - OppPoints) + Line > 0
-y_cover = pd.Series(np.nan, index=daily_df.index)
-if d_line is not None and d_line in daily_df.columns:
-    daily_df[d_line] = pd.to_numeric(daily_df[d_line], errors="coerce")
-    y_cover = ((daily_df["__SM"] + daily_df[d_line]) > 0).astype(int)
-
-# OU label: Total > OU line (Over=1, Under=0)
-y_over = pd.Series(np.nan, index=daily_df.index)
-if d_ou is not None and d_ou in daily_df.columns:
-    daily_df[d_ou] = pd.to_numeric(daily_df[d_ou], errors="coerce")
-    y_over = (daily_df["__TOTAL"] > daily_df[d_ou]).astype(int)
-
-# Identify numeric feature cols (include object columns that can be coerced)
+# numeric columns (+ objects coercible to numeric)
 daily_numeric_cols = daily_df.select_dtypes(include=[np.number]).columns.tolist()
 obj_as_num = []
 for c in daily_df.columns:
@@ -302,17 +251,50 @@ for c in daily_df.columns:
             pass
 daily_numeric_cols = list(dict.fromkeys(daily_numeric_cols + obj_as_num))
 
-# Remove targets/leakage from numeric features
-leak_cols = {d_pts, d_opp_pts, "__SM", "__TOTAL"}
-for c in list(leak_cols):
-    if c in daily_numeric_cols:
-        daily_numeric_cols.remove(c)
+# Drop pure point targets from feature set
+for drop_c in [d_pts, d_opp_pts]:
+    if drop_c in daily_numeric_cols:
+        daily_numeric_cols.remove(drop_c)
 
-# Coerce numeric features
+# Coerce points
+daily_df[d_pts]     = pd.to_numeric(daily_df[d_pts], errors="coerce")
+daily_df[d_opp_pts] = pd.to_numeric(daily_df[d_opp_pts], errors="coerce")
+
+# Targets: SM and Total
+sm_col = find_col(daily_df, ["SM", "Spread Margin"])
+if sm_col is None:
+    daily_df["__SM"] = daily_df[d_pts] - daily_df[d_opp_pts]
+    sm_col = "__SM"
+
+tot_col = find_col(daily_df, ["Total Points", "TOTAL_POINTS", "Total"])
+if tot_col is None:
+    daily_df["__TOTAL"] = daily_df[d_pts] + daily_df[d_opp_pts]
+    tot_col = "__TOTAL"
+
+# Date
+d_date = find_col(daily_df, ["Date", "Game Date", "Game_Date"])
+daily_df["__Date"] = parse_mdy(daily_df[d_date]) if d_date else pd.to_datetime("2000-01-01")
+
+# Moneyline win label
+y_win = (daily_df[d_pts] > daily_df[d_opp_pts]).astype(int)
+
+# Spread cover label: SM + Line > 0 (team covers its listed line)
+y_cover = pd.Series(np.nan, index=daily_df.index)
+if d_line is not None:
+    daily_df[d_line] = pd.to_numeric(daily_df[d_line], errors="coerce")
+    y_cover = ((daily_df[sm_col] + daily_df[d_line]) > 0).astype(int)
+
+# Over label: TOTAL > OU line
+y_over = pd.Series(np.nan, index=daily_df.index)
+if d_ou is not None:
+    daily_df[d_ou] = pd.to_numeric(daily_df[d_ou], errors="coerce")
+    y_over = (daily_df[tot_col] > daily_df[d_ou]).astype(int)
+
+# Coerce numeric features (for training)
 for c in daily_numeric_cols:
     daily_df[c] = pd.to_numeric(daily_df[c], errors="coerce")
 
-# Categorical columns (kept small & stable)
+# categorical columns
 cat_candidates = [
     d_team, d_opp,
     "Coach Name","Coach","Coach_Name",
@@ -322,28 +304,18 @@ cat_candidates = [
 ]
 cat_cols = [c for c in cat_candidates if c and c in daily_df.columns]
 cat_cols = list(dict.fromkeys(cat_cols))
+
+# IMPORTANT: avoid double-assigning a column to num & cat
 daily_numeric_cols = [c for c in daily_numeric_cols if c not in cat_cols]
 
 mask_points = daily_df[d_pts].notna() & daily_df[d_opp_pts].notna()
 df_train = daily_df.loc[mask_points].copy()
 
-# =========================================================
-# RECENCY WEIGHTS (SAFE — NO .dt ERRORS)
-# =========================================================
-if df_train["__Date"].notna().any():
-    current_year = int(df_train["__Date"].dt.year.max())
-else:
-    current_year = 2000
-
-w = np.ones(len(df_train), dtype=float)
-w[(df_train["__Date"].dt.year == current_year).values] = 3.0
-
-# TEAM PROFILES for schedule rows (median per-team)
+# TEAM PROFILES (median per-team across all numeric features)
 team_profiles = df_train.groupby(d_team)[daily_numeric_cols].median(numeric_only=True)
 global_medians = df_train[daily_numeric_cols].median(numeric_only=True)
 
 def opp_base_col(col: str) -> Optional[str]:
-    # if you have OPP_* numeric columns, map opponent profile from base name
     if col.upper().startswith("OPP_"):
         return col[4:]
     return None
@@ -353,213 +325,188 @@ def get_team_profile(team: str) -> pd.Series:
         return team_profiles.loc[team]
     return global_medians
 
-# RECENCY WEIGHTS (keep simple but effective)
+# RECENCY WEIGHTS
 current_year = int(df_train["__Date"].dt.year.max()) if df_train["__Date"].notna().any() else 2000
-w = np.ones(len(df_train), dtype=float)
-w[(df_train["__Date"].dt.year == current_year).values] = 3.0
+sample_weight = np.ones(len(df_train), dtype=float)
+recent_mask = (df_train["__Date"].dt.year == current_year)
+sample_weight[recent_mask.values] = 3.0
 
-# =========================================================
-# PREPROCESSOR (sparse, fast)
-# =========================================================
+# PREPROCESSOR
+num_transformer = SimpleImputer(strategy="median")
 try:
-    ohe = OneHotEncoder(handle_unknown="ignore", sparse_output=True)
+    cat_transformer = OneHotEncoder(handle_unknown="ignore", sparse_output=False)
 except TypeError:
-    ohe = OneHotEncoder(handle_unknown="ignore", sparse=True)
+    cat_transformer = OneHotEncoder(handle_unknown="ignore", sparse=False)
 
 preproc = ColumnTransformer(
     transformers=[
-        ("num", SimpleImputer(strategy="median"), daily_numeric_cols),
-        ("cat", Pipeline([("imp", SimpleImputer(strategy="most_frequent")), ("ohe", ohe)]), cat_cols),
+        ("num", num_transformer, daily_numeric_cols),
+        ("cat", cat_transformer, cat_cols)
     ],
     remainder="drop",
-    sparse_threshold=1.0
+    sparse_threshold=0.0
 )
 
+X_all = preproc.fit_transform(df_train[daily_numeric_cols + cat_cols])
+
+# Targets aligned to df_train
+Y_points = df_train[[d_pts, d_opp_pts]].values
+y_win_train = y_win.loc[df_train.index].values.astype(int)
+
+y_cover_train = np.full(len(df_train), np.nan, dtype=float)
+if d_line is not None:
+    mask_cover_avail = df_train[d_line].notna() & df_train[sm_col].notna()
+    y_cover_train[mask_cover_avail.values] = (
+        (df_train.loc[mask_cover_avail, sm_col] + df_train.loc[mask_cover_avail, d_line]) > 0
+    ).astype(int).values
+
+y_over_train = np.full(len(df_train), np.nan, dtype=float)
+if d_ou is not None:
+    mask_ou_avail = df_train[d_ou].notna() & df_train[tot_col].notna()
+    y_over_train[mask_ou_avail.values] = (
+        df_train.loc[mask_ou_avail, tot_col] > df_train.loc[mask_ou_avail, d_ou]
+    ).astype(int).values
+
 # =========================================================
-# "ONE MODEL" BUNDLE
-# - Regressor predicts Points & Opp Points
-# - Probabilities (win/cover/over) come from a calibrated classifier trained
-#   on the SAME feature space + model-derived signals (margin/total + lines)
-# This is saved/handled as a single bundle object: one .predict() interface.
+# TRAIN MODELS
 # =========================================================
-@dataclass
-class ModelBundle:
-    preproc: ColumnTransformer
-    pts_model: MultiOutputRegressor
-    win_model: CalibratedClassifierCV
-    cover_model: Optional[CalibratedClassifierCV]
-    over_model: Optional[CalibratedClassifierCV]
+st.markdown("### Model Training")
+st.caption("Regression for Points/Opp Points + calibrated classifiers for Win, Spread, and Total.")
 
-    def transform(self, Xdf: pd.DataFrame):
-        return self.preproc.transform(Xdf)
+rf_points = RandomForestRegressor(
+    n_estimators=900,
+    random_state=42,
+    n_jobs=-1,
+    min_samples_leaf=1,
+    max_features="sqrt"
+)
+rf_points.fit(X_all, Y_points, sample_weight=sample_weight)
 
-    def predict_points(self, X):
-        return self.pts_model.predict(X)
-
-    def predict_probs(self, X, line_arr: np.ndarray, ou_arr: np.ndarray):
-        """
-        Returns (win_p, cover_p, over_p) for the TEAM listed in X.
-        """
-        win_p = clamp_prob(self.win_model.predict_proba(X)[:, 1][0])
-
-        cover_p = np.nan
-        if self.cover_model is not None and np.isfinite(line_arr[0]):
-            cover_p = clamp_prob(self.cover_model.predict_proba(X)[:, 1][0])
-            cover_p = enforce_ml_spread_consistency(float(line_arr[0]), win_p, cover_p)
-
-        over_p = np.nan
-        if self.over_model is not None and np.isfinite(ou_arr[0]):
-            over_p = clamp_prob(self.over_model.predict_proba(X)[:, 1][0])
-
-        return win_p, cover_p, over_p
-
-def safe_cv_metrics(X, y, w, label: str, splits: int = 5):
+def safe_cv_auc(X: np.ndarray, y: np.ndarray, w: np.ndarray, splits: int = 5) -> Optional[float]:
     mask = ~np.isnan(y)
     y_ = y[mask].astype(int)
     X_ = X[mask]
     w_ = w[mask]
-    if X_.shape[0] < 50 or len(np.unique(y_)) < 2:
-        return None, None
-    # adapt splits to smallest class
-    cc = np.bincount(y_)
-    min_class = int(cc.min()) if len(cc) else 0
-    n_splits = max(2, min(splits, min_class, X_.shape[0]))
+    if X_.shape[0] < 10 or len(np.unique(y_)) < 2:
+        return None
+    class_counts = np.bincount(y_)
+    min_class = int(class_counts.min()) if len(class_counts) > 0 else 0
+    n_splits = min(splits, X_.shape[0], min_class)
     if n_splits < 2:
-        return None, None
-
+        return None
     skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
-    aucs, accs = [], []
+    scores = []
     for tr, te in skf.split(X_, y_):
-        base = LogisticRegression(
-            max_iter=2000,
-            solver="lbfgs",
-            n_jobs=None,
-            class_weight="balanced"
+        clf = RandomForestClassifier(
+            n_estimators=500,
+            random_state=42,
+            class_weight="balanced_subsample",
+            n_jobs=-1
         )
-        clf = CalibratedClassifierCV(base, method="isotonic", cv=3)
         clf.fit(X_[tr], y_[tr], sample_weight=w_[tr])
         proba = clf.predict_proba(X_[te])[:, 1]
-        pred = (proba >= 0.5).astype(int)
-        aucs.append(roc_auc_score(y_[te], proba))
+        scores.append(roc_auc_score(y_[te], proba))
+    return float(np.mean(scores)) if scores else None
+
+def safe_cv_acc(X: np.ndarray, y: np.ndarray, w: np.ndarray, splits: int = 5) -> Optional[float]:
+    mask = ~np.isnan(y)
+    y_ = y[mask].astype(int)
+    X_ = X[mask]
+    w_ = w[mask]
+    if X_.shape[0] < 10 or len(np.unique(y_)) < 2:
+        return None
+    class_counts = np.bincount(y_)
+    min_class = int(class_counts.min()) if len(class_counts) > 0 else 0
+    n_splits = min(splits, X_.shape[0], min_class)
+    if n_splits < 2:
+        return None
+    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
+    accs = []
+    for tr, te in skf.split(X_, y_):
+        clf = RandomForestClassifier(
+            n_estimators=500,
+            random_state=42,
+            class_weight="balanced_subsample",
+            n_jobs=-1
+        )
+        clf.fit(X_[tr], y_[tr], sample_weight=w_[tr])
+        pred = clf.predict(X_[te])
         accs.append(accuracy_score(y_[te], pred))
-    return float(np.mean(aucs)), float(np.mean(accs))
+    return float(np.mean(accs)) if accs else None
+
+auc_win   = safe_cv_auc(X_all, y_win_train.astype(float), sample_weight)
+auc_cover = safe_cv_auc(X_all, y_cover_train, sample_weight)
+auc_over  = safe_cv_auc(X_all, y_over_train, sample_weight)
+
+acc_win   = safe_cv_acc(X_all, y_win_train.astype(float), sample_weight)
+acc_cover = safe_cv_acc(X_all, y_cover_train, sample_weight)
+acc_over  = safe_cv_acc(X_all, y_over_train, sample_weight)
+
+col_m1, col_m2, col_m3 = st.columns(3)
+with col_m1:
+    st.write(f"Moneyline/Win AUC: {auc_win:.3f}" if auc_win is not None else "Moneyline/Win AUC: n/a")
+    st.write(f"Moneyline/Win ACC: {acc_win:.3f}" if acc_win is not None else "Moneyline/Win ACC: n/a")
+with col_m2:
+    st.write(f"Spread AUC: {auc_cover:.3f}" if auc_cover is not None else "Spread AUC: n/a")
+    st.write(f"Spread ACC: {acc_cover:.3f}" if acc_cover is not None else "Spread ACC: n/a")
+with col_m3:
+    st.write(f"Total (OU) AUC: {auc_over:.3f}" if auc_over is not None else "Total (OU) AUC: n/a")
+    st.write(f"Total (OU) ACC: {acc_over:.3f}" if acc_over is not None else "Total (OU) ACC: n/a")
+
+valid_aucs = [x for x in [auc_win, auc_cover, auc_over] if x is not None]
+avg_auc = float(np.mean(valid_aucs)) if valid_aucs else None
+valid_accs = [x for x in [acc_win, acc_cover, acc_over] if x is not None]
+avg_acc = float(np.mean(valid_accs)) if valid_accs else None
+
+cA, cB = st.columns(2)
+with cA:
+    st.metric("Average AUC (Win+Spread+OU)", f"{avg_auc:.3f}" if avg_auc is not None else "n/a")
+with cB:
+    st.metric("Average ACC (Win+Spread+OU)", f"{avg_acc:.3f}" if avg_acc is not None else "n/a")
+
+# Calibrated classifiers (probabilities behave better)
+base_win = RandomForestClassifier(n_estimators=800, random_state=42, class_weight="balanced_subsample", n_jobs=-1)
+clf_win = CalibratedClassifierCV(base_win, method="isotonic", cv=5)
+clf_win.fit(X_all, y_win_train, sample_weight=sample_weight)
+
+clf_cover = None
+mask_cover_fit = ~np.isnan(y_cover_train)
+if mask_cover_fit.any():
+    base_cover = RandomForestClassifier(n_estimators=700, random_state=42, class_weight="balanced_subsample", n_jobs=-1)
+    clf_cover = CalibratedClassifierCV(base_cover, method="isotonic", cv=5)
+    clf_cover.fit(X_all[mask_cover_fit], y_cover_train[mask_cover_fit].astype(int), sample_weight=sample_weight[mask_cover_fit])
+
+clf_over = None
+mask_over_fit = ~np.isnan(y_over_train)
+if mask_over_fit.any():
+    base_over = RandomForestClassifier(n_estimators=700, random_state=42, class_weight="balanced_subsample", n_jobs=-1)
+    clf_over = CalibratedClassifierCV(base_over, method="isotonic", cv=5)
+    clf_over.fit(X_all[mask_over_fit], y_over_train[mask_over_fit].astype(int), sample_weight=sample_weight[mask_over_fit])
 
 # =========================================================
-# TRAIN
-# =========================================================
-st.markdown("### Model Training")
-st.caption("Fast regression (Points/Opp Points) + calibrated probability models (Win/Spread/OU)")
-
-Xdf = df_train[daily_numeric_cols + cat_cols].copy()
-X = preproc.fit_transform(Xdf)
-
-Y_points = df_train[[d_pts, d_opp_pts]].values.astype(float)
-
-# Fast & scalable regressor (much faster than 900-tree RF on growing data)
-base_reg = HistGradientBoostingRegressor(
-    learning_rate=0.06,
-    max_depth=6,
-    max_leaf_nodes=31,
-    min_samples_leaf=25,
-    l2_regularization=0.0,
-    random_state=42
-)
-pts_model = MultiOutputRegressor(base_reg)
-pts_model.fit(X, Y_points, **{"sample_weight": w})
-
-# Build additional “signals” for classification (margin/total, plus market lines)
-# NOTE: we do not leak true points because pts_model predictions are used.
-pts_pred = pts_model.predict(X)
-pred_margin = (pts_pred[:, 0] - pts_pred[:, 1]).reshape(-1, 1)
-pred_total  = (pts_pred[:, 0] + pts_pred[:, 1]).reshape(-1, 1)
-
-line_arr = np.full((len(df_train), 1), np.nan, dtype=float)
-ou_arr   = np.full((len(df_train), 1), np.nan, dtype=float)
-if d_line is not None and d_line in df_train.columns:
-    line_arr[:, 0] = pd.to_numeric(df_train[d_line], errors="coerce").values
-if d_ou is not None and d_ou in df_train.columns:
-    ou_arr[:, 0] = pd.to_numeric(df_train[d_ou], errors="coerce").values
-
-# For classification, append these signals to X (sparse-safe hstack)
-from scipy.sparse import hstack, csr_matrix
-X_cls = hstack([X, csr_matrix(pred_margin), csr_matrix(pred_total),
-                csr_matrix(np.nan_to_num(line_arr, nan=0.0)),
-                csr_matrix(np.nan_to_num(ou_arr, nan=0.0))]).tocsr()
-
-# Win classifier (calibrated)
-base_win = LogisticRegression(max_iter=2500, solver="lbfgs", class_weight="balanced")
-win_model = CalibratedClassifierCV(base_win, method="isotonic", cv=5)
-win_model.fit(X_cls, y_win.loc[df_train.index].values.astype(int), sample_weight=w)
-
-# Cover classifier (only where line exists)
-cover_model = None
-if d_line is not None and d_line in df_train.columns:
-    y_cover_train = y_cover.loc[df_train.index].astype(float).values
-    m = ~np.isnan(y_cover_train)
-    if m.sum() >= 100 and len(np.unique(y_cover_train[m].astype(int))) >= 2:
-        base_cover = LogisticRegression(max_iter=2500, solver="lbfgs", class_weight="balanced")
-        cover_model = CalibratedClassifierCV(base_cover, method="isotonic", cv=5)
-        cover_model.fit(X_cls[m], y_cover_train[m].astype(int), sample_weight=w[m])
-
-# Over classifier (only where OU exists)
-over_model = None
-if d_ou is not None and d_ou in df_train.columns:
-    y_over_train = y_over.loc[df_train.index].astype(float).values
-    m = ~np.isnan(y_over_train)
-    if m.sum() >= 100 and len(np.unique(y_over_train[m].astype(int))) >= 2:
-        base_over = LogisticRegression(max_iter=2500, solver="lbfgs", class_weight="balanced")
-        over_model = CalibratedClassifierCV(base_over, method="isotonic", cv=5)
-        over_model.fit(X_cls[m], y_over_train[m].astype(int), sample_weight=w[m])
-
-# Report AUC/ACC (CV) on the classification heads (same objective you wanted)
-auc_win, acc_win = safe_cv_metrics(X_cls, y_win.loc[df_train.index].astype(float).values, w, "WIN")
-auc_cov, acc_cov = (None, None)
-if d_line is not None and d_line in df_train.columns:
-    auc_cov, acc_cov = safe_cv_metrics(X_cls, y_cover.loc[df_train.index].astype(float).values, w, "COVER")
-auc_ou, acc_ou = (None, None)
-if d_ou is not None and d_ou in df_train.columns:
-    auc_ou, acc_ou = safe_cv_metrics(X_cls, y_over.loc[df_train.index].astype(float).values, w, "OVER")
-
-c1, c2, c3 = st.columns(3)
-with c1:
-    st.write(f"Win (ML correctness) AUC: {auc_win:.3f}" if auc_win is not None else "Win AUC: n/a")
-    st.write(f"Win ACC: {acc_win:.3f}" if acc_win is not None else "Win ACC: n/a")
-with c2:
-    st.write(f"Spread AUC: {auc_cov:.3f}" if auc_cov is not None else "Spread AUC: n/a")
-    st.write(f"Spread ACC: {acc_cov:.3f}" if acc_cov is not None else "Spread ACC: n/a")
-with c3:
-    st.write(f"OU (Over) AUC: {auc_ou:.3f}" if auc_ou is not None else "OU AUC: n/a")
-    st.write(f"OU ACC: {acc_ou:.3f}" if acc_ou is not None else "OU ACC: n/a")
-
-bundle = ModelBundle(preproc=preproc, pts_model=pts_model, win_model=win_model,
-                     cover_model=cover_model, over_model=over_model)
-
-# =========================================================
-# USER CONTROLS (bars/sliders)
+# USER CONTROLS (per your goals)
 # =========================================================
 st.markdown("---")
 st.markdown("### Bankroll & Risk Controls")
 
-colA, colB, colC, colD = st.columns(4)
-with colA:
-    unit_dollars = st.number_input("1 Unit = $", min_value=1.0, value=100.0, step=5.0)
-with colB:
-    aggressiveness = st.slider("Aggressiveness", 1, 100, 35, 1)  # higher = larger units for same edge
-with colC:
-    max_units = st.slider("Max units per bet", 1.0, 10.0, 4.0, 0.1)
-with colD:
-    max_bets = st.slider("Max bets on slate", 1, 100, 20, 1)
+c1, c2, c3 = st.columns(3)
+with c1:
+    bet_amount = st.number_input("Bet Amount ($) for today", min_value=1.0, value=100.0, step=5.0)
 
-st.markdown("### Market Rules")
-r1, r2, r3 = st.columns(3)
-with r1:
-    ml_edge_needed = st.slider("ML: required edge over implied prob", 0.01, 0.30, 0.10, 0.01)
-with r2:
-    spread_min_prob = st.slider("Spread: minimum model probability", 0.50, 0.90, 0.65, 0.01)
-with r3:
-    ou_min_prob = st.slider("Over/Under: minimum model probability", 0.50, 0.90, 0.65, 0.01)
+with c2:
+    goal_pct = st.slider("Goal: % increase (higher = riskier)", 5, 50, 20, 1)
+    st.caption(f"Target profit goal ≈ ${bet_amount * (goal_pct/100.0):.2f}")
 
-st.caption("Hard slate constraint: no bet type > 45% of selections (unless slate is tiny; still enforced).")
+with c3:
+    ml_min, ml_max = st.slider("Acceptable ML odds range", -1000, 1000, (-400, 400), 10)
+
+# Thresholds controlled by goal%
+min_prob_binary = float(np.interp(goal_pct, [5, 50], [0.70, 0.52]))   # spread/OU must be at least this
+edge_floor      = float(np.interp(goal_pct, [5, 50], [0.040, 0.006])) # +EV threshold
+min_bets, max_bets = st.slider("Bets minimum / maximum", 1, 100, (10, 100))
+
+# Goal% -> ranking blend (0=safe, 1=chase payout)
+alpha = float(np.interp(goal_pct, [5, 50], [0.0, 1.0]))
 
 # =========================================================
 # SCHEDULE → FEATURE using team/opponent profiles
@@ -576,6 +523,7 @@ def schedule_row_to_feature(row: pd.Series) -> pd.DataFrame:
         if pd.notna(val):
             data[c] = float(val)
             continue
+
         base = opp_base_col(c)
         if base is not None:
             data[c] = float(opp_prof.get(base, global_medians.get(c, np.nan)))
@@ -597,307 +545,355 @@ def schedule_row_to_feature(row: pd.Series) -> pd.DataFrame:
     return one
 
 # =========================================================
-# BET CANDIDATES PER GAME
+# SCORE GAMES -> BET CANDIDATES (MULTIPLE PER GAME)
 # =========================================================
-def units_from_edge(edge: float) -> float:
-    """
-    Edge -> units (tenths), must be >0.5 if any bet is placed.
-    Aggressiveness boosts slope; capped at max_units.
-    """
-    if not np.isfinite(edge) or edge <= 0:
-        return 0.0
-    # base scale: 0.02 edge ~ 1 unit at mid aggressiveness
-    scale = np.interp(aggressiveness, [1, 100], [30.0, 120.0])
-    u = edge * scale
-    u = min(u, max_units)
-    u = round_units(u)
-    return u
+bet_rows = []
+game_rows = []
 
-def build_candidates_for_row(r: pd.Series) -> List[Dict[str, Any]]:
+for _, r in schedule_df.iterrows():
     t = str(r[team_col]).strip()
     o = str(r[opp_col]).strip()
-    date = r["__Date"]
     game_label = f"{t} vs {o}"
 
     one = schedule_row_to_feature(r)
-    X0 = bundle.preproc.transform(one)
+    X = preproc.transform(one)
 
-    # points prediction
-    pred = bundle.pts_model.predict(X0)[0]
-    pts_f, opp_f = float(pred[0]), float(pred[1])
+    pts_pred = rf_points.predict(X)[0]
+    pts, oppp = float(pts_pred[0]), float(pts_pred[1])
 
-    pts_i, opp_i = force_integer_non_tie(pts_f, opp_f, f"{t}|{o}|{date}")
+    jitter = uniq_jitter(f"{t}|{o}|{r['__Date']}")
+    pts  = max(0.0, pts  + jitter)
+    oppp = max(0.0, oppp - jitter)
 
-    margin = pts_i - opp_i
-    total  = pts_i + opp_i
+    margin = pts - oppp
+    total  = pts + oppp
 
     line = safe_num(r.get(line_col), default=np.nan) if line_col else np.nan
     ouv  = safe_num(r.get(ou_col),   default=np.nan) if ou_col   else np.nan
-    ml   = safe_num(r.get(ml_col),   default=np.nan) if ml_col   else np.nan
+    mline= safe_num(r.get(ml_col),   default=np.nan) if ml_col   else np.nan
 
-    # classification feature augmentation (must match training)
-    from scipy.sparse import hstack, csr_matrix
-    X_cls0 = hstack([
-        X0,
-        csr_matrix([[margin]]),
-        csr_matrix([[total]]),
-        csr_matrix([[0.0 if not np.isfinite(line) else float(line)]]),
-        csr_matrix([[0.0 if not np.isfinite(ouv) else float(ouv)]])
-    ]).tocsr()
+    is_top25 = truthy_flag(r.get(top25_col)) if (top25_col and top25_col in schedule_df.columns) else False
+    is_mm    = truthy_flag(r.get(mm_col))    if (mm_col and mm_col in schedule_df.columns) else False
 
-    win_p = clamp_prob(bundle.win_model.predict_proba(X_cls0)[0, 1])
+    conf = r.get(opp_conf_col) if (opp_conf_col and opp_conf_col in r.index) else r.get(conf_col)
+    cc = str(conf).strip().upper() if conf is not None else ""
+    is_p5 = cc in ("SEC","BIG TEN","B1G","BIG 12","ACC","PAC-12","PAC 12","BIG EAST")
 
-    cover_p = np.nan
-    if bundle.cover_model is not None and np.isfinite(line):
-        cover_p = clamp_prob(bundle.cover_model.predict_proba(X_cls0)[0, 1])
-        cover_p = enforce_ml_spread_consistency(line, win_p, cover_p)
+    # Classifier probabilities
+    win_p = clamp_prob(clf_win.predict_proba(X)[0, 1])
 
-    over_p = np.nan
-    if bundle.over_model is not None and np.isfinite(ouv):
-        over_p = clamp_prob(bundle.over_model.predict_proba(X_cls0)[0, 1])
+    cover_prob_team = np.nan
+    if np.isfinite(line) and clf_cover is not None:
+        cover_prob_team = clamp_prob(clf_cover.predict_proba(X)[0, 1])
 
-    cands: List[Dict[str, Any]] = []
+    over_prob = np.nan
+    if np.isfinite(ouv) and clf_over is not None:
+        over_prob = clamp_prob(clf_over.predict_proba(X)[0, 1])
 
-    # ---- Moneyline candidate (only if probability beats implied by >= 10% default)
-    if np.isfinite(ml):
-        implied = american_to_implied_prob(ml)
-        edge = win_p - implied if np.isfinite(implied) else np.nan
-        dec = american_to_decimal(ml)
-        ev = expected_profit_per_dollar(win_p, dec)
-        if np.isfinite(edge) and edge >= ml_edge_needed:
-            u = units_from_edge(edge)
-            if u > 0:
-                cands.append({
-                    "Game": game_label,
-                    "Bet Type": "ML",
-                    "Bet": t,
-                    "Line": np.nan,
-                    "Odds": ml,
-                    "Model Prob": win_p,
-                    "Implied Prob": implied,
-                    "Edge": edge,
-                    "EV_per_$": ev,
-                    "Units": u,
-                    "Pred_PTS": pts_i,
-                    "Pred_OPP": opp_i,
-                    "Pred_Total": total,
-                    "Pred_Margin": margin,
-                    "Date": date
+    game_rows.append({
+        "Date": r["__Date"],
+        "Team": t,
+        "Opponent": o,
+        "Pred_Points": round(pts, 1),
+        "Pred_Opp_Points": round(oppp, 1),
+        "Pred_Margin": round(margin, 1),
+        "Pred_Total": round(total, 1),
+        "WinProb": win_p,
+        "Line": line if np.isfinite(line) else None,
+        "CoverProb_TeamCoversLine": cover_prob_team if np.isfinite(cover_prob_team) else None,
+        "ML": mline if np.isfinite(mline) else None,
+        "OU_Line": ouv if np.isfinite(ouv) else None,
+        "OverProb": over_prob if np.isfinite(over_prob) else None,
+        "IsTop25": is_top25,
+        "IsMM": is_mm,
+        "IsP5": is_p5,
+        "RowObj": r
+    })
+
+    # ---------------------------
+    # Candidate 1: Moneyline
+    # ---------------------------
+    if np.isfinite(mline) and (ml_min <= mline <= ml_max):
+        ml_dec = american_to_decimal(mline)
+        if np.isfinite(ml_dec):
+            ml_edge = win_p - (1.0 / ml_dec)
+            if np.isfinite(ml_edge) and ml_edge > edge_floor:
+                bet_rows.append({
+                    "Date": r["__Date"],
+                    "GAME": game_label,
+                    "BET TYPE": "ML",
+                    "BET": f"{t} ML",
+                    "VALUE_EDGE": float(ml_edge),
+                    "ODDS": int(mline),
+                    "ODDS_DEC": float(ml_dec),
+                    "PROB": float(win_p),
+                    "IsTop25": is_top25,
+                    "IsMM": is_mm,
+                    "IsP5": is_p5
                 })
 
-    # ---- Spread candidate (odds fixed -110)
-    if np.isfinite(line) and np.isfinite(cover_p):
-        if cover_p >= spread_min_prob:
-            dec = american_to_decimal(-110.0)
-            ev = expected_profit_per_dollar(cover_p, dec)
-            edge = cover_p - 0.5  # since -110 is close to 50/50 baseline, you want 65%+ anyway
-            u = units_from_edge(edge)
-            if u > 0:
-                cands.append({
-                    "Game": game_label,
-                    "Bet Type": "Spread",
-                    "Bet": f"{t} {line:+g}",
-                    "Line": line,
-                    "Odds": -110.0,
-                    "Model Prob": cover_p,
-                    "Implied Prob": 0.5,
-                    "Edge": edge,
-                    "EV_per_$": ev,
-                    "Units": u,
-                    "Pred_PTS": pts_i,
-                    "Pred_OPP": opp_i,
-                    "Pred_Total": total,
-                    "Pred_Margin": margin,
-                    "Date": date
+    # ---------------------------
+    # Candidate 2: Spread (binary complement + ML consistency)
+    # ---------------------------
+    if np.isfinite(line) and np.isfinite(cover_prob_team):
+        team_spread = f"{t} {('+' if line > 0 else '')}{line}"
+        opp_line = -line
+        opp_spread = f"{o} {('+' if opp_line > 0 else '')}{opp_line}"
+
+        spread_pick, spread_prob = pick_binary_side(cover_prob_team, team_spread, opp_spread)
+
+        if spread_pick is not None and np.isfinite(spread_prob):
+            # Determine win probability and line sign for the PICKED side
+            if spread_pick.startswith(t + " "):
+                picked_win_prob = win_p
+                picked_line = line
+            else:
+                picked_win_prob = 1.0 - win_p
+                picked_line = opp_line
+
+            # Enforce real-world relationship between win and cover
+            spread_prob = enforce_ml_spread_consistency(picked_line, picked_win_prob, spread_prob)
+
+            if np.isfinite(spread_prob) and spread_prob >= min_prob_binary:
+                spread_dec = 1.909
+                spread_edge = spread_prob - (1.0 / spread_dec)
+                if np.isfinite(spread_edge) and spread_edge > edge_floor:
+                    bet_rows.append({
+                        "Date": r["__Date"],
+                        "GAME": game_label,
+                        "BET TYPE": "SPREAD",
+                        "BET": spread_pick,
+                        "VALUE_EDGE": float(spread_edge),
+                        "ODDS": -110,
+                        "ODDS_DEC": float(spread_dec),
+                        "PROB": float(spread_prob),
+                        "IsTop25": is_top25,
+                        "IsMM": is_mm,
+                        "IsP5": is_p5
+                    })
+
+    # ---------------------------
+    # Candidate 3: Over/Under (binary complement)
+    # ---------------------------
+    if np.isfinite(ouv) and np.isfinite(over_prob):
+        ou_pick, ou_prob_pick = pick_binary_side(over_prob, f"Over {ouv}", f"Under {ouv}")
+
+        if ou_pick is not None and np.isfinite(ou_prob_pick) and ou_prob_pick >= min_prob_binary:
+            ou_dec = 1.909
+            ou_edge = ou_prob_pick - (1.0 / ou_dec)
+            if np.isfinite(ou_edge) and ou_edge > edge_floor:
+                bet_rows.append({
+                    "Date": r["__Date"],
+                    "GAME": game_label,
+                    "BET TYPE": "OVER UNDER",
+                    "BET": ou_pick,
+                    "VALUE_EDGE": float(ou_edge),
+                    "ODDS": -110,
+                    "ODDS_DEC": float(ou_dec),
+                    "PROB": float(ou_prob_pick),
+                    "IsTop25": is_top25,
+                    "IsMM": is_mm,
+                    "IsP5": is_p5
                 })
 
-    # ---- Over/Under candidate (odds fixed -110)
-    if np.isfinite(ouv) and np.isfinite(over_p):
-        if over_p >= ou_min_prob:
-            dec = american_to_decimal(-110.0)
-            ev_over = expected_profit_per_dollar(over_p, dec)
-            ev_under = expected_profit_per_dollar(1.0 - over_p, dec)
+pred_games_df = pd.DataFrame(game_rows)
+pred_bets_df  = pd.DataFrame(bet_rows)
 
-            # choose side with higher probability (and EV)
-            if ev_over >= ev_under:
-                bet = f"OVER {ouv:g}"
-                prob = over_p
-                edge = prob - 0.5
-                ev = ev_over
-            else:
-                bet = f"UNDER {ouv:g}"
-                prob = 1.0 - over_p
-                edge = prob - 0.5
-                ev = ev_under
+# Exclude Penn State if desired
+pred_games_df = pred_games_df[~pred_games_df["Team"].apply(is_penn_state)].reset_index(drop=True)
+pred_bets_df  = pred_bets_df[~pred_bets_df["BET"].astype(str).str.upper().str.contains("PENN STATE|PENN ST")].reset_index(drop=True)
 
-            u = units_from_edge(edge)
-            if u > 0:
-                cands.append({
-                    "Game": game_label,
-                    "Bet Type": "OU",
-                    "Bet": bet,
-                    "Line": ouv,
-                    "Odds": -110.0,
-                    "Model Prob": prob,
-                    "Implied Prob": 0.5,
-                    "Edge": edge,
-                    "EV_per_$": ev,
-                    "Units": u,
-                    "Pred_PTS": pts_i,
-                    "Pred_OPP": opp_i,
-                    "Pred_Total": total,
-                    "Pred_Margin": margin,
-                    "Date": date
-                })
-
-    # ---- Special rule: if spread is 3.5 or less, choose most profitable between ML and Spread (not both)
-    # (Only applies if we have both candidates present for the team in this game)
-    if np.isfinite(line) and abs(line) <= 3.5:
-        ml_idx = [i for i, x in enumerate(cands) if x["Bet Type"] == "ML"]
-        sp_idx = [i for i, x in enumerate(cands) if x["Bet Type"] == "Spread"]
-        if ml_idx and sp_idx:
-            ml_i = ml_idx[0]
-            sp_i = sp_idx[0]
-            # keep the higher EV per $ (tie-break: higher edge)
-            keep_ml = False
-            if np.isfinite(cands[ml_i]["EV_per_$"]) and np.isfinite(cands[sp_i]["EV_per_$"]):
-                keep_ml = cands[ml_i]["EV_per_$"] > cands[sp_i]["EV_per_$"]
-            else:
-                keep_ml = cands[ml_i]["Edge"] > cands[sp_i]["Edge"]
-            if keep_ml:
-                cands.pop(sp_i)
-            else:
-                cands.pop(ml_i)
-
-    return cands
-
-all_candidates: List[Dict[str, Any]] = []
-for _, r in schedule_df.iterrows():
-    all_candidates.extend(build_candidates_for_row(r))
-
-cand_df = pd.DataFrame(all_candidates)
-
-st.markdown("---")
-st.markdown("### Candidate Bets (pre-slate balancing)")
-if cand_df.empty:
-    st.warning("No bets meet the thresholds today.")
+if pred_bets_df.empty:
+    st.info("No +EV bets under current settings (edge/prob/odds range).")
     st.stop()
 
-# Rank score: prioritize EV, then probability, then edge
-cand_df["Score"] = (
-    cand_df["EV_per_$"].fillna(-9999.0) * 10.0
-    + cand_df["Model Prob"].fillna(0.0) * 2.0
-    + cand_df["Edge"].fillna(0.0) * 5.0
+# =========================================================
+# GOAL-BASED RANKING (low goal => better odds/safety; high goal => payout)
+# =========================================================
+pred_bets_df["_prio"] = pred_bets_df.apply(
+    lambda rr: (0 if rr["IsTop25"] else 1, 0 if rr["IsMM"] else 1, 0 if rr["IsP5"] else 1, rr["Date"]),
+    axis=1
 )
 
-cand_df = cand_df.sort_values(["Score", "Model Prob"], ascending=False).reset_index(drop=True)
-st.dataframe(cand_df[[
-    "Game","Bet Type","Bet","Odds","Model Prob","Implied Prob","Edge","EV_per_$","Units","Pred_PTS","Pred_OPP"
-]])
+pred_bets_df["PROFIT_MULT"] = pred_bets_df["ODDS_DEC"].apply(profit_multiple)
+pred_bets_df["EV_PROFIT_$1"] = pred_bets_df.apply(
+    lambda rr: expected_profit_per_dollar(float(rr["PROB"]), float(rr["ODDS_DEC"])),
+    axis=1
+)
+
+# SCORE blend controlled by goal%
+# - alpha ~0 (low goal): prioritize clean edge (safer / better odds behavior)
+# - alpha ~1 (high goal): prioritize probability-adjusted payout (EV profit per $1)
+pred_bets_df["SCORE"] = (1.0 - alpha) * pred_bets_df["VALUE_EDGE"] + alpha * pred_bets_df["EV_PROFIT_$1"]
+
+pred_bets_df = pred_bets_df.sort_values(by=["_prio", "SCORE"], ascending=[True, False]).reset_index(drop=True)
 
 # =========================================================
-# SLATE SELECTION WITH 45% CAP + "roughly equal" mix
+# BUILD FINAL PLAN (BET-LEVEL)
 # =========================================================
-def select_with_type_caps(df: pd.DataFrame, max_bets: int, cap_pct: float = 0.45) -> pd.DataFrame:
-    if df.empty:
-        return df
-
-    types = ["ML", "Spread", "OU"]
-    # absolute cap
-    cap_n = max(1, int(math.floor(max_bets * cap_pct)))
-
-    chosen = []
-    counts = {t: 0 for t in types}
-
-    # target roughly equal (1/3 each), but never exceed cap
-    target_each = max(1, int(round(max_bets / 3)))
-    target_each = min(target_each, cap_n)
-
-    # Greedy with penalty if over target (but still allowed up to cap)
-    for _, row in df.iterrows():
-        if len(chosen) >= max_bets:
-            break
-        bt = row["Bet Type"]
-        if bt not in counts:
-            continue
-        if counts[bt] >= cap_n:
-            continue
-
-        # prevent duplicate identical bet rows
-        sig = (row["Game"], row["Bet Type"], row["Bet"], row["Odds"])
-        if any((x["Game"], x["Bet Type"], x["Bet"], x["Odds"]) == sig for x in chosen):
-            continue
-
-        # penalty if this type already beyond target
-        penalty = 0.0
-        if counts[bt] >= target_each:
-            penalty = 999.0  # large penalty, but still may be picked if truly dominant
-
-        # accept if score is strong enough even after penalty
-        # (we compare to itself: just require not terrible)
-        if (row["Score"] - penalty) > -1000:
-            chosen.append(row.to_dict())
-            counts[bt] += 1
-
-    out = pd.DataFrame(chosen)
-
-    # If we selected very few, relax penalties but keep cap
-    if out.shape[0] < min(3, max_bets):
-        chosen = []
-        counts = {t: 0 for t in types}
-        for _, row in df.iterrows():
-            if len(chosen) >= max_bets:
-                break
-            bt = row["Bet Type"]
-            if bt not in counts:
-                continue
-            if counts[bt] >= cap_n:
-                continue
-            sig = (row["Game"], row["Bet Type"], row["Bet"], row["Odds"])
-            if any((x["Game"], x["Bet Type"], x["Bet"], x["Odds"]) == sig for x in chosen):
-                continue
-            chosen.append(row.to_dict())
-            counts[bt] += 1
-        out = pd.DataFrame(chosen)
-
-    return out
-
-plan = select_with_type_caps(cand_df, max_bets=max_bets, cap_pct=0.45)
-
-# enforce units rules again + compute stake
-plan["Units"] = plan["Units"].apply(lambda x: round_units(float(x)) if np.isfinite(x) else np.nan)
-plan = plan[plan["Units"].notna() & (plan["Units"] > 0.5)].copy()
-
-plan["Stake_$"] = (plan["Units"] * float(unit_dollars)).round(2)
-plan["DecimalOdds"] = plan["Odds"].apply(lambda o: american_to_decimal(float(o)) if np.isfinite(o) else np.nan)
-plan["Payout_if_win_$"] = (plan["Stake_$"] * plan["DecimalOdds"]).round(2)
-
-# Summary of bet-type mix
 st.markdown("---")
-st.markdown("### Final Betting Plan (post mix + caps)")
-if plan.empty:
-    st.warning("After balancing rules and unit minimums, no bets remain.")
-    st.stop()
+st.markdown("### Suggested Plan (Multi-market — can include multiple bets per game)")
 
-mix = plan["Bet Type"].value_counts(dropna=False)
-total_n = int(plan.shape[0])
-mix_pct = (mix / total_n * 100.0).round(1)
+max_available = len(pred_bets_df)
+N_total = min(max_bets, max(min_bets, max_available))
 
-m1, m2, m3 = st.columns(3)
-with m1:
-    st.metric("Bets", total_n)
-with m2:
-    st.metric("ML %", f"{mix_pct.get('ML', 0.0)}%")
-with m3:
-    st.metric("Spread %", f"{mix_pct.get('Spread', 0.0)}%")
-st.write("OU %:", f"{mix_pct.get('OU', 0.0)}%")
+# Light diversification targets (still score-driven)
+ml_df = pred_bets_df[pred_bets_df["BET TYPE"] == "ML"].copy()
+sp_df = pred_bets_df[pred_bets_df["BET TYPE"] == "SPREAD"].copy()
+ou_df = pred_bets_df[pred_bets_df["BET TYPE"] == "OVER UNDER"].copy()
 
-st.dataframe(plan[[
-    "Date","Game","Bet Type","Bet","Odds","Model Prob","Implied Prob","Edge","EV_per_$",
-    "Units","Stake_$","Payout_if_win_$","Pred_PTS","Pred_OPP","Pred_Total","Pred_Margin"
-]].sort_values(["Date","Game","Bet Type"]))
+ml_target = int(math.floor(0.20 * N_total))
+sp_target = int(math.floor(0.40 * N_total))
+ou_target = int(math.floor(0.40 * N_total))
 
-# Optional download
-csv_bytes = plan.to_csv(index=False).encode("utf-8")
-st.download_button("Download plan CSV", data=csv_bytes, file_name="betting_plan.csv", mime="text/csv")
+picked = []
 
+def take(df, k):
+    if k <= 0 or df.empty:
+        return
+    picked.extend(df.head(k).to_dict("records"))
+
+take(sp_df, min(sp_target, len(sp_df)))
+take(ou_df, min(ou_target, len(ou_df)))
+take(ml_df, min(ml_target, len(ml_df)))
+
+if len(picked) < N_total:
+    need = N_total - len(picked)
+    already_keys = set((p["Date"], p["GAME"], p["BET TYPE"], p["BET"]) for p in picked)
+    remaining = pred_bets_df.copy()
+    remaining["_key"] = remaining.apply(lambda rr: (rr["Date"], rr["GAME"], rr["BET TYPE"], rr["BET"]), axis=1)
+    remaining = remaining[~remaining["_key"].isin(already_keys)]
+    picked.extend(remaining.head(need).to_dict("records"))
+
+plan = pd.DataFrame(picked).copy()
+plan = plan.sort_values(by=["_prio", "SCORE"], ascending=[True, False]).reset_index(drop=True)
+
+# Stake sizing in $ based on SCORE+EV strength (never negative)
+# Use positive part of SCORE and VALUE_EDGE to avoid weird allocations
+w = (plan["SCORE"].astype(float)).clip(lower=1e-6)
+total_w = float(w.sum()) if len(w) else 1.0
+plan["VALUE"] = (w / total_w) * float(bet_amount)
+
+# round to nearest $1 and min $1
+plan["VALUE"] = plan["VALUE"].round(0).clip(lower=1.0)
+
+# Renormalize after rounding to stay close to bet_amount
+def renorm_dollars(df, target):
+    diff = float(target) - float(df["VALUE"].sum())
+    if abs(diff) < 0.5:
+        return df
+    order = df.sort_values("SCORE", ascending=False).index.tolist()
+    step = 1.0 if diff > 0 else -1.0
+    i = 0
+    while abs(diff) >= 0.5 and i < len(order) * 10:
+        idx = order[i % len(order)]
+        newv = df.at[idx, "VALUE"] + step
+        if newv >= 1.0:
+            df.at[idx, "VALUE"] = newv
+            diff = float(target) - float(df["VALUE"].sum())
+        i += 1
+    return df
+
+plan = renorm_dollars(plan, float(bet_amount))
+
+# Export columns (exact)
+plan["Probability of accuracy"] = plan["PROB"].astype(float)
+
+# Payout rounded to 2 decimals (FIX #1)
+plan["Payout if win"] = plan.apply(
+    lambda rr: round(payout_if_win_total(float(rr["VALUE"]), float(rr["ODDS"])), 2),
+    axis=1
+)
+
+download_df = plan[[
+    "GAME",
+    "BET TYPE",
+    "BET",
+    "VALUE",
+    "ODDS",
+    "Probability of accuracy",
+    "Payout if win"
+]].copy()
+
+st.dataframe(download_df, use_container_width=True)
+
+st.download_button(
+    "Download Betting Plan CSV",
+    data=download_df.to_csv(index=False),
+    file_name="betting_plan.csv",
+    mime="text/csv"
+)
+
+# =========================================================
+# DRILLDOWN — optional (kept)
+# =========================================================
+st.markdown("---")
+st.markdown("### Drilldown (matchup details)")
+
+def find_opponent_row_raw(team: str, opp: str, date_val: pd.Timestamp) -> Optional[pd.Series]:
+    if team_col not in schedule_df_raw.columns or opp_col not in schedule_df_raw.columns:
+        return None
+    df = schedule_df_raw.copy()
+    df["__Date"] = parse_mdy(df[date_col])
+    mask = (
+        df[team_col].astype(str).str.strip() == opp
+    ) & (
+        df[opp_col].astype(str).str.strip() == team
+    ) & (
+        df["__Date"].dt.date == date_val.date()
+    )
+    res = df.loc[mask]
+    return res.iloc[0] if not res.empty else None
+
+for _, rr in pred_games_df.iterrows():
+    label = (
+        f"{rr['Date'].strftime('%b %d, %Y')} — "
+        f"{rr['Team']} vs {rr['Opponent']} — "
+        f"Pred {int(round(rr['Pred_Points']))}-{int(round(rr['Pred_Opp_Points']))}"
+    )
+    with st.expander(label, expanded=False):
+        row_team = rr["RowObj"]
+        row_opp  = find_opponent_row_raw(rr["Team"], rr["Opponent"], rr["Date"])
+
+        t_conf = row_team.get(conf_col) if (conf_col and conf_col in row_team.index) else ""
+        o_conf = (
+            row_team.get(opp_conf_col) if (opp_conf_col and opp_conf_col in row_team.index) else
+            (row_opp.get(conf_col) if (row_opp is not None and conf_col in row_opp.index) else "")
+        )
+
+        t_coach = row_team.get(coach_col) if (coach_col and coach_col in row_team.index) else ""
+        o_coach = (
+            row_team.get(opp_coach_col) if (opp_coach_col and opp_coach_col in row_team.index) else
+            (row_opp.get(coach_col) if (row_opp is not None and coach_col in row_opp.index) else "")
+        )
+
+        cL, cR = st.columns(2)
+        with cL:
+            st.write(f"**{rr['Team']}**")
+            st.write(f"Coach: {t_coach}")
+            st.write(f"Conference: {t_conf}")
+        with cR:
+            st.write(f"**{rr['Opponent']}**")
+            st.write(f"Coach: {o_coach}")
+            st.write(f"Conference: {o_conf}")
+
+        st.markdown("---")
+        st.write("Top-50 Rank Categories (≤ 50)")
+
+        left_top50 = extract_top50_any(row_team)
+        right_top50 = extract_top50_any(row_opp)
+
+        cL2, cR2 = st.columns(2)
+        with cL2:
+            st.write(f"**{rr['Team']}**")
+            st.write("None in top 50" if not left_top50 else "")
+            if left_top50:
+                st.dataframe(pd.DataFrame([{"Category": k, "Rank": v} for k, v in left_top50]),
+                             use_container_width=True)
+        with cR2:
+            st.write(f"**{rr['Opponent']}**")
+            st.write("None in top 50" if not right_top50 else "")
+            if right_top50:
+                st.dataframe(pd.DataFrame([{"Category": k, "Rank": v} for k, v in right_top50]),
+                             use_container_width=True)
+                
