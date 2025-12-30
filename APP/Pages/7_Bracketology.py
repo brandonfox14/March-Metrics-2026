@@ -39,9 +39,10 @@ def zscore(series: pd.Series) -> pd.Series:
 
 def within_group_pct_rank(df: pd.DataFrame, group_col: str, value_col: str, higher_is_better=True) -> pd.Series:
     """Percentile rank within each group: 0..1"""
-    vals = to_num(df[value_col], fill=np.nan)
     asc = not higher_is_better
-    return df.groupby(group_col)[value_col].transform(lambda s: to_num(s, fill=np.nan).rank(pct=True, ascending=asc).fillna(0.5))
+    return df.groupby(group_col)[value_col].transform(
+        lambda s: to_num(s, fill=np.nan).rank(pct=True, ascending=asc).fillna(0.5)
+    )
 
 def normalize_bool(x) -> bool:
     if pd.isna(x):
@@ -79,6 +80,9 @@ sos = load_csv(SOS_FILE)
 daily = load_csv(DAILY_FILE) if os.path.exists(DAILY_FILE) else pd.DataFrame()
 coach = load_csv(COACH_FILE) if os.path.exists(COACH_FILE) else pd.DataFrame()
 
+# -----------------------------
+# Column standardization
+# -----------------------------
 # Standardize Team column
 if "Teams" in all_stats.columns and "Team" not in all_stats.columns:
     all_stats = all_stats.rename(columns={"Teams": "Team"})
@@ -89,30 +93,67 @@ if not daily.empty and "Teams" in daily.columns and "Team" not in daily.columns:
 if not coach.empty and "Teams" in coach.columns and "Team" not in coach.columns:
     coach = coach.rename(columns={"Teams": "Team"})
 
-required = ["Team", "Conference", "Wins", "Losses", "Statistical Strength "]
+# Strip trailing spaces in column names (critical for your "Statistical Strength ")
+all_stats.columns = [c.strip() for c in all_stats.columns]
+sos.columns = [c.strip() for c in sos.columns]
+if not daily.empty:
+    daily.columns = [c.strip() for c in daily.columns]
+if not coach.empty:
+    coach.columns = [c.strip() for c in coach.columns]
+
+# Canonical names (handle drift)
+rename_map_all_stats = {
+    "Statistical Strength": "Statistical_Strength",
+    "Stat Strength": "Statistical_Strength",
+    "StatStrength": "Statistical_Strength",
+    "Statistical Strength ": "Statistical_Strength",
+    "WIN_PERC": "WIN_PERC",
+    "Wins": "Wins",
+    "Losses": "Losses",
+    "Conference": "Conference",
+    "Team": "Team",
+    "Historical Value": "Historical_Value",
+}
+# Only rename keys that exist
+all_stats = all_stats.rename(columns={k: v for k, v in rename_map_all_stats.items() if k in all_stats.columns})
+
+# Standardize Historical Value col name
+if "Historical Value" in all_stats.columns and "Historical_Value" not in all_stats.columns:
+    all_stats = all_stats.rename(columns={"Historical Value": "Historical_Value"})
+
+# -----------------------------
+# Required columns
+# -----------------------------
+required = ["Team", "Conference", "Wins", "Losses", "Statistical_Strength"]
 missing = [c for c in required if c not in all_stats.columns]
 if missing:
     st.error(f"All_Stats missing required columns: {missing}")
+    st.write("Available columns:", list(all_stats.columns))
     st.stop()
 
 # Win pct
-all_stats["WIN_PCT"] = to_num(all_stats.get("WIN_PERC", all_stats["Wins"] / (all_stats["Wins"] + all_stats["Losses"])), fill=0)
+all_stats["WIN_PCT"] = to_num(
+    all_stats.get("WIN_PERC", all_stats["Wins"] / (all_stats["Wins"] + all_stats["Losses"])),
+    fill=0
+)
 
-# Historical Value (optional, but you asked to include)
-if "Historical Value" not in all_stats.columns:
-    all_stats["Historical Value"] = np.nan
+# Historical Value (optional)
+if "Historical_Value" not in all_stats.columns:
+    all_stats["Historical_Value"] = np.nan
 
 # -----------------------------
 # Conference strength (avg Statistical Strength)
+# NOTE: you said Statistical Strength is lowest->highest = best->worst
+# so LOWER is BETTER.
 # -----------------------------
 conf_strength = (
-    all_stats.groupby("Conference", as_index=False)["Statistical Strength "]
+    all_stats.groupby("Conference", as_index=False)["Statistical_Strength"]
     .mean()
-    .rename(columns={"Statistical Strength ": "Conf_StatStrength_Avg"})
+    .rename(columns={"Statistical_Strength": "Conf_StatStrength_Avg"})
 )
 
-# Higher conference strength = better
-conf_strength["Conf_Rank"] = conf_strength["Conf_StatStrength_Avg"].rank(method="min", ascending=False).astype(int)
+# Lower conference avg = better conference
+conf_strength["Conf_Rank"] = conf_strength["Conf_StatStrength_Avg"].rank(method="min", ascending=True).astype(int)
 conf_strength = conf_strength.sort_values("Conf_Rank")
 
 # Eligibility thresholds by conference rank
@@ -132,18 +173,15 @@ df = all_stats.merge(conf_strength, on="Conference", how="left")
 # -----------------------------
 # SOS rollups (performance-based) -> pick a metric for tiering
 # -----------------------------
-# Aggregate SOS to team level.
 if "Team" not in sos.columns:
     sos_team = pd.DataFrame({"Team": df["Team"].unique()})
 else:
     sos_work = sos.copy()
 
-    # Coerce likely numeric columns
     for col in ["SOS SUM","SOS_SUM","SOS Median","SOS_MED","SOS Min","SOS_MIN","SOS Max","SOS_MAX","SOS STDEV","SOS_STDEV"]:
         if col in sos_work.columns:
             sos_work[col] = to_num(sos_work[col], fill=np.nan)
 
-    # If those appear row-wise, average them by team
     agg = {}
     for col in ["SOS SUM","SOS_SUM","SOS Median","SOS_MED","SOS Min","SOS_MIN","SOS Max","SOS_MAX","SOS STDEV","SOS_STDEV"]:
         if col in sos_work.columns:
@@ -177,21 +215,17 @@ def tier_points(x: float) -> int:
 df["SOS_TierPoints"] = df["SOS_TierValue"].apply(tier_points)
 
 # -----------------------------
-# Within-conference team score (your stated logic)
-# - tier points (absolute)
-# - rank Statistical Strength (within conf)
-# - rank WIN_PCT (within conf)
-# - rank Historical Value (within conf) weighted at 0.5
+# Within-conference team score
+# NOTE: Statistical Strength is LOWER = BETTER
+# so higher_is_better=False for within-group rank on Statistical_Strength.
 # -----------------------------
-df["StatStrength_rank_in_conf"] = within_group_pct_rank(df, "Conference", "Statistical Strength ", higher_is_better=True)
+df["StatStrength_rank_in_conf"] = within_group_pct_rank(df, "Conference", "Statistical_Strength", higher_is_better=False)
 df["WinPct_rank_in_conf"]       = within_group_pct_rank(df, "Conference", "WIN_PCT", higher_is_better=True)
-df["HistValue_rank_in_conf"]    = within_group_pct_rank(df, "Conference", "Historical Value", higher_is_better=True)
+df["HistValue_rank_in_conf"]    = within_group_pct_rank(df, "Conference", "Historical_Value", higher_is_better=True)
 
-# Convert tier points to a 0..1-ish scale so it plays nicely with ranks
-# (range -4..4) -> shift/scale to 0..1
+# (range -4..4) -> 0..1
 df["Tier_scaled"] = (df["SOS_TierPoints"] + 4) / 8.0
 
-# Team score (within conference)
 df["Conf_TeamScore"] = (
     1.0 * df["Tier_scaled"] +
     1.0 * df["StatStrength_rank_in_conf"] +
@@ -200,10 +234,7 @@ df["Conf_TeamScore"] = (
 )
 
 # -----------------------------
-# AQ selection:
-# 1) If coach table has AQ==TRUE for a team: lock it as AQ
-# 2) Else: use Daily predictor to estimate "tournament winner power"
-#    - build robust "PowerIndex" = average z-score across numeric columns
+# AQ selection
 # -----------------------------
 coach_aq = {}
 if not coach.empty and "AQ" in coach.columns and "Conference" in coach.columns and "Team" in coach.columns:
@@ -215,46 +246,36 @@ if not coach.empty and "AQ" in coach.columns and "Conference" in coach.columns a
 
 daily_power = pd.DataFrame()
 if not daily.empty:
-    # merge conference if missing
     if "Conference" not in daily.columns:
         daily = daily.merge(df[["Team","Conference"]], on="Team", how="left")
 
-    # build power index from numeric columns
     id_like = {"team","teams","conference","date","game","opponent","location"}
     numeric_cols = []
     for c in daily.columns:
         if c.lower() in id_like:
             continue
         if pd.api.types.is_numeric_dtype(daily[c]) or daily[c].dtype == object:
-            # try numeric coercion
             s = pd.to_numeric(daily[c], errors="coerce")
-            if s.notna().mean() >= 0.7:  # mostly numeric
+            if s.notna().mean() >= 0.7:
                 numeric_cols.append(c)
 
     if numeric_cols:
         zmat = pd.DataFrame({c: zscore(pd.to_numeric(daily[c], errors="coerce")) for c in numeric_cols})
         daily["PowerIndex"] = zmat.mean(axis=1).fillna(0)
-        daily_power = (
-            daily.groupby(["Conference","Team"], as_index=False)["PowerIndex"]
-            .mean()
-        )
+        daily_power = daily.groupby(["Conference","Team"], as_index=False)["PowerIndex"].mean()
 
-# Pick AQs per conference
 aq_map = {}
 for conf in conf_strength["Conference"].tolist():
-    # locked AQ?
     if conf in coach_aq:
         aq_map[conf] = coach_aq[conf]
         continue
 
-    # use daily power if available
     if not daily_power.empty:
         pool = daily_power[daily_power["Conference"] == conf].copy()
         if not pool.empty:
             aq_map[conf] = pool.sort_values("PowerIndex", ascending=False)["Team"].iloc[0]
             continue
 
-    # fallback: best Conf_TeamScore in conference
     pool2 = df[df["Conference"] == conf].copy()
     aq_map[conf] = pool2.sort_values("Conf_TeamScore", ascending=False)["Team"].iloc[0]
 
@@ -263,26 +284,23 @@ df["Is_AQ"] = df["Team"].isin(aqs)
 
 # -----------------------------
 # At-large eligibility thresholds
-# - determined by conference rank thresholds (50/55/60/65/70/75)
 # -----------------------------
 df["AtLarge_Eligible"] = df["WIN_PCT"] >= df["AtLarge_WinPct_Threshold"]
 
 # -----------------------------
-# Build field: 68 (AQ + at-larges)
-# Better conference -> more bids naturally because:
-#   - they have lower threshold
-#   - and their teams have higher conf strength and score
-# We'll select at-larges by an "Adjusted Score" that favors strong conferences.
+# Build field
 # -----------------------------
 FIELD_SIZE = 68
 AQ_COUNT = len(aqs)
 AT_LARGE_COUNT = FIELD_SIZE - AQ_COUNT
 
-# Conference bonus (scaled 0..1): better conference => higher
-conf_strength["ConfBonus"] = conf_strength["Conf_StatStrength_Avg"].rank(pct=True, ascending=True)
+# Conference bonus (scaled 0..1): better conference => higher bonus
+# Better conference = lower Conf_StatStrength_Avg, so rank ascending=True then invert to make "higher bonus better"
+conf_strength["ConfBonus_raw"] = conf_strength["Conf_StatStrength_Avg"].rank(pct=True, ascending=True)
+conf_strength["ConfBonus"] = 1.0 - conf_strength["ConfBonus_raw"]
+
 df = df.merge(conf_strength[["Conference","ConfBonus"]], on="Conference", how="left")
 
-# Adjusted at-large score: team score + conf bonus
 df["AtLarge_Score"] = df["Conf_TeamScore"] + 0.75 * df["ConfBonus"]
 
 atl_pool = df[(~df["Is_AQ"]) & (df["AtLarge_Eligible"])].copy()
@@ -296,12 +314,8 @@ field = set(aqs) | set(atl)
 df["In_Field"] = df["Team"].isin(field)
 
 # -----------------------------
-# Seeding logic:
-# "Top left 1 seed" = top team from best conference
-# Next 1 seed slots come from the top of conference ladder / best remaining overall
-# We'll create an overall Seed_Score that is consistent with your components.
+# Seeding logic
 # -----------------------------
-# Seed score uses the same building blocks but lets conference strength help.
 df["Seed_Score"] = (
     1.0 * df["Conf_TeamScore"] +
     0.50 * df["ConfBonus"]
@@ -309,7 +323,6 @@ df["Seed_Score"] = (
 
 field_df = df[df["In_Field"]].copy()
 
-# Ensure #1 overall is top team from top conference (Conf_Rank = 1)
 top_conf = conf_strength.sort_values("Conf_Rank")["Conference"].iloc[0]
 top1_pool = field_df[field_df["Conference"] == top_conf].copy()
 if not top1_pool.empty:
@@ -317,10 +330,8 @@ if not top1_pool.empty:
 else:
     top1_team = field_df.sort_values("Seed_Score", ascending=False)["Team"].iloc[0]
 
-# Rank teams, forcing #1 overall to be that top conference top team
 field_df = field_df.sort_values("Seed_Score", ascending=False).reset_index(drop=True)
 if top1_team in field_df["Team"].values:
-    # move it to top
     top_row = field_df[field_df["Team"] == top1_team]
     rest = field_df[field_df["Team"] != top1_team]
     field_df = pd.concat([top_row, rest], ignore_index=True)
@@ -329,10 +340,9 @@ field_df["Overall_Rank"] = np.arange(1, len(field_df) + 1)
 field_df["Seed_Line"] = (((field_df["Overall_Rank"] - 1) // 4) + 1).clip(1, 16)
 
 # -----------------------------
-# Bubble buckets (based on at-large board)
+# Bubble buckets
 # -----------------------------
 atl_board = df[~df["Is_AQ"]].copy()
-# Keep ineligible teams, but they will naturally fall down (still useful to see)
 atl_board = atl_board.sort_values(["AtLarge_Score","Conf_TeamScore","WIN_PCT"], ascending=False).reset_index(drop=True)
 atl_board["ATL_Rank"] = np.arange(1, len(atl_board) + 1)
 
@@ -374,11 +384,13 @@ st.markdown("## Bubble Buckets")
 b1, b2, b3, b4 = st.columns(4)
 
 def bucket_table(title, teams):
-    sub = df[df["Team"].isin(teams)][[
+    cols = [
         "Team","Conference","WIN_PCT","AtLarge_Eligible","AtLarge_WinPct_Threshold",
-        "SOS_TierValue","SOS_TierPoints","Statistical Strength ","Historical Value",
+        "SOS_TierValue","SOS_TierPoints","Statistical_Strength","Historical_Value",
         "Conf_TeamScore","AtLarge_Score"
-    ]].sort_values("AtLarge_Score", ascending=False)
+    ]
+    safe_cols = [c for c in cols if c in df.columns]
+    sub = df[df["Team"].isin(teams)][safe_cols].sort_values("AtLarge_Score", ascending=False)
     st.write(f"**{title}**")
     st.dataframe(sub, use_container_width=True, height=280)
 
@@ -392,27 +404,50 @@ show_cols = [
     "Overall_Rank","Seed_Line","Team","Conference","Is_AQ",
     "WIN_PCT","AtLarge_Eligible","AtLarge_WinPct_Threshold",
     "SOS_TierValue","SOS_TierPoints",
-    "Statistical Strength ","Historical Value",
+    "Statistical_Strength","Historical_Value",
     "Conf_TeamScore","AtLarge_Score","Seed_Score","Bubble_Bucket"
 ]
-if SOS_TIER_COL and SOS_TIER_COL not in show_cols:
-    pass  # already represented via SOS_TierValue
 
-out = field_df.merge(df[["Team","Bubble_Bucket","AtLarge_Eligible","AtLarge_WinPct_Threshold","AtLarge_Score"]], on="Team", how="left")
-st.dataframe(out[show_cols].sort_values(["Seed_Line","Seed_Score"], ascending=[True, False]), use_container_width=True, height=750)
+out = field_df.merge(
+    df[["Team","Bubble_Bucket","AtLarge_Eligible","AtLarge_WinPct_Threshold","AtLarge_Score"]],
+    on="Team",
+    how="left"
+)
+
+# --- Guard against missing show columns + safe sort
+missing = [c for c in show_cols if c not in out.columns]
+if missing:
+    st.error(f"Missing columns in out (hidden from table): {missing}")
+    st.write("Available columns:", list(out.columns))
+
+safe_cols = [c for c in show_cols if c in out.columns]
+view = out[safe_cols] if safe_cols else out
+
+# Seed sort is primary; if you want Statistical Strength as tiebreaker, keep ascending=True (lower is better)
+sort_cols = [c for c in ["Seed_Line", "Seed_Score", "Statistical_Strength"] if c in view.columns]
+ascending = [True, False, True][:len(sort_cols)]
+
+if sort_cols:
+    view = view.sort_values(sort_cols, ascending=ascending)
+
+st.dataframe(view, use_container_width=True, height=750)
 
 st.markdown("## At-Large Board (Top 120)")
+atl_cols = [
+    "ATL_Rank","Team","Conference","WIN_PCT","AtLarge_Eligible","AtLarge_WinPct_Threshold",
+    "SOS_TierValue","SOS_TierPoints","Statistical_Strength","Historical_Value",
+    "Conf_TeamScore","AtLarge_Score","Bubble_Bucket"
+]
+atl_safe = [c for c in atl_cols if c in atl_board.columns]
 st.dataframe(
-    atl_board.head(120)[[
-        "ATL_Rank","Team","Conference","WIN_PCT","AtLarge_Eligible","AtLarge_WinPct_Threshold",
-        "SOS_TierValue","SOS_TierPoints","Statistical Strength ","Historical Value",
-        "Conf_TeamScore","AtLarge_Score","Bubble_Bucket"
-    ]],
+    atl_board.head(120)[atl_safe],
     use_container_width=True,
     height=750
 )
 
 st.markdown("## Bids by Conference")
 bids = df[df["In_Field"]].groupby("Conference", as_index=False)["Team"].count().rename(columns={"Team":"Bids"})
-bids = bids.merge(conf_strength[["Conference","Conf_Rank"]], on="Conference", how="left").sort_values(["Bids","Conf_Rank"], ascending=[False, True])
+bids = bids.merge(conf_strength[["Conference","Conf_Rank"]], on="Conference", how="left").sort_values(
+    ["Bids","Conf_Rank"], ascending=[False, True]
+)
 st.bar_chart(bids.set_index("Conference")["Bids"])
