@@ -429,14 +429,8 @@ class ModelBundle:
     clf_over: Optional[CalibratedClassifierCV]
 
 @st.cache_resource(show_spinner=True)
-def train_bundle(X_all: np.ndarray,
-                 Y_points: np.ndarray,
-                 y_win_train: np.ndarray,
-                 y_cover_train: np.ndarray,
-                 y_over_train: np.ndarray,
-                 sample_weight: np.ndarray,
-                 preproc: ColumnTransformer) -> Tuple[ModelBundle, Dict[str, Optional[float]]]:
-
+def train_bundle(X_all, Y_points, y_win_train, y_cover_train, y_over_train, sample_weight):
+    # uses preproc from outer scope (already fit)
     rf_points = RandomForestRegressor(
         n_estimators=700,
         random_state=42,
@@ -446,7 +440,6 @@ def train_bundle(X_all: np.ndarray,
     )
     rf_points.fit(X_all, Y_points, sample_weight=sample_weight)
 
-    # Calibrated win classifier
     base_win = RandomForestClassifier(
         n_estimators=600,
         random_state=42,
@@ -468,7 +461,11 @@ def train_bundle(X_all: np.ndarray,
             max_features="sqrt"
         )
         clf_cover = CalibratedClassifierCV(base_cover, method="isotonic", cv=5)
-        clf_cover.fit(X_all[mask_cover], y_cover_train[mask_cover].astype(int), sample_weight=sample_weight[mask_cover])
+        clf_cover.fit(
+            X_all[mask_cover],
+            y_cover_train[mask_cover].astype(int),
+            sample_weight=sample_weight[mask_cover]
+        )
 
     clf_over = None
     mask_over = ~np.isnan(y_over_train)
@@ -481,7 +478,11 @@ def train_bundle(X_all: np.ndarray,
             max_features="sqrt"
         )
         clf_over = CalibratedClassifierCV(base_over, method="isotonic", cv=5)
-        clf_over.fit(X_all[mask_over], y_over_train[mask_over].astype(int), sample_weight=sample_weight[mask_over])
+        clf_over.fit(
+            X_all[mask_over],
+            y_over_train[mask_over].astype(int),
+            sample_weight=sample_weight[mask_over]
+        )
 
     metrics = {
         "auc_win":   safe_cv_auc(X_all, y_win_train.astype(float), sample_weight),
@@ -493,7 +494,7 @@ def train_bundle(X_all: np.ndarray,
     }
 
     bundle = ModelBundle(
-        preproc=preproc,
+        preproc=preproc,          # <-- still stored inside the bundle
         rf_points=rf_points,
         clf_win=clf_win,
         clf_cover=clf_cover,
