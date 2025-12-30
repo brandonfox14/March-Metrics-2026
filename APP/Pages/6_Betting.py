@@ -55,26 +55,13 @@ def find_col(df: pd.DataFrame, candidates: List[str]) -> Optional[str]:
     return None
 
 def parse_mixed_date(series_like: pd.Series) -> pd.Series:
-    """
-    Robust mixed date parsing:
-    - Handles 'November 28, 2025'
-    - Handles '4-Nov-24'
-    - Handles '11/6/2025' and '12/30/2025'
-    """
     s = series_like.astype(str).str.strip()
-
-    # Treat common "missing" tokens as NA
     s = s.replace({"": np.nan, "NA": np.nan, "N/A": np.nan, "nan": np.nan, "None": np.nan})
 
-    # Pass 1: general parser (handles month-name formats well)
     d1 = pd.to_datetime(s, errors="coerce", infer_datetime_format=True)
-
-    # Pass 2: day-first parser helps with '4-Nov-24' and other ambiguous cases
-    # (Only fills where pass 1 failed)
     d2 = pd.to_datetime(s, errors="coerce", dayfirst=True, infer_datetime_format=True)
     out = d1.fillna(d2)
 
-    # Final: force dtype to datetime64[ns]
     return pd.to_datetime(out, errors="coerce")
 
 def safe_num(x, default=np.nan) -> float:
@@ -280,7 +267,9 @@ daily_df[d_opp_pts] = pd.to_numeric(daily_df[d_opp_pts], errors="coerce")
 
 # Date
 d_date = find_col(daily_df, ["Date", "Game Date", "Game_Date"])
-daily_df["__Date"] = parse_mdy(daily_df[d_date]) if d_date else pd.to_datetime("2000-01-01")
+daily_df["__Date"] = parse_mixed_date(daily_df[d_date]) if d_date else pd.Timestamp("2000-01-01")
+if daily_df["__Date"].notna().sum() == 0:
+    daily_df["__Date"] = pd.Timestamp("2000-01-01")
 
 # Derived labels
 daily_df["__SM"] = daily_df[d_pts] - daily_df[d_opp_pts]
