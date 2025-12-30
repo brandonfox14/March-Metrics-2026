@@ -12,7 +12,7 @@ import streamlit as st
 # -----------------------------
 BASE = "Data/26_March_Madness_Databook"
 ALL_STATS_FILE = os.path.join(BASE, "All_Stats-THE_TABLE.csv")
-SOS_FILE       = os.path.join(BASE, "SOS-Table 1.csv")
+SOS_FILE       = os.path.join(BASE, "SOS-Table 1.csv")  # per-game log (kept for display/debug)
 DAILY_FILE     = os.path.join(BASE, "Daily_predictor_data-Table 1.csv")
 COACH_FILE     = os.path.join(BASE, "Coach-Table 1.csv")
 
@@ -86,12 +86,9 @@ with st.expander("Debug: paths / files", expanded=False):
 if not os.path.exists(ALL_STATS_FILE):
     st.error(f"Missing file: {ALL_STATS_FILE}")
     st.stop()
-if not os.path.exists(SOS_FILE):
-    st.error(f"Missing file: {SOS_FILE}")
-    st.stop()
 
 all_stats = clean_cols(load_csv(ALL_STATS_FILE))
-sos = clean_cols(load_csv(SOS_FILE))
+sos = clean_cols(load_csv(SOS_FILE)) if os.path.exists(SOS_FILE) else pd.DataFrame()
 
 daily = clean_cols(load_csv(DAILY_FILE)) if os.path.exists(DAILY_FILE) else pd.DataFrame()
 coach = clean_cols(load_csv(COACH_FILE)) if os.path.exists(COACH_FILE) else pd.DataFrame()
@@ -99,7 +96,7 @@ coach = clean_cols(load_csv(COACH_FILE)) if os.path.exists(COACH_FILE) else pd.D
 # Standardize Team column naming
 if "Teams" in all_stats.columns and "Team" not in all_stats.columns:
     all_stats = all_stats.rename(columns={"Teams": "Team"})
-if "Teams" in sos.columns and "Team" not in sos.columns:
+if not sos.empty and "Teams" in sos.columns and "Team" not in sos.columns:
     sos = sos.rename(columns={"Teams": "Team"})
 if not daily.empty and "Teams" in daily.columns and "Team" not in daily.columns:
     daily = daily.rename(columns={"Teams": "Team"})
@@ -107,7 +104,6 @@ if not coach.empty and "Teams" in coach.columns and "Team" not in coach.columns:
     coach = coach.rename(columns={"Teams": "Team"})
 
 # Resolve key All_Stats columns (handles small naming drift)
-COL_TEAM = "Team"
 COL_CONF = pick_existing(all_stats, ["Conference", "Conf"])
 COL_WINS = pick_existing(all_stats, ["Wins", "W"])
 COL_LOSSES = pick_existing(all_stats, ["Losses", "L"])
@@ -115,9 +111,10 @@ COL_WINPERC = pick_existing(all_stats, ["WIN_PERC", "WIN_PCT", "Win %", "Win Per
 COL_STAT_STRENGTH = pick_existing(all_stats, ["Statistical Strength", "Statistical Strength ", "Stat_Strength", "StatStrength"])
 COL_HIST_VALUE = pick_existing(all_stats, ["Historical Value", "Historical Value ", "History Value"])
 COL_CHAMP_CRIT = pick_existing(all_stats, ["Championship Criteria", "Championship Criteria ", "Champ Criteria"])
+COL_SOS_SUM = pick_existing(all_stats, ["SOS Sum", "SOS SUM", "SOS_SUM", "SOS_SUM ", "SOS SUM "])
 
 required_missing = []
-if COL_TEAM not in all_stats.columns:
+if "Team" not in all_stats.columns:
     required_missing.append("Team/Teams")
 if COL_CONF is None:
     required_missing.append("Conference")
@@ -127,6 +124,8 @@ if COL_LOSSES is None:
     required_missing.append("Losses")
 if COL_STAT_STRENGTH is None:
     required_missing.append("Statistical Strength")
+if COL_SOS_SUM is None:
+    required_missing.append("SOS Sum (team-level)")
 if required_missing:
     st.error(f"All_Stats missing required columns: {required_missing}")
     st.stop()
@@ -155,20 +154,24 @@ all_stats = all_stats.rename(columns={
     COL_STAT_STRENGTH: "Statistical_Strength",
     COL_HIST_VALUE: "Historical_Value",
     COL_CHAMP_CRIT: "Championship_Criteria",
+    COL_SOS_SUM: "SOS_Sum",
 })
 
 # -----------------------------
-# Conference Strength
-# - Average Statistical_Strength (but lower is better for teams; conference "strength" should be better when avg is lower)
-# We'll invert when ranking conferences.
+# Statistical Strength rank (YOU WANT: 1 = best, 365 = worst)
+# Lower Statistical_Strength is better
+# -----------------------------
+all_stats["StatStrength_Rank_Overall"] = to_num(all_stats["Statistical_Strength"], fill=np.nan)\
+    .rank(method="min", ascending=True).fillna(len(all_stats)).astype(int)
+
+# -----------------------------
+# Conference Strength (avg Statistical Strength; lower avg = stronger)
 # -----------------------------
 conf_strength = (
     all_stats.groupby("Conference", as_index=False)["Statistical_Strength"]
     .mean()
     .rename(columns={"Statistical_Strength": "Conf_StatStrength_Avg"})
 )
-
-# Conference rank: lower avg Statistical Strength = stronger conference
 conf_strength["Conf_Rank"] = conf_strength["Conf_StatStrength_Avg"].rank(method="min", ascending=True).astype(int)
 conf_strength = conf_strength.sort_values("Conf_Rank")
 
@@ -182,52 +185,42 @@ def conf_threshold(rank: int) -> float:
 
 conf_strength["AtLarge_WinPct_Threshold"] = conf_strength["Conf_Rank"].apply(conf_threshold)
 
+# Conf bonus: better conference -> higher
+conf_strength["ConfBonus"] = (-conf_strength["Conf_StatStrength_Avg"]).rank(pct=True, ascending=True)
+
 df = all_stats.merge(conf_strength, on="Conference", how="left")
 
-# Conference bonus: better conference -> higher bonus
-# Since Conf_Rank lower is better, invert percentile
-conf_strength["ConfBonus"] = (-conf_strength["Conf_StatStrength_Avg"]).rank(pct=True, ascending=True)
-df = df.merge(conf_strength[["Conference", "ConfBonus"]], on="Conference", how="left")
-
 # -----------------------------
-# SOS rollup + tiers
-# SOS is "performance based" — we'll tier a single selected SOS metric.
-# Priority: SOS SUM/SOS_SUM, else SOS Median/SOS_MED, else SOS Max/SOS_MAX
+# SOS tiers (IMPORTANT FIX)
+# Your SOS file is per-game; your tier values live in All Stats as "SOS Sum".
+# Tier mapping you specified:
+# >=100 : +5
+# 50-99 : +3
+# 0-49  : +1
+# -49..-1 : -1
+# < -50 : -3
 # -----------------------------
-if "Teams" in sos.columns and "Team" not in sos.columns:
-    sos = sos.rename(columns={"Teams": "Team"})
+df["SOS_TierValue"] = to_num(df["SOS_Sum"], fill=np.nan)
 
-SOS_TIER_COL = pick_existing(sos, ["SOS SUM", "SOS_SUM", "SOS Median", "SOS_MED", "SOS Max", "SOS_MAX"])
-if SOS_TIER_COL is None:
-    # still allow app to run, tiers become 0
-    sos_team = pd.DataFrame({"Team": df["Team"].unique()})
-    df["SOS_TierValue"] = np.nan
-else:
-    sos_work = sos.copy()
-    sos_work[SOS_TIER_COL] = to_num(sos_work[SOS_TIER_COL], fill=np.nan)
-
-    sos_team = sos_work.groupby("Team", as_index=False)[SOS_TIER_COL].mean().rename(columns={SOS_TIER_COL: "SOS_TierValue"})
-    df = df.merge(sos_team, on="Team", how="left")
-
-def tier_points(x: float) -> int:
+def tier_points_v2(x: float) -> int:
     if pd.isna(x):
         return 0
-    if x >= 100: return 4
-    if x >= 50:  return 2
+    if x >= 100: return 5
+    if x >= 50:  return 3
     if x >= 0:   return 1
-    if x >= -50: return -1
-    return -4
+    if x >= -49: return -1
+    return -3
 
-df["SOS_TierPoints"] = df["SOS_TierValue"].apply(tier_points)
+df["SOS_TierPoints"] = df["SOS_TierValue"].apply(tier_points_v2)
 
 # -----------------------------
 # Within-conference ranking formula (ALL vs conference opponents)
 # Directions you specified:
 # - TierPoints: higher = better
 # - WIN_PCT: higher = better
-# - Statistical_Strength: lower = better
+# - Statistical_Strength: lower = better (1 best)
 # - Historical_Value: higher = better (half weight)
-# - Championship_Criteria: included at quarter weight
+# - Championship_Criteria: quarter weight
 # -----------------------------
 df["Tier_rank_in_conf"] = within_group_pct_rank(df, "Conference", "SOS_TierPoints", higher_is_better=True)
 df["WinPct_rank_in_conf"] = within_group_pct_rank(df, "Conference", "WIN_PCT", higher_is_better=True)
@@ -245,14 +238,12 @@ df["Conf_TeamScore"] = (
 
 # -----------------------------
 # AQ Selection
-# - If Coach file has AQ==TRUE => lock that team as AQ
-# - Else use Daily predictor to estimate who wins conference tourney (power index)
-#   (generic, schema-proof): average z-score across numeric-ish columns
+# - If Coach file has AQ==TRUE => lock AQ (already happened)
+# - Else use Daily predictor (power index)
 # - Else fallback: top Conf_TeamScore in conference
 # -----------------------------
 coach_aq = {}
 if not coach.empty and {"AQ", "Team"}.issubset(set(coach.columns)):
-    # If coach doesn't carry Conference, merge it in from df
     if "Conference" not in coach.columns:
         coach = coach.merge(df[["Team", "Conference"]], on="Team", how="left")
     if "Conference" in coach.columns:
@@ -267,14 +258,13 @@ if not daily.empty and "Team" in daily.columns:
     if "Conference" not in daily.columns:
         daily = daily.merge(df[["Team", "Conference"]], on="Team", how="left")
 
-    # numeric-ish columns (skip obvious ids)
     id_like = {"team", "teams", "conference", "date", "game", "opponent", "location", "home", "away"}
     numeric_cols = []
     for c in daily.columns:
         if c.lower() in id_like:
             continue
         s = pd.to_numeric(daily[c], errors="coerce")
-        if s.notna().mean() >= 0.70:  # mostly numeric
+        if s.notna().mean() >= 0.70:
             numeric_cols.append(c)
 
     if numeric_cols:
@@ -284,18 +274,15 @@ if not daily.empty and "Team" in daily.columns:
 
 aq_map = {}
 for conf in conf_strength["Conference"].tolist():
-    # 1) locked AQ
     if conf in coach_aq:
         aq_map[conf] = coach_aq[conf]
         continue
-    # 2) predicted AQ from daily
     if not daily_power.empty:
-        pool = daily_power[daily_power["Conference"] == conf].copy()
+        pool = daily_power[daily_power["Conference"] == conf]
         if not pool.empty:
             aq_map[conf] = pool.sort_values("PowerIndex", ascending=False)["Team"].iloc[0]
             continue
-    # 3) fallback
-    pool2 = df[df["Conference"] == conf].copy()
+    pool2 = df[df["Conference"] == conf]
     aq_map[conf] = pool2.sort_values("Conf_TeamScore", ascending=False)["Team"].iloc[0]
 
 aqs = sorted(set(aq_map.values()))
@@ -308,9 +295,6 @@ df["AtLarge_Eligible"] = df["WIN_PCT"] >= df["AtLarge_WinPct_Threshold"]
 
 # -----------------------------
 # Build Field (68)
-# - AQs always in
-# - At-larges chosen from eligible non-AQs by AtLarge_Score
-#   AtLarge_Score uses Conf_TeamScore + conference bonus
 # -----------------------------
 FIELD_SIZE = 68
 AQ_COUNT = len(aqs)
@@ -330,19 +314,14 @@ df["In_Field"] = df["Team"].isin(field)
 
 # -----------------------------
 # Seeding
-# - Overall seed score: Conf_TeamScore + 0.5*ConfBonus (tune if you want)
-# - Force #1 overall = top team from top conference (Conf_Rank=1)
 # -----------------------------
 df["Seed_Score"] = df["Conf_TeamScore"] + 0.50 * df["ConfBonus"]
 
 field_df = df[df["In_Field"]].copy().sort_values("Seed_Score", ascending=False).reset_index(drop=True)
 
 top_conf = conf_strength.sort_values("Conf_Rank")["Conference"].iloc[0]
-top1_pool = field_df[field_df["Conference"] == top_conf].copy()
-if not top1_pool.empty:
-    top1_team = top1_pool.sort_values("Seed_Score", ascending=False)["Team"].iloc[0]
-else:
-    top1_team = field_df.sort_values("Seed_Score", ascending=False)["Team"].iloc[0]
+top1_pool = field_df[field_df["Conference"] == top_conf]
+top1_team = top1_pool.sort_values("Seed_Score", ascending=False)["Team"].iloc[0] if not top1_pool.empty else field_df.iloc[0]["Team"]
 
 if top1_team in field_df["Team"].values:
     top_row = field_df[field_df["Team"] == top1_team]
@@ -353,7 +332,7 @@ field_df["Overall_Rank"] = np.arange(1, len(field_df) + 1)
 field_df["Seed_Line"] = (((field_df["Overall_Rank"] - 1) // 4) + 1).clip(1, 16)
 
 # -----------------------------
-# Bubble buckets (based on at-large board ordering)
+# Bubble buckets (at-large board ordering)
 # -----------------------------
 atl_board = df[~df["Is_AQ"]].copy()
 atl_board = atl_board.sort_values(["AtLarge_Score", "Conf_TeamScore", "WIN_PCT"], ascending=False).reset_index(drop=True)
@@ -371,16 +350,19 @@ df.loc[df["Team"].isin(f4o), "Bubble_Bucket"] = "First 4 Out"
 df.loc[df["Team"].isin(n4o), "Bubble_Bucket"] = "Next 4 Out"
 df.loc[df["Is_AQ"], "Bubble_Bucket"] = "AQ"
 
+# Bubble bucket onto field_df (so field output never misses it)
+field_df = field_df.merge(df[["Team", "Bubble_Bucket"]], on="Team", how="left")
+
 # -----------------------------
 # First Four logic
-# - 4 lowest-seeded AQs play each other (two games) for the 16 seed slots
-# - 4 lowest-seeded At-Larges in the field play each other (two games)
+# - 4 lowest-seeded AQs (worst Seed_Score) -> play-in for 16 seed
+# - 4 lowest-seeded At-Larges in the field -> play-in
 # -----------------------------
 aq_field = field_df[field_df["Is_AQ"]].copy()
 al_field = field_df[~field_df["Is_AQ"]].copy()
 
-lowest_4_aq = aq_field.sort_values(["Seed_Score", "Overall_Rank"], ascending=[True, False]).head(4).copy()
-lowest_4_al = al_field.sort_values(["Seed_Score", "Overall_Rank"], ascending=[True, False]).head(4).copy()
+lowest_4_aq = aq_field.sort_values(["Seed_Score", "Overall_Rank"], ascending=[True, False]).head(4)
+lowest_4_al = al_field.sort_values(["Seed_Score", "Overall_Rank"], ascending=[True, False]).head(4)
 
 field_df["FirstFour_Type"] = ""
 field_df.loc[field_df["Team"].isin(lowest_4_aq["Team"]), "FirstFour_Type"] = "First Four (AQ)"
@@ -396,7 +378,8 @@ def make_matchups(subdf: pd.DataFrame, label: str) -> pd.DataFrame:
     ])
 
 first_four = pd.concat(
-    [make_matchups(lowest_4_aq, "AQ (16-seed play-in)"), make_matchups(lowest_4_al, "At-Large (play-in)")],
+    [make_matchups(lowest_4_aq, "AQ (16-seed play-in)"),
+     make_matchups(lowest_4_al, "At-Large (play-in)")],
     ignore_index=True
 )
 
@@ -433,12 +416,13 @@ def bucket_table(title: str, teams: list[str]):
     sub = df[df["Team"].isin(teams)][[
         "Team", "Conference",
         "WIN_PCT", "AtLarge_Eligible", "AtLarge_WinPct_Threshold",
-        "SOS_TierValue", "SOS_TierPoints",
-        "Statistical_Strength", "Historical_Value", "Championship_Criteria",
+        "SOS_Sum", "SOS_TierValue", "SOS_TierPoints",
+        "Statistical_Strength", "StatStrength_Rank_Overall",
+        "Historical_Value", "Championship_Criteria",
         "Conf_TeamScore", "AtLarge_Score"
     ]].sort_values("AtLarge_Score", ascending=False)
     st.write(f"**{title}**")
-    st.dataframe(sub, use_container_width=True, height=300)
+    st.dataframe(sub, use_container_width=True, height=320)
 
 with b1: bucket_table("Last 4 Byes", l4b)
 with b2: bucket_table("Last 4 In", l4i)
@@ -446,46 +430,42 @@ with b3: bucket_table("First 4 Out", f4o)
 with b4: bucket_table("Next 4 Out", n4o)
 
 st.markdown("## Full Projected Field (Seeded)")
+
 show_cols = [
     "Overall_Rank", "Seed_Line", "Team", "Conference", "Is_AQ",
     "FirstFour_Type",
     "WIN_PCT", "AtLarge_Eligible", "AtLarge_WinPct_Threshold",
-    "SOS_TierValue", "SOS_TierPoints",
-    "Statistical_Strength", "Historical_Value", "Championship_Criteria",
+    "SOS_Sum", "SOS_TierValue", "SOS_TierPoints",
+    "Statistical_Strength", "StatStrength_Rank_Overall",
+    "Historical_Value", "Championship_Criteria",
     "Conf_TeamScore", "AtLarge_Score", "Seed_Score", "Bubble_Bucket"
 ]
 
-out = field_df.merge(
-    df[["Team", "Bubble_Bucket", "AtLarge_Eligible", "AtLarge_WinPct_Threshold", "AtLarge_Score"]],
-    on="Team",
-    how="left"
-)
+# field_df ALREADY includes AtLarge_* columns because it was built from df (which has them).
+out = field_df.copy()
 
-# --- Safe column selection (prevents KeyError) ---
-missing_cols = [c for c in show_cols if c not in out.columns]
+# Safe selection (never crash)
 present_cols = [c for c in show_cols if c in out.columns]
-
+missing_cols = [c for c in show_cols if c not in out.columns]
 if missing_cols:
     with st.expander("Debug: missing columns in field table", expanded=False):
         st.write("Missing from output:", missing_cols)
-        st.write("Available columns (sample):", list(out.columns))
+        st.write("Available columns:", list(out.columns))
 
-# Sort safely too (in case one is missing)
-sort_cols = [c for c in ["Seed_Line", "Seed_Score"] if c in out.columns]
-if sort_cols:
-    out_sorted = out[present_cols].sort_values(sort_cols, ascending=[True, False][:len(sort_cols)])
-else:
-    out_sorted = out[present_cols]
-
-st.dataframe(out_sorted, use_container_width=True, height=780)
+st.dataframe(
+    out[present_cols].sort_values(["Seed_Line", "Seed_Score"], ascending=[True, False]),
+    use_container_width=True,
+    height=780
+)
 
 st.markdown("## At-Large Board (Top 120)")
 st.dataframe(
     atl_board.head(120)[[
         "ATL_Rank", "Team", "Conference",
         "WIN_PCT", "AtLarge_Eligible", "AtLarge_WinPct_Threshold",
-        "SOS_TierValue", "SOS_TierPoints",
-        "Statistical_Strength", "Historical_Value", "Championship_Criteria",
+        "SOS_Sum", "SOS_TierValue", "SOS_TierPoints",
+        "Statistical_Strength", "StatStrength_Rank_Overall",
+        "Historical_Value", "Championship_Criteria",
         "Conf_TeamScore", "AtLarge_Score", "Bubble_Bucket"
     ]],
     use_container_width=True,
@@ -502,3 +482,8 @@ bids = (
     .sort_values(["Bids", "Conf_Rank"], ascending=[False, True])
 )
 st.bar_chart(bids.set_index("Conference")["Bids"])
+
+# Optional: show SOS per-game log if you want
+if not sos.empty:
+    with st.expander("SOS per-game log (raw file preview)", expanded=False):
+        st.dataframe(sos.head(200), use_container_width=True, height=420)
