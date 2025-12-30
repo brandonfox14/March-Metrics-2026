@@ -1,899 +1,321 @@
-# APP/Pages/9_Betting.py
+# APP/Pages/7_Bracketology.py
 # =========================================================
-# Betting Page — multi-market plan (ML/Spread/OU)
+# Bracketology — AQs + At-larges + Bubble Buckets
 # =========================================================
-#493 is where to adjust things
 import os
-import math
-from typing import List, Tuple, Optional, Dict, Any
-
 import numpy as np
 import pandas as pd
 import streamlit as st
 
-from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.impute import SimpleImputer
-from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
-from sklearn.model_selection import StratifiedKFold
-from sklearn.metrics import average_precision_score, roc_auc_score, accuracy_score
-from sklearn.calibration import CalibratedClassifierCV
-
-# =========================================================
-# CONFIG
-# =========================================================
 BASE = "Data/26_March_Madness_Databook"
-SCHEDULE_FILE = os.path.join(BASE, "2026 Schedule Transfer-Table 1.csv")
-DAILY_FILE    = os.path.join(BASE, "Daily_predictor_data-Table 1.csv")
 
-st.set_page_config(page_title="Betting", layout="wide")
-st.title("Betting")
-
-# =========================================================
-# HELPERS
-# =========================================================
-def load_csv(path: str) -> Optional[pd.DataFrame]:
-    if not os.path.exists(path):
-        st.error(f"Missing file: {path}")
-        return None
-    try:
-        df = pd.read_csv(path, encoding="latin1")
-        df.columns = df.columns.str.strip()
-        return df
-    except Exception as e:
-        st.error(f"Error reading {path}: {e}")
-        return None
-
-def find_col(df: pd.DataFrame, candidates: List[str]) -> Optional[str]:
-    for c in candidates:
-        if c in df.columns:
-            return c
-    return None
-
-def parse_mdy(series_like: pd.Series) -> pd.Series:
-    s = series_like.astype(str).str.strip()
-    out = pd.to_datetime(s, errors="coerce", format="%m/%d/%Y")
-    mask = out.isna()
-    if mask.any():
-        try2 = pd.to_datetime(s[mask], errors="coerce", infer_datetime_format=True)
-        out.loc[mask] = try2
-    return out
-
-def american_to_decimal(odds) -> float:
-    try:
-        o = float(odds)
-    except Exception:
-        return np.nan
-    if o > 0:
-        return 1.0 + (o / 100.0)
-    elif o < 0:
-        return 1.0 + (100.0 / -o)
-    return np.nan
-
-def payout_if_win_total(stake: float, odds_us: float) -> float:
-    """Total return if win = stake + winnings."""
-    if not np.isfinite(stake) or stake <= 0 or not np.isfinite(odds_us):
-        return np.nan
-    dec = american_to_decimal(odds_us)
-    if not np.isfinite(dec):
-        return np.nan
-    return float(stake * dec)
-
-def safe_num(x, default=np.nan) -> float:
-    try:
-        v = float(x)
-        if np.isnan(v):
-            return default
-        return v
-    except Exception:
-        return default
-
-def uniq_jitter(key: str, scale: float = 0.11) -> float:
-    h = abs(hash(key)) % 10_000
-    return (h / 10_000.0 - 0.5) * 2.0 * scale  # [-scale, +scale]
-
-def clean_rank_value(x) -> float:
-    try:
-        v = float(x)
-        if np.isnan(v): return 51.0
-        return v
-    except Exception:
-        return 51.0
-
-def extract_top50_any(row: Optional[pd.Series]) -> List[Tuple[str, int]]:
-    if row is None:
-        return []
-    out = []
-    for c in row.index:
-        cu = c.strip()
-        cu_upper = cu.upper()
-        if ("RANK" in cu_upper) or cu_upper.endswith("_RANK"):
-            rv = clean_rank_value(row.get(c))
-            if rv <= 50:
-                out.append((c, int(rv)))
-    return sorted(out, key=lambda z: z[1])
-
-def is_penn_state(name: str) -> bool:
-    s = str(name).strip().upper()
-    return ("PENN ST" in s) or ("PENN STATE" in s)
-
-def clamp_prob(p: float, lo: float = 0.005, hi: float = 0.995) -> float:
-    if not np.isfinite(p):
-        return np.nan
-    return float(min(hi, max(lo, p)))
-
-def pick_binary_side(p_event: float, label_event: str, label_other: str):
-    """
-    Given P(event), return (picked_label, picked_prob).
-    Ensures picked_prob >= 0.50 (binary complement).
-    """
-    p_event = clamp_prob(p_event)
-    if not np.isfinite(p_event):
-        return None, np.nan
-    p_other = 1.0 - p_event
-    if p_event >= 0.5:
-        return label_event, p_event
-    return label_other, p_other
-
-def enforce_ml_spread_consistency(line: float, win_prob: float, cover_prob: float) -> float:
-    """
-    Enforce logical relationship between Win and Cover probabilities for a given side.
-    - If line < 0 (favorite laying points): P(cover) <= P(win)
-    - If line > 0 (underdog getting points): P(cover) >= P(win)
-    - If line == 0: P(cover) == P(win)
-    """
-    if not (np.isfinite(line) and np.isfinite(win_prob) and np.isfinite(cover_prob)):
-        return cover_prob
-    win_prob = clamp_prob(win_prob)
-    cover_prob = clamp_prob(cover_prob)
-
-    if line < 0:
-        return float(min(cover_prob, win_prob))
-    if line > 0:
-        return float(max(cover_prob, win_prob))
-    return float(win_prob)
-
-def truthy_flag(v) -> bool:
-    if pd.isna(v):
-        return False
-    s = str(v).strip().upper()
-    return s not in ("0", "", "N", "NO", "FALSE", "F", "NA", "NAN", "NONE")
-
-# Goal-based ranking helpers
-def profit_multiple(dec: float) -> float:
-    # profit per $1 stake if win
-    if not np.isfinite(dec) or dec <= 1.0:
-        return np.nan
-    return float(dec - 1.0)
-
-def expected_profit_per_dollar(prob: float, dec: float) -> float:
-    # EV profit per $1 stake (not total return)
-    # = p*(dec-1) - (1-p)
-    if not np.isfinite(prob) or not np.isfinite(dec) or dec <= 1.0:
-        return np.nan
-    p = clamp_prob(prob)
-    return float(p * (dec - 1.0) - (1.0 - p))
-
-# =========================================================
-# LOAD DATA
-# =========================================================
-schedule_df_raw = load_csv(SCHEDULE_FILE)
-schedule_df = None if schedule_df_raw is None else schedule_df_raw.copy()
-daily_df    = load_csv(DAILY_FILE)
-if schedule_df is None or daily_df is None:
-    st.stop()
-
-# =========================================================
-# COLUMN DETECTION (SCHEDULE)
-# =========================================================
-team_col   = find_col(schedule_df, ["Team", "Teams"])
-opp_col    = find_col(schedule_df, ["Opponent", "Opp", "opponent"])
-date_col   = find_col(schedule_df, ["Date", "Game Date", "Game_Date"])
-han_col    = find_col(schedule_df, ["HAN","Home/Away","HomeAway","Location","Loc"])
-conf_col   = find_col(schedule_df, ["Conference"])
-opp_conf_col = find_col(schedule_df, ["Opponent Conference","Opp Conference"])
-coach_col  = find_col(schedule_df, ["Coach Name","Coach","Coach_Name"])
-opp_coach_col = find_col(schedule_df, ["Opponent Coach","Opp Coach"])
-
-line_col   = find_col(schedule_df, ["Line","Spread","Vegas Line"])
-ml_col     = find_col(schedule_df, ["ML","Moneyline","Money Line"])
-ou_col     = find_col(schedule_df, ["Over/Under Line","OverUnder","Over Under Line","O/U","Total Points Line","Total"])
-
-top25_col  = find_col(schedule_df, ["Top 25 Opponent","Top25","Top 25"])
-mm_col     = find_col(schedule_df, ["March Madness Opponent","March Madness"])
-
-if team_col is None or opp_col is None or date_col is None:
-    st.error("Schedule must include Team, Opponent, and Date.")
-    st.stop()
-
-schedule_df["__Date"] = parse_mdy(schedule_df[date_col])
-schedule_df = schedule_df.dropna(subset=["__Date"]).copy()
-
-# Deduplicate mirrored fixtures for scoring
-seen = set()
-keep_idx = []
-for idx, r in schedule_df.iterrows():
-    t = str(r[team_col]).strip()
-    o = str(r[opp_col]).strip()
-    d = r["__Date"].date()
-    key = tuple(sorted([t.lower(), o.lower()])) + (d,)
-    if key in seen:
-        continue
-    seen.add(key)
-    keep_idx.append(idx)
-schedule_df = schedule_df.loc[keep_idx].reset_index(drop=True)
-
-# =========================================================
-# DAILY FEATURE SPACE & TARGETS
-# =========================================================
-d_team = find_col(daily_df, ["Team","Teams","team"])
-d_opp  = find_col(daily_df, ["Opponent","Opp","opponent"])
-
-d_pts  = find_col(daily_df, ["Points"])
-d_opp_pts = find_col(daily_df, ["Opp Points","Opp_Points","OppPoints"])
-d_line = find_col(daily_df, ["Line"])
-d_ou   = find_col(daily_df, ["Over/Under Line","OverUnder","Over Under Line","O/U"])
-d_ml   = find_col(daily_df, ["ML","Moneyline","Money Line"])
-
-if d_team is None or d_opp is None or d_pts is None or d_opp_pts is None:
-    st.error("Daily predictor must include Team, Opponent, Points, Opp Points.")
-    st.stop()
-
-# numeric columns (+ objects coercible to numeric)
-daily_numeric_cols = daily_df.select_dtypes(include=[np.number]).columns.tolist()
-obj_as_num = []
-for c in daily_df.columns:
-    if c not in daily_numeric_cols:
-        try:
-            pd.to_numeric(daily_df[c], errors="raise")
-            obj_as_num.append(c)
-        except Exception:
-            pass
-daily_numeric_cols = list(dict.fromkeys(daily_numeric_cols + obj_as_num))
-
-# Drop pure point targets from feature set
-for drop_c in [d_pts, d_opp_pts]:
-    if drop_c in daily_numeric_cols:
-        daily_numeric_cols.remove(drop_c)
-
-# Coerce points
-daily_df[d_pts]     = pd.to_numeric(daily_df[d_pts], errors="coerce")
-daily_df[d_opp_pts] = pd.to_numeric(daily_df[d_opp_pts], errors="coerce")
-
-# Targets: SM and Total
-sm_col = find_col(daily_df, ["SM", "Spread Margin"])
-if sm_col is None:
-    daily_df["__SM"] = daily_df[d_pts] - daily_df[d_opp_pts]
-    sm_col = "__SM"
-
-tot_col = find_col(daily_df, ["Total Points", "TOTAL_POINTS", "Total"])
-if tot_col is None:
-    daily_df["__TOTAL"] = daily_df[d_pts] + daily_df[d_opp_pts]
-    tot_col = "__TOTAL"
-
-# Date
-d_date = find_col(daily_df, ["Date", "Game Date", "Game_Date"])
-daily_df["__Date"] = parse_mdy(daily_df[d_date]) if d_date else pd.to_datetime("2000-01-01")
-
-# Moneyline win label
-y_win = (daily_df[d_pts] > daily_df[d_opp_pts]).astype(int)
-
-# Spread cover label: SM + Line > 0 (team covers its listed line)
-y_cover = pd.Series(np.nan, index=daily_df.index)
-if d_line is not None:
-    daily_df[d_line] = pd.to_numeric(daily_df[d_line], errors="coerce")
-    y_cover = ((daily_df[sm_col] + daily_df[d_line]) > 0).astype(int)
-
-# Over label: TOTAL > OU line
-y_over = pd.Series(np.nan, index=daily_df.index)
-if d_ou is not None:
-    daily_df[d_ou] = pd.to_numeric(daily_df[d_ou], errors="coerce")
-    y_over = (daily_df[tot_col] > daily_df[d_ou]).astype(int)
-
-# Coerce numeric features (for training)
-for c in daily_numeric_cols:
-    daily_df[c] = pd.to_numeric(daily_df[c], errors="coerce")
-
-# categorical columns
-cat_candidates = [
-    d_team, d_opp,
-    "Coach Name","Coach","Coach_Name",
-    "Opponent Coach","Opp Coach",
-    "Conference","Opponent Conference","Opp Conference",
-    "HAN","Home/Away","HomeAway","Location","Loc"
-]
-cat_cols = [c for c in cat_candidates if c and c in daily_df.columns]
-cat_cols = list(dict.fromkeys(cat_cols))
-
-# IMPORTANT: avoid double-assigning a column to num & cat
-daily_numeric_cols = [c for c in daily_numeric_cols if c not in cat_cols]
-
-mask_points = daily_df[d_pts].notna() & daily_df[d_opp_pts].notna()
-df_train = daily_df.loc[mask_points].copy()
-
-# TEAM PROFILES (median per-team across all numeric features)
-team_profiles = df_train.groupby(d_team)[daily_numeric_cols].median(numeric_only=True)
-global_medians = df_train[daily_numeric_cols].median(numeric_only=True)
-
-def opp_base_col(col: str) -> Optional[str]:
-    if col.upper().startswith("OPP_"):
-        return col[4:]
-    return None
-
-def get_team_profile(team: str) -> pd.Series:
-    if team in team_profiles.index:
-        return team_profiles.loc[team]
-    return global_medians
-
-# RECENCY WEIGHTS
-current_year = int(df_train["__Date"].dt.year.max()) if df_train["__Date"].notna().any() else 2000
-sample_weight = np.ones(len(df_train), dtype=float)
-recent_mask = (df_train["__Date"].dt.year == current_year)
-sample_weight[recent_mask.values] = 3.0
-
-# PREPROCESSOR
-num_transformer = SimpleImputer(strategy="median")
-try:
-    cat_transformer = OneHotEncoder(handle_unknown="ignore", sparse_output=False)
-except TypeError:
-    cat_transformer = OneHotEncoder(handle_unknown="ignore", sparse=False)
-
-preproc = ColumnTransformer(
-    transformers=[
-        ("num", num_transformer, daily_numeric_cols),
-        ("cat", cat_transformer, cat_cols)
-    ],
-    remainder="drop",
-    sparse_threshold=0.0
-)
-
-X_all = preproc.fit_transform(df_train[daily_numeric_cols + cat_cols])
-
-# Targets aligned to df_train
-Y_points = df_train[[d_pts, d_opp_pts]].values
-y_win_train = y_win.loc[df_train.index].values.astype(int)
-
-y_cover_train = np.full(len(df_train), np.nan, dtype=float)
-if d_line is not None:
-    mask_cover_avail = df_train[d_line].notna() & df_train[sm_col].notna()
-    y_cover_train[mask_cover_avail.values] = (
-        (df_train.loc[mask_cover_avail, sm_col] + df_train.loc[mask_cover_avail, d_line]) > 0
-    ).astype(int).values
-
-y_over_train = np.full(len(df_train), np.nan, dtype=float)
-if d_ou is not None:
-    mask_ou_avail = df_train[d_ou].notna() & df_train[tot_col].notna()
-    y_over_train[mask_ou_avail.values] = (
-        df_train.loc[mask_ou_avail, tot_col] > df_train.loc[mask_ou_avail, d_ou]
-    ).astype(int).values
-
-# =========================================================
-# TRAIN MODELS
-# =========================================================
-st.markdown("### Model Training")
-st.caption("Regression for Points/Opp Points + calibrated classifiers for Win, Spread, and Total.")
-
-rf_points = RandomForestRegressor(
-    n_estimators=900,
-    random_state=42,
-    n_jobs=-1,
-    min_samples_leaf=1,
-    max_features="sqrt"
-)
-rf_points.fit(X_all, Y_points, sample_weight=sample_weight)
-
-def safe_cv_auc(X: np.ndarray, y: np.ndarray, w: np.ndarray, splits: int = 5) -> Optional[float]:
-    mask = ~np.isnan(y)
-    y_ = y[mask].astype(int)
-    X_ = X[mask]
-    w_ = w[mask]
-    if X_.shape[0] < 10 or len(np.unique(y_)) < 2:
-        return None
-    class_counts = np.bincount(y_)
-    min_class = int(class_counts.min()) if len(class_counts) > 0 else 0
-    n_splits = min(splits, X_.shape[0], min_class)
-    if n_splits < 2:
-        return None
-    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
-    scores = []
-    for tr, te in skf.split(X_, y_):
-        clf = RandomForestClassifier(
-            n_estimators=500,
-            random_state=42,
-            class_weight="balanced_subsample",
-            n_jobs=-1
-        )
-        clf.fit(X_[tr], y_[tr], sample_weight=w_[tr])
-        proba = clf.predict_proba(X_[te])[:, 1]
-        scores.append(roc_auc_score(y_[te], proba))
-    return float(np.mean(scores)) if scores else None
-
-def safe_cv_acc(X: np.ndarray, y: np.ndarray, w: np.ndarray, splits: int = 5) -> Optional[float]:
-    mask = ~np.isnan(y)
-    y_ = y[mask].astype(int)
-    X_ = X[mask]
-    w_ = w[mask]
-    if X_.shape[0] < 10 or len(np.unique(y_)) < 2:
-        return None
-    class_counts = np.bincount(y_)
-    min_class = int(class_counts.min()) if len(class_counts) > 0 else 0
-    n_splits = min(splits, X_.shape[0], min_class)
-    if n_splits < 2:
-        return None
-    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
-    accs = []
-    for tr, te in skf.split(X_, y_):
-        clf = RandomForestClassifier(
-            n_estimators=500,
-            random_state=42,
-            class_weight="balanced_subsample",
-            n_jobs=-1
-        )
-        clf.fit(X_[tr], y_[tr], sample_weight=w_[tr])
-        pred = clf.predict(X_[te])
-        accs.append(accuracy_score(y_[te], pred))
-    return float(np.mean(accs)) if accs else None
-
-auc_win   = safe_cv_auc(X_all, y_win_train.astype(float), sample_weight)
-auc_cover = safe_cv_auc(X_all, y_cover_train, sample_weight)
-auc_over  = safe_cv_auc(X_all, y_over_train, sample_weight)
-
-acc_win   = safe_cv_acc(X_all, y_win_train.astype(float), sample_weight)
-acc_cover = safe_cv_acc(X_all, y_cover_train, sample_weight)
-acc_over  = safe_cv_acc(X_all, y_over_train, sample_weight)
-
-col_m1, col_m2, col_m3 = st.columns(3)
-with col_m1:
-    st.write(f"Moneyline/Win AUC: {auc_win:.3f}" if auc_win is not None else "Moneyline/Win AUC: n/a")
-    st.write(f"Moneyline/Win ACC: {acc_win:.3f}" if acc_win is not None else "Moneyline/Win ACC: n/a")
-with col_m2:
-    st.write(f"Spread AUC: {auc_cover:.3f}" if auc_cover is not None else "Spread AUC: n/a")
-    st.write(f"Spread ACC: {acc_cover:.3f}" if acc_cover is not None else "Spread ACC: n/a")
-with col_m3:
-    st.write(f"Total (OU) AUC: {auc_over:.3f}" if auc_over is not None else "Total (OU) AUC: n/a")
-    st.write(f"Total (OU) ACC: {acc_over:.3f}" if acc_over is not None else "Total (OU) ACC: n/a")
-
-valid_aucs = [x for x in [auc_win, auc_cover, auc_over] if x is not None]
-avg_auc = float(np.mean(valid_aucs)) if valid_aucs else None
-valid_accs = [x for x in [acc_win, acc_cover, acc_over] if x is not None]
-avg_acc = float(np.mean(valid_accs)) if valid_accs else None
-
-cA, cB = st.columns(2)
-with cA:
-    st.metric("Average AUC (Win+Spread+OU)", f"{avg_auc:.3f}" if avg_auc is not None else "n/a")
-with cB:
-    st.metric("Average ACC (Win+Spread+OU)", f"{avg_acc:.3f}" if avg_acc is not None else "n/a")
-
-# Calibrated classifiers (probabilities behave better)
-base_win = RandomForestClassifier(n_estimators=800, random_state=42, class_weight="balanced_subsample", n_jobs=-1)
-clf_win = CalibratedClassifierCV(base_win, method="isotonic", cv=5)
-clf_win.fit(X_all, y_win_train, sample_weight=sample_weight)
-
-clf_cover = None
-mask_cover_fit = ~np.isnan(y_cover_train)
-if mask_cover_fit.any():
-    base_cover = RandomForestClassifier(n_estimators=700, random_state=42, class_weight="balanced_subsample", n_jobs=-1)
-    clf_cover = CalibratedClassifierCV(base_cover, method="isotonic", cv=5)
-    clf_cover.fit(X_all[mask_cover_fit], y_cover_train[mask_cover_fit].astype(int), sample_weight=sample_weight[mask_cover_fit])
-
-clf_over = None
-mask_over_fit = ~np.isnan(y_over_train)
-if mask_over_fit.any():
-    base_over = RandomForestClassifier(n_estimators=700, random_state=42, class_weight="balanced_subsample", n_jobs=-1)
-    clf_over = CalibratedClassifierCV(base_over, method="isotonic", cv=5)
-    clf_over.fit(X_all[mask_over_fit], y_over_train[mask_over_fit].astype(int), sample_weight=sample_weight[mask_over_fit])
-
-# =========================================================
-# USER CONTROLS (per your goals)
-# =========================================================
-st.markdown("---")
-st.markdown("### Bankroll & Risk Controls")
-
-c1, c2, c3 = st.columns(3)
-with c1:
-    bet_amount = st.number_input("Bet Amount ($) for today", min_value=1.0, value=100.0, step=5.0)
-
-with c2:
-    goal_pct = st.slider("Goal: % increase (higher = riskier)", 5, 50, 20, 1)
-    st.caption(f"Target profit goal ≈ ${bet_amount * (goal_pct/100.0):.2f}")
-
-with c3:
-    ml_min, ml_max = st.slider("Acceptable ML odds range", -1000, 1000, (-400, 400), 10)
-
-# Thresholds controlled by goal%
-min_prob_binary = float(np.interp(goal_pct, [5, 50], [0.70, 0.52]))   # spread/OU must be at least this
-edge_floor      = float(np.interp(goal_pct, [5, 50], [0.040, 0.006])) # +EV threshold
-min_bets, max_bets = st.slider("Bets minimum / maximum", 1, 100, (10, 100))
-
-# Goal% -> ranking blend (0=safe, 1=chase payout)
-alpha = float(np.interp(goal_pct, [5, 50], [0.0, 1.0]))
-
-# =========================================================
-# SCHEDULE → FEATURE using team/opponent profiles
-# =========================================================
-def schedule_row_to_feature(row: pd.Series) -> pd.DataFrame:
-    t = str(row[team_col]).strip()
-    o = str(row[opp_col]).strip()
-    team_prof = get_team_profile(t)
-    opp_prof  = get_team_profile(o)
-
-    data: Dict[str, Any] = {}
-    for c in daily_numeric_cols:
-        val = pd.to_numeric(row.get(c, np.nan), errors="coerce")
-        if pd.notna(val):
-            data[c] = float(val)
-            continue
-
-        base = opp_base_col(c)
-        if base is not None:
-            data[c] = float(opp_prof.get(base, global_medians.get(c, np.nan)))
-        else:
-            data[c] = float(team_prof.get(c, global_medians.get(c, np.nan)))
-
-    mapping = {
-        d_team: team_col, d_opp: opp_col,
-        "Coach Name": coach_col, "Coach": coach_col, "Coach_Name": coach_col,
-        "Opponent Coach": opp_coach_col, "Opp Coach": opp_coach_col,
-        "Conference": conf_col, "Opponent Conference": opp_conf_col, "Opp Conference": opp_conf_col,
-        "HAN": han_col, "Home/Away": han_col, "HomeAway": han_col, "Location": han_col, "Loc": han_col
-    }
-    for c in cat_cols:
-        src = mapping.get(c, None)
-        data[c] = str(row.get(src)) if (src and src in row.index) else ""
-
-    one = pd.DataFrame([data], columns=list(dict.fromkeys(daily_numeric_cols + cat_cols)))
-    return one
-
-# =========================================================
-# SCORE GAMES -> BET CANDIDATES (MULTIPLE PER GAME)
-# =========================================================
-bet_rows = []
-game_rows = []
-
-for _, r in schedule_df.iterrows():
-    t = str(r[team_col]).strip()
-    o = str(r[opp_col]).strip()
-    game_label = f"{t} vs {o}"
-
-    one = schedule_row_to_feature(r)
-    X = preproc.transform(one)
-
-    pts_pred = rf_points.predict(X)[0]
-    pts, oppp = float(pts_pred[0]), float(pts_pred[1])
-
-    jitter = uniq_jitter(f"{t}|{o}|{r['__Date']}")
-    pts  = max(0.0, pts  + jitter)
-    oppp = max(0.0, oppp - jitter)
-
-    margin = pts - oppp
-    total  = pts + oppp
-
-    line = safe_num(r.get(line_col), default=np.nan) if line_col else np.nan
-    ouv  = safe_num(r.get(ou_col),   default=np.nan) if ou_col   else np.nan
-    mline= safe_num(r.get(ml_col),   default=np.nan) if ml_col   else np.nan
-
-    is_top25 = truthy_flag(r.get(top25_col)) if (top25_col and top25_col in schedule_df.columns) else False
-    is_mm    = truthy_flag(r.get(mm_col))    if (mm_col and mm_col in schedule_df.columns) else False
-
-    conf = r.get(opp_conf_col) if (opp_conf_col and opp_conf_col in r.index) else r.get(conf_col)
-    cc = str(conf).strip().upper() if conf is not None else ""
-    is_p5 = cc in ("SEC","BIG TEN","B1G","BIG 12","ACC","PAC-12","PAC 12","BIG EAST")
-
-    # Classifier probabilities
-    win_p = clamp_prob(clf_win.predict_proba(X)[0, 1])
-
-    cover_prob_team = np.nan
-    if np.isfinite(line) and clf_cover is not None:
-        cover_prob_team = clamp_prob(clf_cover.predict_proba(X)[0, 1])
-
-    over_prob = np.nan
-    if np.isfinite(ouv) and clf_over is not None:
-        over_prob = clamp_prob(clf_over.predict_proba(X)[0, 1])
-
-    game_rows.append({
-        "Date": r["__Date"],
-        "Team": t,
-        "Opponent": o,
-        "Pred_Points": round(pts, 1),
-        "Pred_Opp_Points": round(oppp, 1),
-        "Pred_Margin": round(margin, 1),
-        "Pred_Total": round(total, 1),
-        "WinProb": win_p,
-        "Line": line if np.isfinite(line) else None,
-        "CoverProb_TeamCoversLine": cover_prob_team if np.isfinite(cover_prob_team) else None,
-        "ML": mline if np.isfinite(mline) else None,
-        "OU_Line": ouv if np.isfinite(ouv) else None,
-        "OverProb": over_prob if np.isfinite(over_prob) else None,
-        "IsTop25": is_top25,
-        "IsMM": is_mm,
-        "IsP5": is_p5,
-        "RowObj": r
-    })
-
-    # ---------------------------
-    # Candidate 1: Moneyline
-    # ---------------------------
-    if np.isfinite(mline) and (ml_min <= mline <= ml_max):
-        ml_dec = american_to_decimal(mline)
-        if np.isfinite(ml_dec):
-            ml_edge = win_p - (1.0 / ml_dec)
-            if np.isfinite(ml_edge) and ml_edge > edge_floor:
-                bet_rows.append({
-                    "Date": r["__Date"],
-                    "GAME": game_label,
-                    "BET TYPE": "ML",
-                    "BET": f"{t} ML",
-                    "VALUE_EDGE": float(ml_edge),
-                    "ODDS": int(mline),
-                    "ODDS_DEC": float(ml_dec),
-                    "PROB": float(win_p),
-                    "IsTop25": is_top25,
-                    "IsMM": is_mm,
-                    "IsP5": is_p5
-                })
-
-    # ---------------------------
-    # Candidate 2: Spread (binary complement + ML consistency)
-    # ---------------------------
-    if np.isfinite(line) and np.isfinite(cover_prob_team):
-        team_spread = f"{t} {('+' if line > 0 else '')}{line}"
-        opp_line = -line
-        opp_spread = f"{o} {('+' if opp_line > 0 else '')}{opp_line}"
-
-        spread_pick, spread_prob = pick_binary_side(cover_prob_team, team_spread, opp_spread)
-
-        if spread_pick is not None and np.isfinite(spread_prob):
-            # Determine win probability and line sign for the PICKED side
-            if spread_pick.startswith(t + " "):
-                picked_win_prob = win_p
-                picked_line = line
-            else:
-                picked_win_prob = 1.0 - win_p
-                picked_line = opp_line
-
-            # Enforce real-world relationship between win and cover
-            spread_prob = enforce_ml_spread_consistency(picked_line, picked_win_prob, spread_prob)
-
-            if np.isfinite(spread_prob) and spread_prob >= min_prob_binary:
-                spread_dec = 1.909
-                spread_edge = spread_prob - (1.0 / spread_dec)
-                if np.isfinite(spread_edge) and spread_edge > edge_floor:
-                    bet_rows.append({
-                        "Date": r["__Date"],
-                        "GAME": game_label,
-                        "BET TYPE": "SPREAD",
-                        "BET": spread_pick,
-                        "VALUE_EDGE": float(spread_edge),
-                        "ODDS": -110,
-                        "ODDS_DEC": float(spread_dec),
-                        "PROB": float(spread_prob),
-                        "IsTop25": is_top25,
-                        "IsMM": is_mm,
-                        "IsP5": is_p5
-                    })
-
-    # ---------------------------
-    # Candidate 3: Over/Under (binary complement)
-    # ---------------------------
-    if np.isfinite(ouv) and np.isfinite(over_prob):
-        ou_pick, ou_prob_pick = pick_binary_side(over_prob, f"Over {ouv}", f"Under {ouv}")
-
-        if ou_pick is not None and np.isfinite(ou_prob_pick) and ou_prob_pick >= min_prob_binary:
-            ou_dec = 1.909
-            ou_edge = ou_prob_pick - (1.0 / ou_dec)
-            if np.isfinite(ou_edge) and ou_edge > edge_floor:
-                bet_rows.append({
-                    "Date": r["__Date"],
-                    "GAME": game_label,
-                    "BET TYPE": "OVER UNDER",
-                    "BET": ou_pick,
-                    "VALUE_EDGE": float(ou_edge),
-                    "ODDS": -110,
-                    "ODDS_DEC": float(ou_dec),
-                    "PROB": float(ou_prob_pick),
-                    "IsTop25": is_top25,
-                    "IsMM": is_mm,
-                    "IsP5": is_p5
-                })
-
-pred_games_df = pd.DataFrame(game_rows)
-pred_bets_df  = pd.DataFrame(bet_rows)
-
-# Exclude Penn State if desired
-pred_games_df = pred_games_df[~pred_games_df["Team"].apply(is_penn_state)].reset_index(drop=True)
-pred_bets_df  = pred_bets_df[~pred_bets_df["BET"].astype(str).str.upper().str.contains("PENN STATE|PENN ST")].reset_index(drop=True)
-
-if pred_bets_df.empty:
-    st.info("No +EV bets under current settings (edge/prob/odds range).")
-    st.stop()
-
-# =========================================================
-# GOAL-BASED RANKING (low goal => better odds/safety; high goal => payout)
-# =========================================================
-pred_bets_df["_prio"] = pred_bets_df.apply(
-    lambda rr: (0 if rr["IsTop25"] else 1, 0 if rr["IsMM"] else 1, 0 if rr["IsP5"] else 1, rr["Date"]),
-    axis=1
-)
-
-pred_bets_df["PROFIT_MULT"] = pred_bets_df["ODDS_DEC"].apply(profit_multiple)
-pred_bets_df["EV_PROFIT_$1"] = pred_bets_df.apply(
-    lambda rr: expected_profit_per_dollar(float(rr["PROB"]), float(rr["ODDS_DEC"])),
-    axis=1
-)
-
-# SCORE blend controlled by goal%
-# - alpha ~0 (low goal): prioritize clean edge (safer / better odds behavior)
-# - alpha ~1 (high goal): prioritize probability-adjusted payout (EV profit per $1)
-pred_bets_df["SCORE"] = (1.0 - alpha) * pred_bets_df["VALUE_EDGE"] + alpha * pred_bets_df["EV_PROFIT_$1"]
-
-pred_bets_df = pred_bets_df.sort_values(by=["_prio", "SCORE"], ascending=[True, False]).reset_index(drop=True)
-
-# =========================================================
-# BUILD FINAL PLAN (BET-LEVEL)
-# =========================================================
-st.markdown("---")
-st.markdown("### Suggested Plan (Multi-market — can include multiple bets per game)")
-
-max_available = len(pred_bets_df)
-N_total = min(max_bets, max(min_bets, max_available))
-
-# Light diversification targets (still score-driven)
-ml_df = pred_bets_df[pred_bets_df["BET TYPE"] == "ML"].copy()
-sp_df = pred_bets_df[pred_bets_df["BET TYPE"] == "SPREAD"].copy()
-ou_df = pred_bets_df[pred_bets_df["BET TYPE"] == "OVER UNDER"].copy()
-
-ml_target = int(math.floor(0.20 * N_total))
-sp_target = int(math.floor(0.40 * N_total))
-ou_target = int(math.floor(0.40 * N_total))
-
-picked = []
-
-def take(df, k):
-    if k <= 0 or df.empty:
-        return
-    picked.extend(df.head(k).to_dict("records"))
-
-take(sp_df, min(sp_target, len(sp_df)))
-take(ou_df, min(ou_target, len(ou_df)))
-take(ml_df, min(ml_target, len(ml_df)))
-
-if len(picked) < N_total:
-    need = N_total - len(picked)
-    already_keys = set((p["Date"], p["GAME"], p["BET TYPE"], p["BET"]) for p in picked)
-    remaining = pred_bets_df.copy()
-    remaining["_key"] = remaining.apply(lambda rr: (rr["Date"], rr["GAME"], rr["BET TYPE"], rr["BET"]), axis=1)
-    remaining = remaining[~remaining["_key"].isin(already_keys)]
-    picked.extend(remaining.head(need).to_dict("records"))
-
-plan = pd.DataFrame(picked).copy()
-plan = plan.sort_values(by=["_prio", "SCORE"], ascending=[True, False]).reset_index(drop=True)
-
-# Stake sizing in $ based on SCORE+EV strength (never negative)
-# Use positive part of SCORE and VALUE_EDGE to avoid weird allocations
-w = (plan["SCORE"].astype(float)).clip(lower=1e-6)
-total_w = float(w.sum()) if len(w) else 1.0
-plan["VALUE"] = (w / total_w) * float(bet_amount)
-
-# round to nearest $1 and min $1
-plan["VALUE"] = plan["VALUE"].round(0).clip(lower=1.0)
-
-# Renormalize after rounding to stay close to bet_amount
-def renorm_dollars(df, target):
-    diff = float(target) - float(df["VALUE"].sum())
-    if abs(diff) < 0.5:
-        return df
-    order = df.sort_values("SCORE", ascending=False).index.tolist()
-    step = 1.0 if diff > 0 else -1.0
-    i = 0
-    while abs(diff) >= 0.5 and i < len(order) * 10:
-        idx = order[i % len(order)]
-        newv = df.at[idx, "VALUE"] + step
-        if newv >= 1.0:
-            df.at[idx, "VALUE"] = newv
-            diff = float(target) - float(df["VALUE"].sum())
-        i += 1
+ALL_STATS_FILE = os.path.join(BASE, "All_Stats-Table 1.csv")   # adjust name if needed
+SOS_FILE       = os.path.join(BASE, "SOS-Table 1.csv")         # adjust name if needed
+CONF_FILE      = os.path.join(BASE, "Conferences-Table 1.csv") # adjust name if needed
+
+st.set_page_config(page_title="Bracketology", layout="wide")
+st.title("Bracketology")
+
+# -----------------------------
+# Load data
+# -----------------------------
+@st.cache_data
+def load_csv(path: str) -> pd.DataFrame:
+    df = pd.read_csv(path)
+    # standardize team col if needed
+    if "Teams" in df.columns and "Team" not in df.columns:
+        df = df.rename(columns={"Teams": "Team"})
     return df
 
-plan = renorm_dollars(plan, float(bet_amount))
+all_stats = load_csv(ALL_STATS_FILE)
+sos = load_csv(SOS_FILE)
+confs = load_csv(CONF_FILE)
 
-# Export columns (exact)
-plan["Probability of accuracy"] = plan["PROB"].astype(float)
+# Defensive sanity
+for c in ["Team", "Conference", "Wins", "Losses"]:
+    if c not in all_stats.columns:
+        st.error(f"Missing required column in All_Stats: {c}")
+        st.stop()
 
-# Payout rounded to 2 decimals (FIX #1)
-plan["Payout if win"] = plan.apply(
-    lambda rr: round(payout_if_win_total(float(rr["VALUE"]), float(rr["ODDS"])), 2),
-    axis=1
+# -----------------------------
+# Helper: percentile rank (0..1, higher is better)
+# -----------------------------
+def pct_rank(series: pd.Series, higher_is_better: bool = True) -> pd.Series:
+    s = series.copy()
+    s = pd.to_numeric(s, errors="coerce")
+    r = s.rank(pct=True, ascending=not higher_is_better)
+    return r.fillna(r.median())
+
+# -----------------------------
+# Build résumé features from SOS (team-level rollups)
+# -----------------------------
+# Expect SOS has: Team, H/A/N, Road Game, Neutral Site Game, Top 25 Opponent,
+# March Madness Opponent, Tournament Caliber Game, Won as Underdog, Lost as Favorite, SM, Line, (SM+Line)^2 etc.
+needed_sos_cols = ["Team"]
+if "Team" not in sos.columns and "Teams" in sos.columns:
+    sos = sos.rename(columns={"Teams": "Team"})
+
+if "Team" not in sos.columns:
+    st.warning("SOS file missing Team column; résumé rollups will be limited.")
+    sos_team = pd.DataFrame({"Team": all_stats["Team"].unique()})
+else:
+    sos_work = sos.copy()
+
+    # coerce common numeric cols if present
+    numeric_candidates = [
+        "Road Game", "Neutral Site Game", "Top 25 Opponent", "March Madness Opponent",
+        "Tournament Caliber Game", "Won as Underdog", "Lost as Favorite",
+        "Win Game within 8", "Within 10 line", "Line over 20",
+        "SOS Median", "SOS Min", "SOS Max", "SOS STDEV", "SOS SUM",
+        "(SM+Line)^2", "(SM+Line+10)^2", "Cover Spread", "Volatility"
+    ]
+    for col in numeric_candidates:
+        if col in sos_work.columns:
+            sos_work[col] = pd.to_numeric(sos_work[col], errors="coerce").fillna(0)
+
+    agg_map = {}
+    for col in ["Road Game", "Neutral Site Game", "Top 25 Opponent", "March Madness Opponent",
+                "Tournament Caliber Game", "Won as Underdog", "Lost as Favorite",
+                "Win Game within 8", "Within 10 line", "Line over 20", "Cover Spread"]:
+        if col in sos_work.columns:
+            agg_map[col] = "sum"
+
+    for col in ["(SM+Line)^2", "(SM+Line+10)^2", "Volatility"]:
+        if col in sos_work.columns:
+            agg_map[col] = "mean"
+
+    # If your SOS table already carries SOS_* on each row, averaging is fine
+    for col in ["SOS Median", "SOS Min", "SOS Max", "SOS STDEV", "SOS SUM"]:
+        if col in sos_work.columns:
+            agg_map[col] = "mean"
+
+    sos_team = sos_work.groupby("Team", as_index=False).agg(agg_map) if agg_map else pd.DataFrame({"Team": all_stats["Team"].unique()})
+
+# -----------------------------
+# Merge into team table
+# -----------------------------
+df = all_stats.merge(sos_team, on="Team", how="left")
+
+# -----------------------------
+# Compute two scores:
+#   1) Selection Score (IN vs OUT)
+#   2) Seed Score (quality once IN)
+# -----------------------------
+# You can tune weights easily here.
+
+# --- Selection Score Inputs (résumé + trust)
+selection_components = {}
+
+# résumé strength
+if "SOS SUM" in df.columns:
+    selection_components["sos_sum"] = pct_rank(df["SOS SUM"], True)
+elif "SOS_SUM" in df.columns:
+    selection_components["sos_sum"] = pct_rank(df["SOS_SUM"], True)
+
+# road/neutral opportunity
+for col, key in [("Road Game", "road_games"), ("Neutral Site Game", "neutral_games")]:
+    if col in df.columns:
+        selection_components[key] = pct_rank(df[col], True)
+
+# “good opponents” counts
+for col, key in [("Top 25 Opponent", "top25_opp"), ("March Madness Opponent", "mm_opp"), ("Tournament Caliber Game", "tcg")]:
+    if col in df.columns:
+        selection_components[key] = pct_rank(df[col], True)
+
+# risk / downside
+if "Lost as Favorite" in df.columns:
+    selection_components["lost_fav"] = pct_rank(df["Lost as Favorite"], False)
+
+# clutch trust / coach value (your edge)
+if "CLUTCH_SM" in df.columns:
+    selection_components["clutch_sm"] = pct_rank(df["CLUTCH_SM"], True)
+if "Sub 0 Clutch Performances" in df.columns:
+    selection_components["sub0_clutch"] = pct_rank(df["Sub 0 Clutch Performances"], False)
+if "Coach Value" in df.columns:
+    selection_components["coach_value"] = pct_rank(df["Coach Value"], True)
+
+# baseline W-L context
+df["WIN_PCT"] = pd.to_numeric(df.get("WIN_PERC", (df["Wins"] / (df["Wins"] + df["Losses"]))), errors="coerce").fillna(0)
+selection_components["win_pct"] = pct_rank(df["WIN_PCT"], True)
+
+# Weights (tune)
+w_sel = {
+    "sos_sum": 0.20,
+    "road_games": 0.07,
+    "neutral_games": 0.03,
+    "top25_opp": 0.06,
+    "mm_opp": 0.06,
+    "tcg": 0.06,
+    "lost_fav": 0.08,
+    "clutch_sm": 0.14,
+    "sub0_clutch": 0.12,
+    "coach_value": 0.06,
+    "win_pct": 0.12,
+}
+
+# Build score
+sel_score = np.zeros(len(df))
+weight_used = 0.0
+for k, w in w_sel.items():
+    if k in selection_components:
+        sel_score += w * selection_components[k].to_numpy()
+        weight_used += w
+df["Selection_Score"] = 100 * (sel_score / max(weight_used, 1e-9))
+
+# --- Seed Score Inputs (quality)
+seed_components = {}
+
+# Use ranks if you have them (lower rank is better), convert to “higher is better”
+def rank_to_quality(rank_series: pd.Series) -> pd.Series:
+    r = pd.to_numeric(rank_series, errors="coerce")
+    # invert percentile: smaller ranks => higher quality
+    return pct_rank(-r, True)
+
+for col, key in [("Off_eff_hybrid_rank", "off_rank"),
+                 ("Def_eff_hybrid_rank", "def_rank"),
+                 ("Off_eff_rank", "off_rank2"),
+                 ("Def_eff_hybrid_rank", "def_rank2")]:
+    if col in df.columns:
+        seed_components[key] = rank_to_quality(df[col])
+
+if "SM" in df.columns:
+    seed_components["sm"] = pct_rank(df["SM"], True)
+
+if "Rebound Rate" in df.columns:
+    seed_components["reb_rate"] = pct_rank(df["Rebound Rate"], True)
+if "Rebound Rate Rank" in df.columns:
+    seed_components["reb_rate_rank"] = rank_to_quality(df["Rebound Rate Rank"])
+
+if "TO Rank" in df.columns:
+    seed_components["to_rank"] = rank_to_quality(df["TO Rank"])
+if "Volatility" in df.columns:
+    seed_components["volatility"] = pct_rank(df["Volatility"], False)  # lower volatility -> better seed stability
+
+w_seed = {
+    "off_rank": 0.24,
+    "def_rank": 0.24,
+    "sm": 0.20,
+    "reb_rate": 0.10,
+    "to_rank": 0.10,
+    "volatility": 0.12,
+}
+seed_score = np.zeros(len(df))
+w_used = 0.0
+for k, w in w_seed.items():
+    if k in seed_components:
+        seed_score += w * seed_components[k].to_numpy()
+        w_used += w
+df["Seed_Score"] = 100 * (seed_score / max(w_used, 1e-9))
+
+# -----------------------------
+# AQ selection UI (one per conference)
+# -----------------------------
+st.subheader("Automatic Qualifiers (AQs)")
+
+conf_list = sorted(df["Conference"].dropna().unique().tolist())
+default_aqs = []
+
+# If confs table already has champs, you can auto-fill here.
+# For now, let you pick.
+cols = st.columns(4)
+aq_map = {}
+for i, conf in enumerate(conf_list):
+    c = cols[i % 4]
+    teams_in_conf = df.loc[df["Conference"] == conf, "Team"].sort_values().tolist()
+    if not teams_in_conf:
+        continue
+    pick = c.selectbox(conf, teams_in_conf, index=0, key=f"aq_{conf}")
+    aq_map[conf] = pick
+
+aqs = sorted(set(aq_map.values()))
+
+# -----------------------------
+# Build the projected field
+# -----------------------------
+st.subheader("Projected Field")
+
+FIELD_SIZE = 68
+AQ_COUNT = len(aqs)
+AT_LARGE_COUNT = FIELD_SIZE - AQ_COUNT
+
+df["Is_AQ"] = df["Team"].isin(aqs)
+
+# pick at-larges by Selection_Score excluding AQs
+atl = (
+    df.loc[~df["Is_AQ"]]
+      .sort_values(["Selection_Score", "Seed_Score"], ascending=False)
+      .head(AT_LARGE_COUNT)["Team"]
+      .tolist()
 )
 
-download_df = plan[[
-    "GAME",
-    "BET TYPE",
-    "BET",
-    "VALUE",
-    "ODDS",
-    "Probability of accuracy",
-    "Payout if win"
-]].copy()
+field = set(aqs) | set(atl)
+df["In_Field"] = df["Team"].isin(field)
 
-st.dataframe(download_df, use_container_width=True)
+# Seed line ordering within field by Seed_Score
+field_df = df.loc[df["In_Field"]].copy().sort_values("Seed_Score", ascending=False)
+field_df["Overall_Rank"] = np.arange(1, len(field_df) + 1)
 
-st.download_button(
-    "Download Betting Plan CSV",
-    data=download_df.to_csv(index=False),
-    file_name="betting_plan.csv",
-    mime="text/csv"
+# Approx seed number: 1..16 (4 teams per seed line for 64 slots; play-in handled below)
+# We'll compute a "seed_line" for the 68 field; you can refine later.
+field_df["Seed_Line"] = ((field_df["Overall_Rank"] - 1) // 4) + 1
+field_df["Seed_Line"] = field_df["Seed_Line"].clip(1, 16)
+
+# Bubble around cutline (at-larges only)
+atl_df = df.loc[~df["Is_AQ"]].sort_values(["Selection_Score", "Seed_Score"], ascending=False).copy()
+atl_df["ATL_Rank"] = np.arange(1, len(atl_df) + 1)
+
+# Last 4 byes = at-large ranks (AT_LARGE_COUNT-4 .. AT_LARGE_COUNT-1)
+# Last 4 in   = at-large ranks (AT_LARGE_COUNT .. AT_LARGE_COUNT+3)
+# First 4 out = next 4
+# Next 4 out  = next 4
+l4b = atl_df.iloc[max(AT_LARGE_COUNT-4, 0):AT_LARGE_COUNT]["Team"].tolist()
+l4i = atl_df.iloc[AT_LARGE_COUNT:AT_LARGE_COUNT+4]["Team"].tolist()
+f4o = atl_df.iloc[AT_LARGE_COUNT+4:AT_LARGE_COUNT+8]["Team"].tolist()
+n4o = atl_df.iloc[AT_LARGE_COUNT+8:AT_LARGE_COUNT+12]["Team"].tolist()
+
+# Label buckets for visuals
+df["Bubble_Bucket"] = ""
+df.loc[df["Team"].isin(l4b), "Bubble_Bucket"] = "Last 4 Byes"
+df.loc[df["Team"].isin(l4i), "Bubble_Bucket"] = "Last 4 In"
+df.loc[df["Team"].isin(f4o), "Bubble_Bucket"] = "First 4 Out"
+df.loc[df["Team"].isin(n4o), "Bubble_Bucket"] = "Next 4 Out"
+df.loc[df["Is_AQ"], "Bubble_Bucket"] = "AQ"
+
+# -----------------------------
+# Visual outputs
+# -----------------------------
+c1, c2, c3, c4 = st.columns(4)
+c1.metric("Field Size", FIELD_SIZE)
+c2.metric("AQs", AQ_COUNT)
+c3.metric("At-Larges", AT_LARGE_COUNT)
+c4.metric("Bubble Cut", f"ATL #{AT_LARGE_COUNT}")
+
+st.markdown("### Bubble Buckets")
+b1, b2, b3, b4 = st.columns(4)
+b1.write("**Last 4 Byes**"); b1.dataframe(df[df["Team"].isin(l4b)][["Team","Conference","Selection_Score","Seed_Score"]].sort_values("Selection_Score", ascending=False), use_container_width=True)
+b2.write("**Last 4 In**");   b2.dataframe(df[df["Team"].isin(l4i)][["Team","Conference","Selection_Score","Seed_Score"]].sort_values("Selection_Score", ascending=False), use_container_width=True)
+b3.write("**First 4 Out**"); b3.dataframe(df[df["Team"].isin(f4o)][["Team","Conference","Selection_Score","Seed_Score"]].sort_values("Selection_Score", ascending=False), use_container_width=True)
+b4.write("**Next 4 Out**");  b4.dataframe(df[df["Team"].isin(n4o)][["Team","Conference","Selection_Score","Seed_Score"]].sort_values("Selection_Score", ascending=False), use_container_width=True)
+
+st.markdown("### Full Projected Field (sorted by Seed Score)")
+show_cols = ["Team","Conference","Is_AQ","Seed_Line","Selection_Score","Seed_Score","WIN_PCT","Bubble_Bucket"]
+for extra in ["SOS SUM","SOS_SUM","Road Game","Neutral Site Game","Top 25 Opponent","March Madness Opponent","CLUTCH_SM","Coach Value","Sub 0 Clutch Performances"]:
+    if extra in field_df.columns and extra not in show_cols:
+        show_cols.append(extra)
+
+st.dataframe(
+    field_df.merge(df[["Team","Bubble_Bucket"]], on="Team", how="left")[show_cols]
+        .sort_values(["Seed_Line","Seed_Score"], ascending=[True, False]),
+    use_container_width=True
 )
 
-# =========================================================
-# DRILLDOWN — optional (kept)
-# =========================================================
-st.markdown("---")
-st.markdown("### Drilldown (matchup details)")
+st.markdown("### At-Large Board (Top 80)")
+st.dataframe(
+    atl_df.head(80)[["ATL_Rank","Team","Conference","Selection_Score","Seed_Score","WIN_PCT"]],
+    use_container_width=True
+)
 
-def find_opponent_row_raw(team: str, opp: str, date_val: pd.Timestamp) -> Optional[pd.Series]:
-    if team_col not in schedule_df_raw.columns or opp_col not in schedule_df_raw.columns:
-        return None
-    df = schedule_df_raw.copy()
-    df["__Date"] = parse_mdy(df[date_col])
-    mask = (
-        df[team_col].astype(str).str.strip() == opp
-    ) & (
-        df[opp_col].astype(str).str.strip() == team
-    ) & (
-        df["__Date"].dt.date == date_val.date()
-    )
-    res = df.loc[mask]
-    return res.iloc[0] if not res.empty else None
-
-for _, rr in pred_games_df.iterrows():
-    label = (
-        f"{rr['Date'].strftime('%b %d, %Y')} — "
-        f"{rr['Team']} vs {rr['Opponent']} — "
-        f"Pred {int(round(rr['Pred_Points']))}-{int(round(rr['Pred_Opp_Points']))}"
-    )
-    with st.expander(label, expanded=False):
-        row_team = rr["RowObj"]
-        row_opp  = find_opponent_row_raw(rr["Team"], rr["Opponent"], rr["Date"])
-
-        t_conf = row_team.get(conf_col) if (conf_col and conf_col in row_team.index) else ""
-        o_conf = (
-            row_team.get(opp_conf_col) if (opp_conf_col and opp_conf_col in row_team.index) else
-            (row_opp.get(conf_col) if (row_opp is not None and conf_col in row_opp.index) else "")
-        )
-
-        t_coach = row_team.get(coach_col) if (coach_col and coach_col in row_team.index) else ""
-        o_coach = (
-            row_team.get(opp_coach_col) if (opp_coach_col and opp_coach_col in row_team.index) else
-            (row_opp.get(coach_col) if (row_opp is not None and coach_col in row_opp.index) else "")
-        )
-
-        cL, cR = st.columns(2)
-        with cL:
-            st.write(f"**{rr['Team']}**")
-            st.write(f"Coach: {t_coach}")
-            st.write(f"Conference: {t_conf}")
-        with cR:
-            st.write(f"**{rr['Opponent']}**")
-            st.write(f"Coach: {o_coach}")
-            st.write(f"Conference: {o_conf}")
-
-        st.markdown("---")
-        st.write("Top-50 Rank Categories (≤ 50)")
-
-        left_top50 = extract_top50_any(row_team)
-        right_top50 = extract_top50_any(row_opp)
-
-        cL2, cR2 = st.columns(2)
-        with cL2:
-            st.write(f"**{rr['Team']}**")
-            st.write("None in top 50" if not left_top50 else "")
-            if left_top50:
-                st.dataframe(pd.DataFrame([{"Category": k, "Rank": v} for k, v in left_top50]),
-                             use_container_width=True)
-        with cR2:
-            st.write(f"**{rr['Opponent']}**")
-            st.write("None in top 50" if not right_top50 else "")
-            if right_top50:
-                st.dataframe(pd.DataFrame([{"Category": k, "Rank": v} for k, v in right_top50]),
-                             use_container_width=True)
-                
+# Quick visual: conference counts in field
+st.markdown("### Bids by Conference")
+bids = df[df["In_Field"]].groupby("Conference", as_index=False)["Team"].count().rename(columns={"Team":"Bids"}).sort_values("Bids", ascending=False)
+st.bar_chart(bids.set_index("Conference")["Bids"])
