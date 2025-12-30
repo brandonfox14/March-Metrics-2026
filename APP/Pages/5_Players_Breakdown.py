@@ -1,6 +1,6 @@
-# APP/Pages/8_Player.py
+# APP/Pages/5_Player.py
 # =============================================================================
-# Player (8) — Team → Top 7 player breakdown + "Other" + pie shares per stat
+# Player (5) — Team → Top 7 player breakdown + "Other" + pie shares per stat
 # =============================================================================
 import os
 import re
