@@ -494,11 +494,11 @@ with c1:
     bet_amount = st.number_input("Bet Amount ($) for today", min_value=1.0, value=100.0, step=5.0)
 
 with c2:
-    goal_pct = st.slider("Goal: % increase (higher = riskier)", 5, 50, 20, 1)
+    goal_pct = st.slider("Goal: % increase (higher = riskier)", 5, 50, 25, 1)
     st.caption(f"Target profit goal ≈ ${bet_amount * (goal_pct/100.0):.2f}")
 
 with c3:
-    ml_min, ml_max = st.slider("Acceptable ML odds range", -1000, 1000, (-400, 400), 10)
+    ml_min, ml_max = st.slider("Acceptable ML odds range", -1000, 1000, (-500, 800), 10)
 
 # Thresholds controlled by goal%
 min_prob_binary = float(np.interp(goal_pct, [5, 50], [0.70, 0.52]))   # spread/OU must be at least this
