@@ -89,7 +89,7 @@ if not daily.empty and "Teams" in daily.columns and "Team" not in daily.columns:
 if not coach.empty and "Teams" in coach.columns and "Team" not in coach.columns:
     coach = coach.rename(columns={"Teams": "Team"})
 
-required = ["Team", "Conference", "Wins", "Losses", "Statistical Strength"]
+required = ["Team", "Conference", "Wins", "Losses", "Statistical Strength "]
 missing = [c for c in required if c not in all_stats.columns]
 if missing:
     st.error(f"All_Stats missing required columns: {missing}")
@@ -106,9 +106,9 @@ if "Historical Value" not in all_stats.columns:
 # Conference strength (avg Statistical Strength)
 # -----------------------------
 conf_strength = (
-    all_stats.groupby("Conference", as_index=False)["Statistical Strength"]
+    all_stats.groupby("Conference", as_index=False)["Statistical Strength "]
     .mean()
-    .rename(columns={"Statistical Strength": "Conf_StatStrength_Avg"})
+    .rename(columns={"Statistical Strength ": "Conf_StatStrength_Avg"})
 )
 
 # Higher conference strength = better
@@ -183,7 +183,7 @@ df["SOS_TierPoints"] = df["SOS_TierValue"].apply(tier_points)
 # - rank WIN_PCT (within conf)
 # - rank Historical Value (within conf) weighted at 0.5
 # -----------------------------
-df["StatStrength_rank_in_conf"] = within_group_pct_rank(df, "Conference", "Statistical Strength", higher_is_better=True)
+df["StatStrength_rank_in_conf"] = within_group_pct_rank(df, "Conference", "Statistical Strength ", higher_is_better=True)
 df["WinPct_rank_in_conf"]       = within_group_pct_rank(df, "Conference", "WIN_PCT", higher_is_better=True)
 df["HistValue_rank_in_conf"]    = within_group_pct_rank(df, "Conference", "Historical Value", higher_is_better=True)
 
@@ -376,7 +376,7 @@ b1, b2, b3, b4 = st.columns(4)
 def bucket_table(title, teams):
     sub = df[df["Team"].isin(teams)][[
         "Team","Conference","WIN_PCT","AtLarge_Eligible","AtLarge_WinPct_Threshold",
-        "SOS_TierValue","SOS_TierPoints","Statistical Strength","Historical Value",
+        "SOS_TierValue","SOS_TierPoints","Statistical Strength ","Historical Value",
         "Conf_TeamScore","AtLarge_Score"
     ]].sort_values("AtLarge_Score", ascending=False)
     st.write(f"**{title}**")
@@ -392,7 +392,7 @@ show_cols = [
     "Overall_Rank","Seed_Line","Team","Conference","Is_AQ",
     "WIN_PCT","AtLarge_Eligible","AtLarge_WinPct_Threshold",
     "SOS_TierValue","SOS_TierPoints",
-    "Statistical Strength","Historical Value",
+    "Statistical Strength ","Historical Value",
     "Conf_TeamScore","AtLarge_Score","Seed_Score","Bubble_Bucket"
 ]
 if SOS_TIER_COL and SOS_TIER_COL not in show_cols:
@@ -405,7 +405,7 @@ st.markdown("## At-Large Board (Top 120)")
 st.dataframe(
     atl_board.head(120)[[
         "ATL_Rank","Team","Conference","WIN_PCT","AtLarge_Eligible","AtLarge_WinPct_Threshold",
-        "SOS_TierValue","SOS_TierPoints","Statistical Strength","Historical Value",
+        "SOS_TierValue","SOS_TierPoints","Statistical Strength ","Historical Value",
         "Conf_TeamScore","AtLarge_Score","Bubble_Bucket"
     ]],
     use_container_width=True,
