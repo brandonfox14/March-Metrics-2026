@@ -54,11 +54,28 @@ def find_col(df: pd.DataFrame, candidates: List[str]) -> Optional[str]:
             return c
     return None
 
-def parse_mdy(series_like: pd.Series) -> pd.Series:
+def parse_mixed_date(series_like: pd.Series) -> pd.Series:
+    """
+    Robust mixed date parsing:
+    - Handles 'November 28, 2025'
+    - Handles '4-Nov-24'
+    - Handles '11/6/2025' and '12/30/2025'
+    """
     s = series_like.astype(str).str.strip()
-    out = pd.to_datetime(s, errors="coerce", infer_datetime_format=True)
-    # if your CSV has strict %m/%d/%Y, infer_datetime_format still handles it
-    return out
+
+    # Treat common "missing" tokens as NA
+    s = s.replace({"": np.nan, "NA": np.nan, "N/A": np.nan, "nan": np.nan, "None": np.nan})
+
+    # Pass 1: general parser (handles month-name formats well)
+    d1 = pd.to_datetime(s, errors="coerce", infer_datetime_format=True)
+
+    # Pass 2: day-first parser helps with '4-Nov-24' and other ambiguous cases
+    # (Only fills where pass 1 failed)
+    d2 = pd.to_datetime(s, errors="coerce", dayfirst=True, infer_datetime_format=True)
+    out = d1.fillna(d2)
+
+    # Final: force dtype to datetime64[ns]
+    return pd.to_datetime(out, errors="coerce")
 
 def safe_num(x, default=np.nan) -> float:
     try:
@@ -173,6 +190,34 @@ if schedule_df is None or daily_df is None:
     st.stop()
 
 # =========================================================
+# DATE PARSING (ROBUST FOR MIXED FORMATS)
+# =========================================================
+def parse_mixed_date(series_like: pd.Series) -> pd.Series:
+    s = series_like.astype(str).str.strip()
+    s = s.replace({"": np.nan, "NA": np.nan, "N/A": np.nan, "nan": np.nan, "None": np.nan})
+
+    d1 = pd.to_datetime(s, errors="coerce", infer_datetime_format=True)
+    d2 = pd.to_datetime(s, errors="coerce", dayfirst=True, infer_datetime_format=True)
+    out = d1.fillna(d2)
+
+    return pd.to_datetime(out, errors="coerce")
+
+# ---- Schedule dates
+date_col = find_col(schedule_df, ["Date", "Game Date", "Game_Date"])
+schedule_df["__Date"] = parse_mixed_date(schedule_df[date_col])
+
+# ---- Daily predictor dates
+d_date = find_col(daily_df, ["Date", "Game Date", "Game_Date"])
+if d_date and d_date in daily_df.columns:
+    daily_df["__Date"] = parse_mixed_date(daily_df[d_date])
+else:
+    daily_df["__Date"] = pd.Timestamp("2000-01-01")
+
+# Safety: if everything failed, force a constant datetime
+if daily_df["__Date"].notna().sum() == 0:
+    daily_df["__Date"] = pd.Timestamp("2000-01-01")
+
+# =========================================================
 # COLUMN DETECTION (SCHEDULE)
 # =========================================================
 team_col   = find_col(schedule_df, ["Team", "Teams"])
@@ -194,8 +239,8 @@ mm_col     = find_col(schedule_df, ["March Madness Opponent","March Madness"])
 if team_col is None or opp_col is None or date_col is None:
     st.error("Schedule must include Team, Opponent, and Date.")
     st.stop()
-
-schedule_df["__Date"] = parse_mdy(schedule_df[date_col])
+    
+schedule_df["__Date"] = parse_mixed_date(schedule_df[date_col])
 schedule_df = schedule_df.dropna(subset=["__Date"]).copy()
 
 # Deduplicate mirrored fixtures (keep one per matchup+date)
@@ -292,6 +337,17 @@ daily_numeric_cols = [c for c in daily_numeric_cols if c not in cat_cols]
 
 mask_points = daily_df[d_pts].notna() & daily_df[d_opp_pts].notna()
 df_train = daily_df.loc[mask_points].copy()
+
+# =========================================================
+# RECENCY WEIGHTS (SAFE — NO .dt ERRORS)
+# =========================================================
+if df_train["__Date"].notna().any():
+    current_year = int(df_train["__Date"].dt.year.max())
+else:
+    current_year = 2000
+
+w = np.ones(len(df_train), dtype=float)
+w[(df_train["__Date"].dt.year == current_year).values] = 3.0
 
 # TEAM PROFILES for schedule rows (median per-team)
 team_profiles = df_train.groupby(d_team)[daily_numeric_cols].median(numeric_only=True)
