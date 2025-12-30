@@ -461,11 +461,23 @@ out = field_df.merge(
     how="left"
 )
 
-st.dataframe(
-    out[show_cols].sort_values(["Seed_Line", "Seed_Score"], ascending=[True, False]),
-    use_container_width=True,
-    height=780
-)
+# --- Safe column selection (prevents KeyError) ---
+missing_cols = [c for c in show_cols if c not in out.columns]
+present_cols = [c for c in show_cols if c in out.columns]
+
+if missing_cols:
+    with st.expander("Debug: missing columns in field table", expanded=False):
+        st.write("Missing from output:", missing_cols)
+        st.write("Available columns (sample):", list(out.columns))
+
+# Sort safely too (in case one is missing)
+sort_cols = [c for c in ["Seed_Line", "Seed_Score"] if c in out.columns]
+if sort_cols:
+    out_sorted = out[present_cols].sort_values(sort_cols, ascending=[True, False][:len(sort_cols)])
+else:
+    out_sorted = out[present_cols]
+
+st.dataframe(out_sorted, use_container_width=True, height=780)
 
 st.markdown("## At-Large Board (Top 120)")
 st.dataframe(
