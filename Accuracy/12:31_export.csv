@@ -1,0 +1,56 @@
+﻿,GAME,BET TYPE,BET,VALUE,ODDS,Probability of accuracy,Payout if win
+0,Xavier vs Connecticut,SPREAD,Xavier +11.5,3,-110,0.874408259190868,5.73
+1,Georgia Tech vs Duke,OVER UNDER,Under 154.5,1,-110,0.7051214163457424,1.91
+2,Virginia Tech vs Virginia,SPREAD,Virginia +5.5,2,-110,0.7276031583190018,3.82
+3,Virginia Tech vs Virginia,ML,Virginia Tech ML,1,-225,0.8866403162055334,1.44
+4,Syracuse vs Clemson,ML,Syracuse ML,2,-105,0.7616450216450217,3.9
+5,UNC Asheville vs High Point,SPREAD,High Point -11.5,1,-110,0.7166741965703679,1.91
+6,UNC Asheville vs High Point,OVER UNDER,Under 153.5,1,-110,0.674923245614035,1.91
+7,St. John's vs Georgetown,OVER UNDER,Under 155.5,2,-110,0.7418722951277398,3.82
+8,Texas St. vs Troy,ML,Texas St. ML,7,355,0.6938061938061939,31.85
+9,La Salle vs George Mason,ML,La Salle ML,6,350,0.6211871461871461,27
+10,Wofford vs Western Carolina,SPREAD,Western Carolina +2.5,3,-110,0.9847368421052631,5.73
+11,USC Upstate vs Radford,SPREAD,Radford +1.5,3,-110,0.9572368421052632,5.73
+12,Tulane vs East Carolina,ML,Tulane ML,3,-130,0.9945945945945945,5.31
+13,Lamar vs East Texas A&M,SPREAD,East Texas A&M +5.5,3,-110,0.9197368421052632,5.73
+14,Monmouth vs Campbell,SPREAD,Campbell +1.5,3,-110,0.9167701863354037,5.73
+15,Texas St. vs Troy,OVER UNDER,Under 143.5,2,-110,0.8317558528428094,3.82
+16,Northern Illinois vs Buffalo,OVER UNDER,Under 152.5,2,-110,0.8070103308669552,3.82
+17,Colgate vs Lafayette,SPREAD,Lafayette +6.5,2,-110,0.7989484126984128,3.82
+18,Northeastern vs North Carolina A&T,ML,Northeastern ML,2,-142,0.8763636363636363,3.41
+19,UMKC vs Denver,OVER UNDER,Under 158.5,2,-110,0.779085314706645,3.82
+20,La Salle vs George Mason,OVER UNDER,Under 136.5,2,-110,0.7762324929971989,3.82
+21,Georgia St. vs Marshall,OVER UNDER,Under 153.5,2,-110,0.7721857940126872,3.82
+22,La Salle vs George Mason,SPREAD,La Salle +8.5,2,-110,0.7667105822354441,3.82
+23,UNC Wilmington vs Drexel,SPREAD,UNC Wilmington -12.5,2,-110,0.7553186408435026,3.82
+24,Towson vs Hampton,ML,Towson ML,2,-225,0.9428571428571428,2.89
+25,Wichita St. vs UAB,OVER UNDER,Under 149.5,2,-110,0.7434615384615384,3.82
+26,Stephen F. Austin vs Northwestern St.,OVER UNDER,Under 140.5,2,-110,0.742051292778847,3.82
+27,South Alabama vs Louisiana,ML,South Alabama ML,2,-180,0.8794974590626765,3.11
+28,Rhode Island vs Loyola Chicago,SPREAD,Rhode Island -9.5,2,-110,0.7348058203306822,3.82
+29,Tulsa vs Rice,SPREAD,Tulsa -12.5,2,-110,0.7348058203306822,3.82
+30,Northeastern vs North Carolina A&T,SPREAD,Northeastern -2.5,2,-110,0.7348058203306822,3.82
+31,Army vs Lehigh,OVER UNDER,Over 146.5,2,-110,0.7284245204449808,3.82
+32,Appalachian St. vs Old Dominion,SPREAD,Old Dominion -1.5,2,-110,0.7276031583190018,3.82
+33,South Alabama vs Louisiana,SPREAD,Louisiana +3.5,2,-110,0.725163505554411,3.82
+34,New Orleans vs Texas A&M Corpus Chris,SPREAD,Texas A&M Corpus Chris -4.5,1,-110,0.7212611999222489,1.91
+35,Mercer vs Furman,OVER UNDER,Over 154.5,1,-110,0.7205813831900788,1.91
+36,VCU vs St. Bonaventure,SPREAD,VCU -9.5,1,-110,0.7197875053123671,1.91
+37,UMKC vs Denver,SPREAD,Denver -10.5,1,-110,0.7187156544738947,1.91
+38,Wichita St. vs UAB,ML,Wichita St. ML,1,136,0.5978354978354978,2.36
+39,William & Mary vs Stony Brook,OVER UNDER,Over 155.5,1,-110,0.7170008205302323,1.91
+40,New Orleans vs Texas A&M Corpus Chris,OVER UNDER,Under 143.5,1,-110,0.7150058329968143,1.91
+41,Monmouth vs Campbell,OVER UNDER,Under 152.5,1,-110,0.709641382868937,1.91
+42,Colgate vs Lafayette,OVER UNDER,Under 146.5,1,-110,0.7051639740403204,1.91
+43,Gardner Webb vs Charleston Southern,OVER UNDER,Over 163.5,1,-110,0.7007263107263108,1.91
+44,Texas St. vs Troy,SPREAD,Texas St. +8.5,1,-110,0.6938061938061939,1.91
+45,UTSA vs Florida Atlantic,OVER UNDER,Under 156.5,1,-110,0.693527183600713,1.91
+46,Winthrop vs Longwood,OVER UNDER,Under 161.5,1,-110,0.6832490762400576,1.91
+47,Bucknell vs Holy Cross,OVER UNDER,Under 134.5,1,-110,0.681470588235294,1.91
+48,Mercer vs Furman,SPREAD,Furman -3.5,1,-110,0.681057533977242,1.91
+49,Georgia St. vs Marshall,SPREAD,Marshall -13.5,1,-110,0.674896605612449,1.91
+50,Tulane vs East Carolina,SPREAD,Tulane -1.5,1,-110,0.6734229110025673,1.91
+51,Richmond vs George Washington,SPREAD,George Washington -3.5,1,-110,0.6703542731075873,1.91
+52,Elon vs Charleston,SPREAD,Charleston +3.5,1,-110,0.6557792207792209,1.91
+53,William & Mary vs Stony Brook,SPREAD,William & Mary -10.5,1,-110,0.6516770921703631,1.91
+54,Stephen F. Austin vs Northwestern St.,SPREAD,Stephen F. Austin -8.5,1,-110,0.6451931828835449,1.91
