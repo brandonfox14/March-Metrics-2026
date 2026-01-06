@@ -1,0 +1,28 @@
+﻿,GAME,BET TYPE,BET,VALUE,ODDS,Probability of accuracy,Payout if win
+0,USC vs Michigan St.,ML,USC ML,29,500,0.9461538461538461,174
+1,USC vs Michigan St.,SPREAD,USC +10.5,11,-110,0.9461538461538461,21
+2,Ohio St. vs Nebraska,ML,Ohio St. ML,11,-142,0.995,18.75
+3,Ohio St. vs Nebraska,OVER UNDER,Under 156.5,8,-110,0.8043325959322849,15.27
+4,Ohio St. vs Nebraska,SPREAD,Ohio St. -2.5,5,-110,0.7016331879652878,9.55
+5,Rutgers vs Oregon,OVER UNDER,Under 141.5,9,-110,0.8696216460844121,17.18
+6,Rutgers vs Oregon,ML,Rutgers ML,5,205,0.4806744704570791,15.25
+7,William & Mary vs Charleston,ML,William & Mary ML,14,110,0.9949999999999999,29.4
+8,Milwaukee vs Green Bay,SPREAD,Green Bay +1.5,13,-110,0.995,24.82
+9,Texas A&M Corpus Chris vs Houston Christian,SPREAD,Houston Christian +3.5,13,-110,0.995,24.82
+10,William & Mary vs Charleston,SPREAD,William & Mary +1.5,13,-110,0.9949999999999999,24.82
+11,Lamar vs Southeastern Louisiana,SPREAD,Southeastern Louisiana +1.5,12,-110,0.9846153846153847,22.91
+12,Alabama A&M vs Mississippi Valley St.,SPREAD,Mississippi Valley St. +10.5,12,-110,0.968421052631579,22.91
+13,East Texas A&M vs New Orleans,OVER UNDER,Under 151.5,9,-110,0.8623429033217983,17.18
+14,Stephen F. Austin vs McNeese St.,OVER UNDER,Under 143.5,8,-110,0.837201054627676,15.27
+15,Princeton vs Penn,OVER UNDER,Under 144.5,8,-110,0.8034871723567497,15.27
+16,Harvard vs Dartmouth,OVER UNDER,Under 146.5,7,-110,0.8002958898734099,13.36
+17,Texas A&M Corpus Chris vs Houston Christian,OVER UNDER,Over 132.5,7,-110,0.7962935004830267,13.36
+18,Cornell vs Columbia,ML,Cornell ML,7,-142,0.8343121693121693,11.93
+19,Northwestern St. vs Nicholls St.,OVER UNDER,Over 144.5,6,-110,0.7350056216951479,11.45
+20,William & Mary vs Charleston,OVER UNDER,Under 164.5,5,-110,0.7198135204708265,9.55
+21,Cornell vs Columbia,SPREAD,Columbia +2.5,5,-110,0.7178750335249685,9.55
+22,Prairie View A&M vs Southern,SPREAD,Prairie View A&M +8.5,5,-110,0.7174867553193315,9.55
+23,Harvard vs Dartmouth,SPREAD,Dartmouth +7.5,5,-110,0.7023345208751908,9.55
+24,Cornell vs Columbia,OVER UNDER,Over 171.5,5,-110,0.6935036454105629,9.55
+25,Yale vs Brown,SPREAD,Brown +8.5,4,-110,0.6878709980124584,7.64
+26,Yale vs Brown,ML,Yale ML,4,-470,0.995,4.85
