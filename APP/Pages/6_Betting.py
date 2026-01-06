@@ -491,7 +491,7 @@ st.markdown("### Bankroll & Risk Controls")
 
 c1, c2, c3 = st.columns(3)
 with c1:
-    bet_amount = st.number_input("Bet Amount ($) for today", min_value=1.0, value=105.0, step=0.5)
+    bet_amount = st.number_input("Bet Amount ($) for today", min_value=1.0, value=240.0, step=0.5)
 
 with c2:
     goal_pct = st.slider("Goal: % increase (higher = riskier)", 5, 50, 10, 1)
