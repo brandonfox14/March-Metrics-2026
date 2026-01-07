@@ -491,14 +491,14 @@ st.markdown("### Bankroll & Risk Controls")
 
 c1, c2, c3 = st.columns(3)
 with c1:
-    bet_amount = st.number_input("Bet Amount ($) for today", min_value=1.0, value=240.0, step=0.5)
+    bet_amount = st.number_input("Bet Amount ($) for today", min_value=1.0, value=433.0, step=0.5)
 
 with c2:
-    goal_pct = st.slider("Goal: % increase (higher = riskier)", 5, 50, 10, 1)
+    goal_pct = st.slider("Goal: % increase (higher = riskier)", 5, 50, 15, 1)
     st.caption(f"Target profit goal ≈ ${bet_amount * (goal_pct/100.0):.2f}")
 
 with c3:
-    ml_min, ml_max = st.slider("Acceptable ML odds range", -1000, 1000, (-500, 700), 10)
+    ml_min, ml_max = st.slider("Acceptable ML odds range", -1000, 1000, (-400, 600), 10)
 
 # Thresholds controlled by goal%
 min_prob_binary = float(np.interp(goal_pct, [5, 50], [0.70, 0.52]))   # spread/OU must be at least this
