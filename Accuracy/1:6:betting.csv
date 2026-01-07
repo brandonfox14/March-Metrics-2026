@@ -1,0 +1,51 @@
+﻿,GAME,BET TYPE,BET,VALUE,ODDS,Probability of accuracy,Payout if win
+0,Texas vs Tennessee,ML,Texas ML,11,440,0.8596859903381642,59.4
+1,Texas Tech vs Houston,ML,Texas Tech ML,8,240,0.8429347826086957,27.2
+2,Louisville vs Duke,ML,Louisville ML,5,-105,0.9169082125603865,9.76
+3,Texas vs Tennessee,SPREAD,Texas +10.5,4,-110,0.8596859903381642,7.64
+4,Texas Tech vs Houston,OVER UNDER,Under 141.5,4,-110,0.8051773034924466,7.64
+5,Texas vs Tennessee,OVER UNDER,Under 153.5,3,-110,0.751599797705243,5.73
+6,Louisville vs Duke,OVER UNDER,Under 162.5,2,-110,0.700787471733013,3.82
+7,Minnesota vs Iowa,ML,Minnesota ML,10,225,0.967251461988304,32.5
+8,Minnesota vs Iowa,SPREAD,Minnesota +6.5,6,-110,0.967251461988304,11.45
+9,Minnesota vs Iowa,OVER UNDER,Under 129.5,4,-110,0.812753193107552,7.64
+10,Georgia vs Florida,ML,Georgia ML,11,380,0.885024154589372,52.8
+11,TCU vs Kansas,ML,TCU ML,11,270,0.9933333333333334,40.7
+12,TCU vs Kansas,SPREAD,TCU +6.5,6,-110,0.9933333333333334,11.45
+13,Georgia vs Florida,SPREAD,Georgia +9.5,5,-110,0.885024154589372,9.55
+14,Wisconsin vs UCLA,ML,Wisconsin ML,5,-170,0.995,7.94
+15,TCU vs Kansas,OVER UNDER,Under 139.5,4,-110,0.8394198597742186,7.64
+16,Wisconsin vs UCLA,OVER UNDER,Under 152.5,2,-110,0.6911756105951152,3.82
+17,Colorado St. vs New Mexico,ML,Colorado St. ML,6,102,0.9777777777777779,12.12
+18,Colorado St. vs New Mexico,SPREAD,Colorado St. +1.5,6,-110,0.9777777777777779,11.45
+19,Nevada vs San Diego St.,ML,Nevada ML,6,-120,0.995,11
+20,Lindenwood vs SIU Edwardsville,SPREAD,SIU Edwardsville +1.5,4,-110,0.845526959088603,7.64
+21,Nevada vs San Diego St.,OVER UNDER,Under 141.5,3,-110,0.7805963830058023,5.73
+22,Central Michigan vs Akron,OVER UNDER,Under 164.5,3,-110,0.7193168834977188,5.73
+23,Colorado St. vs New Mexico,OVER UNDER,Under 143.5,2,-110,0.7057225751472579,3.82
+24,Texas A&M vs Auburn,ML,Texas A&M ML,11,310,0.9777777777777779,45.1
+25,UCF vs Oklahoma St.,ML,UCF ML,8,154,0.995,20.32
+26,Texas A&M vs Auburn,SPREAD,Texas A&M +8.5,6,-110,0.9777777777777779,11.45
+27,Georgetown vs DePaul,ML,Georgetown ML,5,114,0.8527009222661397,10.7
+28,South Carolina vs LSU,ML,South Carolina ML,5,270,0.59717548962905,18.5
+29,West Virginia vs Cincinnati,ML,West Virginia ML,5,-148,0.9777777777777779,8.38
+30,Syracuse vs Georgia Tech,ML,Syracuse ML,5,-162,0.9894736842105264,8.09
+31,St. John's vs Butler,ML,St. John's ML,4,-198,0.9894736842105264,6.02
+32,UCF vs Oklahoma St.,OVER UNDER,Under 173.5,3,-110,0.774473810019173,5.73
+33,St. John's vs Butler,OVER UNDER,Under 161.5,3,-110,0.7338827098282511,5.73
+34,N.C. State vs Boston College,SPREAD,Boston College +12.5,2,-110,0.7137475868245725,3.82
+35,West Virginia vs Cincinnati,OVER UNDER,Under 132.5,2,-110,0.7106428896221316,3.82
+36,Syracuse vs Georgia Tech,OVER UNDER,Under 145.5,2,-110,0.6996499678865318,3.82
+37,West Virginia vs Cincinnati,SPREAD,West Virginia -2.5,2,-110,0.690922053296877,3.82
+38,George Washington vs Dayton,ML,George Washington ML,8,136,0.995,18.88
+39,Ohio vs Massachusetts,SPREAD,Massachusetts +3.5,6,-110,0.9863013698630136,11.45
+40,Kent St. vs Bowling Green,ML,Kent St. ML,6,-120,0.995,11
+41,Eastern Michigan vs Ball St.,OVER UNDER,Under 134.5,4,-110,0.8448556189835628,7.64
+42,UNLV vs Wyoming,SPREAD,Wyoming -4.5,3,-110,0.7795941092748686,5.73
+43,Fresno St. vs San Jose St.,OVER UNDER,Under 146.5,3,-110,0.7768362182211288,5.73
+44,Toledo vs Northern Illinois,ML,Toledo ML,3,-298,0.9894736842105264,4.01
+45,Western Michigan vs Miami OH,SPREAD,Western Michigan +13.5,3,-110,0.7284438798412598,5.73
+46,Kent St. vs Bowling Green,SPREAD,Kent St. -1.5,3,-110,0.7267974560895729,5.73
+47,UNLV vs Wyoming,OVER UNDER,Under 157.5,3,-110,0.7262969056952772,5.73
+48,Toledo vs Northern Illinois,OVER UNDER,Under 156.5,2,-110,0.7137672468864772,3.82
+49,Kent St. vs Bowling Green,OVER UNDER,Over 157.5,2,-110,0.7082848054389345,3.82
