@@ -1,0 +1,81 @@
+﻿,GAME,BET TYPE,BET,VALUE,ODDS,Probability of accuracy,Payout if win
+0,Providence vs Connecticut,ML,Providence ML,24,455,0.9289659254934397,133.2
+1,Alabama vs Vanderbilt,ML,Alabama ML,11,154,0.9433333333333334,27.94
+2,Providence vs Connecticut,SPREAD,Providence +9.5,7,-110,0.9289659254934397,13.36
+3,Providence vs Connecticut,OVER UNDER,Under 152.5,6,-110,0.8439958564946528,11.45
+4,Alabama vs Vanderbilt,OVER UNDER,Over 180.5,4,-110,0.726468804845189,7.64
+5,Xavier vs Marquette,ML,Xavier ML,12,160,0.9891891891891891,31.2
+6,SMU vs Clemson,ML,SMU ML,8,170,0.7505818699594983,21.6
+7,Arkansas vs Mississippi,ML,Arkansas ML,6,-185,0.995,9.24
+8,Kansas St. vs Arizona,OVER UNDER,Under 172.5,5,-110,0.8284953039791749,9.55
+9,Iowa St. vs Baylor,ML,Iowa St. ML,5,-205,0.995,7.44
+10,SMU vs Clemson,OVER UNDER,Under 147.5,5,-110,0.7917013686060395,9.55
+11,Villanova vs Creighton,ML,Villanova ML,4,-278,0.995,5.44
+12,Arkansas vs Mississippi,OVER UNDER,Under 150.5,4,-110,0.7333109846502703,7.64
+13,Villanova vs Creighton,OVER UNDER,Under 143.5,3,-110,0.7169541206457095,5.73
+14,Kansas St. vs Arizona,SPREAD,Arizona -17.5,3,-110,0.7094335995267672,5.73
+15,Arkansas vs Mississippi,SPREAD,Arkansas -3.5,3,-110,0.7051323876814861,5.73
+16,Maryland vs Indiana,ML,Maryland ML,15,280,0.820104945203888,57
+17,Oklahoma vs Mississippi St.,ML,Oklahoma ML,9,102,0.995,18.18
+18,Utah vs Colorado,ML,Utah ML,9,380,0.534155722326454,43.2
+19,Wake Forest vs Miami FL,ML,Wake Forest ML,8,-112,0.978235294117647,15.14
+20,Virginia Tech vs Stanford,ML,Virginia Tech ML,6,-192,0.995,9.12
+21,BYU vs Arizona St.,OVER UNDER,Under 168.5,5,-110,0.8226143808274629,9.55
+22,Maryland vs Indiana,SPREAD,Maryland +7.5,5,-110,0.820104945203888,9.55
+23,Oklahoma vs Mississippi St.,OVER UNDER,Under 158.5,5,-110,0.8199609811591378,9.55
+24,Wake Forest vs Miami FL,OVER UNDER,Under 156.5,5,-110,0.8136591569468659,9.55
+25,Utah vs Colorado,OVER UNDER,Under 164.5,5,-110,0.7868735090569234,9.55
+26,Utah vs Colorado,SPREAD,Utah +9.5,3,-110,0.7032720815075318,5.73
+27,BYU vs Arizona St.,SPREAD,BYU -17.5,3,-110,0.6748398633044548,5.73
+28,Drake vs Bradley,ML,Drake ML,12,235,0.8171836228287841,40.2
+29,Saint Joseph's vs Duquesne,ML,Saint Joseph's ML,9,124,0.914161220043573,20.16
+30,Jacksonville St. vs FIU,SPREAD,FIU +1.5,8,-110,0.9763782402336619,15.27
+31,Army vs Loyola MD,SPREAD,Loyola MD +4.5,8,-110,0.962585136785386,15.27
+32,Radford vs Presbyterian,SPREAD,Presbyterian +7.5,7,-110,0.9334158279711818,13.36
+33,VCU vs Saint Louis,ML,VCU ML,7,-135,0.995,12.19
+34,Saint Joseph's vs Duquesne,SPREAD,Saint Joseph's +2.5,7,-110,0.914161220043573,13.36
+35,Furman vs Chattanooga,ML,Furman ML,7,-142,0.9823529411764709,11.93
+36,UAB vs Florida Atlantic,OVER UNDER,Under 162.5,6,-110,0.8739642324888226,11.45
+37,St. Bonaventure vs Richmond,OVER UNDER,Under 150.5,6,-110,0.8457579871846925,11.45
+38,UAB vs Florida Atlantic,ML,UAB ML,6,-180,0.9747628083491463,9.33
+39,South Florida vs North Texas,ML,South Florida ML,5,-198,0.9891891891891891,7.53
+40,George Mason vs Fordham,ML,George Mason ML,5,-205,0.995,7.44
+41,Youngstown St. vs Purdue Fort Wayne,OVER UNDER,Under 144.5,5,-110,0.8199609811591378,9.55
+42,Drake vs Bradley,SPREAD,Drake +6.5,5,-110,0.8171836228287841,9.55
+43,Rhode Island vs La Salle,OVER UNDER,Under 134.5,5,-110,0.812993547169007,9.55
+44,UTSA vs Charlotte,OVER UNDER,Under 141.5,5,-110,0.8114444976426544,9.55
+45,Missouri St. vs Kennesaw St.,OVER UNDER,Under 152.5,5,-110,0.8093984898740282,9.55
+46,Northern Iowa vs Belmont,OVER UNDER,Under 135.5,5,-110,0.8089070200974052,9.55
+47,South Florida vs North Texas,OVER UNDER,Under 144.5,5,-110,0.8002356914260765,9.55
+48,Youngstown St. vs Purdue Fort Wayne,ML,Youngstown St. ML,5,-230,0.995,7.17
+49,Boston University vs Lafayette,OVER UNDER,Under 142.5,5,-110,0.7912804675454795,9.55
+50,VMI vs East Tennessee St.,OVER UNDER,Under 146.5,5,-110,0.7907314937387646,9.55
+51,Troy vs Arkansas St.,SPREAD,Arkansas St. -3.5,5,-110,0.7906835196888673,9.55
+52,Northern Iowa vs Belmont,ML,Northern Iowa ML,5,-162,0.8970855836130978,8.09
+53,Loyola Chicago vs Davidson,SPREAD,Davidson +1.5,5,-110,0.7851025337671301,9.55
+54,Murray St. vs Evansville,OVER UNDER,Under 153.5,5,-110,0.7850470957613814,9.55
+55,Wichita St. vs Rice,OVER UNDER,Under 140.5,5,-110,0.7827461447254425,9.55
+56,St. Bonaventure vs Richmond,ML,St. Bonaventure ML,4,-265,0.995,5.51
+57,Winthrop vs Charleston Southern,ML,Winthrop ML,4,-285,0.995,5.4
+58,American vs Colgate,SPREAD,Colgate -4.5,4,-110,0.7475553145606622,7.64
+59,Valparaiso vs Illinois St.,OVER UNDER,Under 138.5,4,-110,0.7442927025057846,7.64
+60,Rhode Island vs La Salle,SPREAD,La Salle +10.5,4,-110,0.72477414316289,7.64
+61,Bucknell vs Navy,OVER UNDER,Over 136.5,3,-110,0.7164257301427837,5.73
+62,Winthrop vs Charleston Southern,SPREAD,Charleston Southern +6.5,3,-110,0.7132432432432433,5.73
+63,Western Carolina vs Samford,SPREAD,Samford -6.5,3,-110,0.7107866761162296,5.73
+64,Marshall vs James Madison,ML,Marshall ML,3,120,0.6316767307298153,6.6
+65,UNC Asheville vs Longwood,SPREAD,Longwood +3.5,3,-110,0.7014604903410874,5.73
+66,Boston University vs Lafayette,SPREAD,Lafayette -1.5,3,-110,0.7007578343639725,5.73
+67,Troy vs Arkansas St.,OVER UNDER,Under 160.5,3,-110,0.6990831413210445,5.73
+68,Temple vs East Carolina,SPREAD,East Carolina +7.5,3,-110,0.6885444319902464,5.73
+69,High Point vs Gardner Webb,SPREAD,Gardner Webb +27.5,3,-110,0.6872546225341256,5.73
+70,UAB vs Florida Atlantic,SPREAD,Florida Atlantic +4.5,3,-110,0.685619582553221,5.73
+71,Marshall vs James Madison,OVER UNDER,Under 155.5,3,-110,0.6835644091673576,5.73
+72,Army vs Loyola MD,OVER UNDER,Under 145.5,3,-110,0.6801448511301089,5.73
+73,UTSA vs Charlotte,SPREAD,Charlotte -4.5,3,-110,0.6792160737812911,5.73
+74,American vs Colgate,OVER UNDER,Over 147.5,3,-110,0.6790601387449342,5.73
+75,Radford vs Presbyterian,OVER UNDER,Over 148.5,3,-110,0.6790601387449342,5.73
+76,The Citadel vs Mercer,SPREAD,The Citadel +15.5,3,-110,0.6722336312784638,5.73
+77,Southern Illinois vs Illinois Chicago,SPREAD,Illinois Chicago +1.5,3,-110,0.6715829807430809,5.73
+78,Temple vs East Carolina,ML,Temple ML,3,-375,0.9480696445971588,3.8
+79,St. Bonaventure vs Richmond,SPREAD,Richmond +6.5,3,-110,0.6634807679704217,5.73
