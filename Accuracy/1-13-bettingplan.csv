@@ -1,0 +1,61 @@
+﻿,GAME,BET TYPE,BET,VALUE,ODDS,Probability of accuracy,Payout if win
+0,Seton Hall vs Connecticut,OVER UNDER,Under 130.5,7,-110,0.7990867620849235,13.36
+1,Seton Hall vs Connecticut,ML,Seton Hall ML,6,225,0.4748200818789054,19.5
+2,Texas A&M vs Tennessee,SPREAD,Tennessee -8.5,4,-110,0.68002522541938,7.64
+3,Seton Hall vs Connecticut,SPREAD,Seton Hall +5.5,4,-110,0.6604333407873288,7.64
+4,USC vs Maryland,ML,USC ML,19,360,0.7123776465080813,87.4
+5,USC vs Maryland,SPREAD,Maryland +9.5,10,-110,0.8948903156768325,19.09
+6,Georgetown vs Creighton,OVER UNDER,Under 148.5,9,-110,0.8704465718657859,17.18
+7,Kansas vs Iowa St.,OVER UNDER,Under 148.5,9,-110,0.8568995633187773,17.18
+8,Virginia vs Louisville,OVER UNDER,Over 154.5,8,-110,0.8310479395653575,15.27
+9,St. John's vs Marquette,OVER UNDER,Under 156.5,8,-110,0.8142731443301292,15.27
+10,West Virginia vs Houston,SPREAD,West Virginia +13.5,6,-110,0.75561769538341,11.45
+11,Virginia vs Louisville,ML,Virginia ML,6,140,0.6195143986448335,14.4
+12,St. John's vs Marquette,SPREAD,Marquette +13.5,6,-110,0.7402639177902675,11.45
+13,Oklahoma St. vs Baylor,ML,Oklahoma St. ML,6,110,0.6795143986448334,12.6
+14,Alabama vs Mississippi St.,OVER UNDER,Under 172.5,6,-110,0.732184566134146,11.45
+15,Kansas vs Iowa St.,SPREAD,Kansas +3.5,5,-110,0.7235382774248934,9.55
+16,USC vs Maryland,OVER UNDER,Over 149.5,5,-110,0.7015936295394603,9.55
+17,West Virginia vs Houston,OVER UNDER,Over 128.5,5,-110,0.6966397124887691,9.55
+18,Georgetown vs Creighton,SPREAD,Creighton -9.5,5,-110,0.6941610149475318,9.55
+19,Oklahoma St. vs Baylor,SPREAD,Oklahoma St. +1.5,4,-110,0.6795143986448334,7.64
+20,Alabama vs Mississippi St.,ML,Alabama ML,4,-258,0.887917637917638,5.55
+21,Florida vs Oklahoma,OVER UNDER,Over 156.5,4,-110,0.6622489561862481,7.64
+22,Ball St. vs Akron,OVER UNDER,Under 155.5,10,-110,0.9242424242424242,19.09
+23,Ball St. vs Akron,SPREAD,Ball St. +20.5,9,-110,0.8650255362614914,17.18
+24,Grand Canyon vs New Mexico,OVER UNDER,Under 143.5,6,-110,0.7525362757715699,11.45
+25,Villanova vs Providence,OVER UNDER,Under 158.5,10,-110,0.9451948051948051,19.09
+26,Wisconsin vs Minnesota,OVER UNDER,Under 144.5,10,-110,0.9237138830162086,19.09
+27,Syracuse vs Florida St.,OVER UNDER,Under 159.5,9,-110,0.9116638078902229,17.18
+28,Wisconsin vs Minnesota,SPREAD,Minnesota +1.5,10,-110,0.9005494505494506,19.09
+29,Michigan St. vs Indiana,OVER UNDER,Under 142.5,9,-110,0.8701246715438855,17.18
+30,Syracuse vs Florida St.,SPREAD,Florida St. +8.5,9,-110,0.8676009383874552,17.18
+31,Villanova vs Providence,SPREAD,Providence +2.5,9,-110,0.8655844155844156,17.18
+32,Notre Dame vs Miami FL,SPREAD,Notre Dame +3.5,9,-110,0.8497051597051597,17.18
+33,Clemson vs Boston College,OVER UNDER,Under 134.5,8,-110,0.8148088962751167,15.27
+34,Notre Dame vs Miami FL,ML,Notre Dame ML,7,120,0.7185147355137385,15.4
+35,Oregon vs Nebraska,OVER UNDER,Under 145.5,7,-110,0.7788075572855948,13.36
+36,Oregon vs Nebraska,SPREAD,Nebraska -10.5,6,-110,0.731854110339627,11.45
+37,Notre Dame vs Miami FL,OVER UNDER,Over 144.5,4,-110,0.6704572659030966,7.64
+38,Eastern Illinois vs Western Illinois,SPREAD,Western Illinois +7.5,12,-110,0.995,22.91
+39,Colorado St. vs Fresno St.,OVER UNDER,Under 138.5,10,-110,0.8884079939367346,19.09
+40,Duquesne vs Dayton,SPREAD,Dayton -4.5,10,-110,0.8866151866151866,19.09
+41,San Jose St. vs Air Force,SPREAD,Air Force +8.5,9,-110,0.8782818532818533,17.18
+42,Eastern Illinois vs Western Illinois,OVER UNDER,Under 130.5,9,-110,0.8511852776044916,17.18
+43,Northern Iowa vs Illinois Chicago,SPREAD,Illinois Chicago +7.5,9,-110,0.8504545454545455,17.18
+44,Northern Illinois vs Eastern Michigan,OVER UNDER,Under 138.5,9,-110,0.8474937044416591,17.18
+45,Evansville vs Bradley,OVER UNDER,Under 143.5,8,-110,0.840727213962508,15.27
+46,Miami OH vs Central Michigan,SPREAD,Central Michigan +17.5,8,-110,0.8340659340659341,15.27
+47,Colorado St. vs Fresno St.,SPREAD,Fresno St. +4.5,8,-110,0.8305365223012282,15.27
+48,Toledo vs Ohio,OVER UNDER,Under 159.5,8,-110,0.8257680471872609,15.27
+49,Boise St. vs UNLV,SPREAD,Boise St. -3.5,8,-110,0.8082348193514693,15.27
+50,Saint Mary's vs San Francisco,OVER UNDER,Under 141.5,7,-110,0.7697599382379757,13.36
+51,Valparaiso vs Belmont,OVER UNDER,Under 148.5,6,-110,0.7334698326944091,11.45
+52,Colorado St. vs Fresno St.,ML,Colorado St. ML,5,-205,0.883875844992495,7.44
+53,Miami OH vs Central Michigan,OVER UNDER,Over 154.5,5,-110,0.6976707097933513,9.55
+54,Toledo vs Ohio,SPREAD,Ohio +2.5,4,-110,0.6815018315018315,7.64
+55,Loyola Chicago vs George Mason,SPREAD,George Mason +9.5,4,-110,0.6806016380296616,7.64
+56,Boise St. vs UNLV,ML,Boise St. ML,4,-180,0.8082348193514693,6.22
+57,Duquesne vs Dayton,OVER UNDER,Over 152.5,4,-110,0.6624788733279299,7.64
+58,Western Michigan vs Massachusetts,OVER UNDER,Under 161.5,4,-110,0.6610609932702955,7.64
+59,Kent St. vs Buffalo,ML,Kent St. ML,4,-122,0.6888311688311688,7.28
