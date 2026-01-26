@@ -1,0 +1,84 @@
+﻿,GAME,BET TYPE,BET,VALUE,ODDS,Probability of accuracy,Payout if win
+0,New Mexico St. vs Liberty,ML,New Mexico St. ML,17,370,0.5459576163248598,79.9
+1,UMBC vs Bryant,OVER UNDER,Over 135.5,12,-110,0.8355555555555556,22.91
+2,New Mexico St. vs Liberty,OVER UNDER,Over 143.5,9,-110,0.7490797820066113,17.18
+3,UMBC vs Bryant,SPREAD,Bryant -1.5,5,-110,0.6543159810919633,9.55
+4,Stony Brook vs Hofstra,ML,Stony Brook ML,31,275,0.9446808510638298,116.25
+5,Youngstown St. vs Wright St.,ML,Youngstown St. ML,28,220,0.9517155715571557,89.6
+6,Northeastern vs Elon,ML,Northeastern ML,22,142,0.9596363636363636,53.24
+7,Wichita St. vs Florida Atlantic,ML,Wichita St. ML,20,170,0.867688964018353,54
+8,SIU Edwardsville vs Tennessee Martin,ML,SIU Edwardsville ML,20,295,0.6648504872528835,79
+9,West Georgia vs Stetson,SPREAD,Stetson +3.5,19,-110,0.9941176470588236,36.27
+10,Tarleton St. vs Southern Utah,SPREAD,Southern Utah +4.5,18,-110,0.9902714932126697,34.36
+11,Sacramento St. vs Northern Arizona,SPREAD,Northern Arizona +3.5,18,-110,0.9670156792591813,34.36
+12,Northeastern vs Elon,SPREAD,Northeastern +3.5,17,-110,0.9596363636363636,32.45
+13,UT Arlington vs Utah Tech,OVER UNDER,Under 143.5,17,-110,0.9549999999999998,32.45
+14,Youngstown St. vs Wright St.,SPREAD,Youngstown St. +6.5,17,-110,0.9517155715571557,32.45
+15,Stony Brook vs Hofstra,SPREAD,Stony Brook +7.5,17,-110,0.9446808510638298,32.45
+16,UMass Lowell vs NJIT,SPREAD,NJIT +8.5,17,-110,0.9422904045339066,32.45
+17,Eastern Illinois vs Little Rock,SPREAD,Little Rock -6.5,17,-110,0.9422604422604423,32.45
+18,Morehead St. vs Tennessee St.,SPREAD,Tennessee St. -8.5,17,-110,0.9422604422604423,32.45
+19,Weber St. vs Eastern Washington,SPREAD,Eastern Washington +4.5,17,-110,0.9422604422604423,32.45
+20,Weber St. vs Eastern Washington,OVER UNDER,Under 159.5,16,-110,0.9387878787878787,30.55
+21,Towson vs Charleston,ML,Towson ML,16,-125,0.9638428101721992,28.8
+22,UMKC vs South Dakota,OVER UNDER,Under 158.5,15,-110,0.8989837398373983,28.64
+23,UC Davis vs Cal St. Fullerton,ML,UC Davis ML,14,-162,0.995,22.64
+24,Arkansas St. vs South Alabama,ML,Arkansas St. ML,14,-166,0.995,22.43
+25,Hawaii vs Cal Poly,OVER UNDER,Under 156.5,14,-110,0.8760372023944325,26.73
+26,Gonzaga vs Washington St.,OVER UNDER,Under 157.5,14,-110,0.8746551296074135,26.73
+27,Stony Brook vs Hofstra,OVER UNDER,Over 134.5,14,-110,0.8685340802987861,26.73
+28,Wichita St. vs Florida Atlantic,SPREAD,Wichita St. +4.5,14,-110,0.867688964018353,26.73
+29,Youngstown St. vs Wright St.,OVER UNDER,Under 142.5,13,-110,0.8543389208935703,24.82
+30,Gonzaga vs Washington St.,SPREAD,Gonzaga -17.5,12,-110,0.8356335341281579,22.91
+31,Eastern Illinois vs Little Rock,OVER UNDER,Under 133.5,12,-110,0.825129342202513,22.91
+32,Portland St. vs Northern Colorado,SPREAD,Northern Colorado +2.5,12,-110,0.8241347649195703,22.91
+33,UT Arlington vs Utah Tech,SPREAD,UT Arlington +1.5,12,-110,0.8204175161471629,22.91
+34,Idaho St. vs Idaho,OVER UNDER,Over 149.5,12,-110,0.8162638698890408,22.91
+35,Hawaii vs Cal Poly,ML,Hawaii ML,11,-225,0.995,15.89
+36,Green Bay vs Cleveland St.,OVER UNDER,Under 149.5,11,-110,0.8116070115011278,21
+37,Oakland vs Milwaukee,OVER UNDER,Over 165.5,11,-110,0.8100186741363211,21
+38,St. Thomas vs North Dakota,OVER UNDER,Under 150.5,11,-110,0.8023126229812291,21
+39,West Georgia vs Stetson,OVER UNDER,Under 151.5,11,-110,0.7975022616178866,21
+40,Arkansas St. vs South Alabama,OVER UNDER,Over 153.5,11,-110,0.7947696476964768,21
+41,Vermont vs Maine,OVER UNDER,Under 130.5,11,-110,0.792709706108914,21
+42,Robert Morris vs IU Indy,ML,Robert Morris ML,10,-250,0.9850427350427351,14
+43,North Florida vs North Alabama,SPREAD,North Alabama -9.5,10,-110,0.7771468276086149,19.09
+44,Jacksonville vs Central Arkansas,SPREAD,Central Arkansas -8.5,10,-110,0.7763261359492135,19.09
+45,Northeastern vs Elon,OVER UNDER,Under 161.5,10,-110,0.7668348386645873,19.09
+46,Queens vs Florida Gulf Coast,OVER UNDER,Over 167.5,10,-110,0.7662226391494684,19.09
+47,Eastern Kentucky vs Austin Peay,SPREAD,Eastern Kentucky +7.5,10,-110,0.7653920059430812,19.09
+48,William & Mary vs North Carolina A&T,OVER UNDER,Over 162.5,9,-110,0.7614579009794415,17.18
+49,UMKC vs South Dakota,SPREAD,UMKC +7.5,9,-110,0.7599304623547047,17.18
+50,Monmouth vs Drexel,SPREAD,Drexel +5.5,9,-110,0.7548000258804205,17.18
+51,Arkansas St. vs South Alabama,SPREAD,Arkansas St. -3.5,9,-110,0.7498620297287726,17.18
+52,Binghamton vs Albany,SPREAD,Albany -7.5,9,-110,0.7488145281876057,17.18
+53,Mercer vs VMI,SPREAD,Mercer -9.5,9,-110,0.7474240793239388,17.18
+54,Old Dominion vs Georgia Southern,OVER UNDER,Over 162.5,9,-110,0.7445548951287833,17.18
+55,Robert Morris vs IU Indy,SPREAD,Robert Morris -5.5,9,-110,0.7408057175270055,17.18
+56,William & Mary vs North Carolina A&T,SPREAD,William & Mary -13.5,9,-110,0.7399574836925289,17.18
+57,San Diego vs Seattle,OVER UNDER,Over 147.5,9,-110,0.7388384687208216,17.18
+58,Lindenwood vs Southeast Missouri St.,SPREAD,Southeast Missouri St. -6.5,8,-110,0.7384303595107541,15.27
+59,UC Davis vs Cal St. Fullerton,OVER UNDER,Under 168.5,8,-110,0.7370236768062854,15.27
+60,Lipscomb vs Bellarmine,OVER UNDER,Over 155.5,8,-110,0.7353968253968255,15.27
+61,UC Davis vs Cal St. Fullerton,SPREAD,UC Davis -3.5,8,-110,0.7349141424789749,15.27
+62,Binghamton vs Albany,OVER UNDER,Under 137.5,8,-110,0.7345762181705416,15.27
+63,UC Riverside vs Long Beach St.,OVER UNDER,Over 142.5,8,-110,0.7337940379403793,15.27
+64,UC San Diego vs Cal St. Northridge,SPREAD,Cal St. Northridge +7.5,8,-110,0.7329241611636467,15.27
+65,UC Santa Barbara vs Cal St. Bakersfield,OVER UNDER,Over 145.5,8,-110,0.7296158773586954,15.27
+66,Robert Morris vs IU Indy,OVER UNDER,Under 158.5,8,-110,0.7261651768459412,15.27
+67,St. Thomas vs North Dakota,SPREAD,St. Thomas -8.5,8,-110,0.7221138907709562,15.27
+68,San Diego vs Seattle,SPREAD,San Diego +9.5,8,-110,0.7182769342934098,15.27
+69,James Madison vs Appalachian St.,SPREAD,Appalachian St. -1.5,8,-110,0.715860018410604,15.27
+70,Cal Baptist vs Abilene Christian,ML,Cal Baptist ML,7,120,0.634030654397898,15.4
+71,Southern Indiana vs Tennessee Tech,SPREAD,Tennessee Tech -5.5,7,-110,0.7048466406777167,13.36
+72,Eastern Kentucky vs Austin Peay,OVER UNDER,Under 154.5,7,-110,0.6933415618198226,13.36
+73,UC San Diego vs Cal St. Northridge,OVER UNDER,Over 159.5,6,-110,0.6777936752513025,11.45
+74,Morehead St. vs Tennessee St.,OVER UNDER,Under 148.5,6,-110,0.6753004648677697,11.45
+75,Old Dominion vs Georgia Southern,SPREAD,Old Dominion +6.5,6,-110,0.6714082474247228,11.45
+76,Lindenwood vs Southeast Missouri St.,OVER UNDER,Over 155.5,6,-110,0.6708857186285366,11.45
+77,Hawaii vs Cal Poly,SPREAD,Cal Poly +5.5,6,-110,0.670340919859562,11.45
+78,UC Riverside vs Long Beach St.,SPREAD,UC Riverside +4.5,6,-110,0.6690934326099081,11.45
+79,North Florida vs North Alabama,OVER UNDER,Under 157.5,6,-110,0.6678984477068057,11.45
+80,Northern Kentucky vs Detroit Mercy,SPREAD,Detroit Mercy +9.5,5,-110,0.6529097730718666,9.55
+81,UT Arlington vs Utah Tech,ML,UT Arlington ML,5,102,0.6132844506170069,10.1
+82,Weber St. vs Eastern Washington,ML,Weber St. ML,5,-205,0.792688964018353,7.44
