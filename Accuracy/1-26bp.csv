@@ -1,0 +1,21 @@
+﻿,GAME,BET TYPE,BET,VALUE,ODDS,Probability of accuracy,Payout if win
+0,BYU vs Arizona,ML,BYU ML,114,105,0.995,233.7
+1,BYU vs Arizona,SPREAD,BYU +1.5,106,-110,0.995,202.36
+2,Louisville vs Duke,ML,Louisville ML,64,320,0.46857243705388657,268.8
+3,BYU vs Arizona,OVER UNDER,Over 165.5,37,-110,0.6899292807190313,70.64
+4,Penn St. vs Ohio St.,OVER UNDER,Over 154.5,61,-110,0.7981138587528938,116.45
+5,South Carolina St. vs Delaware St.,SPREAD,Delaware St. +1.5,106,-110,0.995,202.36
+6,Le Moyne vs Fairleigh Dickinson,SPREAD,Fairleigh Dickinson +1.5,105,-110,0.9933333333333333,200.45
+7,Norfolk St. vs Morgan St.,SPREAD,Morgan St. +9.5,102,-110,0.9801302438285627,194.73
+8,Central Connecticut vs Stonehill,SPREAD,Stonehill +3.5,96,-110,0.9519639376521629,183.27
+9,South Carolina St. vs Delaware St.,OVER UNDER,Over 136.5,75,-110,0.8592666517650007,143.18
+10,Jackson St. vs Florida A&M,SPREAD,Florida A&M -5.5,71,-110,0.8408751072435348,135.55
+11,Jackson St. vs Florida A&M,OVER UNDER,Under 148.5,59,-110,0.7861538461538462,112.64
+12,Norfolk St. vs Morgan St.,OVER UNDER,Over 153.5,49,-110,0.7433928821093262,93.55
+13,Alcorn St. vs Bethune Cookman,OVER UNDER,Over 147.5,47,-110,0.7323230952579673,89.73
+14,Alcorn St. vs Bethune Cookman,SPREAD,Bethune Cookman -13.5,46,-110,0.7286568088348604,87.82
+15,Wagner vs LIU,SPREAD,LIU -10.5,43,-110,0.7179425231205747,82.09
+16,UT Rio Grande Valley vs Texas A&M Corpus Chris,SPREAD,Texas A&M Corpus Chris -1.5,39,-110,0.6958681746033076,74.45
+17,Le Moyne vs Fairleigh Dickinson,OVER UNDER,Over 142.5,35,-110,0.6794083780792618,66.82
+18,Abilene Christian vs Tarleton St.,OVER UNDER,Over 145.5,34,-110,0.6753181316394302,64.91
+19,UT Rio Grande Valley vs Texas A&M Corpus Chris,OVER UNDER,Under 134.5,32,-110,0.6656770361421525,61.09
