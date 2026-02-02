@@ -1,42 +1,4 @@
 Team,Opponent,Coach Name,Opponent Coach,Conference,Opponent Conference,Date,,Location,HAN,Attendance,Non Conference Game,Neutral Site Game,Road Game,Top 25 Opponent,March Madness Opponent,Points,Opp Points,SM,Line,ML,Over/Under Line,Total Points,,Game Number
-Florida Atlantic,East Carolina,John Jakus,Michael Schwartz,American,American,2/1/2026,,"Boca Raton, FL",HOME,,0,0,0,,0,,,,,,,,,1031
-East Carolina,Florida Atlantic,Michael Schwartz,John Jakus,American,American,2/1/2026,,"Boca Raton, FL",AWAY,,0,0,1,,0,,,,,,,,,1031
-Tulane,Memphis,Ron Hunter,Penny Hardaway,American,American,2/1/2026,,"Memphis, TN",AWAY,,0,0,1,,1,,,,,,,,,1079
-Memphis,Tulane,Penny Hardaway,Ron Hunter,American,American,2/1/2026,,"Memphis, TN",HOME,,0,0,0,,0,,,,,,,,,1079
-Wichita St.,Tulsa,Paul Mills,Eric Konkol,American,American,2/1/2026,,"Tulsa, OK",AWAY,,0,0,1,,0,,,,,,,,,1189
-Tulsa,Wichita St.,Eric Konkol,Paul Mills,American,American,2/1/2026,,"Tulsa, OK",HOME,,0,0,0,,0,,,,,,,,,1189
-Rhode Island,Duquesne,Archie Miller,Dru Joyce III,A10,A10,2/1/2026,,"Pittsburgh, PA",AWAY,,0,0,1,,0,,,,,,,,,1288
-Duquesne,Rhode Island,Dru Joyce III,Archie Miller,A10,A10,2/1/2026,,"Pittsburgh, PA",HOME,,0,0,0,,0,,,,,,,,,1288
-TCU,Colorado,Jamie Dixon,Tad Boyle,Big 12,Big 12,2/1/2026,,"Boulder, CO",AWAY,,0,0,1,,0,,,,,,,,,1610
-Colorado,TCU,Tad Boyle,Jamie Dixon,Big 12,Big 12,2/1/2026,,"Boulder, CO",HOME,,0,0,0,,0,,,,,,,,,1610
-Kansas St.,Iowa St.,Jerome Tang,TJ Otzelberger,Big 12,Big 12,2/1/2026,,"Manhattan, KS",HOME,,0,0,0,,1,,,,,,,,,1651
-Iowa St.,Kansas St.,TJ Otzelberger,Jerome Tang,Big 12,Big 12,2/1/2026,,"Manhattan, KS",AWAY,,0,0,1,,0,,,,,,,,,1651
-Nebraska,Illinois,Fred Hoiberg,Brad Underwood,Big Ten,Big Ten,2/1/2026,,"Lincoln, NE",HOME,,0,0,0,,1,,,,,,,,,2100
-Illinois,Nebraska,Brad Underwood,Fred Hoiberg,Big Ten,Big Ten,2/1/2026,,"Lincoln, NE",AWAY,,0,0,1,,0,,,,,,,,,2100
-Oregon,Iowa,Dana Altman,Ben McCollum,Big Ten,Big Ten,2/1/2026,,"Eugene, OR",HOME,,0,0,0,,0,,,,,,,,,2152
-Iowa,Oregon,Ben McCollum,Dana Altman,Big Ten,Big Ten,2/1/2026,,"Eugene, OR",AWAY,,0,0,1,,1,,,,,,,,,2152
-Purdue,Maryland,Matt Painter,Buzz Williams,Big Ten,Big Ten,2/1/2026,,"College Park, MD",AWAY,,0,0,1,,1,,,,,,,,,2176
-Maryland,Purdue,Buzz Williams,Matt Painter,Big Ten,Big Ten,2/1/2026,,"College Park, MD",HOME,,0,0,0,,1,,,,,,,,,2176
-Penn St.,Minnesota,Mike Rhodes,Niko Medved,Big Ten,Big Ten,2/1/2026,,"University Park, PA",HOME,,0,0,0,,0,,,,,,,,,2242
-Minnesota,Penn St.,Niko Medved,Mike Rhodes,Big Ten,Big Ten,2/1/2026,,"University Park, PA",AWAY,,0,0,1,,0,,,,,,,,,2242
-Milwaukee,Cleveland St.,Bart Lundy,Rob Summers,Horizon,Horizon,2/1/2026,,"Milwaukee, WI",HOME,,0,0,0,,0,,,,,,,,,2964
-Cleveland St.,Milwaukee,Rob Summers,Bart Lundy,Horizon,Horizon,2/1/2026,,"Milwaukee, WI",AWAY,,0,0,1,,0,,,,,,,,,2964
-Wright St.,Green Bay,Clint Sargent,Doug Gottlieb,Horizon,Horizon,2/1/2026,,"Ashwaubenon, WI",AWAY,,0,0,1,,0,,,,,,,,,3008
-Green Bay,Wright St.,Doug Gottlieb,Clint Sargent,Horizon,Horizon,2/1/2026,,"Ashwaubenon, WI",HOME,,0,0,0,,0,,,,,,,,,3008
-Oakland,Northern Kentucky,Greg Kampe,Darrin Horn,Horizon,Horizon,2/1/2026,,"Rochester, MI",HOME,,0,0,0,,0,,,,,,,,,3062
-Northern Kentucky,Oakland,Darrin Horn,Greg Kampe,Horizon,Horizon,2/1/2026,,"Rochester, MI",AWAY,,0,0,1,,0,,,,,,,,,3062
-Siena,Canisius,Gerry McNamara,Jim Christian,MAAC,MAAC,2/1/2026,,"Buffalo, NY",AWAY,,0,0,1,,0,,,,,,,,,3222
-Canisius,Siena,Jim Christian,Gerry McNamara,MAAC,MAAC,2/1/2026,,"Buffalo, NY",HOME,,0,0,0,,0,,,,,,,,,3222
-Quinnipiac,Fairfield,Tom Pecora,Chris Casey,MAAC,MAAC,2/1/2026,,"Fairfield, CT",AWAY,,0,0,1,,0,,,,,,,,,3245
-Fairfield,Quinnipiac,Chris Casey,Tom Pecora,MAAC,MAAC,2/1/2026,,"Fairfield, CT",HOME,,0,0,0,,0,,,,,,,,,3245
-Mount St. Mary's,Manhattan,Donny Lind,John Gallagher,MAAC,MAAC,2/1/2026,,"Emmitsburg, MD",HOME,,0,0,0,,0,,,,,,,,,3288
-Manhattan,Mount St. Mary's,John Gallagher,Donny Lind,MAAC,MAAC,2/1/2026,,"Emmitsburg, MD",AWAY,,0,0,1,,1,,,,,,,,,3288
-Niagara,Marist,Greg Paulus,John Dunne,MAAC,MAAC,2/1/2026,,"Niagara Falls, NY",HOME,,0,0,0,,0,,,,,,,,,3303
-Marist,Niagara,John Dunne,Greg Paulus,MAAC,MAAC,2/1/2026,,"Niagara Falls, NY",AWAY,,0,0,1,,0,,,,,,,,,3303
-Sacred Heart,Merrimack,Anthony Latina,Joe Gallo,MAAC,MAAC,2/1/2026,,"North Andover, MA",AWAY,,0,0,1,,0,,,,,,,,,3322
-Merrimack,Sacred Heart,Joe Gallo,Anthony Latina,MAAC,MAAC,2/1/2026,,"North Andover, MA",HOME,,0,0,0,,0,,,,,,,,,3322
-Saint Peter's,Rider,Bashir Mason,Kevin Baggett,MAAC,MAAC,2/1/2026,,"Lawrenceville, NJ",AWAY,,0,0,1,,0,,,,,,,,,3367
-Rider,Saint Peter's,Kevin Baggett,Bashir Mason,MAAC,MAAC,2/1/2026,,"Lawrenceville, NJ",HOME,,0,0,0,,0,,,,,,,,,3367
 Syracuse,North Carolina,Adrian Autry,Hubert Davis,ACC,ACC,2/2/2026,,"Chapel Hill, NC",AWAY,,0,0,1,,1,,,,,,,,,470
 North Carolina,Syracuse,Hubert Davis,Adrian Autry,ACC,ACC,2/2/2026,,"Chapel Hill, NC",HOME,,0,0,0,,0,,,,,,,,,470
 Texas Tech,Kansas,Grant McCasland,Bill Self,Big 12,Big 12,2/2/2026,,"Lubbock, TX",HOME,,0,0,0,,1,,,,,,,,,1665
