@@ -1,0 +1,33 @@
+﻿,GAME,BET TYPE,BET,VALUE,ODDS,Probability of accuracy,Payout if win
+0,Syracuse vs North Carolina,ML,Syracuse ML,136,500,0.9103714626781827,816
+1,Texas Tech vs Kansas,OVER UNDER,Over 154.5,44,-110,0.8635432667690732,84
+2,Texas Tech vs Kansas,ML,Texas Tech ML,40,-205,0.995,59.51
+3,Syracuse vs North Carolina,OVER UNDER,Under 158.5,38,-110,0.8132422816180793,72.55
+4,Texas Tech vs Kansas,SPREAD,Texas Tech -4.5,23,-110,0.7003971186729212,43.91
+5,Boston University vs Holy Cross,SPREAD,Holy Cross +1.5,60,-110,0.995,114.55
+6,New Orleans vs East Texas A&M,SPREAD,East Texas A&M +1.5,61,-110,0.995,116.45
+7,Nicholls St. vs Northwestern St.,SPREAD,Northwestern St. +1.5,59,-110,0.9771428571428571,112.64
+8,Bethune Cookman vs Alabama A&M,SPREAD,Alabama A&M +3.5,59,-110,0.9771428571428571,112.64
+9,New Orleans vs East Texas A&M,OVER UNDER,Over 150.5,58,-110,0.9683229813664596,110.73
+10,Tennessee Tech vs Tennessee St.,OVER UNDER,Over 153.5,51,-110,0.9184466019417477,97.36
+11,Boston University vs Holy Cross,OVER UNDER,Under 139.5,48,-110,0.8931705899447835,91.64
+12,Weber St. vs Sacramento St.,SPREAD,Sacramento St. +1.5,46,-110,0.88,87.82
+13,Bethune Cookman vs Alabama A&M,OVER UNDER,Over 141.5,46,-110,0.8772951100821059,87.82
+14,Southern vs Jackson St.,OVER UNDER,Over 152.5,44,-110,0.8635432667690732,84
+15,Incarnate Word vs Texas A&M Corpus Chris,OVER UNDER,Over 138.5,43,-110,0.8540189503031259,82.09
+16,McNeese St. vs Stephen F. Austin,ML,McNeese St. ML,42,-192,0.995,63.88
+17,Portland St. vs Idaho St.,SPREAD,Portland St. +7.5,41,-110,0.8360566706021253,78.27
+18,Maryland Eastern Shore vs North Carolina Central,OVER UNDER,Over 134.5,39,-110,0.8200622757827736,74.45
+19,McNeese St. vs Stephen F. Austin,OVER UNDER,Over 142.5,38,-110,0.8162075747692186,72.55
+20,Houston Christian vs UT Rio Grande Valley,OVER UNDER,Over 140.5,36,-110,0.7975981403851362,68.73
+21,Maryland Eastern Shore vs North Carolina Central,SPREAD,North Carolina Central -2.5,33,-110,0.7776073593743407,63
+22,Florida A&M vs Alabama St.,OVER UNDER,Over 140.5,33,-110,0.7768731412882175,63
+23,Southeastern Louisiana vs Lamar,SPREAD,Southeastern Louisiana +6.5,28,-110,0.7367037428281448,53.45
+24,Tennessee Tech vs Tennessee St.,SPREAD,Tennessee St. -8.5,27,-110,0.7299956096936254,51.55
+25,Houston Christian vs UT Rio Grande Valley,SPREAD,Houston Christian +8.5,27,-110,0.7275767941482297,51.55
+26,McNeese St. vs Stephen F. Austin,SPREAD,Stephen F. Austin +3.5,25,-110,0.7134872018507579,47.73
+27,Howard vs Coppin St.,SPREAD,Howard -13.5,24,-110,0.7053704094948114,45.82
+28,Incarnate Word vs Texas A&M Corpus Chris,SPREAD,Incarnate Word +6.5,21,-110,0.6845475800593687,40.09
+29,Grambling St. vs Alcorn St.,OVER UNDER,Over 143.5,19,-110,0.6694456202282415,36.27
+30,Florida A&M vs Alabama St.,SPREAD,Alabama St. -3.5,16,-110,0.6503840980342315,30.55
+31,Howard vs Coppin St.,OVER UNDER,Under 146.5,16,-110,0.6447950616973445,30.55
