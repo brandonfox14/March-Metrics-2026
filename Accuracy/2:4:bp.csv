@@ -1,0 +1,101 @@
+﻿,GAME,BET TYPE,BET,VALUE,ODDS,Probability of accuracy,Payout if win
+0,Oklahoma vs Kentucky,ML,Oklahoma ML,38,380,0.995,182.4
+1,Texas A&M vs Alabama,ML,Texas A&M ML,35,320,0.9706517393042782,147
+2,Georgia Tech vs California,ML,Georgia Tech ML,33,280,0.9685742459192477,125.4
+3,Washington vs Iowa,ML,Washington ML,21,120,0.9738374038139845,46.2
+4,UCF vs Houston,SPREAD,UCF +16.5,18,-110,0.9901639344262294,34.36
+5,Notre Dame vs Louisville,SPREAD,Notre Dame +17.5,17,-110,0.9739985467871358,32.45
+6,Texas A&M vs Alabama,SPREAD,Texas A&M +8.5,17,-110,0.9706517393042782,32.45
+7,Utah vs Arizona St.,ML,Utah ML,16,-122,0.9696707371473179,29.11
+8,Utah vs Arizona St.,OVER UNDER,Over 161.5,16,-110,0.926531577169875,30.55
+9,Oklahoma St. vs BYU,ML,Oklahoma St. ML,16,245,0.6379615068352348,55.2
+10,Colorado vs Baylor,ML,Colorado ML,15,275,0.5992126047711154,56.25
+11,Minnesota vs Michigan St.,OVER UNDER,Under 133.5,15,-110,0.9081081081081082,28.64
+12,Notre Dame vs Louisville,OVER UNDER,Over 154.5,14,-110,0.8978346363420989,26.73
+13,Minnesota vs Michigan St.,ML,Minnesota ML,14,340,0.5188874327611608,61.6
+14,Providence vs Butler,ML,Providence ML,14,142,0.7579626047711153,33.88
+15,Clemson vs Stanford,ML,Clemson ML,13,-175,0.995,20.43
+16,Texas A&M vs Alabama,OVER UNDER,Over 178.5,13,-110,0.8640568585643212,24.82
+17,Georgia Tech vs California,OVER UNDER,Over 152.5,13,-110,0.8626625441846494,24.82
+18,Georgetown vs Creighton,ML,Georgetown ML,12,-135,0.897863247863248,20.89
+19,Clemson vs Stanford,OVER UNDER,Under 138.5,12,-110,0.8227686073687652,22.91
+20,Oklahoma St. vs BYU,OVER UNDER,Over 168.5,11,-110,0.8069967407403549,21
+21,Oklahoma vs Kentucky,OVER UNDER,Over 154.5,10,-110,0.7771233284983748,19.09
+22,Washington vs Iowa,OVER UNDER,Over 140.5,9,-110,0.7574577182099961,17.18
+23,Northwestern vs Illinois,OVER UNDER,Over 150.5,9,-110,0.7489186771482786,17.18
+24,Villanova vs Seton Hall,ML,Villanova ML,8,-340,0.995,10.35
+25,Utah vs Arizona St.,SPREAD,Utah -1.5,8,-110,0.7272311977916482,15.27
+26,Villanova vs Seton Hall,SPREAD,Villanova -7.5,6,-110,0.668080758904997,11.45
+27,Clemson vs Stanford,SPREAD,Stanford +3.5,5,-110,0.6607297876178114,9.55
+28,UCF vs Houston,OVER UNDER,Over 147.5,5,-110,0.6511988795518208,9.55
+29,Georgetown vs Creighton,SPREAD,Creighton +1.5,5,-110,0.6505286192883172,9.55
+30,Colorado vs Baylor,OVER UNDER,Under 158.5,5,-110,0.6436078494022419,9.55
+31,Furman vs East Tennessee St.,ML,Furman ML,28,210,0.9792617046818727,86.8
+32,South Alabama vs Appalachian St.,ML,South Alabama ML,26,195,0.9400586464093832,76.7
+33,Youngstown St. vs Purdue Fort Wayne,ML,Youngstown St. ML,19,120,0.9214833759590793,41.8
+34,Western Carolina vs UNC Greensboro,SPREAD,UNC Greensboro +1.5,18,-110,0.995,34.36
+35,Maryland Eastern Shore vs South Carolina St.,SPREAD,South Carolina St. +3.5,18,-110,0.995,34.36
+36,Wright St. vs Robert Morris,SPREAD,Robert Morris +2.5,18,-110,0.9907375099127677,34.36
+37,New Mexico vs Utah St.,OVER UNDER,Over 156.5,18,-110,0.9794117647058824,34.36
+38,Furman vs East Tennessee St.,SPREAD,Furman +5.5,18,-110,0.9792617046818727,34.36
+39,South Dakota vs UMKC,SPREAD,UMKC +2.5,18,-110,0.9758119658119658,34.36
+40,St. Thomas vs South Dakota St.,ML,St. Thomas ML,17,-122,0.995,30.93
+41,Tulsa vs Florida Atlantic,ML,Tulsa ML,17,-125,0.995,30.6
+42,Tulsa vs Florida Atlantic,OVER UNDER,Over 163.5,17,-110,0.9571428571428571,32.45
+43,Southern Miss vs Marshall,ML,Southern Miss ML,16,400,0.5225681818181818,80
+44,Winthrop vs Radford,SPREAD,Radford +2.5,16,-110,0.9429338327091136,30.55
+45,Liberty vs Delaware,OVER UNDER,Under 132.5,16,-110,0.9429166666666666,30.55
+46,New Mexico vs Utah St.,ML,New Mexico ML,16,-135,0.995,27.85
+47,High Point vs Charleston Southern,OVER UNDER,Over 162.5,16,-110,0.9311679696754324,30.55
+48,Youngstown St. vs Purdue Fort Wayne,SPREAD,Youngstown St. +2.5,15,-110,0.9214833759590793,28.64
+49,Winthrop vs Radford,OVER UNDER,Over 160.5,15,-110,0.9105079064403221,28.64
+50,Saint Joseph's vs George Washington,OVER UNDER,Under 154.5,15,-110,0.9008210180623973,28.64
+51,Texas St. vs Georgia Southern,SPREAD,Georgia Southern -4.5,14,-110,0.8965526985916205,26.73
+52,Louisiana Monroe vs Old Dominion,OVER UNDER,Over 153.5,14,-110,0.8931982438365417,26.73
+53,Arkansas St. vs Coastal Carolina,OVER UNDER,Over 153.5,14,-110,0.8891990873693219,26.73
+54,Arkansas St. vs Coastal Carolina,ML,Arkansas St. ML,14,-166,0.995,22.43
+55,Western Carolina vs UNC Greensboro,OVER UNDER,Over 155.5,14,-110,0.8791044776119403,26.73
+56,St. Thomas vs South Dakota St.,OVER UNDER,Over 156.5,13,-110,0.8658065604118299,24.82
+57,Lipscomb vs Austin Peay,OVER UNDER,Over 157.5,13,-110,0.8605405861788841,24.82
+58,Rice vs North Texas,OVER UNDER,Over 133.5,13,-110,0.854361890589878,24.82
+59,Washington St. vs Oregon St.,OVER UNDER,Over 147.5,13,-110,0.854361890589878,24.82
+60,Navy vs Lafayette,SPREAD,Lafayette +3.5,13,-110,0.851733689512929,24.82
+61,Arkansas Pine Bluff vs Grambling St.,SPREAD,Grambling St. -6.5,13,-110,0.8512798023041315,24.82
+62,American vs Bucknell,OVER UNDER,Over 141.5,13,-110,0.8496640253776059,24.82
+63,South Dakota vs UMKC,OVER UNDER,Over 154.5,13,-110,0.8473123579506557,24.82
+64,Arkansas Pine Bluff vs Grambling St.,OVER UNDER,Over 145.5,12,-110,0.8438095238095238,22.91
+65,Northern Kentucky vs Green Bay,SPREAD,Green Bay +6.5,12,-110,0.8430537827627224,22.91
+66,Texas St. vs Georgia Southern,OVER UNDER,Over 151.5,12,-110,0.8430042269853739,22.91
+67,New Mexico vs Utah St.,SPREAD,New Mexico -2.5,12,-110,0.8401639344262295,22.91
+68,Lehigh vs Loyola MD,OVER UNDER,Over 150.5,12,-110,0.8384645033244696,22.91
+69,Santa Clara vs Pacific,OVER UNDER,Over 150.5,12,-110,0.8350961417344397,22.91
+70,North Alabama vs Central Arkansas,OVER UNDER,Over 147.5,12,-110,0.8288947449529973,22.91
+71,Wright St. vs Robert Morris,OVER UNDER,Over 147.5,12,-110,0.8247627409172624,22.91
+72,Troy vs Georgia St.,OVER UNDER,Under 145.5,11,-110,0.8159320775817107,21
+73,Tulsa vs Florida Atlantic,SPREAD,Tulsa -1.5,11,-110,0.8101549558512623,21
+74,Washington St. vs Oregon St.,SPREAD,Oregon St. +1.5,11,-110,0.8093870346598202,21
+75,Milwaukee vs Detroit Mercy,OVER UNDER,Over 160.5,11,-110,0.8071328007276914,21
+76,New Mexico St. vs Louisiana Tech,OVER UNDER,Over 135.5,11,-110,0.8069967407403549,21
+77,Gonzaga vs Portland,SPREAD,Portland +22.5,11,-110,0.8049731484950668,21
+78,Maryland Eastern Shore vs South Carolina St.,OVER UNDER,Over 134.5,11,-110,0.8032219659655799,21
+79,UTEP vs Sam Houston St.,OVER UNDER,Under 144.5,11,-110,0.7987938827310196,21
+80,Youngstown St. vs Purdue Fort Wayne,OVER UNDER,Under 147.5,11,-110,0.7953237070470902,21
+81,Saint Joseph's vs George Washington,SPREAD,Saint Joseph's -1.5,10,-110,0.7924459775230889,19.09
+82,Gonzaga vs Portland,OVER UNDER,Over 152.5,10,-110,0.7896864881939509,19.09
+83,St. Thomas vs South Dakota St.,SPREAD,St. Thomas -1.5,10,-110,0.7863286873309756,19.09
+84,Army vs Colgate,SPREAD,Army +10.5,9,-110,0.7483781809129194,17.18
+85,Arkansas St. vs Coastal Carolina,SPREAD,Arkansas St. -3.5,9,-110,0.7449620318445964,17.18
+86,Loyola Marymount vs San Francisco,SPREAD,San Francisco -8.5,8,-110,0.7380605559907344,15.27
+87,American vs Bucknell,SPREAD,Bucknell +8.5,8,-110,0.7273462702764486,15.27
+88,Longwood vs Gardner Webb,SPREAD,Gardner Webb +12.5,8,-110,0.7273345606745751,15.27
+89,Lehigh vs Loyola MD,SPREAD,Loyola MD -1.5,8,-110,0.7272788848317047,15.27
+90,UTSA vs South Florida,SPREAD,South Florida -25.5,8,-110,0.7264840023471815,15.27
+91,High Point vs Charleston Southern,SPREAD,Charleston Southern +13.5,8,-110,0.7256678940079084,15.27
+92,Santa Clara vs Pacific,SPREAD,Pacific +6.5,7,-110,0.7131506690138482,13.36
+93,San Diego vs Saint Mary's,SPREAD,San Diego +19.5,7,-110,0.7109426098778989,13.36
+94,Lipscomb vs Austin Peay,SPREAD,Lipscomb +3.5,7,-110,0.7106873917560028,13.36
+95,Wichita St. vs Charlotte,SPREAD,Charlotte +8.5,7,-110,0.7070333788217349,13.36
+96,Liberty vs Delaware,SPREAD,Delaware +12.5,7,-110,0.7070333788217349,13.36
+97,George Mason vs Duquesne,SPREAD,Duquesne +6.5,7,-110,0.6990676195243247,13.36
+98,USC Upstate vs UNC Asheville,SPREAD,UNC Asheville -7.5,7,-110,0.6990676195243247,13.36
+99,UTEP vs Sam Houston St.,SPREAD,UTEP +10.5,7,-110,0.6976127950718478,13.36
