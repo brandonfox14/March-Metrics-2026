@@ -1,48 +1,4 @@
 Team,Opponent,Coach Name,Opponent Coach,Conference,Opponent Conference,Date,,Location,HAN,Attendance,Non Conference Game,Neutral Site Game,Road Game,Top 25 Opponent,March Madness Opponent,Points,Opp Points,SM,Line,ML,Over/Under Line,Total Points,,Game Number
-Villanova,Marquette,Kevin Willard,Shaka Smart,Big East,Big East,2/10/2026,,"Villanova, PA",HOME,,0,0,0,,1,,,,,,,,,25
-Marquette,Villanova,Shaka Smart,Kevin Willard,Big East,Big East,2/10/2026,,"Villanova, PA",AWAY,,0,0,1,,0,,,,,,,,,25
-Stanford,Boston College,Kyle Smith,Earl Grant,ACC,ACC,2/10/2026,,"Chestnut Hill, MA",AWAY,,0,0,1,,0,,,,,,,,,245
-Boston College,Stanford,Earl Grant,Kyle Smith,ACC,ACC,2/10/2026,,"Chestnut Hill, MA",HOME,,0,0,0,,0,,,,,,,,,245
-Syracuse,California,Adrian Autry,Mark Madsen,ACC,ACC,2/10/2026,,"Syracuse, NY",AWAY,,0,0,1,,0,,,,,,,,,276
-California,Syracuse,Mark Madsen,Adrian Autry,ACC,ACC,2/10/2026,,"Syracuse, NY",HOME,,0,0,0,,0,,,,,,,,,276
-Virginia Tech,Clemson,Mike Young,Brad Brownell,ACC,ACC,2/10/2026,,"Clemson, SC",AWAY,,0,0,1,,1,,,,,,,,,300
-Clemson,Virginia Tech,Brad Brownell,Mike Young,ACC,ACC,2/10/2026,,"Clemson, SC",HOME,,0,0,0,,0,,,,,,,,,300
-Pittsburgh,Duke,Jeff Capel III,Jon Scheyer,ACC,ACC,2/10/2026,,"Pittsburgh, PA",HOME,,0,0,0,,1,,,,,,,,,328
-Duke,Pittsburgh,Jon Scheyer,Jeff Capel III,ACC,ACC,2/10/2026,,"Pittsburgh, PA",AWAY,,0,0,1,,0,,,,,,,,,328
-Virginia,Florida St.,Ryan Odom,Luke Loucks,ACC,ACC,2/10/2026,,"Tallahassee, FL",AWAY,,0,0,1,,0,,,,,,,,,356
-Florida St.,Virginia,Luke Loucks,Ryan Odom,ACC,ACC,2/10/2026,,"Tallahassee, FL",HOME,,0,0,0,,0,,,,,,,,,356
-Wake Forest,Georgia Tech,Steve Forbes,Damon Stoudamire,ACC,ACC,2/10/2026,,"Atlanta, GA",AWAY,,0,0,1,,0,,,,,,,,,381
-Georgia Tech,Wake Forest,Damon Stoudamire,Steve Forbes,ACC,ACC,2/10/2026,,"Atlanta, GA",HOME,,0,0,0,,0,,,,,,,,,381
-North Carolina,Miami FL,Hubert Davis,Jai Lucas,ACC,ACC,2/10/2026,,"Coral Gables, FL",AWAY,,0,0,1,,0,,,,,,,,,427
-Miami FL,North Carolina,Jai Lucas,Hubert Davis,ACC,ACC,2/10/2026,,"Coral Gables, FL",HOME,,0,0,0,,1,,,,,,,,,427
-SMU,Notre Dame,Andy Enfield,Micah Shrewsberry,ACC,ACC,2/10/2026,,"Dallas, TX",HOME,,0,0,0,,0,,,,,,,,,490
-Notre Dame,SMU,Micah Shrewsberry,Andy Enfield,ACC,ACC,2/10/2026,,"Dallas, TX",AWAY,,0,0,1,,0,,,,,,,,,490
-Saint Joseph's,Fordham,Steve Donahue,Mike Magpayo,A10,A10,2/10/2026,,"Philadelphia, PA",HOME,,0,0,0,,0,,,,,,,,,1312
-Fordham,Saint Joseph's,Mike Magpayo,Steve Donahue,A10,A10,2/10/2026,,"Philadelphia, PA",AWAY,,0,0,1,,0,,,,,,,,,1312
-Richmond,George Mason,Chris Mooney,Tony Skinn,A10,A10,2/10/2026,,"Richmond, VA",HOME,,0,0,0,,0,,,,,,,,,1335
-George Mason,Richmond,Tony Skinn,Chris Mooney,A10,A10,2/10/2026,,"Richmond, VA",AWAY,,0,0,1,,0,,,,,,,,,1335
-Rhode Island,George Washington,Archie Miller,Chris Caputo,A10,A10,2/10/2026,,"Washington, DC",AWAY,,0,0,1,,0,,,,,,,,,1357
-George Washington,Rhode Island,Chris Caputo,Archie Miller,A10,A10,2/10/2026,,"Washington, DC",HOME,,0,0,0,,0,,,,,,,,,1357
-Oklahoma St.,Arizona St.,Steve Lutz,Bobby Hurley,Big 12,Big 12,2/10/2026,,"Tempe, AZ",AWAY,,0,0,1,,0,,,,,,,,,1493
-Arizona St.,Oklahoma St.,Bobby Hurley,Steve Lutz,Big 12,Big 12,2/10/2026,,"Tempe, AZ",HOME,,0,0,0,,0,,,,,,,,,1493
-BYU,Baylor,Kevin Young,Scott Drew,Big 12,Big 12,2/10/2026,,"Waco, TX",AWAY,,0,0,1,,1,,,,,,,,,1544
-Baylor,BYU,Scott Drew,Kevin Young,Big 12,Big 12,2/10/2026,,"Waco, TX",HOME,,0,0,0,,1,,,,,,,,,1544
-Utah,Houston,Alex Jensen,Kelvin Sampson,Big 12,Big 12,2/10/2026,,"Salt Lake City, UT",HOME,,0,0,0,,1,,,,,,,,,1631
-Houston,Utah,Kelvin Sampson,Alex Jensen,Big 12,Big 12,2/10/2026,,"Salt Lake City, UT",AWAY,,0,0,1,,0,,,,,,,,,1631
-TCU,Iowa St.,Jamie Dixon,TJ Otzelberger,Big 12,Big 12,2/10/2026,,"Fort Worth, TX",HOME,,0,0,0,,1,,,,,,,,,1652
-Iowa St.,TCU,TJ Otzelberger,Jamie Dixon,Big 12,Big 12,2/10/2026,,"Fort Worth, TX",AWAY,,0,0,1,,0,,,,,,,,,1652
-Wisconsin,Illinois,Greg Gard,Brad Underwood,Big Ten,Big Ten,2/10/2026,,"Champaign, IL",AWAY,,0,0,1,,1,,,,,,,,,2103
-Illinois,Wisconsin,Brad Underwood,Greg Gard,Big Ten,Big Ten,2/10/2026,,"Champaign, IL",HOME,,0,0,0,,1,,,,,,,,,2103
-Purdue,Nebraska,Matt Painter,Fred Hoiberg,Big Ten,Big Ten,2/10/2026,,"Lincoln, NE",AWAY,,0,0,1,,0,,,,,,,,,2260
-Nebraska,Purdue,Fred Hoiberg,Matt Painter,Big Ten,Big Ten,2/10/2026,,"Lincoln, NE",HOME,,0,0,0,,1,,,,,,,,,2260
-Colorado St.,Air Force,Ali Farokhmanesh,Joe Scott,Mountain West,Mountain West,2/10/2026,,"Colorado Springs, CO",AWAY,,0,0,1,,0,,,,,,,,,3799
-Air Force,Colorado St.,Joe Scott,Ali Farokhmanesh,Mountain West,Mountain West,2/10/2026,,"Colorado Springs, CO",HOME,,0,0,0,,1,,,,,,,,,3799
-Fresno St.,Utah St.,Vance Walberg,Jerrod Calhoun,Mountain West,Mountain West,2/10/2026,,"Logan, UT",AWAY,,0,0,1,,1,,,,,,,,,3862
-Utah St.,Fresno St.,Jerrod Calhoun,Vance Walberg,Mountain West,Mountain West,2/10/2026,,"Logan, UT",HOME,,0,0,0,,0,,,,,,,,,3862
-San Jose St.,UNLV,Tim Miles,Josh Pastner,Mountain West,Mountain West,2/10/2026,,"Las Vegas, NV",AWAY,,0,0,1,,0,,,,,,,,,3922
-UNLV,San Jose St.,Josh Pastner,Tim Miles,Mountain West,Mountain West,2/10/2026,,"Las Vegas, NV",HOME,,0,0,0,,0,,,,,,,,,3922
-Eastern Illinois,Western Illinois,Marty Simmons,Chad Boudreau,Ohio Valley,Ohio Valley,2/10/2026,,"Macomb, IL",AWAY,,0,0,1,,0,,,,,,,,,4059
-Western Illinois,Eastern Illinois,Chad Boudreau,Marty Simmons,Ohio Valley,Ohio Valley,2/10/2026,,"Macomb, IL",HOME,,0,0,0,,0,,,,,,,,,4059
 DePaul,Creighton,Chris Holtmann,Greg McDermott,Big East,Big East,2/11/2026,,"Chicago, IL",HOME,,0,0,0,,1,,,,,,,,,53
 Creighton,DePaul,Greg McDermott,Chris Holtmann,Big East,Big East,2/11/2026,,"Chicago, IL",AWAY,,0,0,1,,0,,,,,,,,,53
 Connecticut,Butler,Dan Hurley,Thad Matta,Big East,Big East,2/11/2026,,"Indianapolis, IN",AWAY,,0,0,1,,0,,,,,,,,,107
